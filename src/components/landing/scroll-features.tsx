@@ -19,11 +19,15 @@ const STEPS = [
     id: "step-template",
     title: "Select your template",
     description:
-      "Pick from production-ready templates. React + Vite and Next.js is available now. Each template includes the full FSD structure.",
+      "Pick from production-ready templates. React + Vite and Next.js are available now. Each template includes the full FSD structure.",
     terminal: [
       { type: "command" as const, text: "npm create fsd-architecture@latest" },
       { type: "prompt" as const, text: "? Project name: ", answer: "my-app" },
-      { type: "prompt" as const, text: "? Select template: ", answer: "React + Vite" },
+      {
+        type: "prompt" as const,
+        text: "? Select template: ",
+        answer: "React + Vite or Next.js",
+      },
     ],
     accent: "brand-lavender",
   },
@@ -49,12 +53,13 @@ const STEPS = [
     id: "step-deps",
     title: "Install dependencies",
     description:
-      "Dependencies are installed automatically. ESLint, Husky, commitlint — everything configured out of the box so you can focus on building features.",
+      "Dependencies are installed automatically. ESLint or Biome, strict TypeScript, Husky, commitlint, shadcn, and Tailwind are configured so you can focus on building features.",
     terminal: [
       { type: "success" as const, text: "✓ Template ready" },
       { type: "info" as const, text: "  Installing dependencies..." },
       { type: "success" as const, text: "✓ Dependencies installed" },
-      { type: "success" as const, text: "✓ ESLint configured" },
+      { type: "success" as const, text: "✓ ESLint or Biome configured" },
+      { type: "success" as const, text: "✓ TypeScript checks ready" },
       { type: "success" as const, text: "✓ Husky hooks set up" },
       { type: "success" as const, text: "✓ Commitlint ready" },
     ],
@@ -70,8 +75,14 @@ const STEPS = [
       { type: "info" as const, text: "" },
       { type: "info" as const, text: "  VITE v6.x  ready in 340ms" },
       { type: "info" as const, text: "" },
-      { type: "success" as const, text: "  ➜  Local:   http://localhost:5173/" },
-      { type: "info" as const, text: "  ➜  Network: http://192.168.1.10:5173/" },
+      {
+        type: "success" as const,
+        text: "  ➜  Local:   http://localhost:5173/",
+      },
+      {
+        type: "info" as const,
+        text: "  ➜  Network: http://192.168.1.10:5173/",
+      },
     ],
     accent: "brand-coral",
   },
@@ -83,13 +94,23 @@ const STEPS = [
     terminal: [
       { type: "info" as const, text: "src/" },
       { type: "info" as const, text: "├── app/          # providers, routing" },
-      { type: "info" as const, text: "├── pages/        # route compositions" },
+      {
+        type: "info" as const,
+        text: "├── pages/        # Vite route compositions",
+      },
+      {
+        type: "info" as const,
+        text: "├── screens/      # Next route-level screens",
+      },
       { type: "info" as const, text: "├── widgets/      # complex UI blocks" },
       { type: "info" as const, text: "├── features/     # user interactions" },
       { type: "info" as const, text: "├── entities/     # business models" },
       { type: "info" as const, text: "└── shared/       # reusable code" },
       { type: "info" as const, text: "" },
-      { type: "success" as const, text: "✓ Architecture scales with your team" },
+      {
+        type: "success" as const,
+        text: "✓ Architecture scales with your team",
+      },
     ],
     accent: "brand-mint",
   },
@@ -111,7 +132,7 @@ function TerminalVisual({
       </div>
       <div className="px-5 py-5 font-mono text-sm leading-relaxed">
         {lines.map((line, i) => (
-          <div key={i} className="min-h-[1.5em]">
+          <div key={`${line.type}-${line.text}-${i}`} className="min-h-[1.5em]">
             {line.type === "command" && (
               <span>
                 <span className={`text-${accent}`}>$</span>{" "}
@@ -155,13 +176,13 @@ export function ScrollFeatures() {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             const index = stepRefs.current.indexOf(
-              entry.target as HTMLDivElement
+              entry.target as HTMLDivElement,
             );
             if (index !== -1) setActiveIndex(index);
           }
         }
       },
-      { rootMargin: "-35% 0px -35% 0px", threshold: 0.2 }
+      { rootMargin: "-35% 0px -35% 0px", threshold: 0.2 },
     );
 
     for (const ref of stepRefs.current) {
@@ -191,15 +212,15 @@ export function ScrollFeatures() {
             {STEPS.map((step, i) => (
               <div
                 key={step.id}
-                ref={(el) => { stepRefs.current[i] = el; }}
+                ref={(el) => {
+                  stepRefs.current[i] = el;
+                }}
                 className="lg:min-h-[40vh] lg:flex lg:items-center"
               >
                 <div
                   className={cn(
                     "rounded-[24px] p-8 transition-all duration-500",
-                    activeIndex === i
-                      ? "bg-surface-soft"
-                      : "bg-transparent"
+                    activeIndex === i ? "bg-surface-soft" : "bg-transparent",
                   )}
                 >
                   <div className="mb-4 flex items-center gap-3">
@@ -208,7 +229,7 @@ export function ScrollFeatures() {
                         "inline-flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold transition-colors duration-300",
                         activeIndex === i
                           ? `bg-${step.accent} text-white`
-                          : "bg-surface-card text-body-muted"
+                          : "bg-surface-card text-body-muted",
                       )}
                     >
                       {i + 1}
@@ -225,7 +246,10 @@ export function ScrollFeatures() {
                   </p>
 
                   <div className="mt-6 lg:hidden">
-                    <TerminalVisual lines={step.terminal} accent={step.accent} />
+                    <TerminalVisual
+                      lines={step.terminal}
+                      accent={step.accent}
+                    />
                   </div>
                 </div>
               </div>
@@ -244,11 +268,14 @@ export function ScrollFeatures() {
                         ? "opacity-100 translate-y-0"
                         : i < activeIndex
                           ? "opacity-0 -translate-y-4"
-                          : "opacity-0 translate-y-4"
+                          : "opacity-0 translate-y-4",
                     )}
                     style={{ position: i === 0 ? "relative" : "absolute" }}
                   >
-                    <TerminalVisual lines={step.terminal} accent={step.accent} />
+                    <TerminalVisual
+                      lines={step.terminal}
+                      accent={step.accent}
+                    />
                   </div>
                 ))}
               </div>

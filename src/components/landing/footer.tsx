@@ -1,9 +1,9 @@
-import { Layers } from "lucide-react";
 import Image from "next/image";
 
 const FOOTER_LINKS = {
   Product: [
     { label: "Features", href: "#features" },
+    { label: "Capabilities", href: "#capabilities" },
     { label: "Templates", href: "#docs" },
     { label: "Architecture", href: "#architecture" },
     { label: "Roadmap", href: "#docs" },
@@ -27,8 +27,8 @@ export function Footer() {
       <div className="mx-auto max-w-[1280px] px-6 py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr_1fr]">
           <div>
-            <a href="#" className="flex items-center gap-2.5">
-              <Image src={'/fsd logo.png'} alt="" width={40} height={40} />
+            <a href="/" className="flex items-center gap-2.5">
+              <Image src={"/fsd logo.png"} alt="" width={40} height={40} />
               <span className="text-base font-semibold tracking-tight text-ink">
                 create-fsd-architecture
               </span>

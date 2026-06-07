@@ -1,8 +1,8 @@
 "use client";
 
-import { ArrowRight, Copy, Check } from "lucide-react";
-import { GitHubIcon } from "./github-icon";
+import { ArrowRight, Check, Copy } from "lucide-react";
 import { useState } from "react";
+import { GitHubIcon } from "./github-icon";
 
 function TerminalPreview() {
   const [copied, setCopied] = useState(false);
@@ -25,7 +25,9 @@ function TerminalPreview() {
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-0">
             <span className="text-brand-mint">$</span>
-            <span className="ml-2 text-white/90">npm create fsd-architecture@latest</span>
+            <span className="ml-2 text-white/90">
+              npm create fsd-architecture@latest
+            </span>
             <span className="ml-1 inline-block h-4 w-2 bg-brand-mint/70 animate-terminal-blink" />
           </div>
           <button
@@ -54,7 +56,9 @@ function TerminalPreview() {
           </p>
           <p className="mt-3">
             <span className="text-brand-mint">✓</span>{" "}
-            <span className="text-white/60">Scaffolding project in ./my-app</span>
+            <span className="text-white/60">
+              Scaffolding project in ./my-app
+            </span>
           </p>
           <p>
             <span className="text-brand-mint">✓</span>{" "}
@@ -62,11 +66,11 @@ function TerminalPreview() {
           </p>
           <p>
             <span className="text-brand-mint">✓</span>{" "}
-            <span className="text-white/60">Setting up ESLint + Husky</span>
+            <span className="text-white/60">
+              Setting up linting, typing, and Husky
+            </span>
           </p>
-          <p className="mt-3 text-brand-mint">
-            Done! cd my-app && npm run dev
-          </p>
+          <p className="mt-3 text-brand-mint">Done! cd my-app && npm run dev</p>
         </div>
       </div>
     </div>
@@ -83,7 +87,7 @@ export function Hero() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-[9999px] border border-hairline bg-surface-soft px-4 py-1.5">
               <span className="h-2 w-2 rounded-full bg-brand-mint" />
               <span className="text-xs font-medium text-body-muted">
-                React + Vite and NextJs template available
+                React + Vite and Next.js templates available
               </span>
             </div>
 
@@ -94,7 +98,9 @@ export function Hero() {
 
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-body">
               Scaffold production-ready React projects with{" "}
-              <span className="font-medium text-ink">Feature-Sliced Design</span>{" "}
+              <span className="font-medium text-ink">
+                Feature-Sliced Design
+              </span>{" "}
               — the architecture pattern trusted by teams who outgrow component
               folders.
             </p>

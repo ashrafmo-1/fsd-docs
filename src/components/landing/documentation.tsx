@@ -1,8 +1,8 @@
 "use client";
 
+import { Check, ChevronDown, Copy } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Copy, Check, ChevronDown } from "lucide-react";
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -49,13 +49,7 @@ function CodeBlock({
   );
 }
 
-function FaqItem({
-  question,
-  answer,
-}: {
-  question: string;
-  answer: string;
-}) {
+function FaqItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -69,14 +63,14 @@ function FaqItem({
         <ChevronDown
           className={cn(
             "h-4 w-4 flex-shrink-0 text-body-muted transition-transform duration-200",
-            open && "rotate-180"
+            open && "rotate-180",
           )}
         />
       </button>
       <div
         className={cn(
           "grid transition-[grid-template-rows] duration-200",
-          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
         )}
       >
         <div className="overflow-hidden">
@@ -92,13 +86,15 @@ const TEMPLATES = [
     name: "React + Vite",
     status: "Available",
     statusColor: "bg-brand-mint text-ink",
-    description: "React 18+, Vite, TypeScript, ESLint, Husky, commitlint",
+    description:
+      "React 19, Vite, TypeScript, Tailwind CSS, shadcn, ESLint, Husky, commitlint",
   },
   {
     name: "Next.js",
     status: "Available",
     statusColor: "bg-brand-lavender text-ink",
-    description: "App Router, Server Components, TypeScript, ESLint, Husky",
+    description:
+      "Next 16, React 19, App Router, React Compiler, Tailwind CSS, Biome, shadcn",
   },
 ];
 
@@ -107,7 +103,10 @@ const ROADMAP = [
   { item: "Interactive CLI prompts", done: true },
   { item: "ESLint + Husky + commitlint", done: true },
   { item: "FSD folder structure generation", done: true },
-  { item: "Next.js App Router template", done: false },
+  { item: "Next.js App Router template", done: true },
+  { item: "React Query + forms example", done: true },
+  { item: "Product entity CRUD screens", done: true },
+  { item: "Brand and category CRUD", done: false },
   { item: "Vue + Vite template", done: false },
   { item: "Custom layer configuration", done: false },
   { item: "Slice generators (add feature/entity)", done: false },
@@ -132,12 +131,12 @@ const FAQ_ITEMS = [
   {
     question: "What's included in the React + Vite template?",
     answer:
-      "The template includes React 18+, Vite with fast HMR, TypeScript, ESLint with recommended rules, Husky pre-commit hooks, commitlint for conventional commits, and the complete FSD folder structure with example slices.",
+      "The template includes React 19, Vite with fast HMR, TypeScript, Tailwind CSS, shadcn-ready aliases, ESLint with React and TypeScript rules, Husky hooks, commitlint, Commitizen, and the complete FSD folder structure with example slices.",
   },
   {
-    question: "When is Next.js support coming?",
+    question: "What's included in the Next.js template?",
     answer:
-      "Next.js with App Router support is actively in development. It will include Server Components, the complete FSD structure adapted for Next.js conventions, and the same tooling setup (ESLint, Husky, commitlint).",
+      "The Next.js template is available now. It includes Next 16, React 19, App Router, React Compiler, Tailwind CSS, Biome, shadcn aliases, strict TypeScript, React Query, React Hook Form, Zod, Axios, product entity examples, dashboard widgets, and Next-safe screens.",
   },
   {
     question: "Is this tool free and open source?",
@@ -216,7 +215,8 @@ Done. Now run:
                 code={`my-app/
 ├── src/
 │   ├── app/            # App initialization, providers, routing
-│   ├── pages/          # Page compositions (route-level)
+│   ├── pages/          # Vite page compositions
+│   ├── screens/        # Next route-level screens
 │   ├── widgets/        # Complex UI blocks (header, sidebar)
 │   ├── features/       # User interactions (auth, forms)
 │   ├── entities/       # Business entities (user, product)
@@ -253,8 +253,10 @@ Done. Now run:
                     2
                   </span>
                   <span>
-                    <span className="font-medium text-ink">Template selection</span>{" "}
-                    — choose from available templates (React + Vite).
+                    <span className="font-medium text-ink">
+                      Template selection
+                    </span>{" "}
+                    — choose from available templates (React + Vite or Next.js).
                   </span>
                 </li>
                 <li className="flex gap-3">
@@ -271,8 +273,9 @@ Done. Now run:
                     4
                   </span>
                   <span>
-                    <span className="font-medium text-ink">Tooling setup</span> —
-                    ESLint, Husky, and commitlint are configured automatically.
+                    <span className="font-medium text-ink">Tooling setup</span>{" "}
+                    — ESLint or Biome, TypeScript checks, Husky, and commitlint
+                    are configured automatically.
                   </span>
                 </li>
                 <li className="flex gap-3">
@@ -280,8 +283,8 @@ Done. Now run:
                     5
                   </span>
                   <span>
-                    <span className="font-medium text-ink">Ready</span> — install
-                    dependencies and start the dev server.
+                    <span className="font-medium text-ink">Ready</span> —
+                    install dependencies and start the dev server.
                   </span>
                 </li>
               </ol>
@@ -307,7 +310,7 @@ Done. Now run:
                       <span
                         className={cn(
                           "rounded-[9999px] px-2.5 py-0.5 text-xs font-medium",
-                          t.statusColor
+                          t.statusColor,
                         )}
                       >
                         {t.status}
@@ -320,7 +323,7 @@ Done. Now run:
             </div>
 
             {/* Roadmap */}
-            {/* <div>
+            <div>
               <h3 className="mb-4 text-xl font-medium tracking-[-0.3px] text-ink">
                 Roadmap
               </h3>
@@ -332,7 +335,7 @@ Done. Now run:
                         "flex h-5 w-5 items-center justify-center rounded-full text-xs",
                         r.done
                           ? "bg-brand-mint text-ink"
-                          : "border border-hairline bg-canvas text-body-muted"
+                          : "border border-hairline bg-canvas text-body-muted",
                       )}
                     >
                       {r.done ? "✓" : ""}
@@ -340,7 +343,7 @@ Done. Now run:
                     <span
                       className={cn(
                         "text-sm",
-                        r.done ? "text-ink" : "text-body-muted"
+                        r.done ? "text-ink" : "text-body-muted",
                       )}
                     >
                       {r.item}
@@ -348,7 +351,7 @@ Done. Now run:
                   </div>
                 ))}
               </div>
-            </div> */}
+            </div>
 
             {/* FAQ */}
             <div>

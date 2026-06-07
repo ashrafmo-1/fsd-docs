@@ -1,0 +1,324 @@
+"use client";
+
+import type { LucideIcon } from "lucide-react";
+import {
+  Blocks,
+  CheckCircle2,
+  Code2,
+  Database,
+  FileCode2,
+  GitCommit,
+  GitPullRequest,
+  Layers,
+  LayoutDashboard,
+  PackageCheck,
+  Route,
+  ShieldCheck,
+  Sparkles,
+  Terminal,
+  Wrench,
+} from "lucide-react";
+
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { cn } from "@/lib/utils";
+
+type Capability = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  color: string;
+  textColor: string;
+};
+
+const CAPABILITY_GROUPS: {
+  label: string;
+  title: string;
+  description: string;
+  accent: string;
+  items: Capability[];
+}[] = [
+  {
+    label: "Architecture",
+    title: "FSD structure that stays readable",
+    description:
+      "The generated projects start with clear layers, import direction, shared primitives, and typed configuration so teams know where every slice belongs.",
+    accent: "bg-brand-lavender",
+    items: [
+      {
+        title: "Feature-Sliced Design layers",
+        description:
+          "app, pages or screens, widgets, features, entities, and shared layers are ready from day one.",
+        icon: Layers,
+        color: "bg-brand-lavender",
+        textColor: "text-ink",
+      },
+      {
+        title: "Layer dependency rules",
+        description:
+          "Upper layers compose lower layers, keeping shared code independent and feature code focused.",
+        icon: Route,
+        color: "bg-brand-mint",
+        textColor: "text-ink",
+      },
+      {
+        title: "Path aliases",
+        description:
+          "Use @/* imports from src/* for clean imports across both starter editions.",
+        icon: FileCode2,
+        color: "bg-brand-peach",
+        textColor: "text-ink",
+      },
+    ],
+  },
+  {
+    label: "Frameworks",
+    title: "Two editions for different project shapes",
+    description:
+      "Pick the lightweight Vite starter for speed or the Next.js starter for App Router dashboards and production-oriented apps.",
+    accent: "bg-brand-coral",
+    items: [
+      {
+        title: "React + Vite edition",
+        description:
+          "React 19, Vite, TypeScript, Tailwind CSS, shadcn aliases, ESLint, and fast local builds.",
+        icon: Sparkles,
+        color: "bg-brand-peach",
+        textColor: "text-ink",
+      },
+      {
+        title: "Next.js App Router edition",
+        description:
+          "Next 16, React 19, React Compiler, App Router, Tailwind CSS, Biome, and Next Image.",
+        icon: Blocks,
+        color: "bg-brand-teal",
+        textColor: "text-white",
+      },
+      {
+        title: "Shared design primitives",
+        description:
+          "Reusable Button, Card, Input, Label, Badge, utilities, config, and shared types.",
+        icon: PackageCheck,
+        color: "bg-surface-card",
+        textColor: "text-ink",
+      },
+    ],
+  },
+  {
+    label: "Quality",
+    title: "Tooling wired before the first feature",
+    description:
+      "Linting, formatting, type checks, commit discipline, and git hooks are part of the starter instead of an afterthought.",
+    accent: "bg-brand-ochre",
+    items: [
+      {
+        title: "Strict TypeScript",
+        description:
+          "Strict type checking, noEmit builds, typed configs, and confident refactors.",
+        icon: Code2,
+        color: "bg-brand-mint",
+        textColor: "text-ink",
+      },
+      {
+        title: "ESLint and Biome",
+        description:
+          "Vite ships ESLint rules; Next ships Biome for linting, formatting, React, Next, and import organization.",
+        icon: Wrench,
+        color: "bg-brand-lavender",
+        textColor: "text-ink",
+      },
+      {
+        title: "Husky, Commitlint, Commitizen",
+        description:
+          "Local hooks and conventional commits keep quality checks close to the workflow.",
+        icon: GitCommit,
+        color: "bg-brand-pink",
+        textColor: "text-white",
+      },
+    ],
+  },
+  {
+    label: "Dashboard",
+    title: "Domain features already modeled",
+    description:
+      "The Next edition includes product domain examples plus dashboard surfaces that show how FSD slices compose real screens.",
+    accent: "bg-brand-teal",
+    items: [
+      {
+        title: "Product entity",
+        description:
+          "Typed product model, API reads, query keys, and optimized ProductCard with Next Image.",
+        icon: Database,
+        color: "bg-brand-ochre",
+        textColor: "text-ink",
+      },
+      {
+        title: "Product create and update",
+        description:
+          "React Query mutations, React Hook Form, Zod validation, loading states, and reset behavior.",
+        icon: CheckCircle2,
+        color: "bg-brand-coral",
+        textColor: "text-white",
+      },
+      {
+        title: "Dashboard-ready slices",
+        description:
+          "Dashboard header, sidebar, auth guard placeholders, dashboard guards, and brand/category extension points.",
+        icon: LayoutDashboard,
+        color: "bg-brand-teal",
+        textColor: "text-white",
+      },
+    ],
+  },
+  {
+    label: "Workflow",
+    title: "Commands and CI habits included",
+    description:
+      "The templates document the same commands teams already expect in a production starter.",
+    accent: "bg-brand-mint",
+    items: [
+      {
+        title: "Quality commands",
+        description:
+          "Run lint, typecheck, build, ci, git diff checks, and audit checks from a predictable workflow.",
+        icon: Terminal,
+        color: "bg-brand-peach",
+        textColor: "text-ink",
+      },
+      {
+        title: "CI-ready scripts",
+        description:
+          "Vite and Next editions expose scripts that can be dropped into automated checks.",
+        icon: GitPullRequest,
+        color: "bg-surface-card",
+        textColor: "text-ink",
+      },
+      {
+        title: "Guard rails for teams",
+        description:
+          "Commit rules, import organization, validation, and shared UI reduce drift as the codebase grows.",
+        icon: ShieldCheck,
+        color: "bg-brand-lavender",
+        textColor: "text-ink",
+      },
+    ],
+  },
+];
+
+function MiniCard({
+  item,
+  index,
+  visible,
+}: {
+  item: Capability;
+  index: number;
+  visible: boolean;
+}) {
+  const Icon = item.icon;
+
+  return (
+    <div
+      className={cn(
+        "rounded-[20px] p-5 transition-all duration-500",
+        item.color,
+        visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
+      )}
+      style={{ transitionDelay: `${index * 80}ms` }}
+    >
+      <div
+        className={cn(
+          "mb-4 inline-flex h-9 w-9 items-center justify-center rounded-[12px]",
+          item.textColor === "text-white" ? "bg-white/20" : "bg-ink/10",
+        )}
+      >
+        <Icon
+          className={cn(
+            "h-4 w-4",
+            item.textColor === "text-white" ? "text-white" : "text-ink",
+          )}
+        />
+      </div>
+      <h4
+        className={cn("text-base font-semibold tracking-tight", item.textColor)}
+      >
+        {item.title}
+      </h4>
+      <p
+        className={cn(
+          "mt-2 text-sm leading-relaxed opacity-80",
+          item.textColor,
+        )}
+      >
+        {item.description}
+      </p>
+    </div>
+  );
+}
+
+export function AllFeatures() {
+  const [ref, isVisible] = useIntersectionObserver<HTMLDivElement>({
+    threshold: 0.05,
+  });
+
+  return (
+    <section id="capabilities" className="py-24 md:py-32">
+      <div className="mx-auto max-w-[1280px] px-6">
+        <div className="mb-16 max-w-3xl">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-body-muted">
+            Included Capabilities
+          </p>
+          <h2 className="text-3xl font-medium tracking-[-1.5px] text-ink sm:text-4xl md:text-[40px]">
+            Every feature from the starters, visible in one place
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-body">
+            The landing page now reflects both projects: the lightweight Vite
+            template, the Next.js dashboard starter, and the quality workflow
+            that ties them together.
+          </p>
+        </div>
+
+        <div ref={ref} className="space-y-8">
+          {CAPABILITY_GROUPS.map((group, groupIndex) => (
+            <article
+              key={group.title}
+              className={cn(
+                "grid gap-5 rounded-[24px] border border-hairline bg-surface-soft p-5 transition-all duration-500 lg:grid-cols-[0.8fr_1.2fr]",
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-8 opacity-0",
+              )}
+              style={{ transitionDelay: `${groupIndex * 120}ms` }}
+            >
+              <div className="rounded-[20px] bg-canvas p-6">
+                <span
+                  className={cn(
+                    "mb-5 inline-flex rounded-[9999px] px-3 py-1 text-xs font-semibold uppercase tracking-[1.5px] text-ink",
+                    group.accent,
+                  )}
+                >
+                  {group.label}
+                </span>
+                <h3 className="text-2xl font-medium tracking-[-0.5px] text-ink">
+                  {group.title}
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-body">
+                  {group.description}
+                </p>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-3">
+                {group.items.map((item, itemIndex) => (
+                  <MiniCard
+                    key={item.title}
+                    item={item}
+                    index={itemIndex + groupIndex}
+                    visible={isVisible}
+                  />
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

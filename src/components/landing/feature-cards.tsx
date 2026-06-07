@@ -1,20 +1,20 @@
 "use client";
 
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
-import { cn } from "@/lib/utils";
+import type { LucideIcon } from "lucide-react";
 import {
-  Layers,
-  Zap,
+  Clock,
+  FolderTree,
   GitBranch,
-  Shield,
+  Layers,
   MessageSquareCode,
   Settings2,
-  FolderTree,
+  Shield,
   Terminal,
-  Clock,
   TrendingUp,
+  Zap,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { cn } from "@/lib/utils";
 
 interface Feature {
   title: string;
@@ -45,7 +45,7 @@ const FEATURES: Feature[] = [
   {
     title: "Next.js Support",
     description:
-      "Server components, app router, and FSD — coming soon. The best of both worlds for full-stack React.",
+      "App Router, React Compiler, Tailwind CSS, Biome, and FSD adapted for production Next.js dashboards.",
     icon: GitBranch,
     color: "bg-brand-teal",
     textColor: "text-white",
@@ -70,7 +70,7 @@ const FEATURES: Feature[] = [
   {
     title: "ESLint Configured",
     description:
-      "Sensible lint rules pre-configured for your stack. Consistent code quality across your team.",
+      "ESLint powers the Vite starter, while Biome powers the Next starter with linting, formatting, and import organization.",
     icon: Settings2,
     color: "bg-surface-card",
     textColor: "text-ink",
@@ -125,7 +125,7 @@ function FeatureCard({
       className={cn(
         "rounded-[24px] p-8 transition-all duration-500",
         feature.color,
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
       )}
       style={{ transitionDelay: `${(index % 3) * 100}ms` }}
     >
@@ -135,7 +135,7 @@ function FeatureCard({
             "mb-4 inline-block rounded-[9999px] px-3 py-1 text-xs font-semibold",
             feature.textColor === "text-white"
               ? "bg-white/20 text-white"
-              : "bg-ink/10 text-ink"
+              : "bg-ink/10 text-ink",
           )}
         >
           {feature.badge}
@@ -144,22 +144,20 @@ function FeatureCard({
       <div
         className={cn(
           "mb-4 inline-flex h-10 w-10 items-center justify-center rounded-[12px]",
-          feature.textColor === "text-white"
-            ? "bg-white/20"
-            : "bg-ink/10"
+          feature.textColor === "text-white" ? "bg-white/20" : "bg-ink/10",
         )}
       >
         <Icon
           className={cn(
             "h-5 w-5",
-            feature.textColor === "text-white" ? "text-white" : "text-ink"
+            feature.textColor === "text-white" ? "text-white" : "text-ink",
           )}
         />
       </div>
       <h3
         className={cn(
           "text-lg font-semibold tracking-tight",
-          feature.textColor
+          feature.textColor,
         )}
       >
         {feature.title}
@@ -167,7 +165,7 @@ function FeatureCard({
       <p
         className={cn(
           "mt-2 text-sm leading-relaxed opacity-80",
-          feature.textColor
+          feature.textColor,
         )}
       >
         {feature.description}
@@ -197,10 +195,7 @@ export function FeatureCards() {
           </p>
         </div>
 
-        <div
-          ref={ref}
-          className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-        >
+        <div ref={ref} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {FEATURES.map((feature, i) => (
             <FeatureCard
               key={feature.title}

@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { Menu, X, Layers } from "lucide-react";
-import { GitHubIcon } from "./github-icon";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
+import { GitHubIcon } from "./github-icon";
 
 const NAV_LINKS = [
   { label: "Features", href: "#features" },
+  { label: "Capabilities", href: "#capabilities" },
   { label: "Architecture", href: "#architecture" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Docs", href: "#docs" },
@@ -19,8 +19,8 @@ export function Navigation() {
   return (
     <nav className="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
-        <a href="#" className="flex items-center gap-2.5">
-          <Image src={'/fsd logo.png'} alt="" width={40} height={40} />
+        <a href="/" className="flex items-center gap-2.5">
+          <Image src={"/fsd logo.png"} alt="" width={40} height={40} />
           <span className="text-base font-semibold tracking-tight text-ink">
             create-fsd-architecture
           </span>
@@ -93,13 +93,18 @@ export function Navigation() {
               <GitHubIcon className="h-4 w-4" />
               GitHub
             </a>
-            <a
-              href="#docs"
+            <button
+              type="button"
               className="inline-flex h-10 items-center justify-center rounded-[12px] bg-ink text-sm font-semibold text-on-primary"
-              onClick={() => setMobileOpen(false)}
+              onClick={() => {
+                setMobileOpen(false);
+                document
+                  .getElementById("docs")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
             >
               Get Started
-            </a>
+            </button>
           </div>
         </div>
       )}

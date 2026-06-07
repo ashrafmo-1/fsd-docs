@@ -15,7 +15,8 @@ const FSD_LAYERS = [
   },
   {
     name: "pages",
-    description: "Full page compositions, route-level components",
+    description:
+      "Route-level screens. Next uses screens/ to avoid the reserved pages router folder",
     color: "bg-brand-pink",
     textColor: "text-white",
     borderColor: "border-brand-pink/30",
@@ -73,9 +74,7 @@ function LayerCard({
     <div
       className={cn(
         "transition-all duration-500",
-        isVisible
-          ? "opacity-100 translate-x-0"
-          : "opacity-0 -translate-x-8"
+        isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8",
       )}
       style={{
         transitionDelay: `${index * 100}ms`,
@@ -85,7 +84,7 @@ function LayerCard({
       <div
         className={cn(
           "flex items-center gap-4 rounded-[16px] px-5 py-4",
-          layer.color
+          layer.color,
         )}
       >
         <span className="text-xl">{layer.icon}</span>
@@ -93,17 +92,12 @@ function LayerCard({
           <p
             className={cn(
               "text-base font-semibold tracking-tight",
-              layer.textColor
+              layer.textColor,
             )}
           >
             {layer.name}
           </p>
-          <p
-            className={cn(
-              "text-sm opacity-80",
-              layer.textColor
-            )}
-          >
+          <p className={cn("text-sm opacity-80", layer.textColor)}>
             {layer.description}
           </p>
         </div>
@@ -119,6 +113,7 @@ function FolderTree({ isVisible }: { isVisible: boolean }) {
     { name: "providers/", indent: 2, delay: 100 },
     { name: "styles/", indent: 2, delay: 150 },
     { name: "pages/", indent: 1, delay: 200, color: "text-brand-pink" },
+    { name: "screens/", indent: 1, delay: 225, color: "text-brand-pink" },
     { name: "home/", indent: 2, delay: 250 },
     { name: "about/", indent: 2, delay: 300 },
     { name: "widgets/", indent: 1, delay: 350, color: "text-brand-ochre" },
@@ -150,8 +145,10 @@ function FolderTree({ isVisible }: { isVisible: boolean }) {
             key={`${f.indent}-${f.name}`}
             className={cn(
               "transition-all duration-400",
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4",
-              f.color ?? "text-white/50"
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-4",
+              f.color ?? "text-white/50",
             )}
             style={{
               paddingLeft: `${f.indent * 20}px`,
@@ -159,7 +156,9 @@ function FolderTree({ isVisible }: { isVisible: boolean }) {
             }}
           >
             <span className="text-white/30">{f.indent > 0 ? "├── " : ""}</span>
-            <span className={cn(f.indent === 1 && f.color ? "font-medium" : "")}>
+            <span
+              className={cn(f.indent === 1 && f.color ? "font-medium" : "")}
+            >
               {f.name}
             </span>
           </div>
@@ -175,7 +174,10 @@ export function ArchitectureVisualization() {
   });
 
   return (
-    <section id="architecture" className="relative bg-surface-soft py-24 md:py-32">
+    <section
+      id="architecture"
+      className="relative bg-surface-soft py-24 md:py-32"
+    >
       <div className="mx-auto max-w-[1280px] px-6">
         <div className="mb-16 max-w-2xl">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-body-muted">
@@ -191,10 +193,7 @@ export function ArchitectureVisualization() {
           </p>
         </div>
 
-        <div
-          ref={ref}
-          className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16"
-        >
+        <div ref={ref} className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <div className="flex flex-col gap-3">
             {FSD_LAYERS.map((layer, i) => (
               <LayerCard
@@ -207,7 +206,7 @@ export function ArchitectureVisualization() {
             <div
               className={cn(
                 "mt-4 flex items-center gap-2 text-sm text-body-muted transition-all duration-500",
-                isVisible ? "opacity-100" : "opacity-0"
+                isVisible ? "opacity-100" : "opacity-0",
               )}
               style={{ transitionDelay: "700ms" }}
             >

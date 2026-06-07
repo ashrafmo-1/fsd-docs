@@ -1,11 +1,12 @@
-import { Navigation } from "@/components/landing/navigation";
-import { Hero } from "@/components/landing/hero";
+import { AllFeatures } from "@/components/landing/all-features";
 import { ArchitectureVisualization } from "@/components/landing/architecture-visualization";
-import { ScrollFeatures } from "@/components/landing/scroll-features";
-import { FeatureCards } from "@/components/landing/feature-cards";
-import { Documentation } from "@/components/landing/documentation";
 import { CtaBand } from "@/components/landing/cta-band";
+import { Documentation } from "@/components/landing/documentation";
+import { FeatureCards } from "@/components/landing/feature-cards";
 import { Footer } from "@/components/landing/footer";
+import { Hero } from "@/components/landing/hero";
+import { Navigation } from "@/components/landing/navigation";
+import { ScrollFeatures } from "@/components/landing/scroll-features";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <ArchitectureVisualization />
         <ScrollFeatures />
         <FeatureCards />
+        <AllFeatures />
         <Documentation />
         <CtaBand />
       </main>
