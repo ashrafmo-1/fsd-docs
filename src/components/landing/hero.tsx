@@ -114,7 +114,7 @@ export function Hero() {
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/FSD-architectures"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-[12px] border border-hairline bg-canvas px-6 text-sm font-semibold text-ink transition-colors hover:bg-surface-soft"

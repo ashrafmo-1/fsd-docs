@@ -25,7 +25,7 @@ export function CtaBand() {
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/FSD-architectures"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-11 items-center gap-2 rounded-[12px] border border-white/20 bg-transparent px-6 text-sm font-semibold text-white transition-colors hover:bg-white/10"

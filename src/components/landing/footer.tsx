@@ -12,12 +12,14 @@ const FOOTER_LINKS = {
     { label: "Documentation", href: "#docs" },
     { label: "FAQ", href: "#docs" },
     { label: "Feature-Sliced Design", href: "https://feature-sliced.design/" },
-    { label: "GitHub", href: "https://github.com" },
+    { label: "GitHub", href: "https://github.com/FSD-architectures" },
   ],
   Community: [
-    { label: "GitHub Issues", href: "https://github.com" },
-    { label: "Discussions", href: "https://github.com" },
-    { label: "Contributing", href: "https://github.com" },
+    { label: "GitHub Issues(cli)", href: "https://github.com/FSD-architectures/cli/issues" },
+    { label: "GitHub Issues(FSD React + Vite)", href: "https://github.com/FSD-architectures/FSD/issues" },
+    { label: "GitHub Issues(NextJs)", href: "https://github.com/FSD-architectures/FSD-NEXTJS/issues" },
+    // { label: "Discussions", href: "https://github.com" },
+    // { label: "Contributing", href: "https://github.com" },
   ],
 };
 

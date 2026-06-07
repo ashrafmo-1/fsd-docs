@@ -40,7 +40,7 @@ export function Navigation() {
 
         <div className="hidden items-center gap-3 md:flex">
           <a
-            href="https://github.com"
+            href="https://github.com/FSD-architectures"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex h-9 items-center gap-2 rounded-[12px] border border-hairline bg-canvas px-4 text-sm font-semibold text-ink transition-colors hover:bg-surface-soft"
@@ -85,7 +85,7 @@ export function Navigation() {
             ))}
             <hr className="border-hairline" />
             <a
-              href="https://github.com"
+              href="https://github.com/FSD-architectures"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-10 items-center justify-center gap-2 rounded-[12px] border border-hairline bg-canvas text-sm font-semibold text-ink"
