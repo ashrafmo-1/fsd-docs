@@ -1,6 +1,14 @@
 "use client";
 
-import { Check, ChevronDown, Copy } from "lucide-react";
+import {
+  ArrowRight,
+  Boxes,
+  Check,
+  ChevronDown,
+  Copy,
+  KeyRound,
+  Terminal,
+} from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -81,6 +89,33 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
   );
 }
 
+const DOC_LINKS = [
+  {
+    title: "Project scaffolding",
+    description:
+      "Create a new React + Vite or Next.js FSD project through the existing interactive wizard.",
+    href: "/docs/getting-started",
+    icon: Terminal,
+    color: "bg-brand-peach",
+  },
+  {
+    title: "Slice generator",
+    description:
+      "Generate features, entities, widgets, and pages inside an existing project with smart src/ detection.",
+    href: "/docs/slice-generator",
+    icon: Boxes,
+    color: "bg-brand-mint",
+  },
+  {
+    title: "Auth generator",
+    description:
+      "Create auth modules for login, register, and forgot password flows with React Query, Zustand, Redux Toolkit, or UI-only presets.",
+    href: "/docs/auth-generator",
+    icon: KeyRound,
+    color: "bg-brand-lavender",
+  },
+];
+
 const TEMPLATES = [
   {
     name: "React + Vite",
@@ -100,48 +135,36 @@ const TEMPLATES = [
 
 const ROADMAP = [
   { item: "React + Vite template", done: true },
-  { item: "Interactive CLI prompts", done: true },
-  { item: "ESLint + Husky + commitlint", done: true },
-  { item: "FSD folder structure generation", done: true },
   { item: "Next.js App Router template", done: true },
-  { item: "React Query + forms example", done: true },
-  { item: "Product entity CRUD screens", done: true },
+  { item: "Interactive project wizard", done: true },
+  { item: "In-project slice generators", done: true },
+  { item: "Auth feature generator", done: true },
+  { item: "React Query, Zustand, Redux Toolkit presets", done: true },
   { item: "Brand and category CRUD", done: false },
   { item: "Vue + Vite template", done: false },
   { item: "Custom layer configuration", done: false },
-  { item: "Slice generators (add feature/entity)", done: false },
 ];
 
 const FAQ_ITEMS = [
   {
-    question: "What is Feature-Sliced Design?",
+    question: "What changed in version 2?",
     answer:
-      "Feature-Sliced Design (FSD) is an architectural methodology for frontend applications. It divides your codebase into layers (app, pages, widgets, features, entities, shared) with strict import rules — upper layers can import from lower layers, but never the reverse. This keeps your codebase predictable and maintainable as it grows.",
+      "The CLI still scaffolds full projects, but it can now generate FSD slices inside an existing project using --generate or -g.",
   },
   {
-    question: "Do I need to know FSD before using this tool?",
+    question: "Does the generator install dependencies?",
     answer:
-      "No. The CLI generates the full structure for you with clear folder naming. The architecture is self-documenting — you'll learn FSD naturally by working within the generated structure. Each layer has a clear purpose that guides where new code should go.",
+      "No. It generates code for the selected preset and assumes dependencies such as React Query, Zustand, Redux Toolkit, Axios, or the shared API client already exist in the project.",
   },
   {
-    question: "Can I customize the generated structure?",
+    question: "Where are generated slices created?",
     answer:
-      "The generated project gives you a clean starting point. You can add, remove, or rename slices within any layer. The key principle to follow is the layer dependency rule: only import from layers below your current layer.",
+      "If src/ exists, slices are created under src/features, src/entities, src/widgets, or src/pages. Otherwise the CLI writes to root-level FSD layer folders.",
   },
   {
-    question: "What's included in the React + Vite template?",
+    question: "Can I overwrite an existing slice?",
     answer:
-      "The template includes React 19, Vite with fast HMR, TypeScript, Tailwind CSS, shadcn-ready aliases, ESLint with React and TypeScript rules, Husky hooks, commitlint, Commitizen, and the complete FSD folder structure with example slices.",
-  },
-  {
-    question: "What's included in the Next.js template?",
-    answer:
-      "The Next.js template is available now. It includes Next 16, React 19, App Router, React Compiler, Tailwind CSS, Biome, shadcn aliases, strict TypeScript, React Query, React Hook Form, Zod, Axios, product entity examples, dashboard widgets, and Next-safe screens.",
-  },
-  {
-    question: "Is this tool free and open source?",
-    answer:
-      "Yes. create-fsd-architecture is completely free and open source under the MIT license. Contributions are welcome on GitHub.",
+      "Existing slices are protected by default. Use --force when you intentionally want to overwrite one.",
   },
 ];
 
@@ -149,153 +172,89 @@ export function Documentation() {
   return (
     <section id="docs" className="py-24 md:py-32">
       <div className="mx-auto max-w-[1280px] px-6">
-        <div className="mb-16 max-w-2xl">
+        <div className="mb-16 max-w-3xl">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-body-muted">
             Documentation
           </p>
           <h2 className="text-3xl font-medium tracking-[-1.5px] text-ink sm:text-4xl md:text-[40px]">
-            Get started in minutes
+            Version 2 docs for both CLI workflows
           </h2>
+          <p className="mt-4 text-lg leading-relaxed text-body">
+            Start new FSD projects or generate typed slices inside existing
+            codebases from the same package.
+          </p>
         </div>
 
         <div className="grid gap-16 lg:grid-cols-[7fr_5fr] lg:gap-24">
-          <div className="space-y-16">
-            {/* Installation */}
+          <div className="space-y-12">
+            <div className="grid gap-4 md:grid-cols-3">
+              {DOC_LINKS.map((link) => {
+                const Icon = link.icon;
+
+                return (
+                  <a
+                    key={link.title}
+                    href={link.href}
+                    className="group rounded-[16px] border border-hairline bg-canvas p-5 transition-colors hover:bg-surface-soft"
+                  >
+                    <span
+                      className={cn(
+                        "mb-4 inline-flex h-10 w-10 items-center justify-center rounded-[12px]",
+                        link.color,
+                      )}
+                    >
+                      <Icon className="h-5 w-5 text-ink" />
+                    </span>
+                    <h3 className="text-base font-semibold text-ink">
+                      {link.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-body">
+                      {link.description}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-ink">
+                      Read docs
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+
             <div>
               <h3 className="mb-4 text-xl font-medium tracking-[-0.3px] text-ink">
-                Installation
+                Project scaffolding
               </h3>
               <p className="mb-4 text-base leading-relaxed text-body">
-                No global install needed. Run the CLI directly with your
-                preferred package manager:
+                No generator flag keeps the existing interactive project
+                creation wizard.
               </p>
               <div className="space-y-3">
                 <CodeBlock code="npm create fsd-architecture@latest" />
-                <CodeBlock code="yarn create fsd-architecture" />
-                <CodeBlock code="pnpm create fsd-architecture" />
+                <CodeBlock code="npx create-fsd-architecture@latest" />
               </div>
             </div>
 
-            {/* Usage */}
             <div>
               <h3 className="mb-4 text-xl font-medium tracking-[-0.3px] text-ink">
-                Usage
+                In-project slice generation
               </h3>
               <p className="mb-4 text-base leading-relaxed text-body">
-                The CLI walks you through setup with interactive prompts:
+                Generate FSD features, entities, widgets, and pages from inside
+                an existing project.
               </p>
               <CodeBlock
-                language="bash"
-                code={`$ npm create fsd-architecture@latest
-
-? Project name: my-app
-? Select a template: React + Vite
-
-Scaffolding project in ./my-app...
-
-Done. Now run:
-
-  cd my-app
-  npm install
-  npm run dev`}
+                code={`npx create-fsd-architecture --generate feature auth
+npx create-fsd-architecture -g entity product
+npx create-fsd-architecture --generate widget navbar
+npx create-fsd-architecture --generate page checkout`}
               />
-            </div>
-
-            {/* Project Structure */}
-            <div>
-              <h3 className="mb-4 text-xl font-medium tracking-[-0.3px] text-ink">
-                Project Structure
-              </h3>
-              <p className="mb-4 text-base leading-relaxed text-body">
-                The generated project follows the Feature-Sliced Design
-                methodology:
-              </p>
-              <CodeBlock
-                language="text"
-                code={`my-app/
-├── src/
-│   ├── app/            # App initialization, providers, routing
-│   ├── pages/          # Vite page compositions
-│   ├── screens/        # Next route-level screens
-│   ├── widgets/        # Complex UI blocks (header, sidebar)
-│   ├── features/       # User interactions (auth, forms)
-│   ├── entities/       # Business entities (user, product)
-│   └── shared/         # Reusable code (UI kit, utils, config)
-├── .husky/             # Git hooks
-├── .eslintrc.cjs       # ESLint configuration
-├── commitlint.config.cjs
-├── vite.config.ts
-├── tsconfig.json
-└── package.json`}
-              />
-            </div>
-
-            {/* CLI Flow */}
-            <div>
-              <h3 className="mb-4 text-xl font-medium tracking-[-0.3px] text-ink">
-                CLI Flow
-              </h3>
-              <p className="mb-4 text-base leading-relaxed text-body">
-                Here&apos;s what happens when you run the CLI:
-              </p>
-              <ol className="space-y-3 text-base leading-relaxed text-body">
-                <li className="flex gap-3">
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-surface-card text-xs font-semibold text-ink">
-                    1
-                  </span>
-                  <span>
-                    <span className="font-medium text-ink">Project name</span> —
-                    enter a name for your new project directory.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-surface-card text-xs font-semibold text-ink">
-                    2
-                  </span>
-                  <span>
-                    <span className="font-medium text-ink">
-                      Template selection
-                    </span>{" "}
-                    — choose from available templates (React + Vite or Next.js).
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-surface-card text-xs font-semibold text-ink">
-                    3
-                  </span>
-                  <span>
-                    <span className="font-medium text-ink">Scaffolding</span> —
-                    the FSD folder structure is generated with all layers.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-surface-card text-xs font-semibold text-ink">
-                    4
-                  </span>
-                  <span>
-                    <span className="font-medium text-ink">Tooling setup</span>{" "}
-                    — ESLint or Biome, TypeScript checks, Husky, and commitlint
-                    are configured automatically.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-surface-card text-xs font-semibold text-ink">
-                    5
-                  </span>
-                  <span>
-                    <span className="font-medium text-ink">Ready</span> —
-                    install dependencies and start the dev server.
-                  </span>
-                </li>
-              </ol>
             </div>
           </div>
 
           <div className="space-y-16">
-            {/* Templates */}
             <div>
               <h3 className="mb-4 text-xl font-medium tracking-[-0.3px] text-ink">
-                Available Templates
+                Available templates
               </h3>
               <div className="space-y-3">
                 {TEMPLATES.map((t) => (
@@ -303,7 +262,7 @@ Done. Now run:
                     key={t.name}
                     className="rounded-[16px] border border-hairline bg-canvas p-5"
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-wrap items-center gap-3">
                       <span className="text-base font-semibold text-ink">
                         {t.name}
                       </span>
@@ -322,7 +281,6 @@ Done. Now run:
               </div>
             </div>
 
-            {/* Roadmap */}
             <div>
               <h3 className="mb-4 text-xl font-medium tracking-[-0.3px] text-ink">
                 Roadmap
@@ -353,7 +311,6 @@ Done. Now run:
               </div>
             </div>
 
-            {/* FAQ */}
             <div>
               <h3 className="mb-4 text-xl font-medium tracking-[-0.3px] text-ink">
                 FAQ

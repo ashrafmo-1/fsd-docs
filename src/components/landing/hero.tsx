@@ -8,7 +8,9 @@ function TerminalPreview() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText("npm create fsd-architecture@latest");
+    navigator.clipboard.writeText(
+      "npx create-fsd-architecture --generate feature auth",
+    );
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -26,7 +28,7 @@ function TerminalPreview() {
           <div className="flex items-center gap-0">
             <span className="text-brand-mint">$</span>
             <span className="ml-2 text-white/90">
-              npm create fsd-architecture@latest
+              npx create-fsd-architecture --generate feature auth
             </span>
             <span className="ml-1 inline-block h-4 w-2 bg-brand-mint/70 animate-terminal-blink" />
           </div>
@@ -46,31 +48,31 @@ function TerminalPreview() {
         <div className="mt-4 space-y-1.5 text-white/50">
           <p>
             <span className="text-brand-lavender">?</span>{" "}
-            <span className="text-white/70">Project name:</span>{" "}
-            <span className="text-brand-peach">my-app</span>
+            <span className="text-white/70">What will this feature use?</span>{" "}
+            <span className="text-brand-peach">Axios + React Query</span>
           </p>
           <p>
             <span className="text-brand-lavender">?</span>{" "}
-            <span className="text-white/70">Select template:</span>{" "}
-            <span className="text-brand-peach">React + Vite</span>
+            <span className="text-white/70">Auth modules:</span>{" "}
+            <span className="text-brand-peach">Login, Register</span>
           </p>
           <p className="mt-3">
             <span className="text-brand-mint">✓</span>{" "}
             <span className="text-white/60">
-              Scaffolding project in ./my-app
+              Detected src/ and created src/features/auth
             </span>
           </p>
           <p>
             <span className="text-brand-mint">✓</span>{" "}
-            <span className="text-white/60">Installing dependencies...</span>
+            <span className="text-white/60">Generated public index.ts API</span>
           </p>
           <p>
             <span className="text-brand-mint">✓</span>{" "}
             <span className="text-white/60">
-              Setting up linting, typing, and Husky
+              Added typed React Query auth boilerplate
             </span>
           </p>
-          <p className="mt-3 text-brand-mint">Done! cd my-app && npm run dev</p>
+          <p className="mt-3 text-brand-mint">Done! 12 files created</p>
         </div>
       </div>
     </div>
@@ -87,30 +89,30 @@ export function Hero() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-[9999px] border border-hairline bg-surface-soft px-4 py-1.5">
               <span className="h-2 w-2 rounded-full bg-brand-mint" />
               <span className="text-xs font-medium text-body-muted">
-                React + Vite and Next.js templates available
+                v2: project scaffolding and slice generation
               </span>
             </div>
 
             <h1 className="text-4xl font-medium leading-[1.05] tracking-[-2px] text-ink sm:text-5xl md:text-[56px] lg:text-[64px]">
-              Ship Scalable Frontend Architecture{" "}
+              Scaffold and Extend FSD Projects{" "}
               <span className="text-brand-lavender">in Seconds</span>
             </h1>
 
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-body">
-              Scaffold production-ready React projects with{" "}
+              Scaffold production-ready React projects and generate{" "}
               <span className="font-medium text-ink">
-                Feature-Sliced Design
+                Feature-Sliced Design slices
               </span>{" "}
-              — the architecture pattern trusted by teams who outgrow component
-              folders.
+              inside existing codebases with typed boilerplate for features,
+              entities, widgets, pages, and auth flows.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
-                href="#docs"
+                href="/docs/getting-started"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-[12px] bg-ink px-6 text-sm font-semibold text-on-primary transition-colors hover:bg-ink/90"
               >
-                Get Started
+                Read the Docs
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a

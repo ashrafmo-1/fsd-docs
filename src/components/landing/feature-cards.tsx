@@ -7,6 +7,7 @@ import {
   GitBranch,
   Layers,
   MessageSquareCode,
+  PackagePlus,
   Settings2,
   Shield,
   Terminal,
@@ -80,6 +81,14 @@ const FEATURES: Feature[] = [
     description:
       "No leftover boilerplate. Every file has a purpose, every folder follows the FSD convention.",
     icon: FolderTree,
+    color: "bg-brand-mint",
+    textColor: "text-ink",
+  },
+  {
+    title: "Slice Generators",
+    description:
+      "Add features, entities, widgets, pages, and auth flows inside existing projects with smart src/ detection.",
+    icon: PackagePlus,
     color: "bg-brand-mint",
     textColor: "text-ink",
   },
