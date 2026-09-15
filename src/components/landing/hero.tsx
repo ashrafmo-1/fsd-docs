@@ -1,7 +1,9 @@
 "use client";
 
 import { ArrowRight, Check, Copy } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
+import { siteConfig } from "@/lib/site";
 import { GitHubIcon } from "./github-icon";
 
 function TerminalPreview() {
@@ -36,7 +38,7 @@ function TerminalPreview() {
             type="button"
             onClick={handleCopy}
             className="flex-shrink-0 rounded-md p-1.5 text-white/40 transition-colors hover:text-white/70"
-            aria-label="Copy command"
+            aria-label="Copy generator command"
           >
             {copied ? (
               <Check className="h-3.5 w-3.5 text-brand-mint" />
@@ -44,17 +46,21 @@ function TerminalPreview() {
               <Copy className="h-3.5 w-3.5" />
             )}
           </button>
+          <span className="sr-only" aria-live="polite">
+            {copied ? "Command copied" : ""}
+          </span>
         </div>
         <div className="mt-4 space-y-1.5 text-white/50">
           <p>
-            <span className="text-brand-lavender">?</span>{" "}
-            <span className="text-white/70">What will this feature use?</span>{" "}
-            <span className="text-brand-peach">Axios + React Query</span>
+            <span className="text-brand-mint">✓</span>{" "}
+            <span className="text-white/70">Loaded fsd.config.json</span>
           </p>
           <p>
-            <span className="text-brand-lavender">?</span>{" "}
-            <span className="text-white/70">Auth modules:</span>{" "}
-            <span className="text-brand-peach">Login, Register</span>
+            <span className="text-brand-lavender">◆</span>{" "}
+            <span className="text-white/70">Stack:</span>{" "}
+            <span className="text-brand-peach">
+              Axios + React Query + Zustand
+            </span>
           </p>
           <p className="mt-3">
             <span className="text-brand-mint">✓</span>{" "}
@@ -72,7 +78,7 @@ function TerminalPreview() {
               Added typed React Query auth boilerplate
             </span>
           </p>
-          <p className="mt-3 text-brand-mint">Done! 12 files created</p>
+          <p className="mt-3 text-brand-mint">Done! Auth flow created</p>
         </div>
       </div>
     </div>
@@ -89,34 +95,34 @@ export function Hero() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-[9999px] border border-hairline bg-surface-soft px-4 py-1.5">
               <span className="h-2 w-2 rounded-full bg-brand-mint" />
               <span className="text-xs font-medium text-body-muted">
-                v2: project scaffolding and slice generation
+                v2.1: configure once, scaffold and generate
               </span>
             </div>
 
             <h1 className="text-4xl font-medium leading-[1.05] tracking-[-2px] text-ink sm:text-5xl md:text-[56px] lg:text-[64px]">
-              Scaffold and Extend FSD Projects{" "}
-              <span className="text-brand-lavender">in Seconds</span>
+              Build scalable frontends{" "}
+              <span className="text-brand-lavender">from day one</span>
             </h1>
 
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-body">
-              Scaffold production-ready React projects and generate{" "}
+              Create React + Vite or Next.js projects and generate{" "}
               <span className="font-medium text-ink">
                 Feature-Sliced Design slices
               </span>{" "}
-              inside existing codebases with typed boilerplate for features,
-              entities, widgets, pages, and auth flows.
+              inside existing codebases. Your framework and stack choices stay
+              consistent through one project configuration.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
+              <Link
                 href="/docs/getting-started"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-[12px] bg-ink px-6 text-sm font-semibold text-on-primary transition-colors hover:bg-ink/90"
               >
                 Read the Docs
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
               <a
-                href="https://github.com/FSD-architectures"
+                href={siteConfig.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-[12px] border border-hairline bg-canvas px-6 text-sm font-semibold text-ink transition-colors hover:bg-surface-soft"

@@ -9,8 +9,8 @@ import {
   FileCode2,
   GitCommit,
   GitPullRequest,
+  KeyRound,
   Layers,
-  LayoutDashboard,
   PackageCheck,
   Route,
   ShieldCheck,
@@ -47,7 +47,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "Feature-Sliced Design layers",
         description:
-          "app, pages or screens, widgets, features, entities, and shared layers are ready from day one.",
+          "app, pages, widgets, features, entities, and shared layers are ready from day one.",
         icon: Layers,
         color: "bg-brand-lavender",
         textColor: "text-ink",
@@ -74,13 +74,13 @@ const CAPABILITY_GROUPS: {
     label: "Frameworks",
     title: "Two editions for different project shapes",
     description:
-      "Pick the lightweight Vite starter for speed or the Next.js starter for App Router dashboards and production-oriented apps.",
+      "Pick the lightweight Vite starter for client-side apps or the Next.js starter for App Router applications.",
     accent: "bg-brand-coral",
     items: [
       {
         title: "React + Vite edition",
         description:
-          "React 19, Vite, TypeScript, Tailwind CSS, shadcn aliases, ESLint, and fast local builds.",
+          "React 19, Vite 8, TypeScript, Tailwind CSS 4, ESLint, Steiger, and fast local builds.",
         icon: Sparkles,
         color: "bg-brand-peach",
         textColor: "text-ink",
@@ -88,7 +88,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "Next.js App Router edition",
         description:
-          "Next 16, React 19, React Compiler, App Router, Tailwind CSS, Biome, and Next Image.",
+          "Next 16, React 19, React Compiler, App Router, Tailwind CSS 4, Biome, and Steiger.",
         icon: Blocks,
         color: "bg-brand-teal",
         textColor: "text-white",
@@ -96,7 +96,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "Shared design primitives",
         description:
-          "Reusable Button, Card, Input, Label, Badge, utilities, config, and shared types.",
+          "Reusable UI primitives, utilities, configuration, API boundaries, assets, and shared types.",
         icon: PackageCheck,
         color: "bg-surface-card",
         textColor: "text-ink",
@@ -137,33 +137,33 @@ const CAPABILITY_GROUPS: {
     ],
   },
   {
-    label: "Dashboard",
-    title: "Domain features already modeled",
+    label: "Generators",
+    title: "New slices follow the same decisions",
     description:
-      "The Next edition includes product domain examples plus dashboard surfaces that show how FSD slices compose real screens.",
+      "The project configuration keeps generated features aligned with the framework, API client, state tools, and forms stack selected at creation time.",
     accent: "bg-brand-teal",
     items: [
       {
-        title: "Product entity",
+        title: "Project configuration",
         description:
-          "Typed product model, API reads, query keys, and optimized ProductCard with Next Image.",
+          "fsd.config.json stores the selected framework and stack as a versioned source of truth.",
         icon: Database,
         color: "bg-brand-ochre",
         textColor: "text-ink",
       },
       {
-        title: "Product create and update",
+        title: "Stack-aware generation",
         description:
-          "React Query mutations, React Hook Form, Zod validation, loading states, and reset behavior.",
+          "Feature output adapts to Axios or Fetch, React Query, Zustand or Redux, and form choices.",
         icon: CheckCircle2,
         color: "bg-brand-coral",
         textColor: "text-white",
       },
       {
-        title: "Dashboard-ready slices",
+        title: "Complete auth flow",
         description:
-          "Dashboard header, sidebar, auth guard placeholders, dashboard guards, and brand/category extension points.",
-        icon: LayoutDashboard,
+          "Generate login, registration, password recovery, reset, and verification files together.",
+        icon: KeyRound,
         color: "bg-brand-teal",
         textColor: "text-white",
       },
@@ -179,7 +179,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "Quality commands",
         description:
-          "Run lint, typecheck, build, ci, git diff checks, and audit checks from a predictable workflow.",
+          "Run lint, typecheck, build, FSD checks, and CI from a predictable workflow.",
         icon: Terminal,
         color: "bg-brand-peach",
         textColor: "text-ink",
@@ -270,9 +270,9 @@ export function AllFeatures() {
             Every feature from the starters, visible in one place
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-body">
-            The landing page now reflects both projects: the lightweight Vite
-            template, the Next.js dashboard starter, and the quality workflow
-            that ties them together.
+            The landing page reflects both projects: the lightweight Vite
+            starter, the Next.js App Router starter, and the shared quality
+            workflow that ties them together.
           </p>
         </div>
 

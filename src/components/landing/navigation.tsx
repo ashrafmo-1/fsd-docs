@@ -2,16 +2,18 @@
 
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { GitHubIcon } from "./github-icon";
 
 const NAV_LINKS = [
-  { label: "Features", href: "/#features" },
-  { label: "Capabilities", href: "/#capabilities" },
   { label: "Architecture", href: "/#architecture" },
   { label: "How It Works", href: "/#how-it-works" },
+  { label: "Features", href: "/#features" },
+  { label: "Capabilities", href: "/#capabilities" },
   { label: "Docs", href: "/docs" },
 ];
 
@@ -20,14 +22,32 @@ export function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur-md">
+    <nav
+      aria-label="Main navigation"
+      className="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur-md"
+    >
       <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
-        <a href="/" className="flex items-center gap-2.5">
-          <Image src={"/fsd logo.png"} alt="" width={40} height={40} />
-          <span className="text-base font-semibold tracking-tight text-ink">
-            create-fsd-architecture
+        <Link
+          href="/"
+          className="flex items-center gap-2.5"
+          aria-label="FSD CLI home"
+        >
+          <Image
+            src="/fsd-logo.png"
+            alt="FSD CLI"
+            width={40}
+            height={40}
+            priority
+          />
+          <span className="flex flex-col leading-none">
+            <span className="text-base font-semibold tracking-tight text-ink">
+              FSD CLI
+            </span>
+            <span className="mt-1 hidden text-[10px] font-medium text-body-muted sm:block">
+              create-fsd-architecture
+            </span>
           </span>
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => {
@@ -35,7 +55,7 @@ export function Navigation() {
               link.href === "/docs" ? pathname.startsWith("/docs") : false;
 
             return (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
@@ -45,14 +65,14 @@ export function Navigation() {
                 )}
               >
                 {link.label}
-              </a>
+              </Link>
             );
           })}
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
           <a
-            href="https://github.com/FSD-architectures"
+            href={siteConfig.github}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex h-9 items-center gap-2 rounded-[12px] border border-hairline bg-canvas px-4 text-sm font-semibold text-ink transition-colors hover:bg-surface-soft"
@@ -60,19 +80,23 @@ export function Navigation() {
             <GitHubIcon className="h-4 w-4" />
             GitHub
           </a>
-          <a
+          <Link
             href="/docs/getting-started"
             className="inline-flex h-9 items-center rounded-[12px] bg-ink px-4 text-sm font-semibold text-on-primary transition-colors hover:bg-ink/90"
           >
             Get Started
-          </a>
+          </Link>
         </div>
 
         <button
           type="button"
           className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-hairline md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          aria-label={
+            mobileOpen ? "Close navigation menu" : "Open navigation menu"
+          }
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
         >
           {mobileOpen ? (
             <X className="h-4 w-4" />
@@ -83,14 +107,17 @@ export function Navigation() {
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-hairline bg-canvas px-6 pb-6 pt-4 md:hidden">
+        <div
+          id="mobile-navigation"
+          className="border-t border-hairline bg-canvas px-6 pb-6 pt-4 md:hidden"
+        >
           <div className="flex flex-col gap-4">
             {NAV_LINKS.map((link) => {
               const active =
                 link.href === "/docs" ? pathname.startsWith("/docs") : false;
 
               return (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   aria-current={active ? "page" : undefined}
@@ -101,12 +128,12 @@ export function Navigation() {
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               );
             })}
             <hr className="border-hairline" />
             <a
-              href="https://github.com/FSD-architectures"
+              href={siteConfig.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-10 items-center justify-center gap-2 rounded-[12px] border border-hairline bg-canvas text-sm font-semibold text-ink"
@@ -114,7 +141,7 @@ export function Navigation() {
               <GitHubIcon className="h-4 w-4" />
               GitHub
             </a>
-            <a
+            <Link
               href="/docs/getting-started"
               className="inline-flex h-10 items-center justify-center rounded-[12px] bg-ink text-sm font-semibold text-on-primary"
               onClick={() => {
@@ -122,7 +149,7 @@ export function Navigation() {
               }}
             >
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
       )}

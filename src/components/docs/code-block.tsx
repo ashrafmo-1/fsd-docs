@@ -30,7 +30,7 @@ export function CodeBlock({
         type="button"
         onClick={handleCopy}
         className="absolute right-3 top-3 rounded-md p-1.5 text-white/30 transition-colors hover:text-white/60"
-        aria-label="Copy"
+        aria-label="Copy code"
       >
         {copied ? (
           <Check className="h-3.5 w-3.5 text-brand-mint" />
@@ -38,6 +38,9 @@ export function CodeBlock({
           <Copy className="h-3.5 w-3.5" />
         )}
       </button>
+      <span className="sr-only" aria-live="polite">
+        {copied ? "Code copied" : ""}
+      </span>
     </div>
   );
 }

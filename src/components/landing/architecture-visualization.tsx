@@ -16,7 +16,7 @@ const FSD_LAYERS = [
   {
     name: "pages",
     description:
-      "Route-level screens. Next uses screens/ to avoid the reserved pages router folder",
+      "Route-level compositions, supported in both starters through framework routing adapters",
     color: "bg-brand-pink",
     textColor: "text-white",
     borderColor: "border-brand-pink/30",
@@ -113,7 +113,6 @@ function FolderTree({ isVisible }: { isVisible: boolean }) {
     { name: "providers/", indent: 2, delay: 100 },
     { name: "styles/", indent: 2, delay: 150 },
     { name: "pages/", indent: 1, delay: 200, color: "text-brand-pink" },
-    { name: "screens/", indent: 1, delay: 225, color: "text-brand-pink" },
     { name: "home/", indent: 2, delay: 250 },
     { name: "about/", indent: 2, delay: 300 },
     { name: "widgets/", indent: 1, delay: 350, color: "text-brand-ochre" },

@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FSD CLI Docs
 
-## Getting Started
+Official product site and documentation for
+[`create-fsd-architecture`](https://www.npmjs.com/package/create-fsd-architecture).
 
-First, run the development server:
+The site explains both CLI workflows:
+
+- creating a React + Vite or Next.js project with a complete Feature-Sliced
+  Design structure;
+- generating features, entities, widgets, pages, and a complete auth flow
+  inside an existing project.
+
+## Tech stack
+
+- Next.js 16 App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Biome
+
+## Local development
+
+Node.js 20.9 or later is required.
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quality checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
 
-## Learn More
+Run the complete verification pipeline with:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run check
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Routes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Route | Purpose |
+| --- | --- |
+| `/` | Product landing page |
+| `/docs` | Documentation overview |
+| `/docs/getting-started` | Project creation workflow |
+| `/docs/configuration` | `fsd.config.json` reference |
+| `/docs/slice-generator` | Feature, entity, widget, and page generation |
+| `/docs/auth-generator` | Dedicated auth flow generation |
 
-## Deploy on Vercel
+## Related repositories
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [CLI](https://github.com/FSD-CLI/cli)
+- [React + Vite starter](https://github.com/FSD-CLI/FSD)
+- [Next.js starter](https://github.com/FSD-CLI/FSD-NEXTJS)
+- [Feature-Sliced Design documentation](https://feature-sliced.design/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+The production URL is [fsd-docs.vercel.app](https://fsd-docs.vercel.app).
+Metadata, canonical URLs, sitemap, robots, and the web manifest use this URL.
+
+## License
+
+MIT

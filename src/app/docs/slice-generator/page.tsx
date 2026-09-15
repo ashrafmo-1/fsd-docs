@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+
+export const metadata: Metadata = {
+  title: "Slice Generator",
+  description:
+    "Generate feature, entity, widget, and page slices from the project's saved FSD configuration.",
+  alternates: { canonical: "/docs/slice-generator" },
+};
 
 const SUPPORTED_TYPES = ["feature", "entity", "widget", "page"];
 
@@ -57,9 +65,10 @@ export default function SliceGeneratorPage() {
         Generate FSD slices
       </h1>
       <p className="mt-5 max-w-3xl text-lg leading-relaxed text-body">
-        Use the v2 generator to create typed FSD slices directly inside an
-        existing project. The CLI detects whether your app uses a `src/`
-        directory and writes files to the matching FSD layer.
+        Generate typed FSD slices directly inside an existing project. The CLI
+        reads <code>fsd.config.json</code>, detects whether the app uses a
+        <code>src/</code> directory, and writes framework-aware files to the
+        matching layer.
       </p>
 
       <section className="mt-10 space-y-4">
@@ -218,8 +227,8 @@ pages/checkout/`}
           Feature presets
         </h2>
         <p className="mb-4 text-base leading-relaxed text-body">
-          When generating a generic feature, the CLI asks what the feature will
-          use.
+          Generic features use the API, server-state, client-state, and forms
+          choices already stored in <code>fsd.config.json</code>.
         </p>
         <div className="grid gap-3 sm:grid-cols-2">
           {[
@@ -245,32 +254,32 @@ pages/checkout/`}
         <div className="space-y-4">
           <CodeBlock
             language="text"
-            code={`? What will this feature use?
-> API: Axios + React Query
+            code={`apiClient: axios
+serverState: react-query
 
 Creates API helpers, React Query hooks, typed request files, UI entry points,
 and a public index.ts export.`}
           />
           <CodeBlock
             language="text"
-            code={`? What will this feature use?
-> Local State: Zustand
+            code={`clientState: zustand
 
 Creates a local store, typed actions/state, UI entry points,
 and a public index.ts export.`}
           />
           <CodeBlock
             language="text"
-            code={`? What will this feature use?
-> Global State: Redux Toolkit
+            code={`clientState: redux
 
 Creates a slice, actions/selectors, UI entry points,
 and a public index.ts export.`}
           />
           <CodeBlock
             language="text"
-            code={`? What will this feature use?
-> UI only
+            code={`apiClient: fetch
+serverState: none
+clientState: none
+forms: none
 
 Creates a typed React component, styles-ready structure,
 and a public index.ts export.`}

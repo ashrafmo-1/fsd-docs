@@ -1,107 +1,54 @@
+import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+
+export const metadata: Metadata = {
+  title: "Auth Generator",
+  description:
+    "Generate a complete auth feature from the stack stored in fsd.config.json.",
+  alternates: { canonical: "/docs/auth-generator" },
+};
+
+const AUTH_FLOW = [
+  "Login",
+  "Registration",
+  "Forgot password",
+  "Reset password",
+  "Verification code",
+];
 
 export default function AuthGeneratorPage() {
   return (
     <article className="max-w-4xl">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-body-muted">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-brand-coral">
         Special feature generator
       </p>
-      <h1 className="text-4xl font-medium leading-tight tracking-[-1.5px] text-ink md:text-5xl">
-        Auth feature generation
+      <h1 className="text-4xl font-semibold leading-tight tracking-[-1.5px] text-ink md:text-5xl">
+        Generate a complete auth flow
       </h1>
       <p className="mt-5 max-w-3xl text-lg leading-relaxed text-body">
-        The `auth` feature has a dedicated flow. The CLI asks which modules you
-        need, then adapts the generated files to the selected data or state
-        preset.
+        Naming a feature <code>auth</code> activates the dedicated generator. It
+        creates the full authentication flow and adapts the implementation to
+        the stack saved in <code>fsd.config.json</code>.
       </p>
 
-      <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
+      <section className="mt-10 space-y-4">
+        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
           Commands
         </h2>
-        <div className="space-y-4">
-          <CodeBlock code="npx create-fsd-architecture --generate feature auth" />
-          <CodeBlock code="npx create-fsd-architecture -g feature auth" />
-          <CodeBlock code="npx create-fsd-architecture --generate feature auth --force" />
-        </div>
+        <CodeBlock code="npx create-fsd-architecture --generate feature auth" />
+        <CodeBlock code="npx create-fsd-architecture -g feature auth" />
+        <CodeBlock code="npx create-fsd-architecture --generate feature auth --force" />
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
-          Auth as a feature example
+        <h2 className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink">
+          Generated flow
         </h2>
-        <p className="mb-4 text-base leading-relaxed text-body">
-          Auth is generated through the normal `feature` type, then the CLI
-          switches to the dedicated auth flow because the slice name is `auth`.
-        </p>
-        <div className="grid gap-4 lg:grid-cols-2">
-          <CodeBlock
-            code={`npx create-fsd-architecture --generate feature auth
-npx create-fsd-architecture -g feature auth`}
-          />
-          <CodeBlock
-            language="text"
-            code={`feature + auth
-→ asks for auth modules
-→ asks for data/state preset
-→ generates src/features/auth/`}
-          />
-        </div>
-      </section>
-
-      <section className="mt-10 grid gap-4 md:grid-cols-3">
-        {["Login", "Register", "Forgot Password Flow"].map((module) => (
-          <div
-            key={module}
-            className="rounded-[16px] border border-hairline bg-surface-soft p-5"
-          >
-            <h2 className="text-lg font-semibold text-ink">{module}</h2>
-            <p className="mt-2 text-sm leading-relaxed text-body">
-              Optional module selected during generation.
-            </p>
-          </div>
-        ))}
-      </section>
-
-      <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
-          Selection examples
-        </h2>
-        <div className="grid gap-4 lg:grid-cols-2">
-          <CodeBlock
-            language="text"
-            code={`? Which auth modules do you need?
-> Login
-> Register
-
-Creates login and register UI, typed payloads,
-and exports the generated public API.`}
-          />
-          <CodeBlock
-            language="text"
-            code={`? Which auth modules do you need?
-> Login
-> Forgot Password Flow
-
-Creates login, forgot password, reset password,
-and verify email / verify code placeholders.`}
-          />
-        </div>
-      </section>
-
-      <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
-          Forgot password flow
-        </h2>
-        <div className="grid gap-3 md:grid-cols-3">
-          {[
-            "Forgot password",
-            "Reset password",
-            "Verify email / verify code placeholder",
-          ].map((item) => (
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {AUTH_FLOW.map((item) => (
             <div
               key={item}
-              className="rounded-[12px] border border-hairline bg-canvas p-4 text-sm leading-relaxed text-body"
+              className="rounded-xl border border-hairline bg-surface-soft p-4 text-sm font-semibold text-ink"
             >
               {item}
             </div>
@@ -110,62 +57,64 @@ and verify email / verify code placeholders.`}
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
-          Supported presets
+        <h2 className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink">
+          Stack-aware output
         </h2>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {["Axios + React Query", "Zustand", "Redux Toolkit", "UI only"].map(
-            (item) => (
-              <div
-                key={item}
-                className="rounded-[12px] bg-surface-soft p-4 text-sm font-medium text-ink"
-              >
-                {item}
-              </div>
-            ),
-          )}
+        <div className="grid gap-4 md:grid-cols-2">
+          {[
+            [
+              "Axios or Fetch",
+              "Creates API functions using the configured client.",
+            ],
+            [
+              "React Query",
+              "Adds typed mutation hooks and query keys when selected.",
+            ],
+            ["Zustand", "Creates an auth store and reusable auth helpers."],
+            [
+              "Redux Toolkit",
+              "Creates a reducer, actions, selectors, and registers the reducer.",
+            ],
+            [
+              "React Hook Form + Zod",
+              "Creates typed forms and validation schemas for every auth step.",
+            ],
+            [
+              "Minimal stack",
+              "Keeps the generated feature UI-focused when optional tools are disabled.",
+            ],
+          ].map(([title, description]) => (
+            <div
+              key={title}
+              className="rounded-2xl border border-hairline bg-canvas p-5"
+            >
+              <h3 className="font-semibold text-ink">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-body">
+                {description}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-medium tracking-[-0.5px] text-ink">
-          Dependency assumptions
+        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+          Generated structure
         </h2>
-        <p className="text-base leading-relaxed text-body">
-          The CLI does not install dependencies. Generated code assumes the
-          selected libraries already exist in the target project.
-        </p>
         <CodeBlock
-          language="ts"
-          code={`import { useMutation } from "@tanstack/react-query";
-import { apiClient } from "@/shared/api";`}
-        />
-      </section>
-
-      <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
-          Generated structure examples
-        </h2>
-        <div className="grid gap-4 lg:grid-cols-2">
-          <CodeBlock
-            language="text"
-            code={`src/features/auth/
+          language="text"
+          code={`src/features/auth/
 ├── api/
+├── lib/
 ├── model/
 ├── ui/
 └── index.ts`}
-          />
-          <CodeBlock
-            language="text"
-            code={`src/features/auth/
-├── ui/login-form.tsx
-├── ui/register-form.tsx
-├── ui/forgot-password-form.tsx
-├── ui/reset-password-form.tsx
-├── ui/verify-code-form.tsx
-└── index.ts`}
-          />
-        </div>
+        />
+        <p className="text-sm leading-relaxed text-body-muted">
+          Exact files vary with the configured API, state, and forms choices.
+          Existing auth files are protected unless you pass <code>--force</code>
+          .
+        </p>
       </section>
     </article>
   );

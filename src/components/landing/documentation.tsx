@@ -7,9 +7,11 @@ import {
   ChevronDown,
   Copy,
   KeyRound,
+  Settings2,
   Terminal,
 } from "lucide-react";
-import { useState } from "react";
+import Link from "next/link";
+import { useId, useState } from "react";
 import { cn } from "@/lib/utils";
 
 function CopyButton({ text }: { text: string }) {
@@ -26,7 +28,7 @@ function CopyButton({ text }: { text: string }) {
       type="button"
       onClick={handleCopy}
       className="absolute right-3 top-3 rounded-md p-1.5 text-white/30 transition-colors hover:text-white/60"
-      aria-label="Copy"
+      aria-label="Copy code"
     >
       {copied ? (
         <Check className="h-3.5 w-3.5 text-brand-mint" />
@@ -59,6 +61,7 @@ function CodeBlock({
 
 function FaqItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
+  const answerId = useId();
 
   return (
     <div className="border-b border-hairline">
@@ -66,6 +69,8 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
         type="button"
         className="flex w-full items-center justify-between py-5 text-left"
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-controls={answerId}
       >
         <span className="text-base font-medium text-ink">{question}</span>
         <ChevronDown
@@ -75,7 +80,9 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
           )}
         />
       </button>
-      <div
+      <section
+        id={answerId}
+        aria-label={question}
         className={cn(
           "grid transition-[grid-template-rows] duration-200",
           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
@@ -84,7 +91,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
         <div className="overflow-hidden">
           <p className="pb-5 text-base leading-relaxed text-body">{answer}</p>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
@@ -96,6 +103,14 @@ const DOC_LINKS = [
       "Create a new React + Vite or Next.js FSD project through the existing interactive wizard.",
     href: "/docs/getting-started",
     icon: Terminal,
+    color: "bg-brand-peach",
+  },
+  {
+    title: "Project configuration",
+    description:
+      "See how fsd.config.json stores stack choices and keeps every generator consistent.",
+    href: "/docs/configuration",
+    icon: Settings2,
     color: "bg-brand-peach",
   },
   {
@@ -122,14 +137,14 @@ const TEMPLATES = [
     status: "Available",
     statusColor: "bg-brand-mint text-ink",
     description:
-      "React 19, Vite, TypeScript, Tailwind CSS, shadcn, ESLint, Husky, commitlint",
+      "React 19, Vite 8, TypeScript, Tailwind CSS 4, ESLint, Steiger, Husky, Commitlint",
   },
   {
     name: "Next.js",
     status: "Available",
     statusColor: "bg-brand-lavender text-ink",
     description:
-      "Next 16, React 19, App Router, React Compiler, Tailwind CSS, Biome, shadcn",
+      "Next 16, React 19, App Router, React Compiler, Tailwind CSS 4, Biome, Steiger",
   },
 ];
 
@@ -140,9 +155,11 @@ const ROADMAP = [
   { item: "In-project slice generators", done: true },
   { item: "Auth feature generator", done: true },
   { item: "React Query, Zustand, Redux Toolkit presets", done: true },
-  { item: "Brand and category CRUD", done: false },
+  { item: "Cross-package E2E test matrix", done: false },
+  { item: "Framework adapter core", done: false },
+  { item: "Branded starter home experience", done: false },
   { item: "Vue + Vite template", done: false },
-  { item: "Custom layer configuration", done: false },
+  { item: "Nuxt and SvelteKit adapters", done: false },
 ];
 
 const FAQ_ITEMS = [
@@ -154,7 +171,7 @@ const FAQ_ITEMS = [
   {
     question: "Does the generator install dependencies?",
     answer:
-      "No. It generates code for the selected preset and assumes dependencies such as React Query, Zustand, Redux Toolkit, Axios, or the shared API client already exist in the project.",
+      "Project creation can install dependencies when you approve the wizard prompt. In-project generation does not run a package manager; it uses the dependencies and stack recorded in fsd.config.json.",
   },
   {
     question: "Where are generated slices created?",
@@ -177,22 +194,22 @@ export function Documentation() {
             Documentation
           </p>
           <h2 className="text-3xl font-medium tracking-[-1.5px] text-ink sm:text-4xl md:text-[40px]">
-            Version 2 docs for both CLI workflows
+            One source of truth for the CLI
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-body">
-            Start new FSD projects or generate typed slices inside existing
-            codebases from the same package.
+            Create projects, understand their saved configuration, and generate
+            typed slices from the same package.
           </p>
         </div>
 
         <div className="grid gap-16 lg:grid-cols-[7fr_5fr] lg:gap-24">
           <div className="space-y-12">
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2">
               {DOC_LINKS.map((link) => {
                 const Icon = link.icon;
 
                 return (
-                  <a
+                  <Link
                     key={link.title}
                     href={link.href}
                     className="group rounded-[16px] border border-hairline bg-canvas p-5 transition-colors hover:bg-surface-soft"
@@ -215,7 +232,7 @@ export function Documentation() {
                       Read docs
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
-                  </a>
+                  </Link>
                 );
               })}
             </div>

@@ -5,9 +5,26 @@ import {
   KeyRound,
   Terminal,
 } from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
 
+export const metadata: Metadata = {
+  title: "Documentation",
+  description:
+    "Learn project scaffolding, configuration, slice generation, and auth generation with FSD CLI.",
+  alternates: { canonical: "/docs" },
+};
+
 const DOC_CARDS = [
+  {
+    title: "Project configuration",
+    description:
+      "Understand fsd.config.json and how generators reuse framework and stack choices without asking again.",
+    href: "/docs/configuration",
+    icon: FolderTree,
+    color: "bg-brand-peach",
+  },
   {
     title: "Project scaffolding",
     description:
@@ -39,7 +56,7 @@ export default function DocsPage() {
     <article>
       <div className="mb-12 max-w-3xl">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-body-muted">
-          Version 2
+          Version 2.1
         </p>
         <h1 className="text-4xl font-medium leading-tight tracking-[-1.5px] text-ink md:text-5xl">
           create-fsd-architecture documentation
@@ -50,12 +67,12 @@ export default function DocsPage() {
         </p>
       </div>
 
-      <div className="mb-12 grid gap-4 md:grid-cols-3">
+      <div className="mb-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {DOC_CARDS.map((card) => {
           const Icon = card.icon;
 
           return (
-            <a
+            <Link
               key={card.title}
               href={card.href}
               className="group rounded-[16px] border border-hairline bg-canvas p-5 transition-colors hover:bg-surface-soft"
@@ -73,7 +90,7 @@ export default function DocsPage() {
                 Read docs
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
-            </a>
+            </Link>
           );
         })}
       </div>

@@ -11,9 +11,11 @@ const STEPS = [
       "Run the CLI and name your project. The scaffolder creates a clean directory with your chosen name, ready for development.",
     terminal: [
       { type: "command" as const, text: "npm create fsd-architecture@latest" },
-      { type: "prompt" as const, text: "? Project name: ", answer: "my-app" },
+      { type: "prompt" as const, text: "Project name: ", answer: "my-app" },
     ],
-    accent: "brand-mint",
+    accentText: "text-brand-mint",
+    accentBackground: "bg-brand-mint",
+    accentForeground: "text-ink",
   },
   {
     id: "step-template",
@@ -22,14 +24,16 @@ const STEPS = [
       "Pick from production-ready templates. React + Vite and Next.js are available now. Each template includes the full FSD structure.",
     terminal: [
       { type: "command" as const, text: "npm create fsd-architecture@latest" },
-      { type: "prompt" as const, text: "? Project name: ", answer: "my-app" },
+      { type: "prompt" as const, text: "Project name: ", answer: "my-app" },
       {
         type: "prompt" as const,
-        text: "? Select template: ",
+        text: "Select template: ",
         answer: "React + Vite or Next.js",
       },
     ],
-    accent: "brand-lavender",
+    accentText: "text-brand-lavender",
+    accentBackground: "bg-brand-lavender",
+    accentForeground: "text-ink",
   },
   {
     id: "step-scaffold",
@@ -38,24 +42,22 @@ const STEPS = [
       "The CLI downloads the selected template with the complete Feature-Sliced Design folder structure — app, pages, widgets, features, entities, and shared layers.",
     terminal: [
       { type: "command" as const, text: "npm create fsd-architecture@latest" },
-      { type: "success" as const, text: "✓ Scaffolding project in ./my-app" },
-      { type: "info" as const, text: "  Creating app/ layer..." },
-      { type: "info" as const, text: "  Creating pages/ layer..." },
-      { type: "info" as const, text: "  Creating widgets/ layer..." },
-      { type: "info" as const, text: "  Creating features/ layer..." },
-      { type: "info" as const, text: "  Creating entities/ layer..." },
-      { type: "info" as const, text: "  Creating shared/ layer..." },
-      { type: "success" as const, text: "✓ Template ready" },
+      { type: "success" as const, text: "✓ Template downloaded" },
+      { type: "success" as const, text: "✓ Complete FSD layers ready" },
+      { type: "success" as const, text: "✓ fsd.config.json written" },
+      { type: "success" as const, text: "✓ Git and Husky configured" },
     ],
-    accent: "brand-peach",
+    accentText: "text-brand-peach",
+    accentBackground: "bg-brand-peach",
+    accentForeground: "text-ink",
   },
   {
     id: "step-deps",
     title: "Install dependencies",
     description:
-      "Dependencies are installed automatically. ESLint or Biome, strict TypeScript, Husky, commitlint, shadcn, and Tailwind are configured so you can focus on building features.",
+      "Choose whether to install dependencies now. The selected stack, linting, strict TypeScript, Steiger, Husky, Commitlint, and Tailwind configuration are already prepared.",
     terminal: [
-      { type: "success" as const, text: "✓ Template ready" },
+      { type: "success" as const, text: "✓ Template configured" },
       { type: "info" as const, text: "  Installing dependencies..." },
       { type: "success" as const, text: "✓ Dependencies installed" },
       { type: "success" as const, text: "✓ ESLint or Biome configured" },
@@ -63,7 +65,9 @@ const STEPS = [
       { type: "success" as const, text: "✓ Husky hooks set up" },
       { type: "success" as const, text: "✓ Commitlint ready" },
     ],
-    accent: "brand-ochre",
+    accentText: "text-brand-ochre",
+    accentBackground: "bg-brand-ochre",
+    accentForeground: "text-ink",
   },
   {
     id: "step-dev",
@@ -72,8 +76,8 @@ const STEPS = [
       "Run the dev server and start writing features. Your project already has a scalable architecture — just add slices to the right layers.",
     terminal: [
       { type: "command" as const, text: "cd my-app && npm run dev" },
-      { type: "info" as const, text: "" },
-      { type: "info" as const, text: "  VITE v6.x  ready in 340ms" },
+      { type: "info" as const, text: " " },
+      { type: "info" as const, text: "  Development server ready" },
       { type: "info" as const, text: "" },
       {
         type: "success" as const,
@@ -84,25 +88,26 @@ const STEPS = [
         text: "  ➜  Network: http://192.168.1.10:5173/",
       },
     ],
-    accent: "brand-coral",
+    accentText: "text-brand-coral",
+    accentBackground: "bg-brand-coral",
+    accentForeground: "text-white",
   },
   {
     id: "step-ship",
     title: "Ship scalable architecture",
     description:
-      "Your project follows Feature-Sliced Design from day one. As your team grows, the architecture scales with you — no refactoring needed.",
+      "Your project follows Feature-Sliced Design from day one. Clear boundaries make future refactors smaller and easier to reason about as the team grows.",
     terminal: [
       { type: "info" as const, text: "src/" },
       { type: "info" as const, text: "├── app/          # providers, routing" },
       {
         type: "info" as const,
-        text: "├── pages/        # Vite route compositions",
+        text: "├── pages/        # route compositions",
       },
       {
         type: "info" as const,
-        text: "├── screens/      # Next route-level screens",
+        text: "├── widgets/      # complex UI blocks",
       },
-      { type: "info" as const, text: "├── widgets/      # complex UI blocks" },
       { type: "info" as const, text: "├── features/     # user interactions" },
       { type: "info" as const, text: "├── entities/     # business models" },
       { type: "info" as const, text: "└── shared/       # reusable code" },
@@ -112,16 +117,18 @@ const STEPS = [
         text: "✓ Architecture scales with your team",
       },
     ],
-    accent: "brand-mint",
+    accentText: "text-brand-mint",
+    accentBackground: "bg-brand-mint",
+    accentForeground: "text-ink",
   },
 ];
 
 function TerminalVisual({
   lines,
-  accent,
+  accentText,
 }: {
   lines: (typeof STEPS)[number]["terminal"];
-  accent: string;
+  accentText: string;
 }) {
   return (
     <div className="rounded-[16px] border border-hairline bg-surface-dark shadow-lg overflow-hidden">
@@ -131,11 +138,14 @@ function TerminalVisual({
         <div className="h-3 w-3 rounded-full bg-brand-mint/80" />
       </div>
       <div className="px-5 py-5 font-mono text-sm leading-relaxed">
-        {lines.map((line, i) => (
-          <div key={`${line.type}-${line.text}-${i}`} className="min-h-[1.5em]">
+        {lines.map((line) => (
+          <div
+            key={`${line.type}-${line.text}-${"answer" in line ? line.answer : "output"}`}
+            className="min-h-[1.5em]"
+          >
             {line.type === "command" && (
               <span>
-                <span className={`text-${accent}`}>$</span>{" "}
+                <span className={accentText}>$</span>{" "}
                 <span className="text-white/90">{line.text}</span>
               </span>
             )}
@@ -199,7 +209,7 @@ export function ScrollFeatures() {
             How It Works
           </p>
           <h2 className="text-3xl font-medium tracking-[-1.5px] text-ink sm:text-4xl md:text-[40px]">
-            From zero to scalable in 30 seconds
+            From one command to a scalable foundation
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-body">
             Six steps. One command. A production-ready architecture that grows
@@ -228,7 +238,7 @@ export function ScrollFeatures() {
                       className={cn(
                         "inline-flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold transition-colors duration-300",
                         activeIndex === i
-                          ? `bg-${step.accent} text-white`
+                          ? `${step.accentBackground} ${step.accentForeground}`
                           : "bg-surface-card text-body-muted",
                       )}
                     >
@@ -248,7 +258,7 @@ export function ScrollFeatures() {
                   <div className="mt-6 lg:hidden">
                     <TerminalVisual
                       lines={step.terminal}
-                      accent={step.accent}
+                      accentText={step.accentText}
                     />
                   </div>
                 </div>
@@ -257,7 +267,7 @@ export function ScrollFeatures() {
           </div>
 
           <div className="hidden lg:block">
-            <div className="sticky top-32">
+            <div className="sticky top-32 min-h-[360px]">
               <div className="relative">
                 {STEPS.map((step, i) => (
                   <div
@@ -274,7 +284,7 @@ export function ScrollFeatures() {
                   >
                     <TerminalVisual
                       lines={step.terminal}
-                      accent={step.accent}
+                      accentText={step.accentText}
                     />
                   </div>
                 ))}

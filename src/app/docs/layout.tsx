@@ -4,9 +4,13 @@ import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
 
 export const metadata: Metadata = {
-  title: "Documentation — create-fsd-architecture",
+  title: {
+    default: "Documentation",
+    template: "%s | FSD CLI",
+  },
   description:
     "Documentation for create-fsd-architecture project scaffolding and in-project FSD slice generation.",
+  alternates: { canonical: "/docs" },
 };
 
 export default function DocsLayout({

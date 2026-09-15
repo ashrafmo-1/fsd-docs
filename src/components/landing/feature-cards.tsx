@@ -3,6 +3,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Clock,
+  FileJson2,
   FolderTree,
   GitBranch,
   Layers,
@@ -46,11 +47,10 @@ const FEATURES: Feature[] = [
   {
     title: "Next.js Support",
     description:
-      "App Router, React Compiler, Tailwind CSS, Biome, and FSD adapted for production Next.js dashboards.",
+      "App Router, React Compiler, Tailwind CSS, Biome, and framework-aware FSD route composition.",
     icon: GitBranch,
     color: "bg-brand-teal",
     textColor: "text-white",
-    // badge: "Coming Soon",
   },
   {
     title: "Husky Git Hooks",
@@ -89,7 +89,15 @@ const FEATURES: Feature[] = [
     description:
       "Add features, entities, widgets, pages, and auth flows inside existing projects with smart src/ detection.",
     icon: PackagePlus,
-    color: "bg-brand-mint",
+    color: "bg-surface-card",
+    textColor: "text-ink",
+  },
+  {
+    title: "Project Configuration",
+    description:
+      "Save framework, API, state, forms, UI, and package-manager choices once in fsd.config.json.",
+    icon: FileJson2,
+    color: "bg-brand-lavender",
     textColor: "text-ink",
   },
   {
@@ -103,7 +111,7 @@ const FEATURES: Feature[] = [
   {
     title: "Fast Setup",
     description:
-      "From npm create to running dev server in under 30 seconds. Skip the boilerplate, start building.",
+      "Move from one command to a runnable project without rebuilding the same architecture and tooling setup by hand.",
     icon: Clock,
     color: "bg-brand-peach",
     textColor: "text-ink",
@@ -196,7 +204,7 @@ export function FeatureCards() {
             Features
           </p>
           <h2 className="text-3xl font-medium tracking-[-1.5px] text-ink sm:text-4xl md:text-[40px]">
-            Everything you need to start right
+            A complete foundation, not an empty folder tree
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-body">
             Every template comes with the tooling and structure your team needs

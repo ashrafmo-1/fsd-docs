@@ -1,4 +1,6 @@
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { siteConfig } from "@/lib/site";
 import { GitHubIcon } from "./github-icon";
 
 export function CtaBand() {
@@ -17,15 +19,15 @@ export function CtaBand() {
             features.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="#docs"
+            <Link
+              href="/docs/getting-started"
               className="inline-flex h-11 items-center gap-2 rounded-[12px] bg-white px-6 text-sm font-semibold text-ink transition-colors hover:bg-white/90"
             >
               Get Started
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
             <a
-              href="https://github.com/FSD-architectures"
+              href={siteConfig.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-11 items-center gap-2 rounded-[12px] border border-white/20 bg-transparent px-6 text-sm font-semibold text-white transition-colors hover:bg-white/10"
