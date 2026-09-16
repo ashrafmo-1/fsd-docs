@@ -21,14 +21,14 @@ const STEPS = [
     id: "step-template",
     title: "Select your template",
     description:
-      "Pick from production-ready templates. React + Vite and Next.js are available now. Each template includes the full FSD structure.",
+      "Pick from three production-ready templates. React + Vite, Next.js, and Vue + Vite each include the full FSD structure.",
     terminal: [
       { type: "command" as const, text: "npm create fsd-architecture@latest" },
       { type: "prompt" as const, text: "Project name: ", answer: "my-app" },
       {
         type: "prompt" as const,
         text: "Select template: ",
-        answer: "React + Vite or Next.js",
+        answer: "React + Vite, Next.js, or Vue + Vite",
       },
     ],
     accentText: "text-brand-lavender",

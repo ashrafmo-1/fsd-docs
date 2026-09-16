@@ -67,17 +67,20 @@ export default function AuthGeneratorPage() {
               "Creates API functions using the configured client.",
             ],
             [
-              "React Query",
-              "Adds typed mutation hooks and query keys when selected.",
+              "TanStack Query",
+              "Adds React Query hooks or Vue Query composables for the selected framework.",
             ],
-            ["Zustand", "Creates an auth store and reusable auth helpers."],
+            [
+              "Zustand or Pinia",
+              "Creates framework-native auth state and reusable helpers.",
+            ],
             [
               "Redux Toolkit",
               "Creates a reducer, actions, selectors, and registers the reducer.",
             ],
             [
-              "React Hook Form + Zod",
-              "Creates typed forms and validation schemas for every auth step.",
+              "Typed form validation",
+              "Uses React Hook Form or VeeValidate with Zod for every auth step.",
             ],
             [
               "Minimal stack",
@@ -95,6 +98,16 @@ export default function AuthGeneratorPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="mt-10 rounded-2xl border border-hairline bg-surface-soft p-5">
+        <h2 className="text-lg font-semibold text-ink">Vue output</h2>
+        <p className="mt-2 text-sm leading-relaxed text-body">
+          In a <code>vue-vite</code> project, the same command generates Vue
+          single-file components for login, registration, password recovery,
+          reset, and verification, plus Vue Query composables, a Pinia store,
+          and VeeValidate + Zod forms when enabled.
+        </p>
       </section>
 
       <section className="mt-10 space-y-4">

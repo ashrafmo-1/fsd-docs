@@ -7,6 +7,7 @@ import {
   ChevronDown,
   Copy,
   KeyRound,
+  PanelsTopLeft,
   Settings2,
   Terminal,
 } from "lucide-react";
@@ -100,7 +101,7 @@ const DOC_LINKS = [
   {
     title: "Project scaffolding",
     description:
-      "Create a new React + Vite or Next.js FSD project through the existing interactive wizard.",
+      "Create a new React + Vite, Next.js, or Vue + Vite FSD project through the interactive wizard.",
     href: "/docs/getting-started",
     icon: Terminal,
     color: "bg-brand-peach",
@@ -124,10 +125,18 @@ const DOC_LINKS = [
   {
     title: "Auth generator",
     description:
-      "Create auth modules for login, register, and forgot password flows with React Query, Zustand, Redux Toolkit, or UI-only presets.",
+      "Create five auth flows with framework-native Query, state, and form integrations.",
     href: "/docs/auth-generator",
     icon: KeyRound,
     color: "bg-brand-lavender",
+  },
+  {
+    title: "Vue + Vite guide",
+    description:
+      "Learn the Vue template defaults, FSD structure, native generators, and quality workflow.",
+    href: "/docs/frameworks/vue",
+    icon: PanelsTopLeft,
+    color: "bg-brand-mint",
   },
 ];
 
@@ -146,6 +155,13 @@ const TEMPLATES = [
     description:
       "Next 16, React 19, App Router, React Compiler, Tailwind CSS 4, Biome, Steiger",
   },
+  {
+    name: "Vue + Vite",
+    status: "Available",
+    statusColor: "bg-brand-mint text-ink",
+    description:
+      "Vue 3, Vite 8, Pinia, TanStack Vue Query, VeeValidate + Zod, Tailwind CSS 4, ESLint, Steiger",
+  },
 ];
 
 const ROADMAP = [
@@ -155,10 +171,10 @@ const ROADMAP = [
   { item: "In-project slice generators", done: true },
   { item: "Auth feature generator", done: true },
   { item: "React Query, Zustand, Redux Toolkit presets", done: true },
+  { item: "Framework adapter core", done: true },
+  { item: "Branded starter home experience", done: true },
+  { item: "Vue + Vite template and generators", done: true },
   { item: "Cross-package E2E test matrix", done: false },
-  { item: "Framework adapter core", done: false },
-  { item: "Branded starter home experience", done: false },
-  { item: "Vue + Vite template", done: false },
   { item: "Nuxt and SvelteKit adapters", done: false },
 ];
 
@@ -166,7 +182,7 @@ const FAQ_ITEMS = [
   {
     question: "What changed in version 2?",
     answer:
-      "The CLI still scaffolds full projects, but it can now generate FSD slices inside an existing project using --generate or -g.",
+      "The CLI scaffolds full projects and generates FSD slices inside existing projects. Version 2.3 adds stable Vue + Vite scaffolding and Vue-native generators on the shared framework adapter core.",
   },
   {
     question: "Does the generator install dependencies?",

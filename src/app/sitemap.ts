@@ -8,6 +8,7 @@ const routes = [
   "/docs/configuration",
   "/docs/slice-generator",
   "/docs/auth-generator",
+  "/docs/frameworks/vue",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

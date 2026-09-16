@@ -10,6 +10,7 @@ const DOC_LINKS = [
   { label: "Project configuration", href: "/docs/configuration" },
   { label: "Slice generator", href: "/docs/slice-generator" },
   { label: "Auth generator", href: "/docs/auth-generator", child: true },
+  { label: "Vue + Vite", href: "/docs/frameworks/vue" },
 ];
 
 export function DocsSidebar() {

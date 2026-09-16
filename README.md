@@ -5,7 +5,7 @@ Official product site and documentation for
 
 The site explains both CLI workflows:
 
-- creating a React + Vite or Next.js project with a complete Feature-Sliced
+- creating a React + Vite, Next.js, or Vue + Vite project with a complete Feature-Sliced
   Design structure;
 - generating features, entities, widgets, pages, and a complete auth flow
   inside an existing project.
@@ -53,12 +53,14 @@ npm run check
 | `/docs/configuration` | `fsd.config.json` reference |
 | `/docs/slice-generator` | Feature, entity, widget, and page generation |
 | `/docs/auth-generator` | Dedicated auth flow generation |
+| `/docs/frameworks/vue` | Vue + Vite template and generator guide |
 
 ## Related repositories
 
 - [CLI](https://github.com/FSD-CLI/cli)
 - [React + Vite starter](https://github.com/FSD-CLI/FSD)
 - [Next.js starter](https://github.com/FSD-CLI/FSD-NEXTJS)
+- [Vue + Vite starter](https://github.com/FSD-CLI/FSD-VUE)
 - [Feature-Sliced Design documentation](https://feature-sliced.design/)
 
 ## Deployment

@@ -16,7 +16,7 @@ const FSD_LAYERS = [
   {
     name: "pages",
     description:
-      "Route-level compositions, supported in both starters through framework routing adapters",
+      "Route-level compositions, supported in every starter through framework routing adapters",
     color: "bg-brand-pink",
     textColor: "text-white",
     borderColor: "border-brand-pink/30",

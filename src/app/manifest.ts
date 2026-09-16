@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "FSD CLI Documentation",
     short_name: "FSD CLI",
     description:
-      "Documentation for create-fsd-architecture project scaffolding and slice generators.",
+      "Documentation for React, Next.js, and Vue project scaffolding and framework-native FSD generators.",
     start_url: "/",
     display: "standalone",
     background_color: "#f8fafc",

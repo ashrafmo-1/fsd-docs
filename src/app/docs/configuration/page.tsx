@@ -9,7 +9,11 @@ export const metadata: Metadata = {
 };
 
 const OPTIONS = [
-  ["framework", "react-vite | nextjs", "Controls framework-specific output."],
+  [
+    "framework",
+    "react-vite | nextjs | vue-vite",
+    "Controls framework-native components, providers, and generators.",
+  ],
   [
     "packageManager",
     "npm | pnpm | yarn | bun",
@@ -18,17 +22,17 @@ const OPTIONS = [
   ["apiClient", "axios | fetch", "Chooses generated request helpers."],
   [
     "serverState",
-    "react-query | none",
-    "Controls TanStack React Query output.",
+    "react-query | vue-query | none",
+    "Controls the framework-compatible TanStack Query output.",
   ],
   [
     "clientState",
-    "zustand | redux | none",
+    "zustand | redux | pinia | none",
     "Controls client-state files and provider wiring.",
   ],
   [
     "forms",
-    "react-hook-form-zod | none",
+    "react-hook-form-zod | vee-validate-zod | none",
     "Controls typed forms and validation schemas.",
   ],
   ["ui", "shared-ui", "Targets the starter's shared UI primitives."],
@@ -65,6 +69,26 @@ export default function ConfigurationPage() {
   "forms": "react-hook-form-zod",
   "ui": "shared-ui",
   "framework": "react-vite"
+}`}
+        />
+      </section>
+
+      <section className="mt-10 space-y-4">
+        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+          Vue + Vite example
+        </h2>
+        <CodeBlock
+          language="json"
+          code={`{
+  "$schema": "https://raw.githubusercontent.com/FSD-CLI/cli/main/schema/fsd.config.schema.json",
+  "schemaVersion": 1,
+  "framework": "vue-vite",
+  "packageManager": "npm",
+  "apiClient": "axios",
+  "serverState": "vue-query",
+  "clientState": "pinia",
+  "forms": "vee-validate-zod",
+  "ui": "shared-ui"
 }`}
         />
       </section>
@@ -119,6 +143,17 @@ export default function ConfigurationPage() {
             makes that behavior explicit and repeatable.
           </p>
         </div>
+      </section>
+
+      <section className="mt-10 rounded-2xl border border-hairline bg-surface-soft p-5">
+        <h2 className="text-lg font-semibold text-ink">
+          Framework compatibility is validated
+        </h2>
+        <p className="mt-2 text-sm leading-relaxed text-body">
+          The capability matrix rejects mixed stacks such as Pinia in a React
+          project or Zustand in a Vue project. Defaults are selected from the
+          chosen framework before <code>--yes</code> is applied.
+        </p>
       </section>
     </article>
   );

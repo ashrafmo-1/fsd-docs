@@ -4,13 +4,13 @@ import { CodeBlock } from "@/components/docs/code-block";
 export const metadata: Metadata = {
   title: "Getting Started",
   description:
-    "Create a React + Vite or Next.js project with a complete Feature-Sliced Design structure.",
+    "Create a React, Next.js, or Vue project with a complete Feature-Sliced Design structure.",
   alternates: { canonical: "/docs/getting-started" },
 };
 
 const WIZARD_STEPS = [
-  "Choose a project name and starter: React + Vite or Next.js.",
-  "Choose Axios or Fetch, React Query, Zustand or Redux Toolkit, and forms support.",
+  "Choose a project name and starter: React + Vite, Next.js, or Vue + Vite.",
+  "Choose the framework-compatible API, server-state, client-state, and forms stack.",
   "Choose npm, pnpm, Yarn, or Bun as the package manager.",
   "Download the matching starter and write the complete FSD structure.",
   "Save the selected stack in fsd.config.json and initialize a fresh Git repository.",
@@ -55,6 +55,23 @@ export default function GettingStartedPage() {
         <CodeBlock code="npx create-fsd-architecture@latest my-app" />
       </section>
 
+      <section className="mt-10 space-y-4">
+        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+          Choose a framework from the command line
+        </h2>
+        <p className="text-base leading-relaxed text-body">
+          Use <code>--framework</code> for repeatable setup. Add{" "}
+          <code>--yes</code>
+          to accept that framework&apos;s default stack, not React defaults.
+        </p>
+        <CodeBlock
+          code={`npx create-fsd-architecture@latest my-react-app --framework react-vite --yes
+npx create-fsd-architecture@latest my-next-app --framework nextjs --yes
+npx create-fsd-architecture@latest my-vue-app --framework vue-vite --yes`}
+        />
+        <CodeBlock code="npx create-fsd-architecture@latest --list-templates" />
+      </section>
+
       <section className="mt-10">
         <h2 className="mb-5 text-2xl font-semibold tracking-[-0.5px] text-ink">
           What the wizard does
@@ -71,7 +88,7 @@ export default function GettingStartedPage() {
         </ol>
       </section>
 
-      <section className="mt-10 grid gap-4 md:grid-cols-2">
+      <section className="mt-10 grid gap-4 md:grid-cols-3">
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
           <h2 className="text-lg font-semibold text-ink">React + Vite</h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
@@ -84,6 +101,13 @@ export default function GettingStartedPage() {
           <p className="mt-2 text-sm leading-relaxed text-body">
             An App Router starter with React Compiler, TypeScript, Tailwind CSS,
             Biome, Steiger, Git hooks, and FSD route compositions.
+          </p>
+        </div>
+        <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
+          <h2 className="text-lg font-semibold text-ink">Vue + Vite</h2>
+          <p className="mt-2 text-sm leading-relaxed text-body">
+            A Vue 3 starter with Vite, TypeScript, Tailwind CSS, Pinia, TanStack
+            Vue Query, VeeValidate + Zod, ESLint, and Steiger.
           </p>
         </div>
       </section>

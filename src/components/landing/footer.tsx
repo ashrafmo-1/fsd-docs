@@ -14,6 +14,7 @@ const FOOTER_LINKS = {
   Resources: [
     { label: "Documentation", href: "/docs" },
     { label: "Auth generator", href: "/docs/auth-generator" },
+    { label: "Vue guide", href: "/docs/frameworks/vue" },
     { label: "Feature-Sliced Design", href: siteConfig.fsdOfficial },
     { label: "GitHub", href: siteConfig.github },
     { label: "npm package", href: siteConfig.npm },
@@ -30,6 +31,10 @@ const FOOTER_LINKS = {
     {
       label: "Next.js issues",
       href: `${siteConfig.repositories.next}/issues`,
+    },
+    {
+      label: "Vue + Vite issues",
+      href: `${siteConfig.repositories.vue}/issues`,
     },
     // { label: "Discussions", href: "https://github.com" },
     // { label: "Contributing", href: "https://github.com" },
@@ -58,7 +63,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-body-muted">
-              Scaffold React + Vite and Next.js projects with Feature-Sliced
+              Scaffold React, Next.js, and Vue projects with Feature-Sliced
               Design architecture. Built for teams who care about structure.
             </p>
           </div>

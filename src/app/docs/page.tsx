@@ -3,6 +3,7 @@ import {
   Boxes,
   FolderTree,
   KeyRound,
+  PanelsTopLeft,
   Terminal,
 } from "lucide-react";
 import type { Metadata } from "next";
@@ -28,7 +29,7 @@ const DOC_CARDS = [
   {
     title: "Project scaffolding",
     description:
-      "Create a fresh React + Vite or Next.js FSD project through the existing interactive wizard.",
+      "Create a fresh React + Vite, Next.js, or Vue + Vite FSD project through the interactive wizard.",
     href: "/docs/getting-started",
     icon: Terminal,
     color: "bg-brand-peach",
@@ -49,6 +50,14 @@ const DOC_CARDS = [
     icon: KeyRound,
     color: "bg-brand-lavender",
   },
+  {
+    title: "Vue + Vite",
+    description:
+      "Use the Vue-native template, stack defaults, providers, slice generators, and complete auth flow.",
+    href: "/docs/frameworks/vue",
+    icon: PanelsTopLeft,
+    color: "bg-brand-mint",
+  },
 ];
 
 export default function DocsPage() {
@@ -56,18 +65,18 @@ export default function DocsPage() {
     <article>
       <div className="mb-12 max-w-3xl">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-body-muted">
-          Version 2.1
+          Version 2.3.0
         </p>
         <h1 className="text-4xl font-medium leading-tight tracking-[-1.5px] text-ink md:text-5xl">
           create-fsd-architecture documentation
         </h1>
         <p className="mt-5 text-lg leading-relaxed text-body">
-          The CLI now supports two workflows in one package: full project
-          scaffolding and in-project FSD slice generation.
+          The CLI supports React, Next.js, and Vue through one package, with
+          full project scaffolding and framework-native FSD slice generation.
         </p>
       </div>
 
-      <div className="mb-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="mb-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {DOC_CARDS.map((card) => {
           const Icon = card.icon;
 

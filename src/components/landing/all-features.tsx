@@ -11,7 +11,7 @@ import {
   GitPullRequest,
   KeyRound,
   Layers,
-  PackageCheck,
+  PanelsTopLeft,
   Route,
   ShieldCheck,
   Sparkles,
@@ -63,7 +63,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "Path aliases",
         description:
-          "Use @/* imports from src/* for clean imports across both starter editions.",
+          "Use @/* imports from src/* for clean imports across every starter edition.",
         icon: FileCode2,
         color: "bg-brand-peach",
         textColor: "text-ink",
@@ -72,9 +72,9 @@ const CAPABILITY_GROUPS: {
   },
   {
     label: "Frameworks",
-    title: "Two editions for different project shapes",
+    title: "Three editions for different project shapes",
     description:
-      "Pick the lightweight Vite starter for client-side apps or the Next.js starter for App Router applications.",
+      "Choose React or Vue on Vite for client-side apps, or Next.js for App Router applications.",
     accent: "bg-brand-coral",
     items: [
       {
@@ -94,11 +94,11 @@ const CAPABILITY_GROUPS: {
         textColor: "text-white",
       },
       {
-        title: "Shared design primitives",
+        title: "Vue + Vite edition",
         description:
-          "Reusable UI primitives, utilities, configuration, API boundaries, assets, and shared types.",
-        icon: PackageCheck,
-        color: "bg-surface-card",
+          "Vue 3, Vite 8, Pinia, TanStack Vue Query, VeeValidate + Zod, Tailwind CSS 4, and ESLint.",
+        icon: PanelsTopLeft,
+        color: "bg-brand-mint",
         textColor: "text-ink",
       },
     ],
@@ -121,7 +121,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "ESLint and Biome",
         description:
-          "Vite ships ESLint rules; Next ships Biome for linting, formatting, React, Next, and import organization.",
+          "React and Vue Vite starters ship ESLint rules; Next ships Biome for linting, formatting, and import organization.",
         icon: Wrench,
         color: "bg-brand-lavender",
         textColor: "text-ink",
@@ -154,7 +154,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "Stack-aware generation",
         description:
-          "Feature output adapts to Axios or Fetch, React Query, Zustand or Redux, and form choices.",
+          "Output adapts to Axios or Fetch, React or Vue Query, Zustand, Redux or Pinia, and form choices.",
         icon: CheckCircle2,
         color: "bg-brand-coral",
         textColor: "text-white",
@@ -187,7 +187,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "CI-ready scripts",
         description:
-          "Vite and Next editions expose scripts that can be dropped into automated checks.",
+          "React, Next, and Vue editions expose scripts that can be dropped into automated checks.",
         icon: GitPullRequest,
         color: "bg-surface-card",
         textColor: "text-ink",
@@ -270,9 +270,9 @@ export function AllFeatures() {
             Every feature from the starters, visible in one place
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-body">
-            The landing page reflects both projects: the lightweight Vite
-            starter, the Next.js App Router starter, and the shared quality
-            workflow that ties them together.
+            The landing page reflects all three starters: React + Vite, Next.js
+            App Router, and Vue + Vite, plus the shared quality workflow that
+            ties them together.
           </p>
         </div>
 

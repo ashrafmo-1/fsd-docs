@@ -174,7 +174,7 @@ npx create-fsd-architecture -g widget navbar --force`}
             "Writes to src/features, src/entities, src/widgets, or src/pages when src/ exists.",
             "Writes to root-level features, entities, widgets, or pages when src/ does not exist.",
             "Uses kebab-case for folders and files.",
-            "Uses PascalCase for React components.",
+            "Uses PascalCase for React components and Vue SFC names.",
             "Uses camelCase for variables and hooks.",
             "Generates TypeScript boilerplate and a public index.ts API.",
             "Prints a success message with the created files list.",
@@ -232,9 +232,9 @@ pages/checkout/`}
         </p>
         <div className="grid gap-3 sm:grid-cols-2">
           {[
-            "API: Axios + React Query",
-            "Local State: Zustand",
-            "Global State: Redux Toolkit",
+            "React: React Query + Zustand or Redux Toolkit",
+            "Vue: Vue Query + Pinia",
+            "Forms: React Hook Form or VeeValidate + Zod",
             "UI only",
           ].map((item) => (
             <div
@@ -262,6 +262,16 @@ and a public index.ts export.`}
           />
           <CodeBlock
             language="text"
+            code={`framework: vue-vite
+serverState: vue-query
+clientState: pinia
+forms: vee-validate-zod
+
+Creates Vue single-file components, composables, a Pinia store,
+typed API helpers, validation schemas, and a public index.ts export.`}
+          />
+          <CodeBlock
+            language="text"
             code={`clientState: zustand
 
 Creates a local store, typed actions/state, UI entry points,
@@ -281,7 +291,7 @@ serverState: none
 clientState: none
 forms: none
 
-Creates a typed React component, styles-ready structure,
+Creates a typed framework-native component, styles-ready structure,
 and a public index.ts export.`}
           />
         </div>

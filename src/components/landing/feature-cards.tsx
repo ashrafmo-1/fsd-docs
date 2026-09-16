@@ -9,6 +9,7 @@ import {
   Layers,
   MessageSquareCode,
   PackagePlus,
+  PanelsTopLeft,
   Settings2,
   Shield,
   Terminal,
@@ -53,6 +54,15 @@ const FEATURES: Feature[] = [
     textColor: "text-white",
   },
   {
+    title: "Vue + Vite Support",
+    description:
+      "Vue 3, Pinia, TanStack Vue Query, VeeValidate + Zod, and framework-native FSD generators.",
+    icon: PanelsTopLeft,
+    color: "bg-brand-mint",
+    textColor: "text-ink",
+    badge: "New in 2.3",
+  },
+  {
     title: "Husky Git Hooks",
     description:
       "Pre-commit hooks configured out of the box. Catch issues before they hit your repository.",
@@ -71,7 +81,7 @@ const FEATURES: Feature[] = [
   {
     title: "ESLint Configured",
     description:
-      "ESLint powers the Vite starter, while Biome powers the Next starter with linting, formatting, and import organization.",
+      "ESLint powers the React and Vue Vite starters, while Biome powers Next with linting, formatting, and import organization.",
     icon: Settings2,
     color: "bg-surface-card",
     textColor: "text-ink",
