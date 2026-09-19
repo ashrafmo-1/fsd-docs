@@ -35,7 +35,10 @@ export default function SvelteKitFrameworkPage() {
       </p>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="create-a-sveltekit-project"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Create a SvelteKit project
         </h2>
         <CodeBlock code="npx create-fsd-architecture@latest my-app --framework sveltekit --yes" />
@@ -47,7 +50,10 @@ export default function SvelteKitFrameworkPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="default-stack"
+          className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Default stack
         </h2>
         <div className="overflow-hidden rounded-2xl border border-hairline bg-canvas">
@@ -64,7 +70,10 @@ export default function SvelteKitFrameworkPage() {
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="sveltekit-and-fsd-directory-contract"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           SvelteKit and FSD directory contract
         </h2>
         <CodeBlock
@@ -87,7 +96,10 @@ export default function SvelteKitFrameworkPage() {
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="native-generators-and-routes"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Native generators and routes
         </h2>
         <CodeBlock
@@ -112,14 +124,18 @@ src/routes/account/+page.svelte`}
 
       <section className="mt-10 grid gap-4 md:grid-cols-2">
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
-          <h2 className="text-lg font-semibold text-ink">Runtime config</h2>
+          <h2 id="runtime-config" className="text-lg font-semibold text-ink">
+            Runtime config
+          </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
             Set <code>PUBLIC_API_BASE</code> for generated API helpers. The
             default Fetch client works in both server and browser code.
           </p>
         </div>
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
-          <h2 className="text-lg font-semibold text-ink">Node.js</h2>
+          <h2 id="nodejs" className="text-lg font-semibold text-ink">
+            Node.js
+          </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
             Generated projects require Node.js 22.22.2 or later. The starter
             pins Node 22.23.0 for repeatable local and CI checks.
@@ -128,7 +144,10 @@ src/routes/account/+page.svelte`}
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="quality-workflow"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Quality workflow
         </h2>
         <CodeBlock

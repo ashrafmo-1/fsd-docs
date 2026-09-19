@@ -43,6 +43,11 @@ Run the complete verification pipeline with:
 npm run check
 ```
 
+For HTTP smoke checks, run `npm run start -- --port 3105` after building, then
+`npm run test:docs` in another terminal. Set `DOCS_TEST_ORIGIN` to test a different
+server. This verifies sitemap pages, internal page links, release commands,
+section anchors, and the unknown-release 404; it does not replace browser checks.
+
 ## Routes
 
 | Route | Purpose |
@@ -56,6 +61,21 @@ npm run check
 | `/docs/frameworks/vue` | Vue + Vite template and generator guide |
 | `/docs/frameworks/nuxt` | Nuxt template, SSR integration, and generator guide |
 | `/docs/frameworks/sveltekit` | SvelteKit template, stack, routing, and generator guide |
+| `/docs/releases` | CLI release history and legacy archive |
+| `/docs/releases/[version]` | Version-specific changes and installation command |
+
+## Maintaining documentation
+
+Release records live in `src/lib/releases.ts`, newest first. Add a record after
+verifying the published npm version and its publication date, and use the CLI
+changelog as the source for changes. Keep missing historical notes explicit;
+do not infer fixes. Records drive the release pages, sitemap, and latest-release
+link on the homepage. Synchronization is currently manual, not automatic.
+
+Update `src/lib/docs-navigation.ts` when adding documentation pages. It drives
+the grouped sidebar, breadcrumbs, and previous/next links. Give section headings
+stable IDs so shared links work before hydration; the page outline collects h2
+and h3 headings and highlights the current section while scrolling.
 
 ## Related repositories
 

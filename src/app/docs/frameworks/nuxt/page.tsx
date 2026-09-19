@@ -36,7 +36,10 @@ export default function NuxtFrameworkPage() {
       </p>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="create-a-nuxt-project"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Create a Nuxt project
         </h2>
         <CodeBlock code="npx create-fsd-architecture@latest my-nuxt-app --framework nuxt" />
@@ -50,7 +53,10 @@ export default function NuxtFrameworkPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="default-stack"
+          className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Default stack
         </h2>
         <div className="grid gap-3 sm:grid-cols-2">
@@ -69,7 +75,10 @@ export default function NuxtFrameworkPage() {
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="nuxt-and-fsd-directory-contract"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Nuxt and FSD directory contract
         </h2>
         <CodeBlock
@@ -91,7 +100,10 @@ export default function NuxtFrameworkPage() {
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="generate-slices-and-routes"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Generate slices and routes
         </h2>
         <CodeBlock
@@ -118,7 +130,12 @@ app/app/routes/account.vue  # exposes /account`}
 
       <section className="mt-10 grid gap-4 md:grid-cols-2">
         <div className="rounded-2xl border border-hairline bg-canvas p-5">
-          <h2 className="text-lg font-semibold text-ink">Runtime API config</h2>
+          <h2
+            id="runtime-api-config"
+            className="text-lg font-semibold text-ink"
+          >
+            Runtime API config
+          </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
             Generated Fetch and Axios clients read the public API base URL from
             Nuxt runtime config, so SSR and browser requests use the same
@@ -129,7 +146,9 @@ app/app/routes/account.vue  # exposes /account`}
           </div>
         </div>
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
-          <h2 className="text-lg font-semibold text-ink">Node requirement</h2>
+          <h2 id="node-requirement" className="text-lg font-semibold text-ink">
+            Node requirement
+          </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
             Generated Nuxt projects require Node.js 22.22.2 or later. The
             template pins Node 22.23.0 for local and CI consistency.
@@ -139,7 +158,9 @@ app/app/routes/account.vue  # exposes /account`}
 
       <section className="mt-10 grid gap-4 md:grid-cols-2">
         <div className="rounded-2xl border border-hairline bg-canvas p-5">
-          <h2 className="text-lg font-semibold text-ink">Quality commands</h2>
+          <h2 id="quality-commands" className="text-lg font-semibold text-ink">
+            Quality commands
+          </h2>
           <div className="mt-4">
             <CodeBlock
               code={`npm run fsd:check
@@ -151,7 +172,9 @@ npm run ci`}
           </div>
         </div>
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
-          <h2 className="text-lg font-semibold text-ink">Template source</h2>
+          <h2 id="template-source" className="text-lg font-semibold text-ink">
+            Template source
+          </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
             Inspect the starter, report issues, or contribute in its dedicated
             repository.

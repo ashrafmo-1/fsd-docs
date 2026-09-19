@@ -15,6 +15,7 @@ const NAV_LINKS = [
   { label: "Features", href: "/#features" },
   { label: "Capabilities", href: "/#capabilities" },
   { label: "Docs", href: "/docs" },
+  { label: "Releases", href: "/docs/releases" },
 ];
 
 export function Navigation() {
@@ -49,10 +50,14 @@ export function Navigation() {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-8 xl:flex">
           {NAV_LINKS.map((link) => {
             const active =
-              link.href === "/docs" ? pathname.startsWith("/docs") : false;
+              link.href === "/docs/releases"
+                ? pathname.startsWith("/docs/releases")
+                : link.href === "/docs" &&
+                  pathname.startsWith("/docs") &&
+                  !pathname.startsWith("/docs/releases");
 
             return (
               <Link
@@ -70,7 +75,7 @@ export function Navigation() {
           })}
         </div>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <a
             href={siteConfig.github}
             target="_blank"
@@ -90,7 +95,7 @@ export function Navigation() {
 
         <button
           type="button"
-          className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-hairline md:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-hairline xl:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={
             mobileOpen ? "Close navigation menu" : "Open navigation menu"
@@ -109,12 +114,16 @@ export function Navigation() {
       {mobileOpen && (
         <div
           id="mobile-navigation"
-          className="border-t border-hairline bg-canvas px-6 pb-6 pt-4 md:hidden"
+          className="border-t border-hairline bg-canvas px-6 pb-6 pt-4 xl:hidden"
         >
           <div className="flex flex-col gap-4">
             {NAV_LINKS.map((link) => {
               const active =
-                link.href === "/docs" ? pathname.startsWith("/docs") : false;
+                link.href === "/docs/releases"
+                  ? pathname.startsWith("/docs/releases")
+                  : link.href === "/docs" &&
+                    pathname.startsWith("/docs") &&
+                    !pathname.startsWith("/docs/releases");
 
               return (
                 <Link

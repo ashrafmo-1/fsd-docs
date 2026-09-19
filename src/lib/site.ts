@@ -15,5 +15,6 @@ export const siteConfig = {
     vue: "https://github.com/FSD-CLI/FSD-VUE",
     nuxt: "https://github.com/FSD-CLI/FSD-NUXT",
     sveltekit: "https://github.com/FSD-CLI/fsd-sveltekit",
+    docs: "https://github.com/ashrafmo-1/fsd-docs",
   },
 } as const;

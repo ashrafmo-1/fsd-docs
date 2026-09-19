@@ -54,7 +54,10 @@ export default function ConfigurationPage() {
       </p>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="example"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Example
         </h2>
         <CodeBlock
@@ -74,7 +77,10 @@ export default function ConfigurationPage() {
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="nuxt-example"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Nuxt example
         </h2>
         <CodeBlock
@@ -99,7 +105,10 @@ export default function ConfigurationPage() {
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="vue-vite-example"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Vue + Vite example
         </h2>
         <CodeBlock
@@ -119,7 +128,10 @@ export default function ConfigurationPage() {
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="sveltekit-example"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           SvelteKit example
         </h2>
         <CodeBlock
@@ -144,7 +156,10 @@ export default function ConfigurationPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="supported-fields"
+          className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Supported fields
         </h2>
         <div className="overflow-x-auto rounded-2xl border border-hairline bg-canvas">
@@ -177,7 +192,10 @@ export default function ConfigurationPage() {
 
       <section className="mt-10 grid gap-4 md:grid-cols-2">
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
-          <h2 className="text-lg font-semibold text-ink">
+          <h2
+            id="when-the-file-exists"
+            className="text-lg font-semibold text-ink"
+          >
             When the file exists
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
@@ -186,7 +204,9 @@ export default function ConfigurationPage() {
           </p>
         </div>
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
-          <h2 className="text-lg font-semibold text-ink">Existing projects</h2>
+          <h2 id="existing-projects" className="text-lg font-semibold text-ink">
+            Existing projects
+          </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
             If the file is missing, the generator infers a compatible setup from
             dependencies in <code>package.json</code>. Adding the config later
@@ -196,7 +216,10 @@ export default function ConfigurationPage() {
       </section>
 
       <section className="mt-10 rounded-2xl border border-hairline bg-surface-soft p-5">
-        <h2 className="text-lg font-semibold text-ink">
+        <h2
+          id="framework-compatibility-is-validated"
+          className="text-lg font-semibold text-ink"
+        >
           Framework compatibility is validated
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-body">

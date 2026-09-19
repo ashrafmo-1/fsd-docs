@@ -122,13 +122,18 @@ export default function DocsPage() {
       </div>
 
       <section className="mb-12">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
+        <h2
+          id="cli-workflows"
+          className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
+        >
           CLI workflows
         </h2>
         <div className="grid gap-4 lg:grid-cols-2">
           <div className="rounded-[16px] border border-hairline bg-surface-soft p-5">
             <FolderTree className="mb-4 h-5 w-5 text-ink" />
-            <h3 className="font-semibold text-ink">Start a new project</h3>
+            <h3 id="start-a-new-project" className="font-semibold text-ink">
+              Start a new project
+            </h3>
             <p className="mt-2 text-sm leading-relaxed text-body">
               No generator flag opens the existing interactive project creation
               wizard.
@@ -140,7 +145,10 @@ export default function DocsPage() {
 
           <div className="rounded-[16px] border border-hairline bg-surface-soft p-5">
             <Boxes className="mb-4 h-5 w-5 text-ink" />
-            <h3 className="font-semibold text-ink">
+            <h3
+              id="generate-inside-a-project"
+              className="font-semibold text-ink"
+            >
               Generate inside a project
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-body">

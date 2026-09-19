@@ -33,7 +33,10 @@ export default function GettingStartedPage() {
       </p>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="requirements"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Requirements
         </h2>
         <p className="text-base leading-relaxed text-body">
@@ -46,7 +49,10 @@ export default function GettingStartedPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="pass-the-project-name-directly"
+          className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Pass the project name directly
         </h2>
         <p className="mb-4 text-base leading-relaxed text-body">
@@ -57,7 +63,10 @@ export default function GettingStartedPage() {
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="choose-a-framework-from-the-command-line"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Choose a framework from the command line
         </h2>
         <p className="text-base leading-relaxed text-body">
@@ -76,7 +85,10 @@ npx create-fsd-architecture@latest my-svelte-app --framework sveltekit --yes`}
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-5 text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="what-the-wizard-does"
+          className="mb-5 text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           What the wizard does
         </h2>
         <ol className="space-y-3 text-base leading-relaxed text-body">
@@ -93,28 +105,36 @@ npx create-fsd-architecture@latest my-svelte-app --framework sveltekit --yes`}
 
       <section className="mt-10 grid gap-4 md:grid-cols-2">
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
-          <h2 className="text-lg font-semibold text-ink">React + Vite</h2>
+          <h2 id="react-vite" className="text-lg font-semibold text-ink">
+            React + Vite
+          </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
             A client-side React starter with Vite, TypeScript, Tailwind CSS,
             ESLint, Steiger, Git hooks, and the full FSD layer structure.
           </p>
         </div>
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
-          <h2 className="text-lg font-semibold text-ink">Next.js</h2>
+          <h2 id="nextjs" className="text-lg font-semibold text-ink">
+            Next.js
+          </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
             An App Router starter with React Compiler, TypeScript, Tailwind CSS,
             Biome, Steiger, Git hooks, and FSD route compositions.
           </p>
         </div>
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
-          <h2 className="text-lg font-semibold text-ink">Vue + Vite</h2>
+          <h2 id="vue-vite" className="text-lg font-semibold text-ink">
+            Vue + Vite
+          </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
             A Vue 3 starter with Vite, TypeScript, Tailwind CSS, Pinia, TanStack
             Vue Query, VeeValidate + Zod, ESLint, and Steiger.
           </p>
         </div>
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
-          <h2 className="text-lg font-semibold text-ink">Nuxt</h2>
+          <h2 id="nuxt" className="text-lg font-semibold text-ink">
+            Nuxt
+          </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
             A Nuxt 4 SSR starter with the official app directory, native Fetch,
             Pinia, Vue Query hydration, VeeValidate + Zod, and file-based route
@@ -122,7 +142,9 @@ npx create-fsd-architecture@latest my-svelte-app --framework sveltekit --yes`}
           </p>
         </div>
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
-          <h2 className="text-lg font-semibold text-ink">SvelteKit</h2>
+          <h2 id="sveltekit" className="text-lg font-semibold text-ink">
+            SvelteKit
+          </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
             A Svelte 5 and SvelteKit 2 SSR starter with native Fetch, TanStack
             Svelte Query, Svelte stores, Superforms + Zod, and generated route
@@ -132,7 +154,10 @@ npx create-fsd-architecture@latest my-svelte-app --framework sveltekit --yes`}
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="continue-manually"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Continue manually
         </h2>
         <p className="text-base leading-relaxed text-body">

@@ -71,7 +71,10 @@ export default function SliceGeneratorPage() {
       </p>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-medium tracking-[-0.5px] text-ink">
+        <h2
+          id="syntax"
+          className="text-2xl font-medium tracking-[-0.5px] text-ink"
+        >
           Syntax
         </h2>
         <CodeBlock code="npx create-fsd-architecture --generate <type> <name>" />
@@ -79,7 +82,10 @@ export default function SliceGeneratorPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
+        <h2
+          id="command-examples"
+          className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
+        >
           Command examples
         </h2>
         <CodeBlock
@@ -95,7 +101,10 @@ npx create-fsd-architecture --generate page checkout`}
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
+        <h2
+          id="examples-by-slice-type"
+          className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
+        >
           Examples by slice type
         </h2>
         <div className="grid gap-4 lg:grid-cols-2">
@@ -125,7 +134,10 @@ npx create-fsd-architecture --generate page checkout`}
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
+        <h2
+          id="overwrite-examples"
+          className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
+        >
           Overwrite examples
         </h2>
         <p className="mb-4 text-base leading-relaxed text-body">
@@ -140,7 +152,12 @@ npx create-fsd-architecture -g widget navbar --force`}
 
       <section className="mt-10 grid gap-4 md:grid-cols-2">
         <div className="rounded-[16px] border border-hairline bg-surface-soft p-5">
-          <h2 className="mb-3 text-xl font-medium text-ink">Supported types</h2>
+          <h2
+            id="supported-types"
+            className="mb-3 text-xl font-medium text-ink"
+          >
+            Supported types
+          </h2>
           <div className="flex flex-wrap gap-2">
             {SUPPORTED_TYPES.map((type) => (
               <span
@@ -154,7 +171,10 @@ npx create-fsd-architecture -g widget navbar --force`}
         </div>
 
         <div className="rounded-[16px] border border-hairline bg-surface-soft p-5">
-          <h2 className="mb-3 text-xl font-medium text-ink">
+          <h2
+            id="overwrite-behavior"
+            className="mb-3 text-xl font-medium text-ink"
+          >
             Overwrite behavior
           </h2>
           <p className="text-sm leading-relaxed text-body">
@@ -165,7 +185,10 @@ npx create-fsd-architecture -g widget navbar --force`}
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
+        <h2
+          id="generator-behavior"
+          className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
+        >
           Generator behavior
         </h2>
         <div className="grid gap-3 md:grid-cols-2">
@@ -190,7 +213,10 @@ npx create-fsd-architecture -g widget navbar --force`}
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
+        <h2
+          id="generated-paths"
+          className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
+        >
           Generated paths
         </h2>
         <div className="grid gap-4 lg:grid-cols-2">
@@ -246,7 +272,10 @@ pages/checkout/`}
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
+        <h2
+          id="feature-presets"
+          className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
+        >
           Feature presets
         </h2>
         <p className="mb-4 text-base leading-relaxed text-body">
@@ -273,7 +302,10 @@ pages/checkout/`}
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
+        <h2
+          id="feature-preset-examples"
+          className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
+        >
           Feature preset examples
         </h2>
         <div className="space-y-4">

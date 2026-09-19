@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "check": "npm run lint && npm run typecheck && npm run build"
+    "check": "npm run lint && npm run typecheck && npm run build",
+    "test:docs": "node scripts/check-docs.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

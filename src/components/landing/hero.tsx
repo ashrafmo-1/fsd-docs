@@ -3,6 +3,7 @@
 import { ArrowRight, Check, Copy } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { CLI_RELEASES } from "@/lib/releases";
 import { siteConfig } from "@/lib/site";
 import { GitHubIcon } from "./github-icon";
 
@@ -95,7 +96,9 @@ export function Hero() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-[9999px] border border-hairline bg-surface-soft px-4 py-1.5">
               <span className="h-2 w-2 rounded-full bg-brand-mint" />
               <span className="text-xs font-medium text-body-muted">
-                v2.5: SvelteKit support is now stable
+                <Link href={`/docs/releases/${CLI_RELEASES[0].version}`}>
+                  Latest release: v{CLI_RELEASES[0].version} →
+                </Link>
               </span>
             </div>
 

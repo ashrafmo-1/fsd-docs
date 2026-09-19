@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { CLI_RELEASES } from "@/lib/releases";
 import { siteConfig } from "@/lib/site";
 
 const routes = [
@@ -11,6 +12,8 @@ const routes = [
   "/docs/frameworks/vue",
   "/docs/frameworks/nuxt",
   "/docs/frameworks/sveltekit",
+  "/docs/releases",
+  ...CLI_RELEASES.map((release) => `/docs/releases/${release.version}`),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

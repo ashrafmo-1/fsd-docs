@@ -36,7 +36,10 @@ export default function VueFrameworkPage() {
       </p>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="create-a-vue-project"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Create a Vue project
         </h2>
         <CodeBlock code="npx create-fsd-architecture@latest my-vue-app --framework vue-vite" />
@@ -48,7 +51,10 @@ export default function VueFrameworkPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="default-stack"
+          className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Default stack
         </h2>
         <div className="grid gap-3 sm:grid-cols-2">
@@ -67,7 +73,10 @@ export default function VueFrameworkPage() {
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="complete-architecture-from-day-one"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Complete architecture from day one
         </h2>
         <CodeBlock
@@ -88,7 +97,10 @@ export default function VueFrameworkPage() {
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="vue-native-generation"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Vue-native generation
         </h2>
         <CodeBlock
@@ -108,7 +120,9 @@ npx create-fsd-architecture --generate feature auth`}
 
       <section className="mt-10 grid gap-4 md:grid-cols-2">
         <div className="rounded-2xl border border-hairline bg-canvas p-5">
-          <h2 className="text-lg font-semibold text-ink">Quality commands</h2>
+          <h2 id="quality-commands" className="text-lg font-semibold text-ink">
+            Quality commands
+          </h2>
           <div className="mt-4">
             <CodeBlock
               code={`npm run fsd:check
@@ -120,7 +134,9 @@ npm run ci`}
           </div>
         </div>
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
-          <h2 className="text-lg font-semibold text-ink">Template source</h2>
+          <h2 id="template-source" className="text-lg font-semibold text-ink">
+            Template source
+          </h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
             Inspect the starter, report issues, or contribute directly in its
             dedicated repository.

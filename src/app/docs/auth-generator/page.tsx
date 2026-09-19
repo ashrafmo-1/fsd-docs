@@ -32,7 +32,10 @@ export default function AuthGeneratorPage() {
       </p>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="commands"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Commands
         </h2>
         <CodeBlock code="npx create-fsd-architecture --generate feature auth" />
@@ -41,7 +44,10 @@ export default function AuthGeneratorPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="generated-flow"
+          className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Generated flow
         </h2>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -57,7 +63,10 @@ export default function AuthGeneratorPage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="stack-aware-output"
+          className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Stack-aware output
         </h2>
         <div className="grid gap-4 md:grid-cols-2">
@@ -101,7 +110,9 @@ export default function AuthGeneratorPage() {
       </section>
 
       <section className="mt-10 rounded-2xl border border-hairline bg-surface-soft p-5">
-        <h2 className="text-lg font-semibold text-ink">SvelteKit output</h2>
+        <h2 id="sveltekit-output" className="text-lg font-semibold text-ink">
+          SvelteKit output
+        </h2>
         <p className="mt-2 text-sm leading-relaxed text-body">
           In <code>sveltekit</code> projects, the command generates native
           Svelte 5 components for all five auth steps, TanStack Svelte Query v6
@@ -112,7 +123,9 @@ export default function AuthGeneratorPage() {
       </section>
 
       <section className="mt-10 rounded-2xl border border-hairline bg-surface-soft p-5">
-        <h2 className="text-lg font-semibold text-ink">Vue output</h2>
+        <h2 id="vue-output" className="text-lg font-semibold text-ink">
+          Vue output
+        </h2>
         <p className="mt-2 text-sm leading-relaxed text-body">
           In <code>vue-vite</code> and <code>nuxt</code> projects, the same
           command generates Vue single-file components for login, registration,
@@ -123,7 +136,10 @@ export default function AuthGeneratorPage() {
       </section>
 
       <section className="mt-10 space-y-4">
-        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+        <h2
+          id="generated-structure"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
           Generated structure
         </h2>
         <CodeBlock
