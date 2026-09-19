@@ -170,10 +170,10 @@ npx create-fsd-architecture -g widget navbar --force`}
         </h2>
         <div className="grid gap-3 md:grid-cols-2">
           {[
-            "Writes to src/* layers for React, Next.js, and Vue + Vite projects.",
+            "Writes to src/* layers for React, Next.js, Vue + Vite, and SvelteKit projects.",
             "Writes to app/* layers for Nuxt projects.",
             "Uses kebab-case for folders and files.",
-            "Uses PascalCase for React components and Vue SFC names.",
+            "Uses PascalCase for React components and Vue or Svelte component names.",
             "Uses camelCase for variables and hooks.",
             "Generates TypeScript boilerplate and a public index.ts API.",
             "Prints a success message with the created files list.",
@@ -219,6 +219,19 @@ app/app/routes/checkout.vue`}
           </div>
           <div>
             <p className="mb-3 text-sm font-semibold text-ink">
+              SvelteKit project
+            </p>
+            <CodeBlock
+              language="text"
+              code={`src/features/auth/
+src/entities/product/
+src/widgets/navbar/
+src/pages/checkout/
+src/routes/checkout/+page.svelte`}
+            />
+          </div>
+          <div>
+            <p className="mb-3 text-sm font-semibold text-ink">
               Project without src/
             </p>
             <CodeBlock
@@ -245,7 +258,8 @@ pages/checkout/`}
             "React: React Query + Zustand or Redux Toolkit",
             "Vue: Vue Query + Pinia",
             "Nuxt: Vue Query SSR + Pinia modules",
-            "Forms: React Hook Form or VeeValidate + Zod",
+            "SvelteKit: Svelte Query + Svelte stores",
+            "Forms: React Hook Form, VeeValidate, or Superforms + Zod",
             "UI only",
           ].map((item) => (
             <div
@@ -280,6 +294,18 @@ forms: vee-validate-zod
 
 Creates Vue single-file components, composables, a Pinia store,
 typed API helpers, validation schemas, and a public index.ts export.`}
+          />
+          <CodeBlock
+            language="text"
+            code={`framework: sveltekit
+apiClient: fetch
+serverState: svelte-query
+clientState: svelte-store
+forms: sveltekit-superforms-zod
+
+Creates Svelte 5 components, Svelte Query accessors, a Svelte store,
+Superforms + Zod validation, and a public index.ts export. Page slices also
+receive a src/routes/<name>/+page.svelte route wrapper.`}
           />
           <CodeBlock
             language="text"

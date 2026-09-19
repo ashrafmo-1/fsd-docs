@@ -68,11 +68,11 @@ export default function AuthGeneratorPage() {
             ],
             [
               "TanStack Query",
-              "Adds React Query hooks or Vue Query composables for the selected framework.",
+              "Adds React Query hooks, Vue Query composables, or Svelte Query accessors for the selected framework.",
             ],
             [
-              "Zustand or Pinia",
-              "Creates framework-native auth state and reusable helpers.",
+              "Framework-native stores",
+              "Creates Zustand, Redux Toolkit, Pinia, or Svelte store auth state and reusable helpers.",
             ],
             [
               "Redux Toolkit",
@@ -80,7 +80,7 @@ export default function AuthGeneratorPage() {
             ],
             [
               "Typed form validation",
-              "Uses React Hook Form or VeeValidate with Zod for every auth step.",
+              "Uses React Hook Form, VeeValidate, or Superforms with Zod for every auth step.",
             ],
             [
               "Minimal stack",
@@ -98,6 +98,17 @@ export default function AuthGeneratorPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="mt-10 rounded-2xl border border-hairline bg-surface-soft p-5">
+        <h2 className="text-lg font-semibold text-ink">SvelteKit output</h2>
+        <p className="mt-2 text-sm leading-relaxed text-body">
+          In <code>sveltekit</code> projects, the command generates native
+          Svelte 5 components for all five auth steps, TanStack Svelte Query v6
+          accessors, a Svelte auth store, and Superforms + Zod 4 validation.
+          Forms use SvelteKit progressive enhancement while keeping their
+          server-ready validation contract.
+        </p>
       </section>
 
       <section className="mt-10 rounded-2xl border border-hairline bg-surface-soft p-5">
@@ -132,6 +143,7 @@ export default function AuthGeneratorPage() {
         <p className="text-sm leading-relaxed text-body-muted">
           Nuxt writes the same feature under <code>app/features/auth</code>
           because its framework adapter owns the <code>app/</code> source root.
+          SvelteKit writes it under <code>src/features/auth</code>.
         </p>
       </section>
     </article>

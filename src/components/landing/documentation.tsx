@@ -101,7 +101,7 @@ const DOC_LINKS = [
   {
     title: "Project scaffolding",
     description:
-      "Create a new React + Vite, Next.js, Vue + Vite, or Nuxt FSD project through the interactive wizard.",
+      "Create a new React + Vite, Next.js, Vue + Vite, Nuxt, or SvelteKit FSD project through the interactive wizard.",
     href: "/docs/getting-started",
     icon: Terminal,
     color: "bg-brand-peach",
@@ -146,6 +146,14 @@ const DOC_LINKS = [
     icon: PanelsTopLeft,
     color: "bg-brand-lavender",
   },
+  {
+    title: "SvelteKit guide",
+    description:
+      "Learn the Svelte 5 structure, Svelte Query, stores, Superforms, route wrappers, and native generators.",
+    href: "/docs/frameworks/sveltekit",
+    icon: PanelsTopLeft,
+    color: "bg-brand-peach",
+  },
 ];
 
 const TEMPLATES = [
@@ -177,6 +185,13 @@ const TEMPLATES = [
     description:
       "Nuxt 4, Vue 3, SSR, native Fetch, Pinia, Vue Query hydration, VeeValidate + Zod, Nuxt ESLint, Steiger",
   },
+  {
+    name: "SvelteKit",
+    status: "Available",
+    statusColor: "bg-brand-peach text-ink",
+    description:
+      "Svelte 5, SvelteKit 2, SSR, native Fetch, Svelte Query, Svelte stores, Superforms + Zod, ESLint, Steiger",
+  },
 ];
 
 const ROADMAP = [
@@ -191,14 +206,14 @@ const ROADMAP = [
   { item: "Vue + Vite template and generators", done: true },
   { item: "Nuxt template and generators", done: true },
   { item: "Cross-package E2E test matrix", done: true },
-  { item: "SvelteKit adapter", done: false },
+  { item: "SvelteKit template and generators", done: true },
 ];
 
 const FAQ_ITEMS = [
   {
     question: "What changed in version 2?",
     answer:
-      "The CLI scaffolds full projects and generates FSD slices inside existing projects. Version 2.4 adds stable Nuxt 4 scaffolding, SSR-aware providers, native Fetch, and generated file-based routes.",
+      "The CLI scaffolds full projects and generates FSD slices inside existing projects. Version 2.5 adds stable SvelteKit scaffolding, Svelte 5 generators, Svelte Query, stores, Superforms, and generated file-based routes.",
   },
   {
     question: "Does the generator install dependencies?",
@@ -208,7 +223,7 @@ const FAQ_ITEMS = [
   {
     question: "Where are generated slices created?",
     answer:
-      "The framework adapter owns the source root. React, Next.js, and Vue + Vite use src/* layers, while Nuxt uses app/* layers.",
+      "The framework adapter owns the source root. React, Next.js, Vue + Vite, and SvelteKit use src/* layers, while Nuxt uses app/* layers.",
   },
   {
     question: "Can I overwrite an existing slice?",

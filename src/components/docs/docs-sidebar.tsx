@@ -12,6 +12,7 @@ const DOC_LINKS = [
   { label: "Auth generator", href: "/docs/auth-generator", child: true },
   { label: "Vue + Vite", href: "/docs/frameworks/vue" },
   { label: "Nuxt", href: "/docs/frameworks/nuxt" },
+  { label: "SvelteKit", href: "/docs/frameworks/sveltekit" },
 ];
 
 export function DocsSidebar() {

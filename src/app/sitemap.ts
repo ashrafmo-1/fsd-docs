@@ -10,6 +10,7 @@ const routes = [
   "/docs/auth-generator",
   "/docs/frameworks/vue",
   "/docs/frameworks/nuxt",
+  "/docs/frameworks/sveltekit",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -4,12 +4,12 @@ import { CodeBlock } from "@/components/docs/code-block";
 export const metadata: Metadata = {
   title: "Getting Started",
   description:
-    "Create a React, Next.js, Vue, or Nuxt project with a complete Feature-Sliced Design structure.",
+    "Create a React, Next.js, Vue, Nuxt, or SvelteKit project with a complete Feature-Sliced Design structure.",
   alternates: { canonical: "/docs/getting-started" },
 };
 
 const WIZARD_STEPS = [
-  "Choose a project name and starter: React + Vite, Next.js, Vue + Vite, or Nuxt.",
+  "Choose a project name and starter: React + Vite, Next.js, Vue + Vite, Nuxt, or SvelteKit.",
   "Choose the framework-compatible API, server-state, client-state, and forms stack.",
   "Choose npm, pnpm, Yarn, or Bun as the package manager.",
   "Download the matching starter and write the complete FSD structure.",
@@ -37,9 +37,9 @@ export default function GettingStartedPage() {
           Requirements
         </h2>
         <p className="text-base leading-relaxed text-body">
-          Use Node.js 20 or later for the CLI. Nuxt projects require Node.js
-          22.22.2 or later. Run one of the commands below from the directory
-          that should contain the new project.
+          Use Node.js 20 or later for the CLI. Nuxt and SvelteKit projects
+          require Node.js 22.22.2 or later. Run one of the commands below from
+          the directory that should contain the new project.
         </p>
         <CodeBlock code="npm create fsd-architecture@latest" />
         <CodeBlock code="npx create-fsd-architecture@latest" />
@@ -69,7 +69,8 @@ export default function GettingStartedPage() {
           code={`npx create-fsd-architecture@latest my-react-app --framework react-vite --yes
 npx create-fsd-architecture@latest my-next-app --framework nextjs --yes
 npx create-fsd-architecture@latest my-vue-app --framework vue-vite --yes
-npx create-fsd-architecture@latest my-nuxt-app --framework nuxt --yes`}
+npx create-fsd-architecture@latest my-nuxt-app --framework nuxt --yes
+npx create-fsd-architecture@latest my-svelte-app --framework sveltekit --yes`}
         />
         <CodeBlock code="npx create-fsd-architecture@latest --list-templates" />
       </section>
@@ -118,6 +119,14 @@ npx create-fsd-architecture@latest my-nuxt-app --framework nuxt --yes`}
             A Nuxt 4 SSR starter with the official app directory, native Fetch,
             Pinia, Vue Query hydration, VeeValidate + Zod, and file-based route
             wrappers for FSD pages.
+          </p>
+        </div>
+        <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
+          <h2 className="text-lg font-semibold text-ink">SvelteKit</h2>
+          <p className="mt-2 text-sm leading-relaxed text-body">
+            A Svelte 5 and SvelteKit 2 SSR starter with native Fetch, TanStack
+            Svelte Query, Svelte stores, Superforms + Zod, and generated route
+            wrappers that compose FSD page slices.
           </p>
         </div>
       </section>

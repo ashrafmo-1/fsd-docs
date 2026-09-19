@@ -16,6 +16,7 @@ const FOOTER_LINKS = {
     { label: "Auth generator", href: "/docs/auth-generator" },
     { label: "Vue guide", href: "/docs/frameworks/vue" },
     { label: "Nuxt guide", href: "/docs/frameworks/nuxt" },
+    { label: "SvelteKit guide", href: "/docs/frameworks/sveltekit" },
     { label: "Feature-Sliced Design", href: siteConfig.fsdOfficial },
     { label: "GitHub", href: siteConfig.github },
     { label: "npm package", href: siteConfig.npm },
@@ -40,6 +41,10 @@ const FOOTER_LINKS = {
     {
       label: "Nuxt issues",
       href: `${siteConfig.repositories.nuxt}/issues`,
+    },
+    {
+      label: "SvelteKit issues",
+      href: `${siteConfig.repositories.sveltekit}/issues`,
     },
     // { label: "Discussions", href: "https://github.com" },
     // { label: "Contributing", href: "https://github.com" },
@@ -68,7 +73,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-body-muted">
-              Scaffold React, Next.js, Vue, and Nuxt projects with
+              Scaffold React, Next.js, Vue, Nuxt, and SvelteKit projects with
               Feature-Sliced Design architecture. Built for teams who care about
               structure.
             </p>

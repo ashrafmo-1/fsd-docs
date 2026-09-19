@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const OPTIONS = [
   [
     "framework",
-    "react-vite | nextjs | vue-vite | nuxt",
+    "react-vite | nextjs | vue-vite | nuxt | sveltekit",
     "Controls framework-native components, providers, and generators.",
   ],
   [
@@ -22,17 +22,17 @@ const OPTIONS = [
   ["apiClient", "axios | fetch", "Chooses generated request helpers."],
   [
     "serverState",
-    "react-query | vue-query | none",
+    "react-query | vue-query | svelte-query | none",
     "Controls the framework-compatible TanStack Query output.",
   ],
   [
     "clientState",
-    "zustand | redux | pinia | none",
+    "zustand | redux | pinia | svelte-store | none",
     "Controls client-state files and provider wiring.",
   ],
   [
     "forms",
-    "react-hook-form-zod | vee-validate-zod | none",
+    "react-hook-form-zod | vee-validate-zod | sveltekit-superforms-zod | none",
     "Controls typed forms and validation schemas.",
   ],
   ["ui", "shared-ui", "Targets the starter's shared UI primitives."],
@@ -118,6 +118,31 @@ export default function ConfigurationPage() {
         />
       </section>
 
+      <section className="mt-10 space-y-4">
+        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+          SvelteKit example
+        </h2>
+        <CodeBlock
+          language="json"
+          code={`{
+  "$schema": "https://raw.githubusercontent.com/FSD-CLI/cli/main/schema/fsd.config.schema.json",
+  "schemaVersion": 1,
+  "framework": "sveltekit",
+  "packageManager": "npm",
+  "apiClient": "fetch",
+  "serverState": "svelte-query",
+  "clientState": "svelte-store",
+  "forms": "sveltekit-superforms-zod",
+  "ui": "shared-ui"
+}`}
+        />
+        <p className="text-sm leading-relaxed text-body-muted">
+          These defaults generate Svelte 5 components, TanStack Svelte Query
+          accessors, framework-native stores, and progressively enhanced
+          Superforms backed by Zod 4.
+        </p>
+      </section>
+
       <section className="mt-10">
         <h2 className="mb-4 text-2xl font-semibold tracking-[-0.5px] text-ink">
           Supported fields
@@ -176,8 +201,9 @@ export default function ConfigurationPage() {
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-body">
           The capability matrix rejects mixed stacks such as Pinia in a React
-          project or Zustand in a Vue or Nuxt project. Defaults are selected
-          from the chosen framework before <code>--yes</code> is applied.
+          project, Zustand in a Vue project, or Pinia in a SvelteKit project.
+          Defaults are selected from the chosen framework before
+          <code>--yes</code> is applied.
         </p>
       </section>
     </article>

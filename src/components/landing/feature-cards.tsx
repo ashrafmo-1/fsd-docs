@@ -71,6 +71,15 @@ const FEATURES: Feature[] = [
     badge: "New in 2.4",
   },
   {
+    title: "SvelteKit Support",
+    description:
+      "Svelte 5, SSR-ready Svelte Query, native stores, Superforms + Zod, and generated file-based routes.",
+    icon: PanelsTopLeft,
+    color: "bg-brand-peach",
+    textColor: "text-ink",
+    badge: "New in 2.5",
+  },
+  {
     title: "Husky Git Hooks",
     description:
       "Pre-commit hooks configured out of the box. Catch issues before they hit your repository.",
@@ -89,7 +98,7 @@ const FEATURES: Feature[] = [
   {
     title: "ESLint Configured",
     description:
-      "ESLint powers the React, Vue, and Nuxt starters, while Biome powers Next with linting, formatting, and import organization.",
+      "ESLint powers the React, Vue, Nuxt, and SvelteKit starters, while Biome powers Next with linting, formatting, and import organization.",
     icon: Settings2,
     color: "bg-surface-card",
     textColor: "text-ink",

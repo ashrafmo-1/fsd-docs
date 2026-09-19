@@ -73,9 +73,9 @@ const CAPABILITY_GROUPS: {
   },
   {
     label: "Frameworks",
-    title: "Four editions for different project shapes",
+    title: "Five editions for different project shapes",
     description:
-      "Choose React or Vue on Vite for client-side apps, Next.js for App Router, or Nuxt for Vue SSR applications.",
+      "Choose React or Vue on Vite for client-side apps, Next.js for App Router, Nuxt for Vue SSR, or SvelteKit for Svelte SSR applications.",
     accent: "bg-brand-coral",
     items: [
       {
@@ -110,6 +110,14 @@ const CAPABILITY_GROUPS: {
         color: "bg-brand-lavender",
         textColor: "text-ink",
       },
+      {
+        title: "SvelteKit edition",
+        description:
+          "Svelte 5, SvelteKit 2, SSR, native Fetch, Svelte Query, stores, Superforms + Zod, and generated routes.",
+        icon: Server,
+        color: "bg-brand-peach",
+        textColor: "text-ink",
+      },
     ],
   },
   {
@@ -130,7 +138,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "ESLint and Biome",
         description:
-          "React, Vue, and Nuxt starters ship ESLint rules; Next ships Biome for linting, formatting, and import organization.",
+          "React, Vue, Nuxt, and SvelteKit starters ship ESLint rules; Next ships Biome for linting, formatting, and import organization.",
         icon: Wrench,
         color: "bg-brand-lavender",
         textColor: "text-ink",
@@ -163,7 +171,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "Stack-aware generation",
         description:
-          "Output adapts to Axios or Fetch, React or Vue Query, Zustand, Redux or Pinia, and form choices.",
+          "Output adapts to Axios or Fetch, React, Vue or Svelte Query, framework-native stores, and form choices.",
         icon: CheckCircle2,
         color: "bg-brand-coral",
         textColor: "text-white",
@@ -196,7 +204,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "CI-ready scripts",
         description:
-          "React, Next, Vue, and Nuxt editions expose scripts that can be dropped into automated checks.",
+          "React, Next, Vue, Nuxt, and SvelteKit editions expose scripts that can be dropped into automated checks.",
         icon: GitPullRequest,
         color: "bg-surface-card",
         textColor: "text-ink",
@@ -279,9 +287,9 @@ export function AllFeatures() {
             Every feature from the starters, visible in one place
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-body">
-            The landing page reflects all four starters: React + Vite, Next.js
-            App Router, Vue + Vite, and Nuxt, plus the shared quality workflow
-            that ties them together.
+            The landing page reflects all five starters: React + Vite, Next.js
+            App Router, Vue + Vite, Nuxt, and SvelteKit, plus the shared quality
+            workflow that ties them together.
           </p>
         </div>
 

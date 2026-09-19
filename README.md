@@ -5,8 +5,8 @@ Official product site and documentation for
 
 The site explains both CLI workflows:
 
-- creating a React + Vite, Next.js, Vue + Vite, or Nuxt project with a complete
-  Feature-Sliced Design structure;
+- creating a React + Vite, Next.js, Vue + Vite, Nuxt, or SvelteKit project with
+  a complete Feature-Sliced Design structure;
 - generating features, entities, widgets, pages, and a complete auth flow
   inside an existing project.
 
@@ -55,6 +55,7 @@ npm run check
 | `/docs/auth-generator` | Dedicated auth flow generation |
 | `/docs/frameworks/vue` | Vue + Vite template and generator guide |
 | `/docs/frameworks/nuxt` | Nuxt template, SSR integration, and generator guide |
+| `/docs/frameworks/sveltekit` | SvelteKit template, stack, routing, and generator guide |
 
 ## Related repositories
 
@@ -63,6 +64,7 @@ npm run check
 - [Next.js starter](https://github.com/FSD-CLI/FSD-NEXTJS)
 - [Vue + Vite starter](https://github.com/FSD-CLI/FSD-VUE)
 - [Nuxt starter](https://github.com/FSD-CLI/FSD-NUXT)
+- [SvelteKit starter](https://github.com/FSD-CLI/fsd-sveltekit)
 - [Feature-Sliced Design documentation](https://feature-sliced.design/)
 
 ## Deployment

@@ -59,13 +59,13 @@ function TerminalPreview() {
             <span className="text-brand-lavender">◆</span>{" "}
             <span className="text-white/70">Stack:</span>{" "}
             <span className="text-brand-peach">
-              Axios + React Query + Zustand
+              Fetch + Svelte Query + Svelte store
             </span>
           </p>
           <p className="mt-3">
             <span className="text-brand-mint">✓</span>{" "}
             <span className="text-white/60">
-              Detected src/ and created src/features/auth
+              Detected SvelteKit and created src/features/auth
             </span>
           </p>
           <p>
@@ -95,7 +95,7 @@ export function Hero() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-[9999px] border border-hairline bg-surface-soft px-4 py-1.5">
               <span className="h-2 w-2 rounded-full bg-brand-mint" />
               <span className="text-xs font-medium text-body-muted">
-                v2.4: Nuxt support is now stable
+                v2.5: SvelteKit support is now stable
               </span>
             </div>
 
@@ -105,8 +105,8 @@ export function Hero() {
             </h1>
 
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-body">
-              Create React + Vite, Next.js, Vue + Vite, or Nuxt projects and
-              generate{" "}
+              Create React + Vite, Next.js, Vue + Vite, Nuxt, or SvelteKit
+              projects and generate{" "}
               <span className="font-medium text-ink">
                 Feature-Sliced Design slices
               </span>{" "}

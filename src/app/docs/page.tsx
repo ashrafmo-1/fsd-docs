@@ -29,7 +29,7 @@ const DOC_CARDS = [
   {
     title: "Project scaffolding",
     description:
-      "Create a fresh React + Vite, Next.js, Vue + Vite, or Nuxt FSD project through the interactive wizard.",
+      "Create a fresh React + Vite, Next.js, Vue + Vite, Nuxt, or SvelteKit FSD project through the interactive wizard.",
     href: "/docs/getting-started",
     icon: Terminal,
     color: "bg-brand-peach",
@@ -66,6 +66,14 @@ const DOC_CARDS = [
     icon: PanelsTopLeft,
     color: "bg-brand-lavender",
   },
+  {
+    title: "SvelteKit",
+    description:
+      "Use the Svelte 5 and SvelteKit 2 starter, native Fetch, Svelte Query, stores, Superforms, and generated routes.",
+    href: "/docs/frameworks/sveltekit",
+    icon: PanelsTopLeft,
+    color: "bg-brand-peach",
+  },
 ];
 
 export default function DocsPage() {
@@ -73,14 +81,14 @@ export default function DocsPage() {
     <article>
       <div className="mb-12 max-w-3xl">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-body-muted">
-          Version 2.4.0
+          Version 2.5.0
         </p>
         <h1 className="text-4xl font-medium leading-tight tracking-[-1.5px] text-ink md:text-5xl">
           create-fsd-architecture documentation
         </h1>
         <p className="mt-5 text-lg leading-relaxed text-body">
-          The CLI supports React, Next.js, Vue, and Nuxt through one package,
-          with full project scaffolding and framework-native FSD slice
+          The CLI supports React, Next.js, Vue, Nuxt, and SvelteKit through one
+          package, with full project scaffolding and framework-native FSD slice
           generation.
         </p>
       </div>
