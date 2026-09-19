@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
+import { SupportProject } from "./support-project";
 
 const FOOTER_LINKS = {
   Product: [
@@ -22,6 +23,7 @@ const FOOTER_LINKS = {
     { label: "npm package", href: siteConfig.npm },
   ],
   Community: [
+    { label: "Support FSD CLI", href: "/#support" },
     {
       label: "CLI issues",
       href: `${siteConfig.repositories.cli}/issues`,
@@ -113,6 +115,7 @@ export function Footer() {
           ))}
         </div>
 
+        <SupportProject />
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-hairline pt-8 md:flex-row">
           <p className="text-sm text-body-muted-soft">
             MIT License. Built with care for the developer community.

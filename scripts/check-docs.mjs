@@ -16,6 +16,14 @@ for (const path of paths) {
   pages.set(path, await response.text());
 }
 for (const [path, html] of pages) {
+  assert(html.includes('id="support"'), `${path}: support section`);
+  assert(html.includes('id="support-dialog"'), `${path}: donation dialog`);
+  assert(html.includes('aria-haspopup="dialog"'), `${path}: donation trigger`);
+  assert(
+    html.includes('href="https://buymeacoffee.com/ashrafqopiah"'),
+    `${path}: donation link`,
+  );
+  assert(html.includes("ashrafmo-1"), `${path}: InstaPay username`);
   for (const match of html.matchAll(/href="(\/[^"?#]*)"/g)) {
     const target = match[1];
     if (target.startsWith("/_next") || /\.[a-z]+$/.test(target)) continue;

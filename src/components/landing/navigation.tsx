@@ -8,6 +8,7 @@ import { useState } from "react";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { GitHubIcon } from "./github-icon";
+import { SupportButton } from "./support-controls";
 
 const NAV_LINKS = [
   { label: "Architecture", href: "/#architecture" },
@@ -50,7 +51,7 @@ export function Navigation() {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-8 xl:flex">
+        <div className="hidden items-center gap-5 xl:flex">
           {NAV_LINKS.map((link) => {
             const active =
               link.href === "/docs/releases"
@@ -75,6 +76,7 @@ export function Navigation() {
           })}
         </div>
 
+        <SupportButton />
         <div className="hidden items-center gap-3 xl:flex">
           <a
             href={siteConfig.github}

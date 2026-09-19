@@ -7,6 +7,10 @@ export const siteConfig = {
   github: "https://github.com/FSD-CLI/cli",
   githubOrg: "https://github.com/FSD-CLI",
   npm: "https://www.npmjs.com/package/create-fsd-architecture",
+  support: {
+    buyMeACoffee: "https://buymeacoffee.com/ashrafqopiah",
+    instapayUsername: "ashrafmo-1",
+  },
   fsdOfficial: "https://feature-sliced.design/",
   repositories: {
     cli: "https://github.com/FSD-CLI/cli",

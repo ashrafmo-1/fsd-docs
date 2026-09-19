@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import "./styles/globals.css";
+import { SupportProvider } from "@/components/landing/support-controls";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -74,7 +75,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn(inter.variable, geistMono.variable)}>
-      <body className="min-h-screen font-sans antialiased">{children}</body>
+      <body className="min-h-screen font-sans antialiased">
+        <SupportProvider>{children}</SupportProvider>
+      </body>
     </html>
   );
 }
