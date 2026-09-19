@@ -11,6 +11,7 @@ const DOC_LINKS = [
   { label: "Slice generator", href: "/docs/slice-generator" },
   { label: "Auth generator", href: "/docs/auth-generator", child: true },
   { label: "Vue + Vite", href: "/docs/frameworks/vue" },
+  { label: "Nuxt", href: "/docs/frameworks/nuxt" },
 ];
 
 export function DocsSidebar() {

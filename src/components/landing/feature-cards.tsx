@@ -60,7 +60,15 @@ const FEATURES: Feature[] = [
     icon: PanelsTopLeft,
     color: "bg-brand-mint",
     textColor: "text-ink",
-    badge: "New in 2.3",
+  },
+  {
+    title: "Nuxt 4 Support",
+    description:
+      "SSR-aware Vue Query, Pinia and VeeValidate modules, native Fetch, and generated file-based routes.",
+    icon: PanelsTopLeft,
+    color: "bg-brand-lavender",
+    textColor: "text-ink",
+    badge: "New in 2.4",
   },
   {
     title: "Husky Git Hooks",
@@ -81,7 +89,7 @@ const FEATURES: Feature[] = [
   {
     title: "ESLint Configured",
     description:
-      "ESLint powers the React and Vue Vite starters, while Biome powers Next with linting, formatting, and import organization.",
+      "ESLint powers the React, Vue, and Nuxt starters, while Biome powers Next with linting, formatting, and import organization.",
     icon: Settings2,
     color: "bg-surface-card",
     textColor: "text-ink",
@@ -97,7 +105,7 @@ const FEATURES: Feature[] = [
   {
     title: "Slice Generators",
     description:
-      "Add features, entities, widgets, pages, and auth flows inside existing projects with smart src/ detection.",
+      "Add features, entities, widgets, pages, and auth flows using each framework's configured source directory.",
     icon: PackagePlus,
     color: "bg-surface-card",
     textColor: "text-ink",

@@ -95,7 +95,7 @@ export function Hero() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-[9999px] border border-hairline bg-surface-soft px-4 py-1.5">
               <span className="h-2 w-2 rounded-full bg-brand-mint" />
               <span className="text-xs font-medium text-body-muted">
-                v2.3: Vue support is now stable
+                v2.4: Nuxt support is now stable
               </span>
             </div>
 
@@ -105,7 +105,8 @@ export function Hero() {
             </h1>
 
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-body">
-              Create React + Vite, Next.js, or Vue + Vite projects and generate{" "}
+              Create React + Vite, Next.js, Vue + Vite, or Nuxt projects and
+              generate{" "}
               <span className="font-medium text-ink">
                 Feature-Sliced Design slices
               </span>{" "}

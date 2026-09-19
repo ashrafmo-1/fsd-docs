@@ -4,12 +4,12 @@ import { CodeBlock } from "@/components/docs/code-block";
 export const metadata: Metadata = {
   title: "Getting Started",
   description:
-    "Create a React, Next.js, or Vue project with a complete Feature-Sliced Design structure.",
+    "Create a React, Next.js, Vue, or Nuxt project with a complete Feature-Sliced Design structure.",
   alternates: { canonical: "/docs/getting-started" },
 };
 
 const WIZARD_STEPS = [
-  "Choose a project name and starter: React + Vite, Next.js, or Vue + Vite.",
+  "Choose a project name and starter: React + Vite, Next.js, Vue + Vite, or Nuxt.",
   "Choose the framework-compatible API, server-state, client-state, and forms stack.",
   "Choose npm, pnpm, Yarn, or Bun as the package manager.",
   "Download the matching starter and write the complete FSD structure.",
@@ -37,8 +37,9 @@ export default function GettingStartedPage() {
           Requirements
         </h2>
         <p className="text-base leading-relaxed text-body">
-          Use Node.js 20 or later and run one of the commands below from the
-          directory that should contain the new project.
+          Use Node.js 20 or later for the CLI. Nuxt projects require Node.js
+          22.22.2 or later. Run one of the commands below from the directory
+          that should contain the new project.
         </p>
         <CodeBlock code="npm create fsd-architecture@latest" />
         <CodeBlock code="npx create-fsd-architecture@latest" />
@@ -67,7 +68,8 @@ export default function GettingStartedPage() {
         <CodeBlock
           code={`npx create-fsd-architecture@latest my-react-app --framework react-vite --yes
 npx create-fsd-architecture@latest my-next-app --framework nextjs --yes
-npx create-fsd-architecture@latest my-vue-app --framework vue-vite --yes`}
+npx create-fsd-architecture@latest my-vue-app --framework vue-vite --yes
+npx create-fsd-architecture@latest my-nuxt-app --framework nuxt --yes`}
         />
         <CodeBlock code="npx create-fsd-architecture@latest --list-templates" />
       </section>
@@ -88,7 +90,7 @@ npx create-fsd-architecture@latest my-vue-app --framework vue-vite --yes`}
         </ol>
       </section>
 
-      <section className="mt-10 grid gap-4 md:grid-cols-3">
+      <section className="mt-10 grid gap-4 md:grid-cols-2">
         <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
           <h2 className="text-lg font-semibold text-ink">React + Vite</h2>
           <p className="mt-2 text-sm leading-relaxed text-body">
@@ -108,6 +110,14 @@ npx create-fsd-architecture@latest my-vue-app --framework vue-vite --yes`}
           <p className="mt-2 text-sm leading-relaxed text-body">
             A Vue 3 starter with Vite, TypeScript, Tailwind CSS, Pinia, TanStack
             Vue Query, VeeValidate + Zod, ESLint, and Steiger.
+          </p>
+        </div>
+        <div className="rounded-2xl border border-hairline bg-surface-soft p-5">
+          <h2 className="text-lg font-semibold text-ink">Nuxt</h2>
+          <p className="mt-2 text-sm leading-relaxed text-body">
+            A Nuxt 4 SSR starter with the official app directory, native Fetch,
+            Pinia, Vue Query hydration, VeeValidate + Zod, and file-based route
+            wrappers for FSD pages.
           </p>
         </div>
       </section>

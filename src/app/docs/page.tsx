@@ -29,7 +29,7 @@ const DOC_CARDS = [
   {
     title: "Project scaffolding",
     description:
-      "Create a fresh React + Vite, Next.js, or Vue + Vite FSD project through the interactive wizard.",
+      "Create a fresh React + Vite, Next.js, Vue + Vite, or Nuxt FSD project through the interactive wizard.",
     href: "/docs/getting-started",
     icon: Terminal,
     color: "bg-brand-peach",
@@ -58,6 +58,14 @@ const DOC_CARDS = [
     icon: PanelsTopLeft,
     color: "bg-brand-mint",
   },
+  {
+    title: "Nuxt",
+    description:
+      "Use the Nuxt 4 template, app-root FSD structure, SSR providers, native Fetch, and file-based route generation.",
+    href: "/docs/frameworks/nuxt",
+    icon: PanelsTopLeft,
+    color: "bg-brand-lavender",
+  },
 ];
 
 export default function DocsPage() {
@@ -65,14 +73,15 @@ export default function DocsPage() {
     <article>
       <div className="mb-12 max-w-3xl">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-body-muted">
-          Version 2.3.0
+          Version 2.4.0
         </p>
         <h1 className="text-4xl font-medium leading-tight tracking-[-1.5px] text-ink md:text-5xl">
           create-fsd-architecture documentation
         </h1>
         <p className="mt-5 text-lg leading-relaxed text-body">
-          The CLI supports React, Next.js, and Vue through one package, with
-          full project scaffolding and framework-native FSD slice generation.
+          The CLI supports React, Next.js, Vue, and Nuxt through one package,
+          with full project scaffolding and framework-native FSD slice
+          generation.
         </p>
       </div>
 

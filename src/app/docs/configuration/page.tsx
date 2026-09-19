@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const OPTIONS = [
   [
     "framework",
-    "react-vite | nextjs | vue-vite",
+    "react-vite | nextjs | vue-vite | nuxt",
     "Controls framework-native components, providers, and generators.",
   ],
   [
@@ -71,6 +71,31 @@ export default function ConfigurationPage() {
   "framework": "react-vite"
 }`}
         />
+      </section>
+
+      <section className="mt-10 space-y-4">
+        <h2 className="text-2xl font-semibold tracking-[-0.5px] text-ink">
+          Nuxt example
+        </h2>
+        <CodeBlock
+          language="json"
+          code={`{
+  "$schema": "https://raw.githubusercontent.com/FSD-CLI/cli/main/schema/fsd.config.schema.json",
+  "schemaVersion": 1,
+  "framework": "nuxt",
+  "packageManager": "npm",
+  "apiClient": "fetch",
+  "serverState": "vue-query",
+  "clientState": "pinia",
+  "forms": "vee-validate-zod",
+  "ui": "shared-ui"
+}`}
+        />
+        <p className="text-sm leading-relaxed text-body-muted">
+          Nuxt defaults to its native <code>$fetch</code> client. Pinia and
+          VeeValidate are registered as Nuxt modules, while Vue Query uses an
+          SSR-aware plugin.
+        </p>
       </section>
 
       <section className="mt-10 space-y-4">
@@ -151,8 +176,8 @@ export default function ConfigurationPage() {
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-body">
           The capability matrix rejects mixed stacks such as Pinia in a React
-          project or Zustand in a Vue project. Defaults are selected from the
-          chosen framework before <code>--yes</code> is applied.
+          project or Zustand in a Vue or Nuxt project. Defaults are selected
+          from the chosen framework before <code>--yes</code> is applied.
         </p>
       </section>
     </article>

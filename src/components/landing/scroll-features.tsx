@@ -21,14 +21,14 @@ const STEPS = [
     id: "step-template",
     title: "Select your template",
     description:
-      "Pick from three production-ready templates. React + Vite, Next.js, and Vue + Vite each include the full FSD structure.",
+      "Pick from four production-ready templates. React + Vite, Next.js, Vue + Vite, and Nuxt each include the full FSD structure.",
     terminal: [
       { type: "command" as const, text: "npm create fsd-architecture@latest" },
       { type: "prompt" as const, text: "Project name: ", answer: "my-app" },
       {
         type: "prompt" as const,
         text: "Select template: ",
-        answer: "React + Vite, Next.js, or Vue + Vite",
+        answer: "React, Next.js, Vue, or Nuxt",
       },
     ],
     accentText: "text-brand-lavender",
@@ -98,7 +98,7 @@ const STEPS = [
     description:
       "Your project follows Feature-Sliced Design from day one. Clear boundaries make future refactors smaller and easier to reason about as the team grows.",
     terminal: [
-      { type: "info" as const, text: "src/" },
+      { type: "info" as const, text: "src/ or app/" },
       { type: "info" as const, text: "├── app/          # providers, routing" },
       {
         type: "info" as const,

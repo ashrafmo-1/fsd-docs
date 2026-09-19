@@ -37,6 +37,7 @@ export const metadata: Metadata = {
     "frontend",
     "Next.js",
     "Vue",
+    "Nuxt",
     "Pinia",
     "TanStack Query",
     "TypeScript",

@@ -101,7 +101,7 @@ const DOC_LINKS = [
   {
     title: "Project scaffolding",
     description:
-      "Create a new React + Vite, Next.js, or Vue + Vite FSD project through the interactive wizard.",
+      "Create a new React + Vite, Next.js, Vue + Vite, or Nuxt FSD project through the interactive wizard.",
     href: "/docs/getting-started",
     icon: Terminal,
     color: "bg-brand-peach",
@@ -117,7 +117,7 @@ const DOC_LINKS = [
   {
     title: "Slice generator",
     description:
-      "Generate features, entities, widgets, and pages inside an existing project with smart src/ detection.",
+      "Generate features, entities, widgets, and pages inside an existing project using its framework source root.",
     href: "/docs/slice-generator",
     icon: Boxes,
     color: "bg-brand-mint",
@@ -137,6 +137,14 @@ const DOC_LINKS = [
     href: "/docs/frameworks/vue",
     icon: PanelsTopLeft,
     color: "bg-brand-mint",
+  },
+  {
+    title: "Nuxt guide",
+    description:
+      "Learn the Nuxt app-root structure, SSR providers, native API client, routes, and generators.",
+    href: "/docs/frameworks/nuxt",
+    icon: PanelsTopLeft,
+    color: "bg-brand-lavender",
   },
 ];
 
@@ -162,6 +170,13 @@ const TEMPLATES = [
     description:
       "Vue 3, Vite 8, Pinia, TanStack Vue Query, VeeValidate + Zod, Tailwind CSS 4, ESLint, Steiger",
   },
+  {
+    name: "Nuxt",
+    status: "Available",
+    statusColor: "bg-brand-lavender text-ink",
+    description:
+      "Nuxt 4, Vue 3, SSR, native Fetch, Pinia, Vue Query hydration, VeeValidate + Zod, Nuxt ESLint, Steiger",
+  },
 ];
 
 const ROADMAP = [
@@ -174,15 +189,16 @@ const ROADMAP = [
   { item: "Framework adapter core", done: true },
   { item: "Branded starter home experience", done: true },
   { item: "Vue + Vite template and generators", done: true },
-  { item: "Cross-package E2E test matrix", done: false },
-  { item: "Nuxt and SvelteKit adapters", done: false },
+  { item: "Nuxt template and generators", done: true },
+  { item: "Cross-package E2E test matrix", done: true },
+  { item: "SvelteKit adapter", done: false },
 ];
 
 const FAQ_ITEMS = [
   {
     question: "What changed in version 2?",
     answer:
-      "The CLI scaffolds full projects and generates FSD slices inside existing projects. Version 2.3 adds stable Vue + Vite scaffolding and Vue-native generators on the shared framework adapter core.",
+      "The CLI scaffolds full projects and generates FSD slices inside existing projects. Version 2.4 adds stable Nuxt 4 scaffolding, SSR-aware providers, native Fetch, and generated file-based routes.",
   },
   {
     question: "Does the generator install dependencies?",
@@ -192,7 +208,7 @@ const FAQ_ITEMS = [
   {
     question: "Where are generated slices created?",
     answer:
-      "If src/ exists, slices are created under src/features, src/entities, src/widgets, or src/pages. Otherwise the CLI writes to root-level FSD layer folders.",
+      "The framework adapter owns the source root. React, Next.js, and Vue + Vite use src/* layers, while Nuxt uses app/* layers.",
   },
   {
     question: "Can I overwrite an existing slice?",

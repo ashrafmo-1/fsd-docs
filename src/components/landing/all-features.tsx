@@ -13,6 +13,7 @@ import {
   Layers,
   PanelsTopLeft,
   Route,
+  Server,
   ShieldCheck,
   Sparkles,
   Terminal,
@@ -63,7 +64,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "Path aliases",
         description:
-          "Use @/* imports from src/* for clean imports across every starter edition.",
+          "Use @/* imports from each framework's source root for clean imports across every starter edition.",
         icon: FileCode2,
         color: "bg-brand-peach",
         textColor: "text-ink",
@@ -72,9 +73,9 @@ const CAPABILITY_GROUPS: {
   },
   {
     label: "Frameworks",
-    title: "Three editions for different project shapes",
+    title: "Four editions for different project shapes",
     description:
-      "Choose React or Vue on Vite for client-side apps, or Next.js for App Router applications.",
+      "Choose React or Vue on Vite for client-side apps, Next.js for App Router, or Nuxt for Vue SSR applications.",
     accent: "bg-brand-coral",
     items: [
       {
@@ -101,6 +102,14 @@ const CAPABILITY_GROUPS: {
         color: "bg-brand-mint",
         textColor: "text-ink",
       },
+      {
+        title: "Nuxt 4 edition",
+        description:
+          "Nuxt 4, Vue 3, SSR, native Fetch, Pinia, Vue Query hydration, VeeValidate + Zod, and generated routes.",
+        icon: Server,
+        color: "bg-brand-lavender",
+        textColor: "text-ink",
+      },
     ],
   },
   {
@@ -121,7 +130,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "ESLint and Biome",
         description:
-          "React and Vue Vite starters ship ESLint rules; Next ships Biome for linting, formatting, and import organization.",
+          "React, Vue, and Nuxt starters ship ESLint rules; Next ships Biome for linting, formatting, and import organization.",
         icon: Wrench,
         color: "bg-brand-lavender",
         textColor: "text-ink",
@@ -187,7 +196,7 @@ const CAPABILITY_GROUPS: {
       {
         title: "CI-ready scripts",
         description:
-          "React, Next, and Vue editions expose scripts that can be dropped into automated checks.",
+          "React, Next, Vue, and Nuxt editions expose scripts that can be dropped into automated checks.",
         icon: GitPullRequest,
         color: "bg-surface-card",
         textColor: "text-ink",
@@ -270,9 +279,9 @@ export function AllFeatures() {
             Every feature from the starters, visible in one place
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-body">
-            The landing page reflects all three starters: React + Vite, Next.js
-            App Router, and Vue + Vite, plus the shared quality workflow that
-            ties them together.
+            The landing page reflects all four starters: React + Vite, Next.js
+            App Router, Vue + Vite, and Nuxt, plus the shared quality workflow
+            that ties them together.
           </p>
         </div>
 

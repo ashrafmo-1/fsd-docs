@@ -103,10 +103,11 @@ export default function AuthGeneratorPage() {
       <section className="mt-10 rounded-2xl border border-hairline bg-surface-soft p-5">
         <h2 className="text-lg font-semibold text-ink">Vue output</h2>
         <p className="mt-2 text-sm leading-relaxed text-body">
-          In a <code>vue-vite</code> project, the same command generates Vue
-          single-file components for login, registration, password recovery,
-          reset, and verification, plus Vue Query composables, a Pinia store,
-          and VeeValidate + Zod forms when enabled.
+          In <code>vue-vite</code> and <code>nuxt</code> projects, the same
+          command generates Vue single-file components for login, registration,
+          password recovery, reset, and verification, plus Vue Query
+          composables, a Pinia store, and VeeValidate + Zod forms when enabled.
+          Nuxt uses its configured modules and SSR-aware Vue Query plugin.
         </p>
       </section>
 
@@ -127,6 +128,10 @@ export default function AuthGeneratorPage() {
           Exact files vary with the configured API, state, and forms choices.
           Existing auth files are protected unless you pass <code>--force</code>
           .
+        </p>
+        <p className="text-sm leading-relaxed text-body-muted">
+          Nuxt writes the same feature under <code>app/features/auth</code>
+          because its framework adapter owns the <code>app/</code> source root.
         </p>
       </section>
     </article>

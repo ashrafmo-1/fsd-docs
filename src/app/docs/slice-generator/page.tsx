@@ -66,9 +66,8 @@ export default function SliceGeneratorPage() {
       </h1>
       <p className="mt-5 max-w-3xl text-lg leading-relaxed text-body">
         Generate typed FSD slices directly inside an existing project. The CLI
-        reads <code>fsd.config.json</code>, detects whether the app uses a
-        <code>src/</code> directory, and writes framework-aware files to the
-        matching layer.
+        reads <code>fsd.config.json</code>, resolves the framework&apos;s source
+        directory, and writes framework-aware files to the matching layer.
       </p>
 
       <section className="mt-10 space-y-4">
@@ -171,8 +170,8 @@ npx create-fsd-architecture -g widget navbar --force`}
         </h2>
         <div className="grid gap-3 md:grid-cols-2">
           {[
-            "Writes to src/features, src/entities, src/widgets, or src/pages when src/ exists.",
-            "Writes to root-level features, entities, widgets, or pages when src/ does not exist.",
+            "Writes to src/* layers for React, Next.js, and Vue + Vite projects.",
+            "Writes to app/* layers for Nuxt projects.",
             "Uses kebab-case for folders and files.",
             "Uses PascalCase for React components and Vue SFC names.",
             "Uses camelCase for variables and hooks.",
@@ -208,6 +207,17 @@ src/pages/checkout/`}
             />
           </div>
           <div>
+            <p className="mb-3 text-sm font-semibold text-ink">Nuxt project</p>
+            <CodeBlock
+              language="text"
+              code={`app/features/auth/
+app/entities/product/
+app/widgets/navbar/
+app/pages/checkout/
+app/app/routes/checkout.vue`}
+            />
+          </div>
+          <div>
             <p className="mb-3 text-sm font-semibold text-ink">
               Project without src/
             </p>
@@ -234,6 +244,7 @@ pages/checkout/`}
           {[
             "React: React Query + Zustand or Redux Toolkit",
             "Vue: Vue Query + Pinia",
+            "Nuxt: Vue Query SSR + Pinia modules",
             "Forms: React Hook Form or VeeValidate + Zod",
             "UI only",
           ].map((item) => (
