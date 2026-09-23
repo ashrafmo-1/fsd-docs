@@ -15,12 +15,50 @@ export type CliRelease = {
 
 export const CLI_RELEASES: CliRelease[] = [
   {
+    version: "2.5.1",
+    date: "2026-09-23",
+    dateLabel: "September 23, 2026",
+    summary:
+      "Safer project creation, reliable Git hooks, consistent generators, and scoped pnpm build-script approvals.",
+    status: "latest",
+    frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
+    sections: [
+      {
+        title: "Fixed",
+        items: [
+          "Failed dependency installation now exits nonzero, preserves diagnostics, and rolls back new or forced project creation.",
+          "Generated Git hooks stop on lint, staged or unstaged whitespace, and build errors.",
+          "Slice names starting with a number are rejected before any files are written.",
+          "Generic React-family view formatting matches the Next.js template formatter for the audited feature and widget output.",
+          "Interactive stack defaults match each framework's unattended defaults, including native Fetch for Nuxt and SvelteKit.",
+          "The --yes option requires an explicit project name and framework instead of prompting or silently exiting without creating a project.",
+          "New pnpm projects use framework-scoped build-script approvals while preserving existing workspace policies.",
+        ],
+      },
+      {
+        title: "Changed",
+        items: [
+          "Regression coverage now includes installation rollback, behavioral Git-hook checks, numeric-leading slice names across all frameworks, and interactive-default parity.",
+          "Framework CI smoke tests generate every slice type plus auth, with additional React and Nuxt build-policy coverage on pnpm 10.26 and 11.",
+        ],
+      },
+      {
+        title: "Compatibility",
+        items: [
+          "All five stable frameworks remain supported; the configuration schema stays at version 1.",
+          "The generated pnpm build-script policy requires pnpm 10.26 or later; pnpm 11 requires Node.js 22 or later. Framework-specific Node.js requirements still apply.",
+          "These fixes apply to new project creation and generation. Running the newer CLI does not automatically migrate existing files, hooks, or dependencies. Do not use --force to upgrade a customized project.",
+        ],
+      },
+    ],
+  },
+  {
     version: "2.5.0",
     date: "2026-09-19",
     dateLabel: "September 19, 2026",
     summary:
       "Stable SvelteKit scaffolding with native Svelte 5 generators, providers, state, forms, and file-based routes.",
-    status: "latest",
+    status: "stable",
     frameworks: ["SvelteKit", "Svelte 5"],
     sections: [
       {

@@ -9,6 +9,7 @@ import {
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
+import { CLI_RELEASES } from "@/lib/releases";
 
 export const metadata: Metadata = {
   title: "Documentation",
@@ -81,7 +82,8 @@ export default function DocsPage() {
     <article>
       <div className="mb-12 max-w-3xl">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-body-muted">
-          Version 2.5.0
+          Version{" "}
+          {CLI_RELEASES.find((release) => release.status === "latest")?.version}
         </p>
         <h1 className="text-4xl font-medium leading-tight tracking-[-1.5px] text-ink md:text-5xl">
           create-fsd-architecture documentation

@@ -32,6 +32,17 @@ for (const [path, html] of pages) {
 }
 const releases = paths.filter((path) => path.startsWith("/docs/releases/"));
 assert(releases.length > 0, "release archive must not be empty");
+assert(releases.includes("/docs/releases/2.5.1"), "2.5.1 release in sitemap");
+assert(
+  /Version\s*(?:<!--.*?-->\s*)*2\.5\.1/.test(pages.get("/docs")),
+  "documentation introduction shows the current release",
+);
+for (const path of ["/", "/docs/releases"]) {
+  assert(
+    pages.get(path).includes('href="/docs/releases/2.5.1"'),
+    `${path}: current release link`,
+  );
+}
 for (const path of releases) {
   assert(pages.get(path).includes('id="use-this-version"'), `${path}: anchor`);
   const version = path.split("/").at(-1);
