@@ -52,6 +52,22 @@ const DOC_CARDS = [
     color: "bg-brand-lavender",
   },
   {
+    title: "React + Vite",
+    description:
+      "Use React Router, saved stack defaults, React-native slices, and the complete FSD structure.",
+    href: "/docs/frameworks/react",
+    icon: PanelsTopLeft,
+    color: "bg-brand-peach",
+  },
+  {
+    title: "Next.js",
+    description:
+      "Use the App Router, FSD page compositions, client providers, and generated route wrappers.",
+    href: "/docs/frameworks/nextjs",
+    icon: PanelsTopLeft,
+    color: "bg-brand-lavender",
+  },
+  {
     title: "Vue + Vite",
     description:
       "Use the Vue-native template, stack defaults, providers, slice generators, and complete auth flow.",

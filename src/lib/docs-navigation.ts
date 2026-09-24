@@ -49,6 +49,16 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
     label: "Frameworks",
     items: [
       {
+        label: "React + Vite",
+        href: "/docs/frameworks/react",
+        description: "React setup, React Router, and native slice generators.",
+      },
+      {
+        label: "Next.js",
+        href: "/docs/frameworks/nextjs",
+        description: "App Router setup, FSD page slices, and route wrappers.",
+      },
+      {
         label: "Vue + Vite",
         href: "/docs/frameworks/vue",
         description: "Vue-native FSD setup and generators.",

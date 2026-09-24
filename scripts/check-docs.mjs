@@ -31,6 +31,24 @@ for (const [path, html] of pages) {
   }
 }
 const releases = paths.filter((path) => path.startsWith("/docs/releases/"));
+for (const framework of ["react", "nextjs", "vue", "nuxt", "sveltekit"]) {
+  const path = `/docs/frameworks/${framework}`;
+  assert(pages.has(path), `${framework}: framework page in sitemap`);
+  assert(
+    pages.get("/docs").includes(`href="${path}"`),
+    `${framework}: overview link`,
+  );
+  assert(
+    pages.get(path).includes('id="default-stack"'),
+    `${framework}: stack section`,
+  );
+  if (["react", "nextjs"].includes(framework)) {
+    assert(
+      pages.get(path).includes('id="template-source"'),
+      `${framework}: source section`,
+    );
+  }
+}
 assert(releases.length > 0, "release archive must not be empty");
 assert(releases.includes("/docs/releases/2.5.1"), "2.5.1 release in sitemap");
 assert(

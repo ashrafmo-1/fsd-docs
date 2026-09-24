@@ -10,6 +10,8 @@ const routes = [
   "/docs/slice-generator",
   "/docs/auth-generator",
   "/docs/frameworks/vue",
+  "/docs/frameworks/react",
+  "/docs/frameworks/nextjs",
   "/docs/frameworks/nuxt",
   "/docs/frameworks/sveltekit",
   "/docs/releases",
