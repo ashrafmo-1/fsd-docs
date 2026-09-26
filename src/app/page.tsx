@@ -8,6 +8,8 @@ import { Hero } from "@/components/landing/hero";
 import { Navigation } from "@/components/landing/navigation";
 import { ScrollFeatures } from "@/components/landing/scroll-features";
 
+export const dynamic = "force-static";
+
 export default function Home() {
   return (
     <>

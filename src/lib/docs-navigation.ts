@@ -49,6 +49,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
         description:
           "Plan and apply protected migrations to existing projects.",
       },
+      {
+        label: "AI Agent Skill (Beta)",
+        href: "/docs/ai-agent-skill",
+        description: "Try the beta skill with verified FSD CLI commands.",
+      },
     ],
   },
   {

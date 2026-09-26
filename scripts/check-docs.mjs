@@ -15,6 +15,37 @@ for (const path of paths) {
   assert.equal(response.status, 200, path);
   pages.set(path, await response.text());
 }
+
+const robotsResponse = await fetch(`${origin}/robots.txt`);
+assert.equal(robotsResponse.status, 200, "robots.txt");
+const robots = await robotsResponse.text();
+for (const bot of ["GPTBot", "ClaudeBot", "PerplexityBot", "Google-Extended"]) {
+  assert(
+    robots.includes(`User-Agent: ${bot}\nAllow: /`),
+    `robots.txt: ${bot} allowed`,
+  );
+}
+assert(
+  robots.includes("Sitemap: https://fsd-docs.vercel.app/sitemap.xml"),
+  "robots.txt: production sitemap",
+);
+
+for (const pathname of ["/llms.txt", "/llms-full.txt"]) {
+  const response = await fetch(`${origin}${pathname}`);
+  assert.equal(response.status, 200, pathname);
+  assert.match(
+    response.headers.get("content-type") ?? "",
+    /^text\/plain/i,
+    `${pathname}: plain text`,
+  );
+  const content = await response.text();
+  assert(content.includes("FSD CLI"), `${pathname}: product identity`);
+  assert(
+    content.includes("/docs/getting-started"),
+    `${pathname}: documentation links`,
+  );
+}
+
 for (const [path, html] of pages) {
   assert(html.includes('id="support"'), `${path}: support section`);
   assert(html.includes('id="support-dialog"'), `${path}: donation dialog`);
@@ -87,5 +118,5 @@ for (const path of releases) {
 assert.equal((await fetch(`${origin}/docs/releases/99.0.0`)).status, 404);
 assert(pages.get("/").includes("Latest release:"), "homepage release link");
 console.log(
-  `Passed: ${paths.length} sitemap pages, internal page links, ${releases.length} releases, version commands, section anchors, and unknown-release 404.`,
+  `Passed: ${paths.length} sitemap pages, internal page links, ${releases.length} releases, bot access, LLM text routes, version commands, section anchors, and unknown-release 404.`,
 );

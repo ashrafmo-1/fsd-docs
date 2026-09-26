@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "check": "npm run lint && npm run typecheck && npm run build",
+    "check:static": "node scripts/check-static-output.mjs",
+    "check": "npm run lint && npm run typecheck && npm run build && npm run check:static",
     "test:docs": "node scripts/check-docs.mjs"
   },
   "dependencies": {

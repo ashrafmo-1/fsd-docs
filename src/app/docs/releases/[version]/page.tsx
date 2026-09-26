@@ -5,6 +5,7 @@ import { CodeBlock } from "@/components/docs/code-block";
 import { CLI_RELEASES, getRelease, getReleaseNavigation } from "@/lib/releases";
 
 type Props = { params: Promise<{ version: string }> };
+export const dynamic = "force-static";
 export const dynamicParams = false;
 export function generateStaticParams() {
   return CLI_RELEASES.map(({ version }) => ({ version }));

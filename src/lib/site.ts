@@ -14,6 +14,7 @@ export const siteConfig = {
   fsdOfficial: "https://feature-sliced.design/",
   repositories: {
     cli: "https://github.com/FSD-CLI/cli",
+    skill: "https://github.com/FSD-CLI/create-fsd-architecture",
     vite: "https://github.com/FSD-CLI/FSD",
     next: "https://github.com/FSD-CLI/FSD-NEXTJS",
     vue: "https://github.com/FSD-CLI/FSD-VUE",

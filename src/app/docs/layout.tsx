@@ -6,6 +6,8 @@ import { OnThisPage } from "@/components/docs/on-this-page";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: {
     default: "Documentation",

@@ -18,6 +18,9 @@ The site explains both CLI workflows:
 - Tailwind CSS 4
 - Biome
 
+The landing page and every documentation route are prerendered at build time.
+`npm run check:static` verifies that contract from Next.js build artifacts.
+
 ## Local development
 
 Node.js 20.9 or later is required.
@@ -58,11 +61,16 @@ section anchors, and the unknown-release 404; it does not replace browser checks
 | `/docs/configuration` | `fsd.config.json` reference |
 | `/docs/slice-generator` | Feature, entity, widget, and page generation |
 | `/docs/auth-generator` | Dedicated auth flow generation |
+| `/docs/ai-agent-skill` | Beta installation, safety note, and verified scope of the `fsd-cli` Agent Skill |
 | `/docs/frameworks/vue` | Vue + Vite template and generator guide |
 | `/docs/frameworks/nuxt` | Nuxt template, SSR integration, and generator guide |
 | `/docs/frameworks/sveltekit` | SvelteKit template, stack, routing, and generator guide |
 | `/docs/releases` | CLI release history and legacy archive |
 | `/docs/releases/[version]` | Version-specific changes and installation command |
+| `/sitemap.xml` | Canonical static route inventory for crawlers |
+| `/robots.txt` | Crawler policy, including explicit AI crawler access |
+| `/llms.txt` | Concise LLM-oriented product and documentation index |
+| `/llms-full.txt` | Consolidated LLM-oriented CLI reference |
 
 ## Maintaining documentation
 
@@ -80,6 +88,7 @@ and h3 headings and highlights the current section while scrolling.
 ## Related repositories
 
 - [CLI](https://github.com/FSD-CLI/cli)
+- [Agent Skill](https://github.com/FSD-CLI/create-fsd-architecture)
 - [React + Vite starter](https://github.com/FSD-CLI/FSD)
 - [Next.js starter](https://github.com/FSD-CLI/FSD-NEXTJS)
 - [Vue + Vite starter](https://github.com/FSD-CLI/FSD-VUE)
@@ -91,6 +100,9 @@ and h3 headings and highlights the current section while scrolling.
 
 The production URL is [fsd-docs.vercel.app](https://fsd-docs.vercel.app).
 Metadata, canonical URLs, sitemap, robots, and the web manifest use this URL.
+The robots policy explicitly permits GPTBot, ClaudeBot, PerplexityBot, and
+Google-Extended. The two LLM text routes are generated from the same navigation,
+release, and site configuration used by the HTML documentation.
 
 ## License
 

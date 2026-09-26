@@ -1,5 +1,6 @@
 import {
   ArrowRight,
+  Bot,
   Boxes,
   FolderTree,
   KeyRound,
@@ -59,6 +60,15 @@ const DOC_CARDS = [
     href: "/docs/upgrade",
     icon: RefreshCcw,
     color: "bg-brand-mint",
+  },
+  {
+    title: "AI Agent Skill",
+    badge: "Beta",
+    description:
+      "Teach Codex, Claude Code, Cursor, and compatible agents to inspect a project and use real FSD CLI scaffolding commands.",
+    href: "/docs/ai-agent-skill",
+    icon: Bot,
+    color: "bg-brand-lavender",
   },
   {
     title: "React + Vite",
@@ -135,7 +145,16 @@ export default function DocsPage() {
               >
                 <Icon className="h-5 w-5 text-ink" />
               </span>
-              <h2 className="text-base font-semibold text-ink">{card.title}</h2>
+              <div className="flex items-center gap-2">
+                <h2 className="text-base font-semibold text-ink">
+                  {card.title}
+                </h2>
+                {card.badge ? (
+                  <span className="rounded-full border border-brand-coral/30 bg-brand-peach px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.8px] text-ink">
+                    {card.badge}
+                  </span>
+                ) : null}
+              </div>
               <p className="mt-2 text-sm leading-relaxed text-body">
                 {card.description}
               </p>
