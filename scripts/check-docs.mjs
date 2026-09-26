@@ -50,15 +50,33 @@ for (const framework of ["react", "nextjs", "vue", "nuxt", "sveltekit"]) {
   }
 }
 assert(releases.length > 0, "release archive must not be empty");
-assert(releases.includes("/docs/releases/2.5.1"), "2.5.1 release in sitemap");
+assert(releases.includes("/docs/releases/2.6.0"), "2.6.0 release in sitemap");
 assert(
-  /Version\s*(?:<!--.*?-->\s*)*2\.5\.1/.test(pages.get("/docs")),
+  /Version\s*(?:<!--.*?-->\s*)*2\.6\.0/.test(pages.get("/docs")),
   "documentation introduction shows the current release",
 );
 for (const path of ["/", "/docs/releases"]) {
   assert(
-    pages.get(path).includes('href="/docs/releases/2.5.1"'),
+    pages.get(path).includes('href="/docs/releases/2.6.0"'),
     `${path}: current release link`,
+  );
+}
+assert(pages.has("/docs/upgrade"), "upgrade guide in sitemap");
+assert(
+  pages.get("/docs").includes('href="/docs/upgrade"'),
+  "upgrade guide on documentation overview",
+);
+for (const anchor of [
+  "inspect-before-applying",
+  "understand-the-plan",
+  "ownership-manifest",
+  "legacy-projects",
+  "ci-exit-codes",
+  "git-backup-and-recovery",
+]) {
+  assert(
+    pages.get("/docs/upgrade").includes(`id="${anchor}"`),
+    `upgrade: ${anchor}`,
   );
 }
 for (const path of releases) {

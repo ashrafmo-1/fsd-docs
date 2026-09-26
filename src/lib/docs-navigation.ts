@@ -43,6 +43,12 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
         href: "/docs/auth-generator",
         description: "Generate a complete authentication flow.",
       },
+      {
+        label: "Safe upgrades",
+        href: "/docs/upgrade",
+        description:
+          "Plan and apply protected migrations to existing projects.",
+      },
     ],
   },
   {

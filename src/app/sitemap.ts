@@ -9,6 +9,7 @@ const routes = [
   "/docs/configuration",
   "/docs/slice-generator",
   "/docs/auth-generator",
+  "/docs/upgrade",
   "/docs/frameworks/vue",
   "/docs/frameworks/react",
   "/docs/frameworks/nextjs",

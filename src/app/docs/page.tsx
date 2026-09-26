@@ -4,6 +4,7 @@ import {
   FolderTree,
   KeyRound,
   PanelsTopLeft,
+  RefreshCcw,
   Terminal,
 } from "lucide-react";
 import type { Metadata } from "next";
@@ -50,6 +51,14 @@ const DOC_CARDS = [
     href: "/docs/auth-generator",
     icon: KeyRound,
     color: "bg-brand-lavender",
+  },
+  {
+    title: "Safe project upgrades",
+    description:
+      "Inspect ownership, detect conflicts, and apply transactional migrations without re-scaffolding business code.",
+    href: "/docs/upgrade",
+    icon: RefreshCcw,
+    color: "bg-brand-mint",
   },
   {
     title: "React + Vite",

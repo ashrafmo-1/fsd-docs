@@ -40,7 +40,7 @@ export default async function ReleasePage({ params }: Props) {
         >
           Package on npm
         </a>
-        {["2.5.0", "2.4.0", "2.3.2"].includes(version) && (
+        {["2.6.0", "2.5.0", "2.4.0", "2.3.2"].includes(version) && (
           <a
             href={`https://github.com/FSD-CLI/cli/releases/tag/v${version}`}
             className="underline"
@@ -49,7 +49,7 @@ export default async function ReleasePage({ params }: Props) {
           </a>
         )}
         <a
-          href="https://github.com/FSD-CLI/cli/blob/main/CHANGELOG.md"
+          href="https://github.com/FSD-CLI/cli/blob/main/docs/CHANGELOG.md"
           className="underline"
         >
           Source changelog
@@ -76,8 +76,8 @@ export default async function ReleasePage({ params }: Props) {
         </h2>
         <CodeBlock code={`npx create-fsd-architecture@${version}`} />
         <p className="text-sm text-body-muted">
-          Running a newer CLI does not migrate an existing project's files or
-          dependencies. Review compatibility notes before generating new slices.
+          Installing a newer CLI alone does not migrate an existing project.
+          Review compatibility notes, then use the documented upgrade command.
         </p>
       </section>
       <nav

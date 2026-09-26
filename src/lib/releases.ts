@@ -15,12 +15,59 @@ export type CliRelease = {
 
 export const CLI_RELEASES: CliRelease[] = [
   {
+    version: "2.6.0",
+    date: "2026-09-26",
+    dateLabel: "September 26, 2026",
+    summary:
+      "Safe, manifest-backed upgrades for existing FSD CLI projects with conflict detection, transactional rollback, and CI status checks.",
+    status: "latest",
+    frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
+    sections: [
+      {
+        title: "Added",
+        items: [
+          "A versioned upgrade command that migrates only verified CLI-owned configuration and tooling without re-scaffolding application code.",
+          "Read-only upgrade --dry-run planning and upgrade --check automation with stable exit codes.",
+          "A .fsd/manifest.json ownership record with SHA-256 hashes for managed files, marker regions, and dependency entries.",
+          "Transactional affected-path backups, atomic writes, validation, and rollback with recovery guidance.",
+          "Conservative legacy-project adoption for exact known release signatures across all five frameworks.",
+        ],
+      },
+      {
+        title: "Changed",
+        items: [
+          "New projects record their initial managed state so later upgrades can distinguish CLI-owned content from user customization.",
+          "Upgrade plans report create, update, already-applied, preserve, conflict, manual, and delete operations before applying.",
+          "Applying requires a clean Git worktree by default; --allow-dirty is explicit and never resets, stashes, commits, or switches branches.",
+        ],
+      },
+      {
+        title: "Fixed",
+        items: [
+          "Planned writes are revalidated immediately before application so a stale interactive plan cannot overwrite a newer file edit.",
+          "Ownership manifests follow the Next.js template's Biome formatting rules.",
+          "CLI-generated Redux reducer registration refreshes its managed store hash while user-modified stores remain protected.",
+          "Projects can be discovered below package-only workspace roots without weakening nested FSD-root conflict detection.",
+          "Upgrade checks reject missing required FSD layers and preserve dependency versions that the manifest does not claim.",
+        ],
+      },
+      {
+        title: "Compatibility",
+        items: [
+          "React + Vite, Next.js, Vue + Vite, Nuxt, and SvelteKit are supported with npm, pnpm, Yarn, and Bun planning coverage.",
+          "The project configuration schema remains version 1; the ownership manifest and migration state are separate contracts.",
+          "There is no upgrade --force, blind adoption, downgrade, or promise to migrate arbitrary customized historical output automatically.",
+        ],
+      },
+    ],
+  },
+  {
     version: "2.5.1",
     date: "2026-09-23",
     dateLabel: "September 23, 2026",
     summary:
       "Safer project creation, reliable Git hooks, consistent generators, and scoped pnpm build-script approvals.",
-    status: "latest",
+    status: "stable",
     frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
     sections: [
       {
