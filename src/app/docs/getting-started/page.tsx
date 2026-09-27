@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import { DocumentationVideo } from "@/components/docs/documentation-video";
+import {
+  GETTING_STARTED_VIDEO_PAGE_KEY,
+  getDocumentationVideo,
+} from "@/lib/documentation-videos";
 
 export const metadata: Metadata = {
   title: "Getting Started",
@@ -18,6 +23,8 @@ const WIZARD_STEPS = [
 ];
 
 export default function GettingStartedPage() {
+  const video = getDocumentationVideo(GETTING_STARTED_VIDEO_PAGE_KEY);
+
   return (
     <article className="max-w-4xl">
       <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-brand-coral">
@@ -31,6 +38,8 @@ export default function GettingStartedPage() {
         selected frontend stack, and keeps every FSD layer available from day
         one.
       </p>
+
+      <DocumentationVideo video={video} />
 
       <section className="mt-10 space-y-4">
         <h2
