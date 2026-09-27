@@ -36,7 +36,7 @@
   "engines": {
     "node": ">=20.9.0"
   },
-  "homepage": "https://fsd-docs.vercel.app",
+  "homepage": "https://fsdcli.me",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ashrafmo-1/fsd-docs.git"

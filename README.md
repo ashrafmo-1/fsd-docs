@@ -98,7 +98,7 @@ and h3 headings and highlights the current section while scrolling.
 
 ## Deployment
 
-The production URL is [fsd-docs.vercel.app](https://fsd-docs.vercel.app).
+The production URL is [fsdcli.me](https://fsdcli.me).
 Metadata, canonical URLs, sitemap, robots, and the web manifest use this URL.
 The robots policy explicitly permits GPTBot, ClaudeBot, PerplexityBot, and
 Google-Extended. The two LLM text routes are generated from the same navigation,

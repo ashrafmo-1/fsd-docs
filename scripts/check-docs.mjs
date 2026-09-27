@@ -26,7 +26,7 @@ for (const bot of ["GPTBot", "ClaudeBot", "PerplexityBot", "Google-Extended"]) {
   );
 }
 assert(
-  robots.includes("Sitemap: https://fsd-docs.vercel.app/sitemap.xml"),
+  robots.includes("Sitemap: https://fsdcli.me/sitemap.xml"),
   "robots.txt: production sitemap",
 );
 
