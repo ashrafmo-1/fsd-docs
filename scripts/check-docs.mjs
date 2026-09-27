@@ -54,6 +54,12 @@ for (const [path, html] of pages) {
     html.includes('href="https://buymeacoffee.com/ashrafqopiah"'),
     `${path}: donation link`,
   );
+  assert(
+    html.includes(
+      'href="https://github.com/sponsors/ashrafmo-1?frequency=one-time&amp;sponsor=ashrafmo-1"',
+    ),
+    `${path}: GitHub Sponsors link`,
+  );
   assert(html.includes("ashrafmo-1"), `${path}: InstaPay username`);
   for (const match of html.matchAll(/href="(\/[^"?#]*)"/g)) {
     const target = match[1];

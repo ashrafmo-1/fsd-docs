@@ -57,6 +57,9 @@ export function getLlmsIndex() {
     "- [npm package](" +
       siteConfig.npm +
       "): Published package and version history.",
+    "- [Support on GitHub Sponsors](" +
+      siteConfig.support.githubSponsors +
+      "): Optional funding for ongoing FSD CLI development and documentation.",
     "- [Official FSD methodology](" +
       siteConfig.fsdOfficial +
       "): Architectural concepts and rules.",
@@ -129,6 +132,7 @@ export function getLlmsFull() {
       latestRelease.date +
       ")",
     "Source: " + siteConfig.github,
+    "Support: " + siteConfig.support.githubSponsors,
     "",
     "## Product scope",
     "",
