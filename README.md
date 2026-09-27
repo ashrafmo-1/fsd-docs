@@ -32,6 +32,12 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+Dashboard sign-in reads public Supabase settings from `.env.local`. Copy
+`.env.example`, then set `NEXT_PUBLIC_SUPABASE_URL` and
+`NEXT_PUBLIC_SUPABASE_ANON_KEY`. Do not add the service-role key. Public
+documentation still builds when those variables are empty. Create the admin
+user in the Supabase dashboard and turn off public sign-ups there.
+
 ## Quality checks
 
 ```bash
@@ -71,6 +77,8 @@ section anchors, and the unknown-release 404; it does not replace browser checks
 | `/robots.txt` | Crawler policy, including explicit AI crawler access |
 | `/llms.txt` | Concise LLM-oriented product and documentation index |
 | `/llms-full.txt` | Consolidated LLM-oriented CLI reference |
+| `/dashboard/login` | Admin email and password sign-in |
+| `/dashboard` | Protected admin dashboard |
 
 ## Maintaining documentation
 

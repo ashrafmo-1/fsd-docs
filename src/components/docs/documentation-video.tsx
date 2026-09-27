@@ -28,16 +28,16 @@ export function DocumentationVideo({
 
   return (
     <section aria-labelledby={headingId} className="mt-10 w-full min-w-0">
-      <div className="overflow-hidden rounded-2xl border border-hairline bg-surface-soft dark:border-white/10 dark:bg-surface-dark-elevated dark:scheme-dark">
+      <div className="overflow-hidden rounded-2xl border border-hairline bg-surface-soft">
         <div className="p-5 sm:p-6">
           <h2
             id={headingId}
-            className="text-2xl font-semibold tracking-[-0.5px] text-ink dark:text-white"
+            className="text-2xl font-semibold tracking-[-0.5px] text-ink"
           >
             {title}
           </h2>
           {description ? (
-            <p className="mt-3 max-w-3xl text-base leading-relaxed text-body dark:text-white/75">
+            <p className="mt-3 max-w-3xl text-base leading-relaxed text-body">
               {description}
             </p>
           ) : null}
