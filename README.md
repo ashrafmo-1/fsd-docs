@@ -23,7 +23,7 @@ The landing page and every documentation route are prerendered at build time.
 
 ## Local development
 
-Node.js 20.9 or later is required.
+Node.js 22 or later is required. GitHub Actions and deployment use Node 22 or newer.
 
 ```bash
 npm ci
@@ -34,15 +34,23 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Dashboard sign-in reads public Supabase settings from `.env.local`. Copy
 `.env.example`, then set `NEXT_PUBLIC_SUPABASE_URL` and
-`NEXT_PUBLIC_SUPABASE_ANON_KEY`. Do not add the service-role key. Public
-documentation still builds when those variables are empty. Create the admin
-user in the Supabase dashboard and turn off public sign-ups there.
+`NEXT_PUBLIC_SUPABASE_ANON_KEY`. Also set server-only `DASHBOARD_ADMIN_USER_IDS`
+to the admin user's Supabase UID (Authentication → Users). Do not prefix that
+variable with `NEXT_PUBLIC_` and do not commit a real UUID. Do not add the
+service-role key. Public documentation still builds when those variables are
+empty. Turning off public sign-ups is not the authorization check.
+
+The Getting Started video is configured in `src/lib/documentation-videos.ts`
+for `/docs/getting-started`. Leave it unset until the real URL, title, and
+description exist. Documentation and the dashboard stay on the light theme;
+the site does not apply a dark theme.
 
 ## Quality checks
 
 ```bash
 npm run lint
 npm run typecheck
+npm run test
 npm run build
 ```
 

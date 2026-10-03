@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { LoginForm } from "@/components/dashboard/login-form";
+import {
+  claimsUserId,
+  getDashboardAdminUserIds,
+  isDashboardAdmin,
+  UNAUTHORIZED_MESSAGE,
+} from "@/lib/supabase/admin";
 import { getSupabaseEnv } from "@/lib/supabase/env";
 import { getDashboardSession } from "@/lib/supabase/session";
 
@@ -13,13 +19,18 @@ export const metadata: Metadata = {
 
 const NOTICES = {
   configuration:
-    "Dashboard sign-in is not configured yet. Add the Supabase URL and anon key, then restart the app.",
+    "Dashboard sign-in is not configured yet. Add the Supabase URL, anon key, and DASHBOARD_ADMIN_USER_IDS, then restart the app.",
   unavailable: "Sign-in is unavailable right now. Try again in a moment.",
+  unauthorized: UNAUTHORIZED_MESSAGE,
 } as const;
 
 function noticeFromSearchParam(error: string | string[] | undefined) {
   const code = Array.isArray(error) ? error[0] : error;
-  if (code === "configuration" || code === "unavailable") {
+  if (
+    code === "configuration" ||
+    code === "unavailable" ||
+    code === "unauthorized"
+  ) {
     return NOTICES[code];
   }
   return null;
@@ -30,18 +41,21 @@ export default async function LoginPage({
 }: {
   searchParams: Promise<{ error?: string | string[] }>;
 }) {
-  const configured = Boolean(getSupabaseEnv());
+  const adminUserIds = getDashboardAdminUserIds();
+  const configured = Boolean(getSupabaseEnv()) && Boolean(adminUserIds);
+  let rejected = false;
   if (configured) {
     const claims = await getDashboardSession();
-    if (claims) redirect("/dashboard");
+    const userId = claimsUserId(claims);
+    if (isDashboardAdmin(userId, adminUserIds)) redirect("/dashboard");
+    rejected = Boolean(userId);
   }
 
   const params = await searchParams;
   const requestedNotice = noticeFromSearchParam(params.error);
   const notice = configured
-    ? requestedNotice === NOTICES.configuration
-      ? null
-      : requestedNotice
+    ? (requestedNotice === NOTICES.configuration ? null : requestedNotice) ||
+      (rejected ? NOTICES.unauthorized : null)
     : NOTICES.configuration;
 
   return (

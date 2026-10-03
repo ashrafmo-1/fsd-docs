@@ -1,5 +1,10 @@
 import { redirect } from "next/navigation";
 import { cache } from "react";
+import {
+  claimsUserId,
+  getDashboardAdminUserIds,
+  isDashboardAdmin,
+} from "@/lib/supabase/admin";
 import { getSupabaseEnv } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
 
@@ -9,7 +14,7 @@ export const getDashboardSession = cache(async () => {
   try {
     const supabase = await createClient();
     const { data, error } = await supabase.auth.getClaims();
-    if (error || !data?.claims?.sub) return null;
+    if (error || !data?.claims || !claimsUserId(data.claims)) return null;
     return data.claims;
   } catch {
     return null;
@@ -17,12 +22,17 @@ export const getDashboardSession = cache(async () => {
 });
 
 export async function requireDashboardAdmin() {
-  if (!getSupabaseEnv()) {
+  const adminUserIds = getDashboardAdminUserIds();
+  if (!getSupabaseEnv() || !adminUserIds) {
     redirect("/dashboard/login?error=configuration");
   }
 
   const claims = await getDashboardSession();
-  if (!claims) redirect("/dashboard/login");
+  const userId = claimsUserId(claims);
+  if (!userId) redirect("/dashboard/login");
+  if (!isDashboardAdmin(userId, adminUserIds)) {
+    redirect("/dashboard/login?error=unauthorized");
+  }
   return claims;
 }
 

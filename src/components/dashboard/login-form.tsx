@@ -4,7 +4,7 @@ import { useActionState } from "react";
 import { signIn } from "@/app/dashboard/actions";
 import type { SignInState } from "@/app/dashboard/sign-in-state";
 
-const initialState: SignInState = { error: null };
+const initialState: SignInState = { error: null, invalidFields: false };
 
 const fieldClassName =
   "mt-2 w-full min-h-11 rounded-xl border border-hairline bg-surface-soft px-4 text-base text-ink outline-none disabled:cursor-not-allowed disabled:opacity-60";
@@ -17,13 +17,15 @@ export function LoginForm({
   notice: string | null;
 }) {
   const [state, action, pending] = useActionState(signIn, initialState);
-  const message = state.error ?? notice;
+  const credentialError = state.invalidFields ? state.error : null;
+  const message = credentialError ?? state.error ?? notice;
   const disabled = !configured || pending;
 
   return (
     <form action={action} className="mt-8 space-y-4" noValidate>
       {message ? (
         <p
+          id="dashboard-sign-in-message"
           role="alert"
           className="rounded-xl border border-hairline bg-surface-soft px-4 py-3 text-sm leading-relaxed text-body-strong"
         >
@@ -46,7 +48,8 @@ export function LoginForm({
           required
           maxLength={320}
           disabled={disabled}
-          aria-invalid={message ? true : undefined}
+          aria-invalid={credentialError ? true : undefined}
+          aria-describedby={message ? "dashboard-sign-in-message" : undefined}
           className={fieldClassName}
         />
       </div>
@@ -66,7 +69,8 @@ export function LoginForm({
           required
           maxLength={1024}
           disabled={disabled}
-          aria-invalid={message ? true : undefined}
+          aria-invalid={credentialError ? true : undefined}
+          aria-describedby={message ? "dashboard-sign-in-message" : undefined}
           className={fieldClassName}
         />
       </div>

@@ -1,4 +1,4 @@
-import { parseYouTubeVideoId } from "@/lib/youtube";
+import { parseYouTubeVideoId } from "./youtube.ts";
 
 export type DocumentationVideo = {
   title: string;

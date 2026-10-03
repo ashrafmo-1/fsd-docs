@@ -2,6 +2,12 @@
 
 import { redirect } from "next/navigation";
 import type { SignInState } from "@/app/dashboard/sign-in-state";
+import {
+  claimsUserId,
+  getDashboardAdminUserIds,
+  isDashboardAdmin,
+  UNAUTHORIZED_MESSAGE,
+} from "@/lib/supabase/admin";
 import { getSupabaseEnv } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
 
@@ -25,33 +31,43 @@ function readCredentials(formData: FormData) {
   return { email, password };
 }
 
-function signInMessage(error: { message: string; status?: number }) {
+function signInMessage(error: {
+  message: string;
+  status?: number;
+}): SignInState {
   const message = error.message.toLowerCase();
-  if (message.includes("not confirmed")) return UNCONFIRMED_ERROR;
-  if (error.status && error.status >= 500) return UNAVAILABLE_ERROR;
+  if (message.includes("not confirmed")) {
+    return { error: UNCONFIRMED_ERROR, invalidFields: false };
+  }
+  if (error.status && error.status >= 500) {
+    return { error: UNAVAILABLE_ERROR, invalidFields: false };
+  }
   if (
     message.includes("invalid") ||
     message.includes("credential") ||
     message.includes("password") ||
     error.status === 400
   ) {
-    return CREDENTIALS_ERROR;
+    return { error: CREDENTIALS_ERROR, invalidFields: true };
   }
-  return UNAVAILABLE_ERROR;
+  return { error: UNAVAILABLE_ERROR, invalidFields: false };
 }
 
 export async function signIn(
   _state: SignInState,
   formData: FormData,
 ): Promise<SignInState> {
-  if (!getSupabaseEnv()) {
-    return { error: "Dashboard sign-in is not configured yet." };
+  if (!getSupabaseEnv() || !getDashboardAdminUserIds()) {
+    return {
+      error: "Dashboard sign-in is not configured yet.",
+      invalidFields: false,
+    };
   }
 
   const credentials = readCredentials(formData);
-  if (!credentials) return { error: CREDENTIALS_ERROR };
+  if (!credentials) return { error: CREDENTIALS_ERROR, invalidFields: true };
   if ("missing" in credentials) {
-    return { error: "Enter your email and password." };
+    return { error: "Enter your email and password.", invalidFields: true };
   }
 
   try {
@@ -60,9 +76,19 @@ export async function signIn(
       email: credentials.email,
       password: credentials.password,
     });
-    if (error) return { error: signInMessage(error) };
+    if (error) return signInMessage(error);
+
+    const { data, error: claimsError } = await supabase.auth.getClaims();
+    const userId = claimsError ? null : claimsUserId(data?.claims);
+    if (!isDashboardAdmin(userId, getDashboardAdminUserIds())) {
+      await supabase.auth.signOut();
+      return {
+        error: userId ? UNAUTHORIZED_MESSAGE : UNAVAILABLE_ERROR,
+        invalidFields: false,
+      };
+    }
   } catch {
-    return { error: UNAVAILABLE_ERROR };
+    return { error: UNAVAILABLE_ERROR, invalidFields: false };
   }
 
   redirect("/dashboard");

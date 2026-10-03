@@ -1,5 +1,10 @@
 import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
+import {
+  claimsUserId,
+  decideDashboardRequest,
+  getDashboardAdminUserIds,
+} from "@/lib/supabase/admin";
 import { getSupabaseEnv } from "@/lib/supabase/env";
 
 const CACHE_HEADERS = ["cache-control", "expires", "pragma"];
@@ -67,31 +72,30 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  let authenticated = false;
+  let userId: string | null = null;
   let failed = false;
 
   try {
     const { data, error } = await supabase.auth.getClaims();
-    authenticated = !error && Boolean(data?.claims?.sub);
+    if (!error) userId = claimsUserId(data?.claims);
   } catch {
     failed = true;
   }
 
-  if (failed && !isLogin) {
+  const decision = decideDashboardRequest({
+    pathname,
+    supabaseConfigured: true,
+    sessionFailed: failed,
+    userId,
+    adminUserIds: getDashboardAdminUserIds(),
+  });
+  if (decision.type === "redirect") {
     return redirectTo(
       request,
       supabaseResponse,
-      "/dashboard/login",
-      "unavailable",
+      decision.pathname,
+      decision.error,
     );
-  }
-
-  if (!authenticated && !isLogin) {
-    return redirectTo(request, supabaseResponse, "/dashboard/login");
-  }
-
-  if (authenticated && isLogin) {
-    return redirectTo(request, supabaseResponse, "/dashboard");
   }
 
   return supabaseResponse;
