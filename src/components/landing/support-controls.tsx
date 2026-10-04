@@ -1,6 +1,7 @@
 "use client";
 
 import { Heart, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { createContext, type ReactNode, useContext, useRef } from "react";
 import { SupportProject } from "./support-project";
 
@@ -36,11 +37,13 @@ export function SupportButton({ floating = false }: { floating?: boolean }) {
 
 export function SupportProvider({ children }: { children: ReactNode }) {
   const dialog = useRef<HTMLDialogElement>(null);
+  const pathname = usePathname();
+  const showFloatingSupport = !pathname.startsWith("/dashboard");
 
   return (
     <SupportContext.Provider value={() => dialog.current?.showModal()}>
       {children}
-      <SupportButton floating />
+      {showFloatingSupport ? <SupportButton floating /> : null}
       <dialog
         ref={dialog}
         id="support-dialog"
