@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const CLI_SOURCE =
-  "https://github.com/FSD-CLI/cli/tree/bdba06b819a4acf672924fac2598a8c732fc41ab";
+  "https://github.com/FSD-CLI/cli/tree/d5a0bb1e464f2364593800deede428a957b5c32b";
 const SKILL_SOURCE =
   "https://github.com/FSD-CLI/create-fsd-architecture/tree/fbb8cb2c5d2d73ab25adcacb9255a912acc1d5eb";
 
@@ -43,16 +43,58 @@ export default function ReleaseReadinessPage() {
           passed. That source includes post-2.6.1 work and is not a new
           published artifact. The{" "}
           <a href={CLI_SOURCE} className="text-brand-coral underline">
-            follow-up candidate bdba06b
+            follow-up candidate d5a0bb1
           </a>{" "}
           needs a new PR and CI on its own head.
         </p>
         <p>
-          Candidate local verification passed 110 CLI tests and npm pack
+          Candidate local verification passed 118 CLI tests and npm pack
           dry-run. Supabase-generated output passed lint, typecheck, and build
           in React + Vite, Next.js, Vue + Vite, Nuxt, and SvelteKit. These
           results cover source output; they do not certify a released npm
           artifact or a live auth backend.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2
+          id="generator-workflows"
+          className="text-2xl font-semibold text-ink"
+        >
+          Batch slices, preserving segments, and architectural checks
+        </h2>
+        <p>
+          The candidate adds native batch generation with complete preflight and
+          rollback of earlier slices, affected routes/store files, and the
+          ownership manifest if a later operation fails. Batch --force is
+          refused.
+        </p>
+        <CodeBlock
+          code={`node /path/to/cli/bin/index.mjs -g entity product customer --dry-run
+node /path/to/cli/bin/index.mjs -g entity product customer
+node /path/to/cli/bin/index.mjs -g feature cart --segments ui,api --root src/lib
+node /path/to/cli/bin/index.mjs -g shared --segments ui,lib --root src`}
+        />
+        <p>
+          --segments creates missing directories and empty TypeScript public
+          APIs, preserving existing files. It generates no components, routes,
+          backend, or state registration. --root is supported only with this
+          structure-only mode; it does not rewrite framework aliases or routing.
+          Segments are one comma-separated argument. Symlinks and path
+          collisions are rejected.
+        </p>
+        <CodeBlock
+          code={`# Install in the application using its package manager:
+npm install -D steiger @feature-sliced/steiger-plugin
+node /path/to/cli/bin/index.mjs check --architecture`}
+        />
+        <p>
+          This opt-in runs the project's installed Steiger against its framework
+          source root and propagates failure. It downloads nothing
+          automatically; rules and exceptions remain project-owned. Normal
+          check/doctor inspect config, layers, and toolchain, without analyzing
+          import architecture. Native entity batch output passed
+          lint/types/build across all five frameworks.
         </p>
       </section>
 
@@ -129,7 +171,7 @@ configureSupabaseAuth(client);`}
         </p>
         <p>
           <a
-            href="https://github.com/FSD-CLI/cli/blob/bdba06b819a4acf672924fac2598a8c732fc41ab/docs/AUTH-SUPABASE-CONTRACT.md"
+            href="https://github.com/FSD-CLI/cli/blob/d5a0bb1e464f2364593800deede428a957b5c32b/docs/AUTH-SUPABASE-CONTRACT.md"
             className="text-brand-coral underline"
           >
             Full adapter contract
