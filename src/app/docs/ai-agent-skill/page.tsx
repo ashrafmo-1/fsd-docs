@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "AI Agent Skill (Beta)",
   description:
-    "Install the beta fsd-cli Agent Skill so compatible coding agents can use verified FSD CLI scaffolding commands.",
+    "Install the beta fsd-cli Agent Skill so compatible coding agents can inspect, implement, review, and migrate FSD projects with evidence.",
   alternates: { canonical: "/docs/ai-agent-skill" },
 };
 
@@ -44,9 +44,9 @@ export default function AiAgentSkillPage() {
         <p className="font-semibold text-ink">Beta availability</p>
         <p className="mt-2 text-sm leading-relaxed text-body">
           The installation flow and documented CLI commands are verified against
-          create-fsd-architecture 2.6.0. Agent behavior can still vary across
-          coding tools and existing project structures, so review generated
-          changes before committing them.
+          the published create-fsd-architecture 2.6.1 baseline. Agent behavior
+          can still vary across coding tools and existing project structures, so
+          review generated changes before committing them.
         </p>
       </div>
 
@@ -57,18 +57,20 @@ export default function AiAgentSkillPage() {
         >
           Install the skill
         </h2>
-        <CodeBlock code="npx skills add FSD-CLI/create-fsd-architecture --skill fsd-cli" />
+        <CodeBlock code="npx skills@1.7.0 add https://github.com/FSD-CLI/create-fsd-architecture/tree/v2.0.0-beta.1/skills/fsd-cli --skill fsd-cli" />
         <p className="text-base leading-relaxed text-body">
           The source lives in the{" "}
           <a
             className="font-semibold text-brand-coral underline"
-            href={`${siteConfig.repositories.skill}/tree/main/skills/fsd-cli`}
+            href={`${siteConfig.repositories.skill}/tree/v2.0.0-beta.1/skills/fsd-cli`}
           >
             create-fsd-architecture Agent Skill repository
           </a>
-          . The current beta release is <code>v1.0.0-beta.1</code>. Its core
+          . The current beta release is <code>v2.0.0-beta.1</code>. Its core
           instructions are portable; agent-specific UI metadata is kept
-          separate.
+          separate. The pinned installer requires Node.js 22.20.0 or newer; the
+          read-only helpers require Node.js 20 or newer. This tag is installable
+          while the companion branch awaits merge into main.
         </p>
       </section>
 
@@ -119,19 +121,31 @@ export default function AiAgentSkillPage() {
           Verified scope
         </h2>
         <p className="text-base leading-relaxed text-body">
-          The skill covers project creation, the feature, entity, widget, and
-          page generators, the complete auth feature scaffold, project checks,
-          and safe upgrades across React, Next.js, Vue, Nuxt, and SvelteKit.
+          Version 2 adds progressive guides for discovery, domain decisions,
+          feature implementation, architecture review, Supabase integration,
+          incremental migration and rollback, verification, and releases.
+          Framework guides cover React, Next.js, Vue, Nuxt, and SvelteKit. Three
+          read-only helpers inventory projects, inspect import hints, and
+          validate evidence reports.
         </p>
         <p className="text-base leading-relaxed text-body">
-          It does not invent an in-place initialization command or a standalone
-          segment generator. If the CLI cannot perform an operation, the agent
-          keeps that limitation explicit and handles only the authorized manual
-          implementation.
+          The skill distinguishes published CLI 2.6.1 commands from candidate
+          batch, segment, custom-root, Supabase, and Steiger flags. These flags
+          require the explicitly selected candidate; they are not npm 2.6.1
+          capabilities. If the selected CLI cannot perform an operation, the
+          agent keeps that limitation explicit and handles only the authorized
+          manual implementation.
         </p>
       </section>
 
       <section className="mt-10 space-y-4">
+        <p className="text-base leading-relaxed text-body">
+          Validation: 15 helper/reference tests passed on Linux, macOS, and
+          Windows with Node.js 20, 22, and 24. Four independent agent scenarios
+          covered preserving an existing cart, reviewing Next.js without edits,
+          gating unavailable Supabase flags, and domain placement. Broad
+          provider behavior and live Supabase staging remain unverified.
+        </p>
         <h2
           id="responsibility-boundary"
           className="text-2xl font-semibold tracking-[-0.5px] text-ink"

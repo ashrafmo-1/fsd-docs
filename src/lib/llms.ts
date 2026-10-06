@@ -68,10 +68,10 @@ export function getLlmsIndex() {
     "",
     "Install the execution-focused skill with " +
       inlineCode(
-        "npx skills add FSD-CLI/create-fsd-architecture --skill fsd-cli",
+        "npx skills@1.7.0 add https://github.com/FSD-CLI/create-fsd-architecture/tree/v2.0.0-beta.1/skills/fsd-cli --skill fsd-cli",
       ) +
-      ". The current release is " +
-      inlineCode("v1.0.0-beta.1") +
+      ". The pinned installer requires Node.js >=22.20.0; helpers require >=20. The current Skill release is " +
+      inlineCode("v2.0.0-beta.1") +
       ". It teaches compatible coding agents to inspect a project and use verified CLI operations instead of inventing commands or manually rebuilding supported scaffolds. Agent behavior can vary across tools and project structures, so generated changes should be reviewed before commit.",
     "",
   ].join("\n");
@@ -144,7 +144,7 @@ export function getLlmsFull() {
     "",
     "npm latest remains 2.6.1. CLI candidate d5a0bb1 adds an opt-in Supabase auth adapter (--auth-provider supabase), light hooks, and managed light-hooks-v1 migration state 2 to 3. These changes await follow-up PR review/CI/release; do not issue the new flag against npm 2.6.1. Supabase staging E2E remains pending. Use only public browser keys; SSR authorization and RLS require application integration.",
     "",
-    "Skill candidate fbb8cb2 implements incremental existing-project migration with a verified synthetic React/Vite browser and rollback pilot. It is not a shipped arbitrary-app CLI migrate command or broad production-app certification. See " +
+    "Tagged Skill v2.0.0-beta.1 implements incremental existing-project migration with a verified synthetic React/Vite browser and rollback pilot. It is not a shipped arbitrary-app CLI migrate command or broad production-app certification. See " +
       absoluteUrl("/docs/release-readiness") +
       " for contracts and remaining release gates.",
     "",
@@ -249,13 +249,13 @@ export function getLlmsFull() {
     "",
     "## AI Agent Skill (Beta)",
     "",
-    "    npx skills add FSD-CLI/create-fsd-architecture --skill fsd-cli",
+    "    npx skills@1.7.0 add https://github.com/FSD-CLI/create-fsd-architecture/tree/v2.0.0-beta.1/skills/fsd-cli --skill fsd-cli",
     "",
     "The " +
       inlineCode("fsd-cli") +
       " skill is currently released as " +
-      inlineCode("v1.0.0-beta.1") +
-      ". It translates natural-language scaffolding requests into verified commands. It inspects existing code first, prefers the CLI for supported operations, protects existing slices, and leaves business implementation to the coding agent. Review generated changes because agent behavior can vary across tools and existing project structures.",
+      inlineCode("v2.0.0-beta.1") +
+      ". It adds discovery, domain decisions, implementation, review, Supabase guidance, incremental migration/rollback, framework guides, and three read-only evidence helpers. Published CLI 2.6.1 and candidate-only flags are explicitly separated. It inspects existing code first, prefers the CLI for supported operations, protects existing slices, and leaves business implementation to the coding agent. Review generated changes because agent behavior can vary across tools and existing project structures.",
     "",
     "## Documentation directory",
     "",
