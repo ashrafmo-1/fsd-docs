@@ -41,7 +41,8 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
       {
         label: "Auth generator",
         href: "/docs/auth-generator",
-        description: "Generate a complete authentication flow.",
+        description:
+          "Generate auth UI, validation, and backend integration scaffolding.",
       },
       {
         label: "Safe upgrades",
@@ -89,6 +90,12 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
   {
     label: "Resources",
     items: [
+      {
+        label: "Upcoming changes",
+        href: "/docs/release-readiness",
+        description:
+          "Supabase, light hooks, existing-project migration, and release verification.",
+      },
       {
         label: "Releases",
         href: "/docs/releases",

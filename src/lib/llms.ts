@@ -140,7 +140,15 @@ export function getLlmsFull() {
     "",
     "The CLI is an execution and scaffolding tool. It does not replace the official Feature-Sliced Design methodology, provision an application backend, or implement product-specific business logic.",
     "",
-    "## Requirements",
+    "## Upcoming source candidates (October 6, 2026)",
+    "",
+    "npm latest remains 2.6.1. CLI candidate bdba06b adds an opt-in Supabase auth adapter (--auth-provider supabase), light hooks, and managed light-hooks-v1 migration state 2 to 3. These changes await follow-up PR review/CI/release; do not issue the new flag against npm 2.6.1. Supabase staging E2E remains pending. Use only public browser keys; SSR authorization and RLS require application integration.",
+    "",
+    "Skill candidate fbb8cb2 implements incremental existing-project migration with a verified synthetic React/Vite browser and rollback pilot. It is not a shipped arbitrary-app CLI migrate command or broad production-app certification. See " +
+      absoluteUrl("/docs/release-readiness") +
+      " for contracts and remaining release gates.",
+    "",
+    "## Runtime requirements",
     "",
     "- CLI runtime: Node.js 20 or later.",
     "- Generated Nuxt and SvelteKit projects: Node.js 22.22.2 or later.",
