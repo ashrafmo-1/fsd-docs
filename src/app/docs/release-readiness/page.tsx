@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const CLI_SOURCE =
   "https://github.com/FSD-CLI/cli/tree/d5a0bb1e464f2364593800deede428a957b5c32b";
 const SKILL_SOURCE =
-  "https://github.com/FSD-CLI/create-fsd-architecture/tree/v2.0.0-beta.1";
+  "https://github.com/FSD-CLI/create-fsd-architecture/tree/v2.0.0";
 
 export default function ReleaseReadinessPage() {
   return (
@@ -236,7 +236,7 @@ HUSKY=0 git commit -m "docs: update guide"`}
         </p>
         <p>
           This is one synthetic React pilot, not certification of arbitrary
-          production apps or other frameworks. Skill v2.0.0-beta.1 is tagged and
+          production apps or other frameworks. Skill v2.0.0 is tagged and
           installable, with 15 tests passing in all nine OS/Node CI jobs;
           companion branch merge into main remains pending. No arbitrary-app CLI
           migrate command is shipped. See the{" "}

@@ -63,9 +63,9 @@ const DOC_CARDS = [
   },
   {
     title: "AI Agent Skill",
-    badge: "Beta",
+    badge: "Stable v2.0.0",
     description:
-      "Teach Codex, Claude Code, Cursor, and compatible agents to inspect a project and use real FSD CLI scaffolding commands.",
+      "Guide compatible agents through FSD discovery, implementation, review, migration, and verified tooling.",
     href: "/docs/ai-agent-skill",
     icon: Bot,
     color: "bg-brand-lavender",

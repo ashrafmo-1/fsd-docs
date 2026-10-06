@@ -3,9 +3,9 @@ import { CodeBlock } from "@/components/docs/code-block";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "AI Agent Skill (Beta)",
+  title: "AI Agent Skill",
   description:
-    "Install the beta fsd-cli Agent Skill so compatible coding agents can inspect, implement, review, and migrate FSD projects with evidence.",
+    "Install the stable fsd-cli Agent Skill so compatible coding agents can inspect, implement, review, and migrate FSD projects with evidence.",
   alternates: { canonical: "/docs/ai-agent-skill" },
 };
 
@@ -24,7 +24,7 @@ export default function AiAgentSkillPage() {
           Agent Skills
         </p>
         <span className="rounded-full border border-brand-coral/30 bg-brand-peach px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[1px] text-ink">
-          Beta
+          Stable v2.0.0
         </span>
       </div>
       <h1 className="text-4xl font-semibold leading-tight tracking-[-1.5px] text-ink md:text-5xl">
@@ -41,12 +41,14 @@ export default function AiAgentSkillPage() {
         role="note"
         className="mt-6 rounded-2xl border border-brand-coral/30 bg-brand-peach/50 p-5"
       >
-        <p className="font-semibold text-ink">Beta availability</p>
+        <p className="font-semibold text-ink">Stable scope</p>
         <p className="mt-2 text-sm leading-relaxed text-body">
           The installation flow and documented CLI commands are verified against
           the published create-fsd-architecture 2.6.1 baseline. Agent behavior
           can still vary across coding tools and existing project structures, so
-          review generated changes before committing them.
+          review generated changes before committing them. Stable refers to the
+          documented workflows and helpers; live backend and broad provider
+          certification remain outside the verified scope.
         </p>
       </div>
 
@@ -57,16 +59,16 @@ export default function AiAgentSkillPage() {
         >
           Install the skill
         </h2>
-        <CodeBlock code="npx skills@1.7.0 add https://github.com/FSD-CLI/create-fsd-architecture/tree/v2.0.0-beta.1/skills/fsd-cli --skill fsd-cli" />
+        <CodeBlock code="npx skills@1.7.0 add https://github.com/FSD-CLI/create-fsd-architecture/tree/v2.0.0/skills/fsd-cli --skill fsd-cli" />
         <p className="text-base leading-relaxed text-body">
           The source lives in the{" "}
           <a
             className="font-semibold text-brand-coral underline"
-            href={`${siteConfig.repositories.skill}/tree/v2.0.0-beta.1/skills/fsd-cli`}
+            href={`${siteConfig.repositories.skill}/tree/v2.0.0/skills/fsd-cli`}
           >
             create-fsd-architecture Agent Skill repository
           </a>
-          . The current beta release is <code>v2.0.0-beta.1</code>. Its core
+          . The current stable release is <code>v2.0.0</code>. Its core
           instructions are portable; agent-specific UI metadata is kept
           separate. The pinned installer requires Node.js 22.20.0 or newer; the
           read-only helpers require Node.js 20 or newer. This tag is installable
