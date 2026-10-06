@@ -22,17 +22,26 @@ function slugifyHeading(value: string) {
 
 export function OnThisPage() {
   const pathname = usePathname();
+  const [contentRevision, setContentRevision] = useState(0);
+
+  useEffect(() => {
+    const refresh = () => setContentRevision((revision) => revision + 1);
+    window.addEventListener("docs-content-change", refresh);
+    return () => window.removeEventListener("docs-content-change", refresh);
+  }, []);
+
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState("");
   const [copyStatus, setCopyStatus] = useState("");
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Tab visibility changes must refresh the heading list after the DOM updates.
   useEffect(() => {
     if (!pathname.startsWith("/docs")) return;
     const elements = Array.from(
       document.querySelectorAll<HTMLElement>(
         "#docs-content h2, #docs-content h3",
       ),
-    );
+    ).filter((heading) => !heading.closest("[hidden]"));
     const usedIds = new Set<string>();
 
     const nextHeadings = elements.flatMap((heading) => {
@@ -90,7 +99,7 @@ export function OnThisPage() {
       cancelAnimationFrame(hashFrame);
       window.removeEventListener("scroll", updateActive);
     };
-  }, [pathname]);
+  }, [pathname, contentRevision]);
 
   if (headings.length < 2) return null;
 
