@@ -15,12 +15,37 @@ export type CliRelease = {
 
 export const CLI_RELEASES: CliRelease[] = [
   {
+    version: "2.6.1",
+    date: "2026-09-27",
+    dateLabel: "September 27, 2026",
+    status: "latest",
+    summary:
+      "Update the official documentation domain to fsdcli.me while retaining the 2.6 managed-upgrade and five-framework contracts.",
+    frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
+    sections: [
+      {
+        title: "Changed",
+        items: [
+          "Package homepage, README documentation link and generated project documentation URLs use fsdcli.me.",
+        ],
+      },
+      {
+        title: "Compatibility",
+        items: [
+          "The npm artifact was published from 4c83d0a75ec20117edc8880aba065bdb21edfa6d on September 27, 2026.",
+          "Windows command-runner fixes merged later in CLI PR #4 and are not part of this published artifact.",
+          "Consult the current release status for source CI evidence and untested artifact/runtime combinations.",
+        ],
+      },
+    ],
+  },
+  {
     version: "2.6.0",
     date: "2026-09-26",
     dateLabel: "September 26, 2026",
     summary:
       "Safe, manifest-backed upgrades for existing FSD CLI projects with conflict detection, transactional rollback, and CI status checks.",
-    status: "latest",
+    status: "stable",
     frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
     sections: [
       {

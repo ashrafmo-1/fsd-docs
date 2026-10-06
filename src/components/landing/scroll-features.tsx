@@ -21,7 +21,7 @@ const STEPS = [
     id: "step-template",
     title: "Select your template",
     description:
-      "Pick from five production-ready templates. React + Vite, Next.js, Vue + Vite, Nuxt, and SvelteKit each include the full FSD structure.",
+      "Pick from five framework templates. React + Vite, Next.js, Vue + Vite, Nuxt, and SvelteKit each include the full FSD structure.",
     terminal: [
       { type: "command" as const, text: "npm create fsd-architecture@latest" },
       { type: "prompt" as const, text: "Project name: ", answer: "my-app" },
@@ -212,8 +212,7 @@ export function ScrollFeatures() {
             From one command to a scalable foundation
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-body">
-            Six steps. One command. A production-ready architecture that grows
-            with your team.
+            Six steps. One command. An architecture that grows with your team.
           </p>
         </div>
 
