@@ -32,7 +32,7 @@ const FEATURES: Feature[] = [
   {
     title: "Feature-Sliced Design",
     description:
-      "A battle-tested architecture with clear layer boundaries. Every file has a home, every import follows the rules.",
+      "An architecture with clear layer boundaries. Every file has a home, every import follows the rules.",
     icon: Layers,
     color: "bg-brand-lavender",
     textColor: "text-ink",

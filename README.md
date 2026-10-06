@@ -10,6 +10,13 @@ The site explains both CLI workflows:
 - generating features, entities, widgets, pages, and a complete auth flow
   inside an existing project.
 
+## Release verification
+
+The [current release status](https://github.com/FSD-CLI/cli/blob/main/docs/RELEASE-STATUS.md)
+is the canonical dated entry point for package/source SHAs, evidence, historical
+QA reports and open gaps. The product release archive describes published
+features; it does not certify every application or platform combination.
+
 ## Tech stack
 
 - Next.js 16 App Router

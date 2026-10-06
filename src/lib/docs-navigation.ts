@@ -41,7 +41,8 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
       {
         label: "Auth generator",
         href: "/docs/auth-generator",
-        description: "Generate a complete authentication flow.",
+        description:
+          "Generate auth UI, validation, and backend integration scaffolding.",
       },
       {
         label: "Safe upgrades",
@@ -50,9 +51,9 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
           "Plan and apply protected migrations to existing projects.",
       },
       {
-        label: "AI Agent Skill (Beta)",
+        label: "AI Agent Skill",
         href: "/docs/ai-agent-skill",
-        description: "Try the beta skill with verified FSD CLI commands.",
+        description: "Use the stable skill with verified FSD CLI workflows.",
       },
     ],
   },
@@ -89,6 +90,12 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
   {
     label: "Resources",
     items: [
+      {
+        label: "Upcoming changes",
+        href: "/docs/release-readiness",
+        description:
+          "Supabase, light hooks, existing-project migration, and release verification.",
+      },
       {
         label: "Releases",
         href: "/docs/releases",

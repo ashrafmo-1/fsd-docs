@@ -4,7 +4,7 @@ import { CodeBlock } from "@/components/docs/code-block";
 export const metadata: Metadata = {
   title: "Auth Generator",
   description:
-    "Generate a complete auth feature from the stack stored in fsd.config.json.",
+    "Generate auth UI, validation, and integration scaffolding from fsd.config.json; review the Supabase adapter candidate.",
   alternates: { canonical: "/docs/auth-generator" },
 };
 
@@ -23,12 +23,25 @@ export default function AuthGeneratorPage() {
         Special feature generator
       </p>
       <h1 className="text-4xl font-semibold leading-tight tracking-[-1.5px] text-ink md:text-5xl">
-        Generate a complete auth flow
+        Generate an auth feature scaffold
       </h1>
       <p className="mt-5 max-w-3xl text-lg leading-relaxed text-body">
         Naming a feature <code>auth</code> activates the dedicated generator. It
-        creates the full authentication flow and adapts the implementation to
-        the stack saved in <code>fsd.config.json</code>.
+        creates auth UI and integration scaffolding and adapts the output to the
+        stack saved in <code>fsd.config.json</code>.
+      </p>
+      <p className="mt-4 text-sm leading-relaxed text-body">
+        In npm 2.6.1, generated API endpoints are examples. Connect an
+        application backend and verify session handling and authorization before
+        deployment. The opt-in Supabase adapter is a source candidate, pending
+        release and staging acceptance. See the{" "}
+        <a
+          href="/docs/release-readiness#supabase-auth"
+          className="text-brand-coral underline"
+        >
+          Supabase integration guide
+        </a>
+        .
       </p>
 
       <section className="mt-10 space-y-4">

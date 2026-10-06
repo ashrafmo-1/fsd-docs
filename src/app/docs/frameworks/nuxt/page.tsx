@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Nuxt",
   description:
-    "Create a production-ready Nuxt 4 Feature-Sliced Design project with SSR-aware providers and framework-native generators.",
+    "Create a Nuxt 4 Feature-Sliced Design project with SSR-aware providers and framework-native generators.",
   alternates: { canonical: "/docs/frameworks/nuxt" },
 };
 

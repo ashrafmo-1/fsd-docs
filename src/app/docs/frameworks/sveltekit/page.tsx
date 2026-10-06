@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "SvelteKit",
   description:
-    "Create a production-ready Svelte 5 and SvelteKit 2 Feature-Sliced Design project with native generators and file-based routes.",
+    "Create a Svelte 5 and SvelteKit 2 Feature-Sliced Design project with native generators and file-based routes.",
   alternates: { canonical: "/docs/frameworks/sveltekit" },
 };
 

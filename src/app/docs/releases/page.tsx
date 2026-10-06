@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CLI_RELEASES, LEGACY_NPM_VERSIONS } from "@/lib/releases";
+import {
+  CLI_RELEASES,
+  LEGACY_NPM_VERSIONS,
+  SKILL_RELEASES,
+} from "@/lib/releases";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Releases",
   description:
-    "FSD CLI release history, features, fixes, and compatibility notes.",
+    "FSD CLI npm releases and independent Agent Skill tagged release history.",
   alternates: { canonical: "/docs/releases" },
 };
 
@@ -20,8 +25,46 @@ export default function ReleasesPage() {
         Explore changes to the CLI. Dates below are npm publication dates;
         release notes describe the behavior at that version.
       </p>
+      <section className="mt-10" aria-labelledby="skill-releases">
+        <h2 id="skill-releases" className="text-2xl font-semibold text-ink">
+          Agent Skill releases
+        </h2>
+        <p className="mt-3 text-body">
+          Skill versions are Git tags in the Agent Skill repository, separate
+          from CLI npm versions. v2.0.0 and v2.0.0-beta.1 were released on
+          October 6, 2026. Use the pinned install command in the{" "}
+          <Link
+            href="/docs/ai-agent-skill#install"
+            className="text-brand-coral underline"
+          >
+            Skill guide
+          </Link>
+          .
+        </p>
+        <div className="mt-5 space-y-4">
+          {SKILL_RELEASES.map((release) => (
+            <section
+              key={release.version}
+              className="rounded-2xl border border-hairline p-6"
+            >
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={`${siteConfig.repositories.skill}/tree/v${release.version}`}
+                  className="text-xl font-semibold text-ink underline"
+                >
+                  Skill v{release.version}
+                </a>
+                <span className="rounded-full bg-surface-soft px-3 py-1 text-xs">
+                  {release.status}
+                </span>
+              </div>
+              <p className="mt-3 leading-7">{release.summary}</p>
+            </section>
+          ))}
+        </div>
+      </section>
       <h2 id="version-2" className="mt-10 text-2xl font-semibold text-ink">
-        Version 2
+        CLI version 2
       </h2>
       <div className="mt-5 space-y-4">
         {CLI_RELEASES.filter((release) => release.version.startsWith("2.")).map(
@@ -56,7 +99,7 @@ export default function ReleasesPage() {
         )}
       </div>
       <h2 id="version-1" className="mt-10 text-2xl font-semibold text-ink">
-        Version 1 archive
+        CLI version 1 archive
       </h2>
       <p className="mt-3">
         These published versions predate the maintained changelog. Package

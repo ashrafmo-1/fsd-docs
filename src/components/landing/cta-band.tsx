@@ -14,9 +14,8 @@ export function CtaBand() {
             scalable architecture today
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-white/70">
-            One command. Production-ready FSD structure. All the tooling
-            configured. Stop debating folder structures and start shipping
-            features.
+            One command. A complete FSD structure. All the tooling configured.
+            Stop debating folder structures and start shipping features.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link

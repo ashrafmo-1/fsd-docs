@@ -15,12 +15,37 @@ export type CliRelease = {
 
 export const CLI_RELEASES: CliRelease[] = [
   {
+    version: "2.6.1",
+    date: "2026-09-27",
+    dateLabel: "September 27, 2026",
+    status: "latest",
+    summary:
+      "Update the official documentation domain to fsdcli.me while retaining the 2.6 managed-upgrade and five-framework contracts.",
+    frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
+    sections: [
+      {
+        title: "Changed",
+        items: [
+          "Package homepage, README documentation link and generated project documentation URLs use fsdcli.me.",
+        ],
+      },
+      {
+        title: "Compatibility",
+        items: [
+          "The npm artifact was published from 4c83d0a75ec20117edc8880aba065bdb21edfa6d on September 27, 2026.",
+          "Windows command-runner fixes merged later in CLI PR #4 and are not part of this published artifact.",
+          "Consult the current release status for source CI evidence and untested artifact/runtime combinations.",
+        ],
+      },
+    ],
+  },
+  {
     version: "2.6.0",
     date: "2026-09-26",
     dateLabel: "September 26, 2026",
     summary:
       "Safe, manifest-backed upgrades for existing FSD CLI projects with conflict detection, transactional rollback, and CI status checks.",
-    status: "latest",
+    status: "stable",
     frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
     sections: [
       {
@@ -434,3 +459,25 @@ export function getReleaseNavigation(version: string) {
         : undefined,
   };
 }
+
+// Skill tags are distributed independently from CLI npm versions.
+export const SKILL_RELEASES = [
+  {
+    version: "2.0.0",
+    status: "stable",
+    summary:
+      "Stable release of the documented v2 workflows and read-only helpers. Preserves explicit limits for live Supabase and broader provider/framework migration coverage; CLI npm baseline remains 2.6.1.",
+  },
+  {
+    version: "2.0.0-beta.1",
+    status: "beta archive",
+    summary:
+      "Introduced discovery, domain decisions, implementation, architecture review, auth, incremental migration/rollback, five framework guides, and three evidence helpers.",
+  },
+  {
+    version: "1.0.0-beta.1",
+    status: "beta archive",
+    summary:
+      "Initial portable scaffolding and generation skill with project inspection and existing-code protection.",
+  },
+] as const;
