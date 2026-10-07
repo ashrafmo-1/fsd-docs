@@ -1,10 +1,10 @@
 "use server";
 
-import { revalidatePath, revalidateTag } from "next/cache";
-import { videoRecord, videoWriteMessage } from "@/lib/dashboard-videos";
+import { revalidatePath, updateTag } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { requireDashboardAdmin } from "@/lib/supabase/session";
-import { parseVideoDraft } from "@/lib/video-draft";
+import { DOCUMENTATION_PAGES, parseVideoDraft } from "@/lib/video-draft";
+import { writeVideo } from "@/lib/video-store";
 
 export type VideoActionResult = { ok: true } | { ok: false; error: string };
 
@@ -18,11 +18,11 @@ export type SaveVideoInput = {
   displayOrder: number;
 };
 
-function refreshVideoPages(pageKey: string) {
+function refreshVideoPages() {
   revalidatePath("/dashboard");
   revalidatePath("/dashboard/videos");
-  revalidatePath(pageKey);
-  revalidateTag("documentation-videos", "max");
+  for (const page of DOCUMENTATION_PAGES) revalidatePath(page.pageKey);
+  updateTag("documentation-videos");
 }
 
 export async function saveVideo(
@@ -42,16 +42,13 @@ export async function saveVideo(
 
   try {
     const supabase = await createClient();
-    const record = videoRecord(parsed.draft);
-    const { error } = parsed.draft.id
-      ? await supabase.from("videos").update(record).eq("id", parsed.draft.id)
-      : await supabase.from("videos").insert(record);
-    if (error) return { ok: false, error: videoWriteMessage(error) };
+    const result = await writeVideo(supabase, { draft: parsed.draft });
+    if (!result.ok) return result;
   } catch {
     return { ok: false, error: "The video could not be saved." };
   }
 
-  refreshVideoPages(parsed.draft.pageKey);
+  refreshVideoPages();
   return { ok: true };
 }
 
@@ -61,21 +58,27 @@ export async function setVideoPublished(input: {
   published: boolean;
 }): Promise<VideoActionResult> {
   await requireDashboardAdmin();
+  if (
+    typeof input.id !== "string" ||
+    !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+      input.id,
+    ) ||
+    typeof input.published !== "boolean"
+  ) {
+    return { ok: false, error: "This video was not found." };
+  }
 
   try {
     const supabase = await createClient();
-    const { error } = await supabase
-      .from("videos")
-      .update({
-        is_published: input.published,
-        updated_at: new Date().toISOString(),
-      })
-      .eq("id", input.id);
-    if (error) return { ok: false, error: videoWriteMessage(error) };
+    const result = await writeVideo(supabase, {
+      id: input.id,
+      published: input.published,
+    });
+    if (!result.ok) return result;
   } catch {
     return { ok: false, error: "The video could not be saved." };
   }
 
-  refreshVideoPages(input.pageKey);
+  refreshVideoPages();
   return { ok: true };
 }

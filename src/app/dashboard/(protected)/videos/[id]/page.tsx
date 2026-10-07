@@ -17,7 +17,17 @@ export default async function EditVideoPage({
 }) {
   await requireDashboardAdmin();
   const { id } = await params;
-  const video = await getDashboardVideo(id);
-  if (!video) notFound();
-  return <VideoForm video={video} />;
+  const result = await getDashboardVideo(id);
+  if ("error" in result) {
+    return (
+      <p
+        role="alert"
+        className="rounded-sm border border-hairline bg-surface-soft p-5 text-base text-body"
+      >
+        {result.error}
+      </p>
+    );
+  }
+  if (!result.video) notFound();
+  return <VideoForm video={result.video} />;
 }

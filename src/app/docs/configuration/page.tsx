@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "Project Configuration",
@@ -52,6 +53,8 @@ export default function ConfigurationPage() {
         <code>fsd.config.json</code> file. Generators read it automatically, so
         developers do not repeat the same stack decisions for every feature.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/configuration" />
 
       <section className="mt-10 space-y-4">
         <h2

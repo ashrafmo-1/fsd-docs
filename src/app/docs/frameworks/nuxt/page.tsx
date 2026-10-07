@@ -1,6 +1,7 @@
 import { ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -34,6 +35,8 @@ export default function NuxtFrameworkPage() {
         runtime configuration, modules, and server-state hydration use Nuxt
         conventions instead of copying the Vue + Vite setup.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/frameworks/nuxt" />
 
       <section className="mt-10 space-y-4">
         <h2

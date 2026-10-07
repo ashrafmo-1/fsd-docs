@@ -10,10 +10,11 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "test": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test src/lib/docs-video-and-dashboard.test.ts",
+    "test": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test src/lib/*.test.ts",
     "check:static": "node scripts/check-static-output.mjs",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build && npm run check:static",
-    "test:docs": "node scripts/check-docs.mjs"
+    "test:docs": "node scripts/check-docs.mjs",
+    "test:videos": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-published-videos.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.13",
+    "@electric-sql/pglite": "^0.5.8",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^22",
     "@types/react": "^19",

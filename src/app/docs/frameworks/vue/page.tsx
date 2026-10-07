@@ -1,6 +1,7 @@
 import { ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -34,6 +35,8 @@ export default function VueFrameworkPage() {
         state, forms, and generators while keeping the same complete FSD layer
         contract as the other editions.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/frameworks/vue" />
 
       <section className="mt-10 space-y-4">
         <h2

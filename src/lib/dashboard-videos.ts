@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
-import { documentationPageLabel, type VideoDraft } from "@/lib/video-draft";
+import { documentationPageLabel } from "@/lib/video-draft";
+import { readVideo, VIDEO_COLUMNS } from "@/lib/video-store";
 
 export type DashboardVideo = {
   id: string;
@@ -11,23 +12,6 @@ export type DashboardVideo = {
   isPublished: boolean;
   displayOrder: number;
 };
-
-const COLUMNS =
-  "id, page_key, title, youtube_url, description, is_published, display_order";
-
-export function videoWriteMessage(error: { message?: string; code?: string }) {
-  const message = error.message?.toLowerCase() ?? "";
-  if (message.includes("row-level security") || error.code === "42501") {
-    return "This account cannot manage videos.";
-  }
-  if (
-    message.includes("youtube_video_id") ||
-    message.includes("check constraint")
-  ) {
-    return "Enter a valid YouTube URL or video ID.";
-  }
-  return "The video could not be saved.";
-}
 
 function fromRow(row: Record<string, unknown>): DashboardVideo | null {
   if (typeof row.id !== "string" || typeof row.page_key !== "string")
@@ -54,7 +38,7 @@ export async function listDashboardVideos(): Promise<
     const supabase = await createClient();
     const { data, error } = await supabase
       .from("videos")
-      .select(COLUMNS)
+      .select(VIDEO_COLUMNS)
       .order("display_order", { ascending: true })
       .order("title", { ascending: true });
     if (error) return { error: "Videos could not be loaded." };
@@ -69,21 +53,12 @@ export async function listDashboardVideos(): Promise<
 
 export async function getDashboardVideo(
   id: string,
-): Promise<DashboardVideo | null> {
-  const result = await listDashboardVideos();
-  if ("error" in result) return null;
-  return result.videos.find((video) => video.id === id) ?? null;
-}
-
-export function videoRecord(draft: VideoDraft) {
-  return {
-    page_key: draft.pageKey,
-    title: draft.title,
-    youtube_url: draft.youtubeUrl,
-    youtube_video_id: draft.youtubeVideoId,
-    description: draft.description,
-    is_published: draft.isPublished,
-    display_order: draft.displayOrder,
-    updated_at: new Date().toISOString(),
-  };
+): Promise<{ video: DashboardVideo | null } | { error: string }> {
+  try {
+    const result = await readVideo(await createClient(), id);
+    if ("error" in result) return result;
+    return { video: result.row ? fromRow(result.row) : null };
+  } catch {
+    return { error: "Videos could not be loaded." };
+  }
 }

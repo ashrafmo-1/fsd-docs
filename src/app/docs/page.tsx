@@ -11,6 +11,7 @@ import {
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { CLI_RELEASES } from "@/lib/releases";
 
 export const metadata: Metadata = {
@@ -166,6 +167,8 @@ export default function DocsPage() {
           );
         })}
       </div>
+
+      <PublishedDocumentationVideo pageKey="/docs" />
 
       <section className="mb-12">
         <h2
