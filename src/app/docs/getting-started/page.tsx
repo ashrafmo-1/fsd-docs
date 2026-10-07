@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { DocumentationVideo } from "@/components/docs/documentation-video";
-import {
-  GETTING_STARTED_VIDEO_PAGE_KEY,
-  getDocumentationVideo,
-} from "@/lib/documentation-videos";
+import { GETTING_STARTED_VIDEO_PAGE_KEY } from "@/lib/documentation-videos";
+import { getPublishedDocumentationVideo } from "@/lib/published-videos";
 
 export const metadata: Metadata = {
   title: "Getting Started",
@@ -22,8 +20,10 @@ const WIZARD_STEPS = [
   "Optionally install dependencies, verify Commitlint, and start the development server.",
 ];
 
-export default function GettingStartedPage() {
-  const video = getDocumentationVideo(GETTING_STARTED_VIDEO_PAGE_KEY);
+export default async function GettingStartedPage() {
+  const video = await getPublishedDocumentationVideo(
+    GETTING_STARTED_VIDEO_PAGE_KEY,
+  );
 
   return (
     <article className="max-w-4xl">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -33,6 +34,8 @@ export default function SvelteKitFrameworkPage() {
         <code>.svelte</code> components and keep route files as thin wrappers
         around FSD page slices.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/frameworks/sveltekit" />
 
       <section className="mt-10 space-y-4">
         <h2

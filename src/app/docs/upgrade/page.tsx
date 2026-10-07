@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "Safe project upgrades",
@@ -44,6 +45,8 @@ export default function UpgradePage() {
         styles, routes, environment files, secrets, custom scripts, or Git
         history.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/upgrade" />
 
       <section className="mt-10 space-y-4">
         <h2

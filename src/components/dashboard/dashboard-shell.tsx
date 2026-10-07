@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { signOut } from "@/app/dashboard/actions";
+import type { ReactNode } from "react";
+import { DashboardNav } from "@/components/dashboard/dashboard-nav";
 import { LogoutButton } from "@/components/dashboard/logout-button";
 
 export function DashboardShell({
@@ -8,50 +9,43 @@ export function DashboardShell({
   children,
 }: {
   email: string | null;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
-    <div className="min-h-screen text-body">
-      <header className="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur-md">
-        <div className="mx-auto flex min-h-16 w-full max-w-[1280px] flex-col justify-center gap-3 px-6 py-3 sm:flex-row sm:items-center sm:justify-between">
-          <Link
-            href="/"
-            className="flex items-center gap-2.5"
-            aria-label="FSD CLI home"
-          >
-            <Image src="/fsd-logo.png" alt="" width={40} height={40} />
-            <span className="flex flex-col leading-none">
-              <span className="text-base font-semibold tracking-tight text-ink">
-                FSD CLI
-              </span>
-              <span className="mt-1 text-[10px] font-medium text-body-muted">
-                Admin
-              </span>
-            </span>
-          </Link>
+    <div className="flex min-h-screen bg-canvas text-body">
+      <aside className="hidden w-60 shrink-0 flex-col border-r border-hairline bg-canvas md:flex">
+        <div className="h-1 bg-gradient-to-r from-brand-mint via-brand-coral to-brand-lavender" />
+        <Link
+          href="/"
+          className="flex h-16 items-center gap-2.5 px-5"
+          aria-label="FSD CLI home"
+        >
+          <Image src="/fsd-logo.png" alt="" width={36} height={36} />
+          <span className="text-sm font-semibold tracking-tight text-ink">
+            FSD CLI
+          </span>
+        </Link>
+        <DashboardNav className="px-3" />
+      </aside>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="flex h-16 items-center justify-between border-b border-hairline bg-canvas px-5">
+          <p className="text-sm font-semibold text-ink md:hidden">FSD CLI</p>
+          <div className="ml-auto flex items-center gap-3">
             {email ? (
-              <p className="text-sm text-body-muted">
+              <p className="hidden text-sm text-body-muted sm:block">
                 <span className="sr-only">Signed in as </span>
                 {email}
               </p>
             ) : null}
-            <Link
-              href="/docs"
-              className="text-sm font-medium text-body-muted hover:text-ink"
-            >
-              Documentation
-            </Link>
-            <form action={signOut}>
-              <LogoutButton />
-            </form>
+            <LogoutButton />
           </div>
+        </header>
+        <DashboardNav className="border-b border-hairline bg-canvas px-4 py-3 md:hidden" />
+        <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+          {children}
         </div>
-      </header>
-      <main className="mx-auto w-full max-w-[1280px] px-6 py-16 sm:py-24">
-        {children}
-      </main>
+      </div>
     </div>
   );
 }

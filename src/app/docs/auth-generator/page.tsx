@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "Auth Generator",
@@ -43,6 +44,8 @@ export default function AuthGeneratorPage() {
         </a>
         .
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/auth-generator" />
 
       <section className="mt-10 space-y-4">
         <h2

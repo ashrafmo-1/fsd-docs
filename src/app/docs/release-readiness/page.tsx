@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "Upcoming changes and release readiness",
@@ -30,6 +31,8 @@ export default function ReleaseReadinessPage() {
           No newer npm version or release date is announced here.
         </p>
       </header>
+
+      <PublishedDocumentationVideo pageKey="/docs/release-readiness" />
 
       <section className="space-y-4">
         <h2

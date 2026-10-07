@@ -1,17 +1,18 @@
 "use client";
 
-import { useFormStatus } from "react-dom";
+import { useSignOut } from "@/components/dashboard/use-dashboard-actions";
 
 export function LogoutButton() {
-  const { pending } = useFormStatus();
+  const signOut = useSignOut();
 
   return (
     <button
-      type="submit"
-      disabled={pending}
-      className="button-secondary disabled:cursor-not-allowed disabled:opacity-60"
+      type="button"
+      disabled={signOut.isPending}
+      onClick={() => signOut.mutate()}
+      className="button-secondary rounded-sm disabled:cursor-not-allowed disabled:opacity-60"
     >
-      {pending ? "Signing out..." : "Log out"}
+      {signOut.isPending ? "Signing out..." : "Log out"}
     </button>
   );
 }

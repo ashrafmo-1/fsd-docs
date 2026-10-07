@@ -47,10 +47,9 @@ variable with `NEXT_PUBLIC_` and do not commit a real UUID. Do not add the
 service-role key. Public documentation still builds when those variables are
 empty. Turning off public sign-ups is not the authorization check.
 
-The Getting Started video is configured in `src/lib/documentation-videos.ts`
-for `/docs/getting-started`. Leave it unset until the real URL, title, and
-description exist. Documentation and the dashboard stay on the light theme;
-the site does not apply a dark theme.
+Each assignable documentation page reads one published row from the Supabase
+`videos` table matching its pathname. An empty table leaves the page unchanged. Documentation and the dashboard stay on the light theme; the site
+does not apply a dark theme.
 
 ## Quality checks
 
@@ -66,6 +65,10 @@ Run the complete verification pipeline with:
 ```bash
 npm run check
 ```
+
+Run `npm run test:videos` to build against an isolated Supabase REST fixture and
+verify published videos in the generated HTML for all 14 assignable pages. It
+restores the previous build afterward; run it with no concurrent build or server.
 
 For HTTP smoke checks, run `npm run start -- --port 3105` after building, then
 `npm run test:docs` in another terminal. Set `DOCS_TEST_ORIGIN` to test a different
@@ -141,3 +144,10 @@ If this project helps you, you can optionally support its development:
 
 For InstaPay, use the username exactly as shown and verify the recipient details
 in the app before confirming a transfer. Donations are optional.
+
+## Videos database setup
+
+Apply the migration and provision the administrator allowlist as described in
+[supabase/README.md](supabase/README.md) before using video management.
+The application allowlist and database allowlist must contain the same admin UIDs.
+The SQL migration and permission tests are tracked; no service-role key is needed.

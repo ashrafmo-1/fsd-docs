@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -51,6 +52,8 @@ export default function AiAgentSkillPage() {
           certification remain outside the verified scope.
         </p>
       </div>
+
+      <PublishedDocumentationVideo pageKey="/docs/ai-agent-skill" />
 
       <section className="mt-10 space-y-4">
         <h2

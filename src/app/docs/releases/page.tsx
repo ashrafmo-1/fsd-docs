@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { ReleaseTabs } from "@/components/docs/release-tabs";
 import {
   CLI_RELEASES,
@@ -26,6 +27,8 @@ export default function ReleasesPage() {
         Explore CLI npm versions and Agent Skill releases. Choose a tab to view
         its release history and compatibility notes.
       </p>
+      <PublishedDocumentationVideo pageKey="/docs/releases" />
+
       <ReleaseTabs
         cli={
           <>

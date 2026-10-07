@@ -7,7 +7,7 @@ import type { SignInState } from "@/app/dashboard/sign-in-state";
 const initialState: SignInState = { error: null, invalidFields: false };
 
 const fieldClassName =
-  "mt-2 w-full min-h-11 rounded-xl border border-hairline bg-surface-soft px-4 text-base text-ink outline-none disabled:cursor-not-allowed disabled:opacity-60";
+  "mt-2 w-full min-h-11 rounded-sm border border-hairline bg-surface-soft px-4 text-base text-ink outline-none disabled:cursor-not-allowed disabled:opacity-60";
 
 export function LoginForm({
   configured,
@@ -27,7 +27,7 @@ export function LoginForm({
         <p
           id="dashboard-sign-in-message"
           role="alert"
-          className="rounded-xl border border-hairline bg-surface-soft px-4 py-3 text-sm leading-relaxed text-body-strong"
+          className="rounded-sm border border-hairline bg-surface-soft px-4 py-3 text-sm leading-relaxed text-body-strong"
         >
           {message}
         </p>

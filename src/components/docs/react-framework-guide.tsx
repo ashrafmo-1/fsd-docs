@@ -1,4 +1,5 @@
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { siteConfig } from "@/lib/site";
 
 export function ReactFrameworkGuide({ next = false }: { next?: boolean }) {
@@ -33,6 +34,10 @@ export function ReactFrameworkGuide({ next = false }: { next?: boolean }) {
         The CLI downloads a dedicated template repository and saves your choices
         in <code>fsd.config.json</code> for subsequent generation.
       </p>
+
+      <PublishedDocumentationVideo
+        pageKey={next ? "/docs/frameworks/nextjs" : "/docs/frameworks/react"}
+      />
 
       <section className="mt-10 space-y-4">
         <h2 id="create-a-project" className="text-2xl font-semibold text-ink">
