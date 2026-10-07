@@ -10,6 +10,13 @@ The site explains both CLI workflows:
 - generating features, entities, widgets, pages, and a complete auth flow
   inside an existing project.
 
+## Release verification
+
+The [current release status](https://github.com/FSD-CLI/cli/blob/main/docs/RELEASE-STATUS.md)
+is the canonical dated entry point for package/source SHAs, evidence, historical
+QA reports and open gaps. The product release archive describes published
+features; it does not certify every application or platform combination.
+
 ## Tech stack
 
 - Next.js 16 App Router
@@ -114,7 +121,7 @@ and h3 headings and highlights the current section while scrolling.
 
 ## Deployment
 
-The production URL is [fsd-docs.vercel.app](https://fsd-docs.vercel.app).
+The production URL is [fsdcli.me](https://fsdcli.me).
 Metadata, canonical URLs, sitemap, robots, and the web manifest use this URL.
 The robots policy explicitly permits GPTBot, ClaudeBot, PerplexityBot, and
 Google-Extended. The two LLM text routes are generated from the same navigation,
@@ -128,6 +135,7 @@ MIT
 
 If this project helps you, you can optionally support its development:
 
+- [GitHub Sponsors](https://github.com/sponsors/ashrafmo-1?frequency=one-time&sponsor=ashrafmo-1)
 - [Buy Me a Coffee](https://buymeacoffee.com/ashrafqopiah)
 - **InstaPay (Egypt):** `ashrafmo-1`
 

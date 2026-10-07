@@ -26,7 +26,7 @@ for (const bot of ["GPTBot", "ClaudeBot", "PerplexityBot", "Google-Extended"]) {
   );
 }
 assert(
-  robots.includes("Sitemap: https://fsd-docs.vercel.app/sitemap.xml"),
+  robots.includes("Sitemap: https://fsdcli.me/sitemap.xml"),
   "robots.txt: production sitemap",
 );
 
@@ -53,6 +53,12 @@ for (const [path, html] of pages) {
   assert(
     html.includes('href="https://buymeacoffee.com/ashrafqopiah"'),
     `${path}: donation link`,
+  );
+  assert(
+    html.includes(
+      'href="https://github.com/sponsors/ashrafmo-1?frequency=one-time&amp;sponsor=ashrafmo-1"',
+    ),
+    `${path}: GitHub Sponsors link`,
   );
   assert(html.includes("ashrafmo-1"), `${path}: InstaPay username`);
   for (const match of html.matchAll(/href="(\/[^"?#]*)"/g)) {
@@ -81,14 +87,14 @@ for (const framework of ["react", "nextjs", "vue", "nuxt", "sveltekit"]) {
   }
 }
 assert(releases.length > 0, "release archive must not be empty");
-assert(releases.includes("/docs/releases/2.6.0"), "2.6.0 release in sitemap");
+assert(releases.includes("/docs/releases/2.6.1"), "2.6.1 release in sitemap");
 assert(
-  /Version\s*(?:<!--.*?-->\s*)*2\.6\.0/.test(pages.get("/docs")),
+  /Version\s*(?:<!--.*?-->\s*)*2\.6\.1/.test(pages.get("/docs")),
   "documentation introduction shows the current release",
 );
 for (const path of ["/", "/docs/releases"]) {
   assert(
-    pages.get(path).includes('href="/docs/releases/2.6.0"'),
+    pages.get(path).includes('href="/docs/releases/2.6.1"'),
     `${path}: current release link`,
   );
 }

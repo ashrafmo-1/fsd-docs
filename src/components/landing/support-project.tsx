@@ -3,6 +3,7 @@
 import { Coffee, Copy, Heart } from "lucide-react";
 import { useState } from "react";
 import { siteConfig } from "@/lib/site";
+import { GitHubIcon } from "./github-icon";
 
 export function SupportProject({ compact = false }: { compact?: boolean }) {
   const [message, setMessage] = useState("");
@@ -41,9 +42,18 @@ export function SupportProject({ compact = false }: { compact?: boolean }) {
       </p>
       <div
         className={
-          compact ? "mt-6 grid gap-4" : "mt-6 grid gap-4 sm:grid-cols-2"
+          compact ? "mt-6 grid gap-4" : "mt-6 grid gap-4 sm:grid-cols-3"
         }
       >
+        <a
+          href={siteConfig.support.githubSponsors}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 rounded-xl border border-hairline p-5 text-sm font-semibold text-ink transition-colors hover:bg-surface-soft focus-visible:outline-2 focus-visible:outline-offset-4"
+        >
+          <GitHubIcon className="h-5 w-5 shrink-0" />
+          GitHub Sponsors <span className="sr-only">(opens in a new tab)</span>
+        </a>
         <a
           href={siteConfig.support.buyMeACoffee}
           target="_blank"

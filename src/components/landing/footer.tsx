@@ -25,6 +25,10 @@ const FOOTER_LINKS = {
   Community: [
     { label: "Support FSD CLI", href: "/#support" },
     {
+      label: "GitHub Sponsors",
+      href: siteConfig.support.githubSponsors,
+    },
+    {
       label: "CLI issues",
       href: `${siteConfig.repositories.cli}/issues`,
     },

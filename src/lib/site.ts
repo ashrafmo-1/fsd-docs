@@ -1,13 +1,15 @@
 export const siteConfig = {
   name: "FSD CLI",
   packageName: "create-fsd-architecture",
-  url: "https://fsd-docs.vercel.app",
+  url: "https://fsdcli.me",
   description:
     "Scaffold React, Next.js, Vue, Nuxt, and SvelteKit projects with a complete Feature-Sliced Design architecture, then generate framework-native slices as the product grows.",
   github: "https://github.com/FSD-CLI/cli",
   githubOrg: "https://github.com/FSD-CLI",
   npm: "https://www.npmjs.com/package/create-fsd-architecture",
   support: {
+    githubSponsors:
+      "https://github.com/sponsors/ashrafmo-1?frequency=one-time&sponsor=ashrafmo-1",
     buyMeACoffee: "https://buymeacoffee.com/ashrafqopiah",
     instapayUsername: "ashrafmo-1",
   },
