@@ -60,7 +60,7 @@ export default async function LoginPage({
 
   return (
     <main className="grid min-h-screen place-items-center px-6 py-16">
-      <div className="w-full max-w-md rounded-2xl border border-hairline bg-canvas p-6 sm:p-8">
+      <div className="w-full max-w-md rounded-sm border border-hairline bg-canvas p-6 sm:p-8">
         <p className="text-xs font-semibold uppercase tracking-[1.5px] text-brand-coral">
           Admin
         </p>

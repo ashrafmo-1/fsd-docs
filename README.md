@@ -40,10 +40,10 @@ variable with `NEXT_PUBLIC_` and do not commit a real UUID. Do not add the
 service-role key. Public documentation still builds when those variables are
 empty. Turning off public sign-ups is not the authorization check.
 
-The Getting Started video is configured in `src/lib/documentation-videos.ts`
-for `/docs/getting-started`. Leave it unset until the real URL, title, and
-description exist. Documentation and the dashboard stay on the light theme;
-the site does not apply a dark theme.
+Getting Started reads one published row from the Supabase `videos` table
+where `page_key` is `/docs/getting-started`. An empty table leaves that page
+unchanged. Documentation and the dashboard stay on the light theme; the site
+does not apply a dark theme.
 
 ## Quality checks
 

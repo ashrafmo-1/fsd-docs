@@ -7,6 +7,7 @@ import {
   GETTING_STARTED_VIDEO_PAGE_KEY,
   getDocumentationVideo,
 } from "./documentation-videos.ts";
+import { publishedVideoFromRow } from "./published-videos.ts";
 import {
   claimsUserId,
   type DashboardDecision,
@@ -14,6 +15,7 @@ import {
   getDashboardAdminUserIds,
   isDashboardAdmin,
 } from "./supabase/admin.ts";
+import { parseVideoDraft } from "./video-draft.ts";
 import { parseYouTubeVideoId, youtubeEmbedUrl } from "./youtube.ts";
 
 const ADMIN = "11111111-1111-4111-8111-111111111111";
@@ -175,6 +177,80 @@ describe("optional documentation video", () => {
         youtubeVideoId: "nope",
       }),
       undefined,
+    );
+    assert.deepEqual(
+      publishedVideoFromRow({
+        id: "video-1",
+        page_key: GETTING_STARTED_VIDEO_PAGE_KEY,
+        title: "Install",
+        youtube_url: `https://youtu.be/${VIDEO_ID}`,
+        youtube_video_id: VIDEO_ID,
+        description: "Walkthrough",
+        is_published: true,
+        display_order: 0,
+        created_at: "2026-09-27T00:00:00.000Z",
+        updated_at: "2026-09-27T00:00:00.000Z",
+      }),
+      {
+        title: "Install",
+        youtubeUrl: VIDEO_ID,
+        description: "Walkthrough",
+      },
+    );
+    assert.equal(
+      publishedVideoFromRow({
+        ...{
+          page_key: GETTING_STARTED_VIDEO_PAGE_KEY,
+          title: "Install",
+          youtube_url: `https://youtu.be/${VIDEO_ID}`,
+          youtube_video_id: VIDEO_ID,
+        },
+        is_published: false,
+      }),
+      undefined,
+    );
+  });
+});
+
+describe("dashboard video form", () => {
+  test("accepts a documentation page and a real YouTube URL", () => {
+    const parsed = parseVideoDraft({
+      pageKey: "/docs/getting-started",
+      title: "Install the CLI",
+      youtubeUrl: `https://youtu.be/${VIDEO_ID}`,
+      description: "Walkthrough",
+      isPublished: "true",
+      displayOrder: "1",
+    });
+    assert.equal(parsed.ok, true);
+    if (!parsed.ok) return;
+    assert.equal(parsed.draft.youtubeVideoId, VIDEO_ID);
+    assert.equal(parsed.draft.isPublished, true);
+    assert.equal(parsed.draft.pageKey, "/docs/getting-started");
+  });
+
+  test("rejects an unknown page and a bad YouTube value", () => {
+    assert.equal(
+      parseVideoDraft({
+        pageKey: "/admin",
+        title: "Install",
+        youtubeUrl: `https://youtu.be/${VIDEO_ID}`,
+        description: "",
+        isPublished: null,
+        displayOrder: "0",
+      }).ok,
+      false,
+    );
+    assert.equal(
+      parseVideoDraft({
+        pageKey: "/docs/getting-started",
+        title: "Install",
+        youtubeUrl: "https://vimeo.com/1",
+        description: "",
+        isPublished: null,
+        displayOrder: "0",
+      }).ok,
+      false,
     );
   });
 });

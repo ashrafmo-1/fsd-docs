@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "sonner/dist/styles.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -102,15 +103,23 @@
     outline: 3px solid rgb(37 99 235 / 55%);
     outline-offset: 3px;
   }
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+  button:disabled,
+  [role="button"][aria-disabled="true"] {
+    cursor: not-allowed;
+  }
 }
 
 @layer components {
   .button-primary {
-    @apply inline-flex min-h-11 items-center justify-center rounded-xl bg-ink px-6 text-sm font-semibold text-on-primary transition-colors hover:bg-ink/90;
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl bg-ink px-6 text-sm font-semibold text-on-primary transition-colors hover:bg-ink/90;
   }
 
   .button-secondary {
-    @apply inline-flex min-h-11 items-center justify-center rounded-xl border border-hairline bg-canvas px-6 text-sm font-semibold text-ink transition-colors hover:bg-surface-soft;
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center rounded-xl border border-hairline bg-canvas px-6 text-sm font-semibold text-ink transition-colors hover:bg-surface-soft;
   }
 }
 
