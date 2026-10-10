@@ -75,7 +75,7 @@ export default function AiAgentSkillPage() {
           instructions are portable; agent-specific UI metadata is kept
           separate. The pinned installer requires Node.js 22.20.0 or newer; the
           read-only helpers require Node.js 20 or newer. This tag is installable
-          while the companion branch awaits merge into main.
+          and the companion branch is merged into main at <code>b825360</code>.
         </p>
       </section>
 

@@ -19,7 +19,7 @@ export default function ReleaseReadinessPage() {
     <article className="max-w-4xl space-y-10">
       <header>
         <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-brand-coral">
-          Verified source snapshot · October 6, 2026
+          Verified source snapshot · October 11, 2026
         </p>
         <h1 className="text-4xl font-semibold tracking-[-1.5px] text-ink md:text-5xl">
           Upcoming changes and release readiness
@@ -41,6 +41,18 @@ export default function ReleaseReadinessPage() {
         >
           Published and candidate source
         </h2>
+        <p>
+          The consolidated QA report merged in CLI PR12 at <code>39c1443</code>.
+          Its recorded source baseline is <code>fcde52a</code>; historical
+          results are not reruns against newer main commits. See the{" "}
+          <a
+            href="https://github.com/FSD-CLI/cli/blob/main/docs/RELEASE-STATUS.md"
+            className="text-brand-coral underline"
+          >
+            current release and QA status
+          </a>{" "}
+          for source identities, published package evidence, and remaining gaps.
+        </p>
         <p>
           CLI PR6 merged into main at <code>060bc5d</code>; its 30 checks
           passed. That source includes post-2.6.1 work and is not a new
@@ -240,9 +252,10 @@ HUSKY=0 git commit -m "docs: update guide"`}
         <p>
           This is one synthetic React pilot, not certification of arbitrary
           production apps or other frameworks. Skill v2.0.0 is tagged and
-          installable, with 15 tests passing in all nine OS/Node CI jobs;
-          companion branch merge into main remains pending. No arbitrary-app CLI
-          migrate command is shipped. See the{" "}
+          installable, with 15 tests passing in all nine OS/Node CI jobs; the
+          Skill branch merged into main at <code>b825360</code>, with all nine
+          OS/Node jobs passing again on that merge. No arbitrary-app CLI migrate
+          command is shipped. See the{" "}
           <a href={SKILL_SOURCE} className="text-brand-coral underline">
             tagged Skill and migration fixture
           </a>
