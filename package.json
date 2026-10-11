@@ -41,7 +41,7 @@
     "@biomejs/biome": "2.5.15",
     "@electric-sql/pglite": "^0.5.8",
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/node": "^26",
+    "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
