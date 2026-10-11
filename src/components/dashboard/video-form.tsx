@@ -205,7 +205,9 @@ export function VideoForm({ video }: { video?: DashboardVideo | null }) {
                         ref={field.ref}
                         onBlur={field.onBlur}
                         value={field.value}
-                        onChange={(event) => field.onChange(event.target.value)}
+                        onChange={(event) =>
+                          field.onChange(Number(event.target.value))
+                        }
                       />
                     </FormControl>
                     <FormMessage />

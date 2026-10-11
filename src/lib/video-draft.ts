@@ -27,7 +27,7 @@ export const videoFormSchema = z.object({
     ),
   description: z.string().max(500, "The description is too long."),
   displayOrder: z.coerce
-    .number()
+    .number<number>()
     .int()
     .min(0, "Enter a display order from 0 to 1000.")
     .max(1000, "Enter a display order from 0 to 1000."),
