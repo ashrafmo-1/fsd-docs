@@ -94,7 +94,7 @@ for (const version of ["2.6.3", "2.6.2", "2.6.1"]) {
   );
 }
 assert(
-  /Version\s*(?:<!--.*?-->\s*)*2\.6\.3/.test(pages.get("/docs")),
+  /Version(?:\s|<!-- -->)*2\.6\.3/.test(pages.get("/docs")),
   "documentation introduction shows the current release",
 );
 for (const path of ["/", "/docs/releases"]) {

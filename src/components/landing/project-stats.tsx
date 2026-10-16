@@ -22,19 +22,23 @@ const formatDate = (date: string) =>
 
 function AnimatedCount({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
+  const hasAnimated = useRef(false);
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
-    let started = false;
+    if (hasAnimated.current) {
+      element.textContent = numberFormat.format(value);
+      return;
+    }
     const finish = () => {
       cancelAnimationFrame(frame);
       element.textContent = numberFormat.format(value);
     };
     const play = () => {
-      if (started) return;
-      started = true;
+      if (hasAnimated.current) return;
+      hasAnimated.current = true;
       if (media.matches) {
         finish();
         return;
@@ -62,7 +66,7 @@ function AnimatedCount({ value }: { value: number }) {
     observer.observe(element);
     const onMotionChange = () => {
       if (media.matches) {
-        started = true;
+        hasAnimated.current = true;
         finish();
       }
     };

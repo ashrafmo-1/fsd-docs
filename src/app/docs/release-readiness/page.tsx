@@ -123,7 +123,8 @@ node /path/to/cli/bin/index.mjs check --architecture`}
           operations in all five supported frameworks. It writes inside the auth
           slice and does not install an SDK, provision a project, or edit env
           files. Run these commands from the candidate CLI checkout inside a
-          compatible project; npm 2.6.1 does not support the new flag.
+          compatible project; the current published npm 2.6.3 package does not
+          support the new flag.
         </p>
         <CodeBlock
           code={`# Replace /path/to/cli with the reviewed candidate checkout
@@ -223,7 +224,8 @@ HUSKY=0 git commit -m "docs: update guide"`}
           <a href="/docs/upgrade" className="text-brand-coral underline">
             upgrade --dry-run
           </a>{" "}
-          before applying. Existing npm 2.6.1 does not contain this migration.
+          before applying. The current published npm 2.6.3 package does not
+          contain this migration.
         </p>
       </section>
 
@@ -285,9 +287,10 @@ HUSKY=0 git commit -m "docs: update guide"`}
         </p>
         <p>
           Nuxt production security findings still block a production-readiness
-          claim. Angular is outside the current CLI integration. Old React PR2
-          and PR3 are obsolete and await owner closure; they are not release
-          requirements.
+          claim. Angular supports read-only inspection in CLI 2.6.3;
+          scaffolding, generation, reconfiguration, and managed upgrades remain
+          unsupported. Old React PR2 and PR3 are obsolete and await owner
+          closure; they are not release requirements.
         </p>
         <ol className="list-decimal space-y-2 pl-6 text-body">
           <li>
