@@ -24,7 +24,7 @@ export default function AiAgentSkillPage() {
         <p className="text-xs font-semibold uppercase tracking-[1.5px] text-brand-coral">
           Agent Skills
         </p>
-        <span className="rounded-full border border-brand-coral/30 bg-brand-peach px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[1px] text-ink">
+        <span className="rounded-full border border-brand-coral/30 bg-brand-peach px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[1px] text-on-accent">
           Stable v2.0.0
         </span>
       </div>

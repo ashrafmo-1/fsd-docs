@@ -103,7 +103,7 @@ npx create-fsd-architecture@latest my-svelte-app --framework sveltekit --yes`}
         <ol className="space-y-3 text-base leading-relaxed text-body">
           {WIZARD_STEPS.map((item, index) => (
             <li key={item} className="flex gap-3">
-              <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-brand-mint text-xs font-bold text-ink">
+              <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-brand-mint text-xs font-bold text-on-accent">
                 {index + 1}
               </span>
               <span>{item}</span>

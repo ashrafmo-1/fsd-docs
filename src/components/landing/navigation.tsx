@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ThemeSwitcher } from "@/components/theme/theme-switcher";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { GitHubIcon } from "./github-icon";
@@ -98,7 +99,12 @@ export function Navigation() {
           })}
         </div>
 
-        <SupportButton />
+        <div className="flex items-center gap-2">
+          <ThemeSwitcher />
+          <span className="hidden sm:inline-flex">
+            <SupportButton />
+          </span>
+        </div>
         <div className="hidden items-center gap-3 xl:flex">
           <a
             href={siteConfig.github}

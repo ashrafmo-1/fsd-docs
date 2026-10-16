@@ -144,14 +144,14 @@ export default function DocsPage() {
               <span
                 className={`mb-4 inline-flex h-10 w-10 items-center justify-center rounded-[12px] ${card.color}`}
               >
-                <Icon className="h-5 w-5 text-ink" />
+                <Icon className="h-5 w-5 text-on-accent" />
               </span>
               <div className="flex items-center gap-2">
                 <h2 className="text-base font-semibold text-ink">
                   {card.title}
                 </h2>
                 {card.badge ? (
-                  <span className="rounded-full border border-brand-coral/30 bg-brand-peach px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.8px] text-ink">
+                  <span className="rounded-full border border-brand-coral/30 bg-brand-peach px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.8px] text-on-accent">
                     {card.badge}
                   </span>
                 ) : null}

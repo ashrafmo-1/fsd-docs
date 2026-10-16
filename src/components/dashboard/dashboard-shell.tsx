@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { DashboardNav } from "@/components/dashboard/dashboard-nav";
 import { LogoutButton } from "@/components/dashboard/logout-button";
+import { ThemeSwitcher } from "@/components/theme/theme-switcher";
 
 export function DashboardShell({
   email,
@@ -38,6 +39,7 @@ export function DashboardShell({
                 {email}
               </p>
             ) : null}
+            <ThemeSwitcher />
             <LogoutButton />
           </div>
         </header>

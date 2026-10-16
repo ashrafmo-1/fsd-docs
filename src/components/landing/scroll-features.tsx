@@ -15,7 +15,7 @@ const STEPS = [
     ],
     accentText: "text-brand-mint",
     accentBackground: "bg-brand-mint",
-    accentForeground: "text-ink",
+    accentForeground: "text-on-accent",
   },
   {
     id: "step-template",
@@ -33,7 +33,7 @@ const STEPS = [
     ],
     accentText: "text-brand-lavender",
     accentBackground: "bg-brand-lavender",
-    accentForeground: "text-ink",
+    accentForeground: "text-on-accent",
   },
   {
     id: "step-scaffold",
@@ -49,7 +49,7 @@ const STEPS = [
     ],
     accentText: "text-brand-peach",
     accentBackground: "bg-brand-peach",
-    accentForeground: "text-ink",
+    accentForeground: "text-on-accent",
   },
   {
     id: "step-deps",
@@ -67,7 +67,7 @@ const STEPS = [
     ],
     accentText: "text-brand-ochre",
     accentBackground: "bg-brand-ochre",
-    accentForeground: "text-ink",
+    accentForeground: "text-on-accent",
   },
   {
     id: "step-dev",
@@ -119,7 +119,7 @@ const STEPS = [
     ],
     accentText: "text-brand-mint",
     accentBackground: "bg-brand-mint",
-    accentForeground: "text-ink",
+    accentForeground: "text-on-accent",
   },
 ];
 

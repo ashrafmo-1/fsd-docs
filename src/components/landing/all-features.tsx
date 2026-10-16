@@ -51,7 +51,7 @@ const CAPABILITY_GROUPS: {
           "app, pages, widgets, features, entities, and shared layers are ready from day one.",
         icon: Layers,
         color: "bg-brand-lavender",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
       {
         title: "Layer dependency rules",
@@ -59,7 +59,7 @@ const CAPABILITY_GROUPS: {
           "Upper layers compose lower layers, keeping shared code independent and feature code focused.",
         icon: Route,
         color: "bg-brand-mint",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
       {
         title: "Path aliases",
@@ -67,7 +67,7 @@ const CAPABILITY_GROUPS: {
           "Use @/* imports from each framework's source root for clean imports across every starter edition.",
         icon: FileCode2,
         color: "bg-brand-peach",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
     ],
   },
@@ -84,7 +84,7 @@ const CAPABILITY_GROUPS: {
           "React 19, Vite 8, TypeScript, Tailwind CSS 4, ESLint, Steiger, and fast local builds.",
         icon: Sparkles,
         color: "bg-brand-peach",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
       {
         title: "Next.js App Router edition",
@@ -100,7 +100,7 @@ const CAPABILITY_GROUPS: {
           "Vue 3, Vite 8, Pinia, TanStack Vue Query, VeeValidate + Zod, Tailwind CSS 4, and ESLint.",
         icon: PanelsTopLeft,
         color: "bg-brand-mint",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
       {
         title: "Nuxt 4 edition",
@@ -108,7 +108,7 @@ const CAPABILITY_GROUPS: {
           "Nuxt 4, Vue 3, SSR, native Fetch, Pinia, Vue Query hydration, VeeValidate + Zod, and generated routes.",
         icon: Server,
         color: "bg-brand-lavender",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
       {
         title: "SvelteKit edition",
@@ -116,7 +116,7 @@ const CAPABILITY_GROUPS: {
           "Svelte 5, SvelteKit 2, SSR, native Fetch, Svelte Query, stores, Superforms + Zod, and generated routes.",
         icon: Server,
         color: "bg-brand-peach",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
     ],
   },
@@ -133,7 +133,7 @@ const CAPABILITY_GROUPS: {
           "Strict type checking, noEmit builds, typed configs, and confident refactors.",
         icon: Code2,
         color: "bg-brand-mint",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
       {
         title: "ESLint and Biome",
@@ -141,7 +141,7 @@ const CAPABILITY_GROUPS: {
           "React, Vue, Nuxt, and SvelteKit starters ship ESLint rules; Next ships Biome for linting, formatting, and import organization.",
         icon: Wrench,
         color: "bg-brand-lavender",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
       {
         title: "Husky, Commitlint, Commitizen",
@@ -166,7 +166,7 @@ const CAPABILITY_GROUPS: {
           "fsd.config.json stores the selected framework and stack as a versioned source of truth.",
         icon: Database,
         color: "bg-brand-ochre",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
       {
         title: "Stack-aware generation",
@@ -199,7 +199,7 @@ const CAPABILITY_GROUPS: {
           "Run lint, typecheck, build, FSD checks, and CI from a predictable workflow.",
         icon: Terminal,
         color: "bg-brand-peach",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
       {
         title: "CI-ready scripts",
@@ -207,7 +207,7 @@ const CAPABILITY_GROUPS: {
           "React, Next, Vue, Nuxt, and SvelteKit editions expose scripts that can be dropped into automated checks.",
         icon: GitPullRequest,
         color: "bg-surface-card",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
       {
         title: "Guard rails for teams",
@@ -215,7 +215,7 @@ const CAPABILITY_GROUPS: {
           "Commit rules, import organization, validation, and shared UI reduce drift as the codebase grows.",
         icon: ShieldCheck,
         color: "bg-brand-lavender",
-        textColor: "text-ink",
+        textColor: "text-on-accent",
       },
     ],
   },
@@ -244,13 +244,13 @@ function MiniCard({
       <div
         className={cn(
           "mb-4 inline-flex h-9 w-9 items-center justify-center rounded-[12px]",
-          item.textColor === "text-white" ? "bg-white/20" : "bg-ink/10",
+          item.textColor === "text-white" ? "bg-white/20" : "bg-on-accent/10",
         )}
       >
         <Icon
           className={cn(
             "h-4 w-4",
-            item.textColor === "text-white" ? "text-white" : "text-ink",
+            item.textColor === "text-white" ? "text-white" : "text-on-accent",
           )}
         />
       </div>
@@ -308,8 +308,11 @@ export function AllFeatures() {
               <div className="rounded-[20px] bg-canvas p-6">
                 <span
                   className={cn(
-                    "mb-5 inline-flex rounded-[9999px] px-3 py-1 text-xs font-semibold uppercase tracking-[1.5px] text-ink",
+                    "mb-5 inline-flex rounded-[9999px] px-3 py-1 text-xs font-semibold uppercase tracking-[1.5px]",
                     group.accent,
+                    group.accent === "bg-brand-teal"
+                      ? "text-white"
+                      : "text-on-accent",
                   )}
                 >
                   {group.label}

@@ -112,3 +112,16 @@ Documentation pages prioritize accuracy and scanning:
 - Treat `fsd.config.json` as the project source of truth.
 - Link architectural theory to the official Feature-Sliced Design website.
 - Keep product claims verifiable from the CLI and starter repositories.
+
+## Color themes
+
+The global theme selector offers Light, Dark, and System; System is the default.
+Store the preference under `fsd-theme`, follow live OS changes only in System,
+and synchronize changes across tabs. A static head script resolves the theme
+before first paint, while the provider handles later updates. Storage failures
+must not prevent switching themes during the current visit.
+
+Neutral surfaces, text, borders, controls, and documentation use semantic CSS
+variables. Bright brand cards use the fixed `on-accent` foreground; code windows,
+the hero, and the final CTA keep their dark product-stage appearance in both
+modes. Native controls follow the resolved `color-scheme`.
