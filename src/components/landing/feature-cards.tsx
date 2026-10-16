@@ -35,7 +35,7 @@ const FEATURES: Feature[] = [
       "An architecture with clear layer boundaries. Every file has a home, every import follows the rules.",
     icon: Layers,
     color: "bg-brand-lavender",
-    textColor: "text-ink",
+    textColor: "text-on-accent",
   },
   {
     title: "React + Vite Template",
@@ -43,7 +43,7 @@ const FEATURES: Feature[] = [
       "Start with a fast, modern stack. Vite's instant HMR paired with a scalable architecture from day one.",
     icon: Zap,
     color: "bg-brand-peach",
-    textColor: "text-ink",
+    textColor: "text-on-accent",
   },
   {
     title: "Next.js Support",
@@ -59,7 +59,7 @@ const FEATURES: Feature[] = [
       "Vue 3, Pinia, TanStack Vue Query, VeeValidate + Zod, and framework-native FSD generators.",
     icon: PanelsTopLeft,
     color: "bg-brand-mint",
-    textColor: "text-ink",
+    textColor: "text-on-accent",
   },
   {
     title: "Nuxt 4 Support",
@@ -67,7 +67,7 @@ const FEATURES: Feature[] = [
       "SSR-aware Vue Query, Pinia and VeeValidate modules, native Fetch, and generated file-based routes.",
     icon: PanelsTopLeft,
     color: "bg-brand-lavender",
-    textColor: "text-ink",
+    textColor: "text-on-accent",
     badge: "New in 2.4",
   },
   {
@@ -76,7 +76,7 @@ const FEATURES: Feature[] = [
       "Svelte 5, SSR-ready Svelte Query, native stores, Superforms + Zod, and generated file-based routes.",
     icon: PanelsTopLeft,
     color: "bg-brand-peach",
-    textColor: "text-ink",
+    textColor: "text-on-accent",
     badge: "New in 2.5",
   },
   {
@@ -85,7 +85,7 @@ const FEATURES: Feature[] = [
       "Pre-commit hooks configured out of the box. Catch issues before they hit your repository.",
     icon: Shield,
     color: "bg-brand-ochre",
-    textColor: "text-ink",
+    textColor: "text-on-accent",
   },
   {
     title: "Commit Linting",
@@ -101,7 +101,7 @@ const FEATURES: Feature[] = [
       "ESLint powers the React, Vue, Nuxt, and SvelteKit starters, while Biome powers Next with linting, formatting, and import organization.",
     icon: Settings2,
     color: "bg-surface-card",
-    textColor: "text-ink",
+    textColor: "text-on-accent",
   },
   {
     title: "Clean Scaffolding",
@@ -109,7 +109,7 @@ const FEATURES: Feature[] = [
       "No leftover boilerplate. Every file has a purpose, every folder follows the FSD convention.",
     icon: FolderTree,
     color: "bg-brand-mint",
-    textColor: "text-ink",
+    textColor: "text-on-accent",
   },
   {
     title: "Slice Generators",
@@ -117,7 +117,7 @@ const FEATURES: Feature[] = [
       "Add features, entities, widgets, pages, and auth flows using each framework's configured source directory.",
     icon: PackagePlus,
     color: "bg-surface-card",
-    textColor: "text-ink",
+    textColor: "text-on-accent",
   },
   {
     title: "Project Configuration",
@@ -125,7 +125,7 @@ const FEATURES: Feature[] = [
       "Save framework, API, state, forms, UI, and package-manager choices once in fsd.config.json.",
     icon: FileJson2,
     color: "bg-brand-lavender",
-    textColor: "text-ink",
+    textColor: "text-on-accent",
   },
   {
     title: "Developer-Friendly CLI",
@@ -141,7 +141,7 @@ const FEATURES: Feature[] = [
       "Move from one command to a runnable project without rebuilding the same architecture and tooling setup by hand.",
     icon: Clock,
     color: "bg-brand-peach",
-    textColor: "text-ink",
+    textColor: "text-on-accent",
   },
   {
     title: "Scales With Your Team",
@@ -149,7 +149,7 @@ const FEATURES: Feature[] = [
       "FSD's layer system means your architecture stays clean whether you're solo or a team of fifty.",
     icon: TrendingUp,
     color: "bg-brand-lavender",
-    textColor: "text-ink",
+    textColor: "text-on-accent",
   },
 ];
 
@@ -179,7 +179,7 @@ function FeatureCard({
             "mb-4 inline-block rounded-[9999px] px-3 py-1 text-xs font-semibold",
             feature.textColor === "text-white"
               ? "bg-white/20 text-white"
-              : "bg-ink/10 text-ink",
+              : "bg-on-accent/10 text-on-accent",
           )}
         >
           {feature.badge}
@@ -188,13 +188,17 @@ function FeatureCard({
       <div
         className={cn(
           "mb-4 inline-flex h-10 w-10 items-center justify-center rounded-[12px]",
-          feature.textColor === "text-white" ? "bg-white/20" : "bg-ink/10",
+          feature.textColor === "text-white"
+            ? "bg-white/20"
+            : "bg-on-accent/10",
         )}
       >
         <Icon
           className={cn(
             "h-5 w-5",
-            feature.textColor === "text-white" ? "text-white" : "text-ink",
+            feature.textColor === "text-white"
+              ? "text-white"
+              : "text-on-accent",
           )}
         />
       </div>

@@ -3,18 +3,18 @@
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { ThemeSwitcher } from "@/components/theme/theme-switcher";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { GitHubIcon } from "./github-icon";
 import { SupportButton } from "./support-controls";
 
 const NAV_LINKS = [
-  { label: "Architecture", href: "/#architecture" },
+  { label: "Architecture", href: "/architecture" },
   { label: "How It Works", href: "/#how-it-works" },
-  { label: "Features", href: "/#features" },
-  { label: "Capabilities", href: "/#capabilities" },
+  { label: "Capabilities", href: "/capabilities" },
   { label: "Docs", href: "/docs" },
   { label: "Releases", href: "/docs/releases" },
 ];
@@ -22,6 +22,25 @@ const NAV_LINKS = [
 export function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+  // Keep shared links to the former home sections working after the move.
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const destinations: Record<string, string> = {
+      "#architecture": "/architecture#architecture",
+      "#features": "/capabilities#features",
+      "#capabilities": "/capabilities#capabilities",
+      "#docs": "/capabilities#docs",
+    };
+    const redirect = () => {
+      const destination = destinations[window.location.hash];
+      if (destination) router.replace(destination);
+    };
+    redirect();
+    window.addEventListener("hashchange", redirect);
+    return () => window.removeEventListener("hashchange", redirect);
+  }, [pathname, router]);
 
   return (
     <nav
@@ -56,9 +75,13 @@ export function Navigation() {
             const active =
               link.href === "/docs/releases"
                 ? pathname.startsWith("/docs/releases")
-                : link.href === "/docs" &&
-                  pathname.startsWith("/docs") &&
-                  !pathname.startsWith("/docs/releases");
+                : (link.href === "/docs" &&
+                    pathname.startsWith("/docs") &&
+                    !pathname.startsWith("/docs/releases")) ||
+                  (link.href === "/architecture" &&
+                    pathname === "/architecture") ||
+                  (link.href === "/capabilities" &&
+                    pathname === "/capabilities");
 
             return (
               <Link
@@ -76,7 +99,12 @@ export function Navigation() {
           })}
         </div>
 
-        <SupportButton />
+        <div className="flex items-center gap-2">
+          <ThemeSwitcher />
+          <span className="hidden sm:inline-flex">
+            <SupportButton />
+          </span>
+        </div>
         <div className="hidden items-center gap-3 xl:flex">
           <a
             href={siteConfig.github}
@@ -123,9 +151,13 @@ export function Navigation() {
               const active =
                 link.href === "/docs/releases"
                   ? pathname.startsWith("/docs/releases")
-                  : link.href === "/docs" &&
-                    pathname.startsWith("/docs") &&
-                    !pathname.startsWith("/docs/releases");
+                  : (link.href === "/docs" &&
+                      pathname.startsWith("/docs") &&
+                      !pathname.startsWith("/docs/releases")) ||
+                    (link.href === "/architecture" &&
+                      pathname === "/architecture") ||
+                    (link.href === "/capabilities" &&
+                      pathname === "/capabilities");
 
               return (
                 <Link

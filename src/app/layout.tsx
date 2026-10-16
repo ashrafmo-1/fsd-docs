@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./styles/globals.css";
 import { SupportProvider } from "@/components/landing/support-controls";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import { siteConfig } from "@/lib/site";
+import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
 const inter = localFont({
@@ -77,9 +79,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(inter.variable, geistMono.variable)}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
+      className={cn(inter.variable, geistMono.variable)}
+    >
+      <head>
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: Static theme bootstrap with no interpolated user content; must run before first paint. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body className="min-h-screen font-sans antialiased">
-        <SupportProvider>{children}</SupportProvider>
+        <ThemeProvider>
+          <SupportProvider>{children}</SupportProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

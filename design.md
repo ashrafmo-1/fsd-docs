@@ -61,8 +61,24 @@ open externally.
 
 ### Hero
 
-The headline communicates the outcome: scalable frontend architecture from day
-one. The terminal preview demonstrates a real CLI command and generated output.
+Use a dark navy stage, oversized outcome-led typography, and an exploded six-layer
+FSD structure in cyan, blue, and violet. The layers assemble on entry and separate
+with natural scroll progress. Keep the real project creation command selectable
+and copyable, with visible clipboard failure feedback.
+
+### Product overview and detail pages
+
+Keep the home page focused on the hero, a three-chapter product workflow,
+architecture/capabilities links, and a compact final CTA. The complete layer
+explanation and six-step walkthrough live at `/architecture`. Feature cards,
+capability groups, templates, roadmap, and FAQ live at `/capabilities`.
+
+On desktop, a single sticky workflow stage changes chapters as users scroll.
+Use native scrolling without wheel interception. Update animation transforms
+through a requestAnimationFrame-coalesced CSS variable rather than React state
+on every frame. On small or short viewports and with reduced motion enabled,
+show all three chapters in normal document flow with every link accessible.
+Keep documentation surfaces and typography independent of landing visuals.
 
 ### Architecture visualization
 
@@ -96,3 +112,16 @@ Documentation pages prioritize accuracy and scanning:
 - Treat `fsd.config.json` as the project source of truth.
 - Link architectural theory to the official Feature-Sliced Design website.
 - Keep product claims verifiable from the CLI and starter repositories.
+
+## Color themes
+
+The global theme selector offers Light, Dark, and System; System is the default.
+Store the preference under `fsd-theme`, follow live OS changes only in System,
+and synchronize changes across tabs. A static head script resolves the theme
+before first paint, while the provider handles later updates. Storage failures
+must not prevent switching themes during the current visit.
+
+Neutral surfaces, text, borders, controls, and documentation use semantic CSS
+variables. Bright brand cards use the fixed `on-accent` foreground; code windows,
+the hero, and the final CTA keep their dark product-stage appearance in both
+modes. Native controls follow the resolved `color-scheme`.

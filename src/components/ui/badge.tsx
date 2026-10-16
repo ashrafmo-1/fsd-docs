@@ -32,7 +32,11 @@ const badgeVariants = cva(
         tone: "subtle",
         class: "bg-brand-mint/15 text-brand-teal",
       },
-      { variant: "warning", tone: "solid", class: "bg-brand-ochre text-ink" },
+      {
+        variant: "warning",
+        tone: "solid",
+        class: "bg-brand-ochre text-on-accent",
+      },
       {
         variant: "warning",
         tone: "subtle",

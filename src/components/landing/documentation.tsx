@@ -160,35 +160,35 @@ const TEMPLATES = [
   {
     name: "React + Vite",
     status: "Available",
-    statusColor: "bg-brand-mint text-ink",
+    statusColor: "bg-brand-mint text-on-accent",
     description:
       "React 19, Vite 8, TypeScript, Tailwind CSS 4, ESLint, Steiger, Husky, Commitlint",
   },
   {
     name: "Next.js",
     status: "Available",
-    statusColor: "bg-brand-lavender text-ink",
+    statusColor: "bg-brand-lavender text-on-accent",
     description:
       "Next 16, React 19, App Router, React Compiler, Tailwind CSS 4, Biome, Steiger",
   },
   {
     name: "Vue + Vite",
     status: "Available",
-    statusColor: "bg-brand-mint text-ink",
+    statusColor: "bg-brand-mint text-on-accent",
     description:
       "Vue 3, Vite 8, Pinia, TanStack Vue Query, VeeValidate + Zod, Tailwind CSS 4, ESLint, Steiger",
   },
   {
     name: "Nuxt",
     status: "Available",
-    statusColor: "bg-brand-lavender text-ink",
+    statusColor: "bg-brand-lavender text-on-accent",
     description:
       "Nuxt 4, Vue 3, SSR, native Fetch, Pinia, Vue Query hydration, VeeValidate + Zod, Nuxt ESLint, Steiger",
   },
   {
     name: "SvelteKit",
     status: "Available",
-    statusColor: "bg-brand-peach text-ink",
+    statusColor: "bg-brand-peach text-on-accent",
     description:
       "Svelte 5, SvelteKit 2, SSR, native Fetch, Svelte Query, Svelte stores, Superforms + Zod, ESLint, Steiger",
   },
@@ -267,7 +267,7 @@ export function Documentation() {
                         link.color,
                       )}
                     >
-                      <Icon className="h-5 w-5 text-ink" />
+                      <Icon className="h-5 w-5 text-on-accent" />
                     </span>
                     <h3 className="text-base font-semibold text-ink">
                       {link.title}
@@ -356,7 +356,7 @@ npx create-fsd-architecture --generate page checkout`}
                       className={cn(
                         "flex h-5 w-5 items-center justify-center rounded-full text-xs",
                         r.done
-                          ? "bg-brand-mint text-ink"
+                          ? "bg-brand-mint text-on-accent"
                           : "border border-hairline bg-canvas text-body-muted",
                       )}
                     >
