@@ -15,7 +15,7 @@ export function DocsSidebar() {
           <section key={group.label} aria-labelledby={`docs-${group.label}`}>
             <h2
               id={`docs-${group.label}`}
-              className="mb-2 px-3 text-xs font-semibold uppercase tracking-[1.5px] text-body-muted"
+              className="mb-3 px-3 text-sm font-extrabold uppercase tracking-[1px] text-ink"
             >
               {group.label}
             </h2>
