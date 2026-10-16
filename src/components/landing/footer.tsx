@@ -5,11 +5,11 @@ import { SupportProject } from "./support-project";
 
 const FOOTER_LINKS = {
   Product: [
-    { label: "Features", href: "/#features" },
-    { label: "Capabilities", href: "/#capabilities" },
+    { label: "Features", href: "/capabilities#features" },
+    { label: "Capabilities", href: "/capabilities#capabilities" },
     { label: "Templates", href: "/docs/getting-started" },
     { label: "Configuration", href: "/docs/configuration" },
-    { label: "Architecture", href: "/#architecture" },
+    { label: "Architecture", href: "/architecture#architecture" },
     { label: "Slice generator", href: "/docs/slice-generator" },
   ],
   Resources: [

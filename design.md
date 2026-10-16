@@ -61,8 +61,24 @@ open externally.
 
 ### Hero
 
-The headline communicates the outcome: scalable frontend architecture from day
-one. The terminal preview demonstrates a real CLI command and generated output.
+Use a dark navy stage, oversized outcome-led typography, and an exploded six-layer
+FSD structure in cyan, blue, and violet. The layers assemble on entry and separate
+with natural scroll progress. Keep the real project creation command selectable
+and copyable, with visible clipboard failure feedback.
+
+### Product overview and detail pages
+
+Keep the home page focused on the hero, a three-chapter product workflow,
+architecture/capabilities links, and a compact final CTA. The complete layer
+explanation and six-step walkthrough live at `/architecture`. Feature cards,
+capability groups, templates, roadmap, and FAQ live at `/capabilities`.
+
+On desktop, a single sticky workflow stage changes chapters as users scroll.
+Use native scrolling without wheel interception. Update animation transforms
+through a requestAnimationFrame-coalesced CSS variable rather than React state
+on every frame. On small or short viewports and with reduced motion enabled,
+show all three chapters in normal document flow with every link accessible.
+Keep documentation surfaces and typography independent of landing visuals.
 
 ### Architecture visualization
 

@@ -77,7 +77,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(inter.variable, geistMono.variable)}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={cn(inter.variable, geistMono.variable)}
+    >
       <body className="min-h-screen font-sans antialiased">
         <SupportProvider>{children}</SupportProvider>
       </body>

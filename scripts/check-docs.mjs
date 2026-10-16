@@ -123,6 +123,38 @@ for (const path of releases) {
 }
 assert.equal((await fetch(`${origin}/docs/releases/99.0.0`)).status, 404);
 assert(pages.get("/").includes("Latest release:"), "homepage release link");
+// The short overview must keep the complete moved sections discoverable.
+for (const [path, anchors] of [
+  ["/architecture", ["architecture", "how-it-works"]],
+  ["/capabilities", ["features", "capabilities", "docs"]],
+]) {
+  assert(pages.has(path), `${path}: in sitemap`);
+  assert(
+    pages.get("/").includes(`href="${path}"`),
+    `${path}: linked from home`,
+  );
+  assert(
+    pages.get(path).includes(`rel="canonical" href="https://fsdcli.me${path}"`),
+    `${path}: canonical`,
+  );
+  assert.equal(
+    (pages.get(path).match(/<h1(?:\s|>)/g) ?? []).length,
+    1,
+    `${path}: one H1`,
+  );
+  for (const anchor of anchors) {
+    assert(
+      pages.get(path).includes(`id="${anchor}"`),
+      `${path}: moved ${anchor} section`,
+    );
+  }
+}
+for (const anchor of ["architecture", "features", "capabilities", "docs"]) {
+  assert(
+    !pages.get("/").includes(`id="${anchor}"`),
+    `home: ${anchor} details moved`,
+  );
+}
 console.log(
   `Passed: ${paths.length} sitemap pages, internal page links, ${releases.length} releases, bot access, LLM text routes, version commands, section anchors, and unknown-release 404.`,
 );

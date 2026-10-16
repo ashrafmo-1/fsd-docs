@@ -1,146 +1,137 @@
 "use client";
 
-import { ArrowRight, Check, Copy } from "lucide-react";
+import { ArrowDown, ArrowRight, Check, Copy, Layers3 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { type CSSProperties, useState } from "react";
+import { useScrollProgress } from "@/hooks/use-scroll-progress";
 import { CLI_RELEASES } from "@/lib/releases";
-import { siteConfig } from "@/lib/site";
-import { GitHubIcon } from "./github-icon";
 
-function TerminalPreview() {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(
-      "npx create-fsd-architecture --generate feature auth",
-    );
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <div className="w-full overflow-hidden rounded-[16px] border border-hairline bg-surface-dark shadow-lg">
-      <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-        <div className="h-3 w-3 rounded-full bg-brand-coral/80" />
-        <div className="h-3 w-3 rounded-full bg-brand-ochre/80" />
-        <div className="h-3 w-3 rounded-full bg-brand-mint/80" />
-        <span className="ml-2 text-xs text-white/40 font-mono">terminal</span>
-      </div>
-      <div className="px-5 py-5 font-mono text-sm leading-relaxed">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-0">
-            <span className="text-brand-mint">$</span>
-            <span className="ml-2 text-white/90">
-              npx create-fsd-architecture --generate feature auth
-            </span>
-            <span className="ml-1 inline-block h-4 w-2 bg-brand-mint/70 animate-terminal-blink" />
-          </div>
-          <button
-            type="button"
-            onClick={handleCopy}
-            className="flex-shrink-0 rounded-md p-1.5 text-white/40 transition-colors hover:text-white/70"
-            aria-label="Copy generator command"
-          >
-            {copied ? (
-              <Check className="h-3.5 w-3.5 text-brand-mint" />
-            ) : (
-              <Copy className="h-3.5 w-3.5" />
-            )}
-          </button>
-          <span className="sr-only" aria-live="polite">
-            {copied ? "Command copied" : ""}
-          </span>
-        </div>
-        <div className="mt-4 space-y-1.5 text-white/50">
-          <p>
-            <span className="text-brand-mint">✓</span>{" "}
-            <span className="text-white/70">Loaded fsd.config.json</span>
-          </p>
-          <p>
-            <span className="text-brand-lavender">◆</span>{" "}
-            <span className="text-white/70">Stack:</span>{" "}
-            <span className="text-brand-peach">
-              Fetch + Svelte Query + Svelte store
-            </span>
-          </p>
-          <p className="mt-3">
-            <span className="text-brand-mint">✓</span>{" "}
-            <span className="text-white/60">
-              Detected SvelteKit and created src/features/auth
-            </span>
-          </p>
-          <p>
-            <span className="text-brand-mint">✓</span>{" "}
-            <span className="text-white/60">Generated public index.ts API</span>
-          </p>
-          <p>
-            <span className="text-brand-mint">✓</span>{" "}
-            <span className="text-white/60">
-              Added framework-native auth boilerplate
-            </span>
-          </p>
-          <p className="mt-3 text-brand-mint">Done! Auth flow created</p>
-        </div>
-      </div>
-    </div>
-  );
-}
+const LAYERS = [
+  { name: "app", detail: "The entry point", color: "#2563eb" },
+  { name: "pages", detail: "Compose the experience", color: "#818cf8" },
+  { name: "widgets", detail: "Build the bigger picture", color: "#a78bfa" },
+  { name: "features", detail: "Make things happen", color: "#38bdf8" },
+  { name: "entities", detail: "Model your domain", color: "#22d3ee" },
+  { name: "shared", detail: "A common foundation", color: "#2dd4bf" },
+];
+const COMMAND = "npx create-fsd-architecture@latest";
 
 export function Hero() {
+  const ref = useScrollProgress("exit");
+  const [copyStatus, setCopyStatus] = useState("");
+  async function copyCommand() {
+    try {
+      await navigator.clipboard.writeText(COMMAND);
+      setCopyStatus("Command copied");
+    } catch {
+      setCopyStatus("Select the command to copy it manually.");
+    }
+  }
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-40" />
-      <div className="relative mx-auto max-w-[1280px] px-6 pb-24 pt-20 md:pb-32 md:pt-28">
-        <div className="grid items-center gap-12 lg:grid-cols-[7fr_5fr] lg:gap-16">
-          <div className="max-w-2xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-[9999px] border border-hairline bg-surface-soft px-4 py-1.5">
-              <span className="h-2 w-2 rounded-full bg-brand-mint" />
-              <span className="text-xs font-medium text-body-muted">
-                <Link href={`/docs/releases/${CLI_RELEASES[0].version}`}>
-                  Latest release: v{CLI_RELEASES[0].version} →
-                </Link>
-              </span>
-            </div>
-
-            <h1 className="text-4xl font-medium leading-[1.05] tracking-[-2px] text-ink sm:text-5xl md:text-[56px] lg:text-[64px]">
-              Build scalable frontends{" "}
-              <span className="text-brand-lavender">from day one</span>
+    <section ref={ref} className="fsd-hero" aria-labelledby="hero-title">
+      <div className="hero-grid" aria-hidden="true" />
+      <div className="hero-inner">
+        <div className="hero-topline">
+          <span>
+            <span className="status-dot" /> STRUCTURE IS A SUPERPOWER.
+          </span>
+          <Link href={`/docs/releases/${CLI_RELEASES[0].version}`}>
+            Latest release: v{CLI_RELEASES[0].version} <ArrowRight size={13} />
+          </Link>
+        </div>
+        <div className="hero-layout">
+          <div className="hero-copy">
+            <p className="hero-eyebrow">THE CLI FOR FEATURE-SLICED DESIGN</p>
+            <h1 id="hero-title">
+              Big ideas.
+              <br />
+              <span>Clear layers.</span>
+              <br />
+              Built to grow.
             </h1>
-
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-body">
-              Create React + Vite, Next.js, Vue + Vite, Nuxt, or SvelteKit
-              projects and generate{" "}
-              <span className="font-medium text-ink">
-                Feature-Sliced Design slices
-              </span>{" "}
-              inside existing codebases. Your framework and stack choices stay
-              consistent through one project configuration.
+            <p className="hero-description">
+              Turn your next frontend into a codebase that makes sense. Scaffold
+              your foundation. Generate your slices. Build what comes next.
             </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Link
-                href="/docs/getting-started"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-[12px] bg-ink px-6 text-sm font-semibold text-on-primary transition-colors hover:bg-ink/90"
-              >
-                Read the Docs
-                <ArrowRight className="h-4 w-4" />
+            <div className="hero-actions">
+              <Link href="/docs/getting-started" className="hero-primary">
+                Build your foundation <ArrowRight size={17} />
               </Link>
-              <a
-                href={siteConfig.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-[12px] border border-hairline bg-canvas px-6 text-sm font-semibold text-ink transition-colors hover:bg-surface-soft"
-              >
-                <GitHubIcon className="h-4 w-4" />
-                View on GitHub
-              </a>
+              <Link href="/architecture" className="hero-secondary">
+                Explore the architecture <ArrowRight size={16} />
+              </Link>
             </div>
           </div>
-
-          <div className="animate-fade-in-up animate-delay-300">
-            <TerminalPreview />
+          <div
+            className="architecture-scene"
+            role="img"
+            aria-label="Six connected FSD layers: app, pages, widgets, features, entities, and shared. Upper layers import from lower layers."
+          >
+            <div className="scene-orbit" />
+            <div className="scene-coordinate coordinate-top">
+              ARCHITECTURE / EXPLODED VIEW
+            </div>
+            <div className="layer-stack" aria-hidden="true">
+              {LAYERS.map((layer, index) => (
+                <div
+                  key={layer.name}
+                  className="scene-layer"
+                  style={
+                    {
+                      "--layer": index,
+                      "--layer-color": layer.color,
+                    } as CSSProperties
+                  }
+                >
+                  <div className="layer-face">
+                    <span className="layer-number">0{index + 1}</span>
+                    <Layers3 size={20} />
+                    <strong>{layer.name}</strong>
+                    <span className="layer-detail">{layer.detail}</span>
+                    <span className="layer-node" />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="scene-coordinate coordinate-bottom">
+              <span className="status-dot" /> SIX LAYERS. ONE DIRECTION.
+            </div>
+            <div className="scene-caption">
+              <span>src/</span>
+              <span>Designed for change ↗</span>
+            </div>
           </div>
         </div>
+        <div className="hero-bottom">
+          <div className="hero-command">
+            <span className="command-prefix">$</span>
+            <code>{COMMAND}</code>
+            <button
+              type="button"
+              onClick={copyCommand}
+              aria-label="Copy project creation command"
+            >
+              {copyStatus === "Command copied" ? (
+                <Check size={17} />
+              ) : (
+                <Copy size={17} />
+              )}
+            </button>
+            <span className="sr-only" role="status">
+              {copyStatus}
+            </span>
+          </div>
+          <ul className="framework-list" aria-label="Supported frameworks">
+            <li>React</li>
+            <li>Next.js</li>
+            <li>Vue</li>
+            <li>Nuxt</li>
+            <li>SvelteKit</li>
+          </ul>
+        </div>
+        <a href="#how-it-works" className="hero-scroll">
+          SCROLL TO CONNECT THE DOTS <ArrowDown size={14} />
+        </a>
       </div>
     </section>
   );
