@@ -1403,3 +1403,120 @@
 .dark .text-brand-teal {
   color: #5eead4;
 }
+
+.project-stats {
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+.stats-inner {
+  max-width: 1280px;
+  margin: auto;
+  padding: 42px 24px 28px;
+}
+.stats-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.stats-intro h2 {
+  color: var(--foreground);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+}
+.stats-intro h2 span {
+  color: var(--muted-foreground);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 28px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.stat-item {
+  min-width: 0;
+  padding: 28px 24px;
+  border-right: 1px solid var(--border);
+}
+.stat-item:first-child {
+  padding-left: 0;
+}
+.stat-item:last-child {
+  border-right: 0;
+}
+.stat-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.stat-label svg:first-child {
+  color: var(--link);
+}
+.stat-label svg:last-child {
+  margin-left: auto;
+  transition: transform 0.2s;
+}
+.stat-item:hover .stat-label svg:last-child {
+  transform: translate(2px, -2px);
+}
+.stat-number {
+  color: var(--foreground);
+  margin-top: 18px;
+  font:
+    500 clamp(36px, 4vw, 56px) var(--font-geist-mono),
+    monospace;
+  letter-spacing: -3px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.stat-item p {
+  margin-top: 15px;
+  font-size: 10px;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+}
+.stats-source {
+  margin-top: 16px;
+  max-width: 800px;
+  font-size: 10px;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+}
+@media (max-width: 767px) {
+  .stats-inner {
+    padding: 32px 20px 24px;
+  }
+  .stats-intro h2 {
+    font-size: 17px;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 22px;
+  }
+  .stat-item {
+    padding: 22px 15px;
+  }
+  .stat-item:nth-child(odd) {
+    padding-left: 0;
+  }
+  .stat-item:nth-child(even) {
+    border-right: 0;
+  }
+  .stat-item:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-number {
+    font-size: 38px;
+    letter-spacing: -2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stat-item:hover .stat-label svg:last-child {
+    transform: none;
+  }
+}

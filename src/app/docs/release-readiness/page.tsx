@@ -5,7 +5,7 @@ import { PublishedDocumentationVideo } from "@/components/docs/published-documen
 export const metadata: Metadata = {
   title: "Upcoming changes and release readiness",
   description:
-    "Published CLI 2.6.1 versus upcoming Supabase auth, light Git hooks, and Skill-based existing-project migration.",
+    "Published CLI 2.6.3 versus upcoming Supabase auth, light Git hooks, and Skill-based existing-project migration.",
   alternates: { canonical: "/docs/release-readiness" },
 };
 
@@ -19,16 +19,17 @@ export default function ReleaseReadinessPage() {
     <article className="max-w-4xl space-y-10">
       <header>
         <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-brand-coral">
-          Verified source snapshot · October 11, 2026
+          Published release update · October 16, 2026
         </p>
         <h1 className="text-4xl font-semibold tracking-[-1.5px] text-ink md:text-5xl">
           Upcoming changes and release readiness
         </h1>
         <p className="mt-5 text-lg leading-relaxed text-body">
-          npm latest is 2.6.1. Supabase auth and light hooks are implemented on
+          npm latest is 2.6.3. Releases 2.6.2 and 2.6.3 were published on
+          October 11, 2026. Supabase auth and light hooks are implemented on
           candidate branches and await review, CI, and release. The migration
           pilot belongs to the Agent Skill repository and has its own delivery.
-          No newer npm version or release date is announced here.
+          See the release archive for the changes in those published artifacts.
         </p>
       </header>
 
@@ -55,8 +56,8 @@ export default function ReleaseReadinessPage() {
         </p>
         <p>
           CLI PR6 merged into main at <code>060bc5d</code>; its 30 checks
-          passed. That source includes post-2.6.1 work and is not a new
-          published artifact. The{" "}
+          passed. Its template-pinning work is now included in the published
+          2.6.2 and 2.6.3 artifacts. The{" "}
           <a href={CLI_SOURCE} className="text-brand-coral underline">
             follow-up candidate d5a0bb1
           </a>{" "}

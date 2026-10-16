@@ -41,7 +41,9 @@ export default async function ReleasePage({ params }: Props) {
         >
           Package on npm
         </a>
-        {["2.6.0", "2.5.0", "2.4.0", "2.3.2"].includes(version) && (
+        {["2.6.3", "2.6.2", "2.6.0", "2.5.0", "2.4.0", "2.3.2"].includes(
+          version,
+        ) && (
           <a
             href={`https://github.com/FSD-CLI/cli/releases/tag/v${version}`}
             className="underline"

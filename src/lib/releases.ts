@@ -15,10 +15,76 @@ export type CliRelease = {
 
 export const CLI_RELEASES: CliRelease[] = [
   {
+    version: "2.6.3",
+    date: "2026-10-11",
+    dateLabel: "October 11, 2026",
+    status: "latest",
+    summary:
+      "Refresh verified template pins, add read-only Angular inspection, and restore the Node 20-compatible Chalk runtime contract.",
+    frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
+    sections: [
+      {
+        title: "Changed",
+        items: [
+          "Refresh all five immutable template pins to verified commits on each starter's main branch.",
+          "Accept Angular's native configuration for read-only project inspection. Angular generation, reconfiguration, and managed upgrades are rejected before any writes.",
+          "Keep Chalk on the Node 20-compatible 5.x series to honor the CLI runtime contract.",
+        ],
+      },
+      {
+        title: "Compatibility",
+        items: [
+          "Published to npm on October 11, 2026 from gitHead 9d37a154fd9476ff416941463c6f60c77bab55de.",
+          "The five supported scaffolding frameworks remain React + Vite, Next.js, Vue + Vite, Nuxt, and SvelteKit. Angular inspection does not add an Angular scaffolding template.",
+        ],
+      },
+    ],
+  },
+  {
+    version: "2.6.2",
+    date: "2026-10-11",
+    dateLabel: "October 11, 2026",
+    status: "stable",
+    summary:
+      "Pin all five template sources to immutable commits, record template provenance, and ship Windows toolchain, path, and rollback fixes.",
+    frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
+    sections: [
+      {
+        title: "Added",
+        items: [
+          "Bind all five template sources to full immutable Git commits, verify downloaded identities, and retain provenance in .fsd/template.json.",
+          "Add published-package and repeated-template-source smoke scripts and workflows.",
+          "Record dated QA and security evidence, starter validation limits, and the guided existing-project support policy.",
+        ],
+      },
+      {
+        title: "Changed",
+        items: [
+          "Expand the README badge panel with npm version and downloads, Node support, GitHub contributors, forks, stars, issues, license, and workflow status.",
+          "Add dependency audit and maintenance coverage while keeping unresolved upstream findings explicit.",
+        ],
+      },
+      {
+        title: "Fixed",
+        items: [
+          "Include the Windows toolchain, path, and rollback fixes merged after 2.6.1.",
+        ],
+      },
+      {
+        title: "Compatibility",
+        items: [
+          "Published to npm on October 11, 2026 from gitHead 5f5654cf040a1fa0e6731e594f1b9701da0d18be.",
+          "The read-only Angular inspection contract, refreshed main-branch pins, and Chalk 5 runtime change belong to 2.6.3, not this artifact.",
+        ],
+      },
+    ],
+  },
+
+  {
     version: "2.6.1",
     date: "2026-09-27",
     dateLabel: "September 27, 2026",
-    status: "latest",
+    status: "stable",
     summary:
       "Update the official documentation domain to fsdcli.me while retaining the 2.6 managed-upgrade and five-framework contracts.",
     frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],

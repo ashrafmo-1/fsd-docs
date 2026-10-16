@@ -142,7 +142,7 @@ export function getLlmsFull() {
     "",
     "## Upcoming source candidates (October 6, 2026)",
     "",
-    "npm latest remains 2.6.1. CLI candidate d5a0bb1 adds an opt-in Supabase auth adapter (--auth-provider supabase), light hooks, and managed light-hooks-v1 migration state 2 to 3. These changes await follow-up PR review/CI/release; do not issue the new flag against npm 2.6.1. Supabase staging E2E remains pending. Use only public browser keys; SSR authorization and RLS require application integration.",
+    "npm latest is 2.6.3, published October 11, 2026. Releases 2.6.2 and 2.6.3 add immutable template provenance, Windows fixes, refreshed pins, read-only Angular inspection, and the Node 20-compatible Chalk runtime. CLI candidate d5a0bb1 adds an opt-in Supabase auth adapter (--auth-provider supabase), light hooks, and managed light-hooks-v1 migration state 2 to 3. These changes await follow-up PR review/CI/release; do not issue the new flag against npm 2.6.1. Supabase staging E2E remains pending. Use only public browser keys; SSR authorization and RLS require application integration.",
     "",
     "Tagged Skill v2.0.0 implements incremental existing-project migration with a verified synthetic React/Vite browser and rollback pilot. It is not a shipped arbitrary-app CLI migrate command or broad production-app certification. See " +
       absoluteUrl("/docs/release-readiness") +

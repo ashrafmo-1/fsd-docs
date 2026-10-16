@@ -125,3 +125,12 @@ Neutral surfaces, text, borders, controls, and documentation use semantic CSS
 variables. Bright brand cards use the fixed `on-accent` foreground; code windows,
 the hero, and the final CTA keep their dark product-stage appearance in both
 modes. Native controls follow the resolved `color-scheme`.
+
+## Public project counters
+
+The compact statistics band follows the hero. npm downloads cover the complete
+package lifetime in disjoint yearly windows, not a monthly count relabeled as
+a total. GitHub stars refer to FSD-CLI/cli. Public API refreshes run in the browser
+with a timeout and retain a dated verified snapshot on failure. Framework and
+release counts come from the documented release archive. Counters animate once
+when visible; reduced-motion users and assistive technology get final values.
