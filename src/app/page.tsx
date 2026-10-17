@@ -4,6 +4,7 @@ import { Footer } from "@/components/landing/footer";
 import { Hero } from "@/components/landing/hero";
 import { Navigation } from "@/components/landing/navigation";
 import { ProductStory } from "@/components/landing/product-story";
+import { ProjectStats } from "@/components/landing/project-stats";
 
 export const dynamic = "force-static";
 
@@ -13,6 +14,7 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
+        <ProjectStats />
         <ProductStory />
         <Explore />
         <CtaBand />
