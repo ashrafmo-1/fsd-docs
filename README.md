@@ -59,7 +59,8 @@ npm run test
 npm run build
 ```
 
-Run the complete verification pipeline with:
+Run the complete verification pipeline, including production HTTP/link smoke, with
+port 3105 free:
 
 ```bash
 npm run check
@@ -77,7 +78,8 @@ section anchors, and the unknown-release 404; it does not replace browser checks
 CI runs `npm run test:docs:production` after the build and isolated video checks.
 It starts the production server on loopback, waits for readiness, executes the
 HTTP/link smoke suite, propagates failures, and stops its server even on failure.
-Run it locally with port 3105 free and an existing production build.
+The smoke suite has a two-minute deadline. Run it locally with port 3105 free
+and an existing production build.
 
 ## Routes
 

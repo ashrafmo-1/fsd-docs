@@ -20,8 +20,15 @@ const server = spawn(
     "--port",
     "3105",
   ],
-  { stdio: "inherit", env: process.env },
+  { stdio: ["ignore", "pipe", "inherit"], env: process.env },
 );
+let startupOutput = "";
+let serverReady = false;
+server.stdout.on("data", (chunk) => {
+  process.stdout.write(chunk);
+  startupOutput = (startupOutput + chunk.toString()).slice(-4096);
+  serverReady ||= /Ready in /.test(startupOutput);
+});
 let serverError;
 server.on("error", (error) => {
   serverError = error;
@@ -38,6 +45,10 @@ try {
       null,
       "production server exited before smoke checks",
     );
+    if (!serverReady) {
+      await delay(200);
+      continue;
+    }
     try {
       const response = await fetch(`${origin}/sitemap.xml`, {
         signal: AbortSignal.timeout(1000),
@@ -55,12 +66,28 @@ try {
   const smoke = spawn(process.execPath, ["scripts/check-docs.mjs"], {
     stdio: "inherit",
     env: { ...process.env, DOCS_TEST_ORIGIN: origin },
+    timeout: 120_000,
+    killSignal: "SIGKILL",
   });
   const result = await new Promise((resolve, reject) => {
     smoke.once("error", reject);
     smoke.once("exit", (code) => resolve(code));
   });
-  assert.equal(result, 0, "production HTTP and internal-link smoke failed");
+  assert.equal(
+    result,
+    0,
+    "production HTTP and internal-link smoke failed or timed out",
+  );
+  assert.equal(
+    server.exitCode,
+    null,
+    "production server exited during smoke checks",
+  );
+  assert.equal(
+    server.signalCode,
+    null,
+    "production server was stopped during smoke checks",
+  );
 } finally {
   if (server.exitCode === null && !serverError) {
     server.kill("SIGTERM");
