@@ -9,6 +9,7 @@ jobs:
   check:
     name: Node 22 checks
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -22,3 +23,5 @@ jobs:
       - run: npm run build
       - run: npm run check:static
       - run: npm run test:videos
+      - name: Verify production HTTP routes and internal links
+        run: npm run test:docs:production
