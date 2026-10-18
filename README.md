@@ -48,8 +48,7 @@ service-role key. Public documentation still builds when those variables are
 empty. Turning off public sign-ups is not the authorization check.
 
 Each assignable documentation page reads one published row from the Supabase
-`videos` table matching its pathname. An empty table leaves the page unchanged. Documentation and the dashboard stay on the light theme; the site
-does not apply a dark theme.
+`videos` table matching its pathname. An empty table leaves the page unchanged. Light, Dark, and System themes are supported across the site.
 
 ## Quality checks
 
@@ -74,6 +73,11 @@ For HTTP smoke checks, run `npm run start -- --port 3105` after building, then
 `npm run test:docs` in another terminal. Set `DOCS_TEST_ORIGIN` to test a different
 server. This verifies sitemap pages, internal page links, release commands,
 section anchors, and the unknown-release 404; it does not replace browser checks.
+
+CI runs `npm run test:docs:production` after the build and isolated video checks.
+It starts the production server on loopback, waits for readiness, executes the
+HTTP/link smoke suite, propagates failures, and stops its server even on failure.
+Run it locally with port 3105 free and an existing production build.
 
 ## Routes
 

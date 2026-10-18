@@ -14,7 +14,8 @@
     "check:static": "node scripts/check-static-output.mjs",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build && npm run check:static",
     "test:docs": "node scripts/check-docs.mjs",
-    "test:videos": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-published-videos.mjs"
+    "test:videos": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-published-videos.mjs",
+    "test:docs:production": "node scripts/check-docs-production.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
