@@ -4,10 +4,10 @@
   "description": "Official documentation and product site for create-fsd-architecture.",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node init && next dev",
     "typecheck": "next typegen && tsc --noEmit",
-    "build": "next build",
-    "start": "next start",
+    "build": "node init && next build",
+    "start": "node init && next start",
     "lint": "biome check",
     "format": "biome format --write",
     "test": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test src/lib/*.test.ts",
@@ -36,7 +36,7 @@
     "react-hook-form": "^7.89.0",
     "sonner": "^2.0.8",
     "tailwind-merge": "^3.7.0",
-    "zod": "^4.6.5"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
