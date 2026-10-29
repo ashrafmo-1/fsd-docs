@@ -48,18 +48,8 @@ export function Navigation() {
       className="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur-md"
     >
       <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
-        <Link
-          href="/"
-          className="flex items-center gap-2.5"
-          aria-label="FSD CLI home"
-        >
-          <Image
-            src="/fsd-logo.png"
-            alt="FSD CLI"
-            width={40}
-            height={40}
-            priority
-          />
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image src="/fsd-logo.png" alt="" width={40} height={40} priority />
           <span className="flex flex-col leading-none">
             <span className="text-base font-semibold tracking-tight text-ink">
               FSD CLI

@@ -63,12 +63,8 @@ export function Footer() {
       <div className="mx-auto max-w-[1280px] px-6 py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr_1fr]">
           <div>
-            <Link
-              href="/"
-              className="flex items-center gap-2.5"
-              aria-label="FSD CLI home"
-            >
-              <Image src="/fsd-logo.png" alt="FSD CLI" width={40} height={40} />
+            <Link href="/" className="flex items-center gap-2.5">
+              <Image src="/fsd-logo.png" alt="" width={40} height={40} />
               <span className="flex flex-col leading-none">
                 <span className="text-base font-semibold tracking-tight text-ink">
                   FSD CLI
