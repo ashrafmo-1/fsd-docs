@@ -578,6 +578,11 @@ export const CLI_RELEASES: CliRelease[] = [
   },
 ];
 
+/** The npm `latest` release; pages read the current version from here. */
+export const LATEST_CLI_RELEASE =
+  CLI_RELEASES.find((release) => release.status === "latest") ??
+  CLI_RELEASES[0];
+
 export const LEGACY_NPM_VERSIONS = [
   { version: "1.0.6", date: "June 7, 2026" },
   { version: "1.0.5", date: "May 30, 2026" },

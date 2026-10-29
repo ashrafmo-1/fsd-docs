@@ -5,11 +5,12 @@ import { usePathname } from "next/navigation";
 import { DOCS_NAVIGATION } from "@/lib/docs-navigation";
 import { cn } from "@/lib/utils";
 
-export function DocsSidebar() {
+export function DocsSidebar({ header }: { header?: React.ReactNode }) {
   const pathname = usePathname();
 
   return (
     <aside className="lg:sticky lg:top-24 lg:h-fit lg:row-span-2">
+      {header}
       <nav aria-label="Documentation" className="space-y-6">
         {DOCS_NAVIGATION.map((group) => (
           <section key={group.label} aria-labelledby={`docs-${group.label}`}>
