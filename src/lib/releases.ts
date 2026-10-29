@@ -56,7 +56,8 @@ export const CLI_RELEASES: CliRelease[] = [
         title: "Compatibility",
         items: [
           "Breaking: Node.js 20 is no longer supported by the CLI. Upgrade to Node.js 22.12.0 or later before installing 2.7.0.",
-          "Released October 29, 2026 from merge commit 561d7d94b5a20179e2246d216d4fc80e9236d4ae, tagged v2.7.0.",
+          "Published to npm on October 29, 2026 from gitHead 561d7d94b5a20179e2246d216d4fc80e9236d4ae (integrity sha512-F9ka7Ov2ImLFie8ZaBFyZbB5erByOiTf5pnwwHN396Q/spT3UfL/DHOiSPYmipKn287Me012by364XlAuS49hg==), tagged v2.7.0.",
+          "The global fsd command, the home/about/consult page presets, and the legacy-upgrade fixes from the historical upgrade E2E merged after this artifact and are not part of 2.7.0.",
           "The five supported scaffolding frameworks remain React + Vite, Next.js, Vue + Vite, Nuxt, and SvelteKit. Angular stays inspection-only.",
           "Supabase staging end-to-end checks, SSR authorization, and RLS remain application responsibilities.",
         ],
