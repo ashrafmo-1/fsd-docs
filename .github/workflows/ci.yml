@@ -25,3 +25,7 @@ jobs:
       - run: npm run test:videos
       - name: Verify production HTTP routes and internal links
         run: npm run test:docs:production
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: End-to-end tests
+        run: npm run test:e2e
