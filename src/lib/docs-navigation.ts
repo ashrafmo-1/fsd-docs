@@ -23,6 +23,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
         href: "/docs/getting-started",
         description: "Create a complete FSD project.",
       },
+      {
+        label: "FSD concepts",
+        href: "/docs/concepts",
+        description: "Layers, slices, segments, and the import rule.",
+      },
     ],
   },
   {
