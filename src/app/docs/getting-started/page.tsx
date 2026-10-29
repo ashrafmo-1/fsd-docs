@@ -8,7 +8,10 @@ export const metadata: Metadata = {
   title: "Getting Started",
   description:
     "Create a React, Next.js, Vue, Nuxt, or SvelteKit project with a complete Feature-Sliced Design structure.",
-  alternates: { canonical: "/docs/getting-started" },
+  alternates: {
+    canonical: "/docs/getting-started",
+    languages: { en: "/docs/getting-started", ar: "/ar" },
+  },
 };
 
 const WIZARD_STEPS = [
@@ -37,6 +40,16 @@ export default async function GettingStartedPage() {
         The interactive wizard creates a framework starter, configures the
         selected frontend stack, and keeps every FSD layer available from day
         one.
+      </p>
+      <p className="mt-3 text-sm">
+        <a
+          href="/ar"
+          hrefLang="ar"
+          lang="ar"
+          className="text-brand-coral underline"
+        >
+          اقرأ دليل البدء السريع بالعربية
+        </a>
       </p>
 
       <DocumentationVideo video={video} />
