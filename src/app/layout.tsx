@@ -4,6 +4,11 @@ import "./styles/globals.css";
 import { SupportProvider } from "@/components/landing/support-controls";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { siteConfig } from "@/lib/site";
+import {
+  jsonLdScript,
+  softwareJsonLd,
+  websiteJsonLd,
+} from "@/lib/structured-data";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
@@ -88,6 +93,13 @@ export default function RootLayout({
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: Static theme bootstrap with no interpolated user content; must run before first paint. */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <script
+          type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Static JSON-LD from site constants, escaped by jsonLdScript.
+          dangerouslySetInnerHTML={{
+            __html: jsonLdScript([websiteJsonLd(), softwareJsonLd()]),
+          }}
+        />
       </head>
       <body className="min-h-screen font-sans antialiased">
         <ThemeProvider>
