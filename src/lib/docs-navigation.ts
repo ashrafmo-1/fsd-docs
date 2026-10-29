@@ -91,10 +91,9 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
     label: "Resources",
     items: [
       {
-        label: "Upcoming changes",
+        label: "Feature status",
         href: "/docs/release-readiness",
-        description:
-          "Supabase, light hooks, existing-project migration, and release verification.",
+        description: "Which features are stable, in preview, or planned.",
       },
       {
         label: "Releases",

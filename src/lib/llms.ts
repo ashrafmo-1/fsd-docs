@@ -146,7 +146,7 @@ export function getLlmsFull() {
     "",
     "Tagged Skill v2.0.0 implements incremental existing-project migration with a verified synthetic React/Vite browser and rollback pilot. It is not a shipped arbitrary-app CLI migrate command or broad production-app certification. See " +
       absoluteUrl("/docs/release-readiness") +
-      " for contracts and remaining release gates.",
+      " for the status of each feature (stable, preview, planned).",
     "",
     "## Generator workflows (CLI 2.7.0)",
     "",
