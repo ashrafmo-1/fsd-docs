@@ -47,6 +47,46 @@ export default function AuthGeneratorPage() {
 
       <PublishedDocumentationVideo pageKey="/docs/auth-generator" />
 
+      <section
+        aria-labelledby="feature-status"
+        className="mt-8 rounded-2xl border border-hairline p-5"
+      >
+        <h2 id="feature-status" className="text-lg font-semibold text-ink">
+          Feature status
+        </h2>
+        <dl className="mt-4 grid gap-4 text-sm leading-relaxed sm:grid-cols-2">
+          <div>
+            <dt className="flex items-center gap-2 font-semibold text-ink">
+              Auth generator
+              <span className="rounded-full bg-brand-mint/15 px-2 py-0.5 text-xs font-medium text-brand-teal">
+                Stable
+              </span>
+            </dt>
+            <dd className="mt-1 text-body">
+              Forms, validation, state, and example API requests for all five
+              frameworks. The endpoints are placeholders: connect your own
+              backend and review session handling before production.
+            </dd>
+          </div>
+          <div>
+            <dt className="flex items-center gap-2 font-semibold text-ink">
+              Supabase adapter
+              <span className="rounded-full bg-brand-ochre/15 px-2 py-0.5 text-xs font-medium text-[#92600a]">
+                Preview
+              </span>
+            </dt>
+            <dd className="mt-1 text-body">
+              Released in CLI 2.7.0 behind <code>--auth-provider supabase</code>
+              . Generated output builds in all five frameworks; end-to-end
+              checks against a live Supabase project (sign-up confirmation,
+              recovery mail, password reset, refresh and logout, RLS) are still
+              pending. Browser only: SSR cookies and server authorization need
+              your own integration.
+            </dd>
+          </div>
+        </dl>
+      </section>
+
       <section className="mt-10 space-y-4">
         <h2
           id="commands"
