@@ -49,8 +49,9 @@ export default function RecipesPage() {
       <p className="mt-5 max-w-3xl text-lg leading-relaxed text-body">
         Each recipe starts from a generated project and uses only released CLI
         commands. Generated files are scaffolding: the comments marked{" "}
-        <code>{"// your code"}</code> show where your product logic goes. Examples
-        use React + Vite; the commands are the same for every framework.
+        <code>{"// your code"}</code> show where your product logic goes.
+        Examples use React + Vite; the commands are the same for every
+        framework.
       </p>
 
       <Recipe
