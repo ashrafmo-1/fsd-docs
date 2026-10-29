@@ -5,7 +5,7 @@ import { PublishedDocumentationVideo } from "@/components/docs/published-documen
 export const metadata: Metadata = {
   title: "Upcoming changes and release readiness",
   description:
-    "Published CLI 2.6.3 versus upcoming Supabase auth, light Git hooks, and Skill-based existing-project migration.",
+    "CLI 2.7.0 ships Supabase auth, batch and structure-only generation, architecture checks, and light Git hooks; Skill-based existing-project migration remains separate.",
   alternates: { canonical: "/docs/release-readiness" },
 };
 
@@ -19,17 +19,22 @@ export default function ReleaseReadinessPage() {
     <article className="max-w-4xl space-y-10">
       <header>
         <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-brand-coral">
-          Published release update · October 16, 2026
+          Published release update · October 29, 2026
         </p>
         <h1 className="text-4xl font-semibold tracking-[-1.5px] text-ink md:text-5xl">
           Upcoming changes and release readiness
         </h1>
         <p className="mt-5 text-lg leading-relaxed text-body">
-          npm latest is 2.6.3. Releases 2.6.2 and 2.6.3 were published on
-          October 11, 2026. Supabase auth and light hooks are implemented on
-          candidate branches and await review, CI, and release. The migration
+          CLI 2.7.0 was released on October 29, 2026. It ships the Supabase auth
+          adapter, batch and structure-only generation, architecture checks,
+          light hooks, layout widget presets, and shared ui/api generators
+          described below, and requires Node.js 22.12.0 or later. The migration
           pilot belongs to the Agent Skill repository and has its own delivery.
-          See the release archive for the changes in those published artifacts.
+          See the{" "}
+          <a href="/docs/releases/2.7.0" className="text-brand-coral underline">
+            2.7.0 release notes
+          </a>{" "}
+          for the full list.
         </p>
       </header>
 
@@ -123,8 +128,8 @@ node /path/to/cli/bin/index.mjs check --architecture`}
           operations in all five supported frameworks. It writes inside the auth
           slice and does not install an SDK, provision a project, or edit env
           files. Run these commands from the candidate CLI checkout inside a
-          compatible project; the current published npm 2.6.3 package does not
-          support the new flag.
+          compatible project; the flag ships in CLI 2.7.0 and is absent from
+          2.6.3 and earlier.
         </p>
         <CodeBlock
           code={`# Replace /path/to/cli with the reviewed candidate checkout
@@ -224,8 +229,7 @@ HUSKY=0 git commit -m "docs: update guide"`}
           <a href="/docs/upgrade" className="text-brand-coral underline">
             upgrade --dry-run
           </a>{" "}
-          before applying. The current published npm 2.6.3 package does not
-          contain this migration.
+          before applying. This migration ships in CLI 2.7.0.
         </p>
       </section>
 
@@ -287,7 +291,7 @@ HUSKY=0 git commit -m "docs: update guide"`}
         </p>
         <p>
           Nuxt production security findings still block a production-readiness
-          claim. Angular supports read-only inspection in CLI 2.6.3;
+          claim. Angular supports read-only inspection since CLI 2.6.3;
           scaffolding, generation, reconfiguration, and managed upgrades remain
           unsupported. Old React PR2 and PR3 are obsolete and await owner
           closure; they are not release requirements.
