@@ -51,6 +51,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
           "Plan and apply protected migrations to existing projects.",
       },
       {
+        label: "CI/CD",
+        href: "/docs/ci-cd",
+        description: "Quality gates, workflows, hooks, and CLI checks in CI.",
+      },
+      {
         label: "AI Agent Skill",
         href: "/docs/ai-agent-skill",
         description: "Use the stable skill with verified FSD CLI workflows.",
