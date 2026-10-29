@@ -123,7 +123,7 @@
     background-attachment: fixed;
   }
   html {
-    @apply scroll-smooth font-sans;
+    @apply font-sans;
     scroll-padding-top: 5rem;
   }
   ::selection {
@@ -286,14 +286,26 @@
   background-size: 48px 48px;
 }
 
+/* Smooth scrolling is opt-in, so reduced-motion users never get it. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* !important also beats inline styles such as staggered transitionDelay. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    scroll-behavior: auto;
-    animation-duration: 0.01ms;
-    animation-iteration-count: 1;
-    transition-duration: 0.01ms;
+    /* biome-ignore-start lint/complexity/noImportantStyles: a reduced-motion reset must override inline styles and utilities. */
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    /* biome-ignore-end lint/complexity/noImportantStyles: end of the reduced-motion reset. */
   }
 }
 
