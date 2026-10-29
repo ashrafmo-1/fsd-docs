@@ -1,0 +1,130 @@
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+
+<p className="text-lg">
+  The `upgrade` command migrates only configuration and tooling that FSD CLI
+  can prove it owns. It does not clone a new template over your project or
+  rewrite features, entities, widgets, pages, components, styles, routes,
+  environment files, secrets, custom scripts, or Git history.
+</p>
+
+<PublishedDocumentationVideo pageKey="/docs/upgrade" />
+
+## Inspect before applying
+
+Start inside the project root or any nested folder. The CLI locates a reliable
+root containing both `fsd.config.json` and `package.json`, then prints the
+migration path, file plan, conflicts, and validation steps.
+
+```bash
+# Read-only plan with file-level changes
+npx create-fsd-architecture@latest upgrade --dry-run
+
+# Read-only status for local checks or CI
+npx create-fsd-architecture@latest upgrade --check
+```
+
+<p className="text-sm text-body-muted">
+  Both commands are non-mutating: they do not create a manifest, backup, log,
+  lockfile, or temporary project file.
+</p>
+
+## Understand the plan
+
+| Status | Meaning |
+| --- | --- |
+| `CREATE` | A new CLI-owned file will be created. |
+| `UPDATE` | Verified managed content has a safe migration. |
+| `ALREADY_APPLIED` | The current content already matches the target state. |
+| `PRESERVE` | The file or content remains unchanged. |
+| `CONFLICT` | Ownership or content changed, so the CLI refuses to overwrite it. |
+| `MANUAL` | The state needs a developer decision before migration. |
+| `DELETE` | A verified managed regular file will be removed. |
+
+Resolve every `CONFLICT` and `MANUAL` item before applying. `--yes` only skips
+confirmation; it never overrides a conflict. Upgrade intentionally has no
+`--force`, blind adoption, or downgrade mode.
+
+## Apply a safe plan
+
+```bash
+# Review and confirm interactively
+npx create-fsd-architecture@latest upgrade
+
+# Apply a conflict-free plan without a prompt
+npx create-fsd-architecture@latest upgrade --yes
+
+# Skip dependency installation when a migration changes dependencies
+npx create-fsd-architecture@latest upgrade --yes --no-install
+```
+
+The CLI checks planned content again immediately before each write. If a file
+changed after you reviewed the plan, the operation stops rather than applying a
+stale update.
+
+## Ownership manifest
+
+Projects created with 2.6.0 contain `.fsd/manifest.json`. It records
+deterministic SHA-256 hashes for CLI-owned files, precise marker regions, and
+dependency entries. It does not store secrets, environment values, application
+data, or `node_modules`.
+
+Generated Redux reducer registration refreshes its managed hash only when the
+store still matches the recorded state. A user-modified managed file becomes a
+conflict instead of being silently accepted. Unclaimed dependency versions and
+unrelated package metadata stay user-owned.
+
+<h2 id="legacy-projects">Projects created before 2.6.0</h2>
+
+A project without a manifest enters conservative legacy mode. The CLI adopts
+only content matching known released signatures. Customized, missing, or
+ambiguous managed files require manual resolution; business code outside
+CLI-owned surfaces remains untouched.
+
+| Framework | Recognized legacy baseline |
+| --- | --- |
+| React + Vite | 2.3.2 signatures |
+| Next.js | 2.3.2 signatures |
+| Vue + Vite | 2.3.2 signatures |
+| Nuxt | 2.4.0 signatures |
+| SvelteKit | 2.5.0 signatures |
+
+<p className="text-sm text-body-muted">
+  Planning has unit coverage across npm, pnpm, Yarn, and Bun. The normal
+  framework CI continues to build freshly generated projects; it is not a claim
+  that every customized historical project can be migrated automatically.
+</p>
+
+## CI exit codes
+
+```bash
+npx create-fsd-architecture@latest upgrade --check
+```
+
+| Exit code | Meaning |
+| --- | --- |
+| `0` | The project is current. |
+| `2` | A conflict-free upgrade is available. |
+| `3` | Conflicts or manual actions block the upgrade. |
+| `4` | The project state or configuration is invalid or unsupported. |
+
+## Git, backup, and recovery
+
+Applying is refused in a dirty Git worktree by default. After reviewing the
+plan, `--allow-dirty` accepts that risk and uses the same internal
+affected-path backup. The CLI never resets, stashes, commits, switches
+branches, or treats Git as its only backup.
+
+```bash
+npx create-fsd-architecture@latest upgrade --allow-dirty
+```
+
+Before writing, affected regular files and lockfiles are snapshotted under
+`.fsd/backups/`. Writes are atomic and failures roll back in reverse order.
+Successful upgrades remove their temporary backup; failed rollback retains it
+and prints its exact location.
+
+1. Read the complete error and any printed recovery-backup path.
+2. Inspect the restored files before making another attempt.
+3. If installation failed, run your package manager's install command to
+   restore `node_modules`.
+4. Run `upgrade --dry-run` again and resolve remaining conflicts.

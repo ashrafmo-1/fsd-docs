@@ -157,3 +157,18 @@ Apply the migration and provision the administrator allowlist as described in
 [supabase/README.md](supabase/README.md) before using video management.
 The application allowlist and database allowlist must contain the same admin UIDs.
 The SQL migration and permission tests are tracked; no service-role key is needed.
+
+## Writing pages in MDX
+
+Docs content can be written in MDX instead of TSX. Put the content in
+`src/content/docs/<page>.mdx` and keep a small `src/app/docs/<page>/page.tsx`
+that exports `metadata` (title, description, canonical), renders the eyebrow
+and `h1`, and wraps the content in `<MdxContent>`. `/docs/upgrade` is the
+reference example.
+
+- Markdown headings get ids from their text (`rehype-slug`); write
+  `<h2 id="...">` when an existing anchor must stay stable.
+- Fenced code blocks render through `CodeBlock` (copy button included);
+  GitHub-flavored tables, lists, and links are styled by `MdxContent`.
+- Components can be imported and used inline, for example
+  `<PublishedDocumentationVideo pageKey="/docs/upgrade" />`.
