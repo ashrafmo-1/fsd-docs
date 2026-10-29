@@ -81,8 +81,8 @@ export default function CiCdPage() {
           <li>
             <strong className="text-ink">CI</strong>: on pushes to main and on
             pull requests, installs with <code>npm ci</code>, rejects whitespace
-            errors, runs <code>npm run ci</code>, and audits production
-            dependencies.
+            errors, and runs <code>npm run ci</code>. Every template except
+            Next.js also audits production dependencies.
           </li>
           <li>
             <strong className="text-ink">Dependency security</strong> and{" "}
