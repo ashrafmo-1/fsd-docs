@@ -294,7 +294,7 @@ export function Documentation() {
               </p>
               <div className="space-y-3">
                 <CodeBlock code="npm create fsd-architecture@latest" />
-                <CodeBlock code="npx create-fsd-architecture@latest" />
+                <CodeBlock code="npx create-fsd-architecture@latest@latest" />
               </div>
             </div>
 
@@ -307,10 +307,10 @@ export function Documentation() {
                 an existing project.
               </p>
               <CodeBlock
-                code={`npx create-fsd-architecture --generate feature auth
-npx create-fsd-architecture -g entity product
-npx create-fsd-architecture --generate widget navbar
-npx create-fsd-architecture --generate page checkout`}
+                code={`npx create-fsd-architecture@latest --generate feature auth
+npx create-fsd-architecture@latest -g entity product
+npx create-fsd-architecture@latest --generate widget navbar
+npx create-fsd-architecture@latest --generate page checkout`}
               />
             </div>
           </div>
