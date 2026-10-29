@@ -55,6 +55,15 @@ export default async function GettingStartedPage() {
         </p>
         <CodeBlock code="npm create fsd-architecture@latest" />
         <CodeBlock code="npx create-fsd-architecture@latest" />
+        <p className="text-base leading-relaxed text-body">
+          Since CLI 2.7.1 you can install it once and use the shorter{" "}
+          <code>fsd</code> command, which is the same CLI.
+        </p>
+        <CodeBlock
+          code={`npm install -g create-fsd-architecture
+fsd create my-app
+fsd g entity product`}
+        />
       </section>
 
       <section className="mt-10">

@@ -15,10 +15,53 @@ export type CliRelease = {
 
 export const CLI_RELEASES: CliRelease[] = [
   {
-    version: "2.7.0",
+    version: "2.7.1",
     date: "2026-10-29",
     dateLabel: "October 29, 2026",
     status: "latest",
+    summary:
+      "A small update on 2.7: the global fsd command, home/about/consult page presets, fixes for upgrading projects created before 2.6.1, and templates pinned to their security-fixed main commits.",
+    frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
+    sections: [
+      {
+        title: "Added",
+        items: [
+          "A global fsd command next to create-fsd-architecture: fsd create scaffolds a project and fsd generate (alias fsd g) generates slices. Install it with npm install -g create-fsd-architecture. The flag forms keep working.",
+          "Page presets: -g page home about consult generates a hero page, an about page with values, and a consultation form with an onSubmit callback on all five frameworks. Other page names keep the placeholder, and every page is routed.",
+          "A historical upgrade E2E in CI that creates projects with 2.3.2, 2.4.0, 2.5.0, 2.6.0 and 2.6.3, then checks, upgrades, installs and builds them.",
+          "Live acceptance of the Supabase auth adapter on an isolated staging project: 15/15 checks for sessions, refresh, logout revocation, RLS, recovery, code reuse and expiry.",
+        ],
+      },
+      {
+        title: "Changed",
+        items: [
+          "All five templates are pinned to their main commits after the October 29 security merges. New Nuxt projects no longer carry critical production advisories, and templates ship CodeQL, Dependabot and dependency-security workflows.",
+          "A first argument of create, generate or g is now a subcommand. To name a project create, run fsd create create.",
+        ],
+      },
+      {
+        title: "Fixed",
+        items: [
+          "Projects created before 2.6.1 no longer conflict on fsd-stack.ts during upgrade: the old documentation domain rendering is recognized and updated.",
+          "A managed dependency raised above the CLI's value, for example by Dependabot, no longer blocks upgrade; the newer range is kept.",
+          "Generated-file updates on a current-state manifest record their new hashes instead of failing validation.",
+        ],
+      },
+      {
+        title: "Compatibility",
+        items: [
+          "No CLI runtime or dependency changes: Node.js 22.12.0 or later, as in 2.7.0.",
+          "The five supported scaffolding frameworks remain React + Vite, Next.js, Vue + Vite, Nuxt, and SvelteKit. Angular stays inspection-only.",
+          "Vue and Nuxt templates carry a time-limited exception for zod GHSA-mrhx-c7xc-m3w5 (via @vee-validate/zod, which supports only zod 3), reviewed by November 29, 2026.",
+        ],
+      },
+    ],
+  },
+  {
+    version: "2.7.0",
+    date: "2026-10-29",
+    dateLabel: "October 29, 2026",
+    status: "stable",
     summary:
       "Enforce a verified Node.js 22.12 runtime contract and add the Supabase auth adapter, batch and structure-only generation, architecture checks, layout widget presets, and shared ui/api generators.",
     frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
