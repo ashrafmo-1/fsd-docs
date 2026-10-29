@@ -13,12 +13,13 @@ export function DocsSidebar() {
       <nav aria-label="Documentation" className="space-y-6">
         {DOCS_NAVIGATION.map((group) => (
           <section key={group.label} aria-labelledby={`docs-${group.label}`}>
-            <h2
+            {/* A label, not a heading: the sidebar precedes the page's h1. */}
+            <p
               id={`docs-${group.label}`}
               className="mb-3 px-3 text-sm font-extrabold uppercase tracking-[1px] text-ink"
             >
               {group.label}
-            </h2>
+            </p>
             <ul className="grid grid-cols-2 gap-1 lg:grid-cols-1">
               {group.items.map((link) => {
                 const active =

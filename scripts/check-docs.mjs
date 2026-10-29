@@ -16,6 +16,27 @@ for (const path of paths) {
   pages.set(path, await response.text());
 }
 
+// One h1 that comes first, and no skipped heading levels.
+for (const [path, html] of pages) {
+  const levels = [
+    ...html
+      .replace(/<script[\s\S]*?<\/script>/g, "")
+      .matchAll(/<h([1-6])[\s>]/g),
+  ].map((match) => Number(match[1]));
+  assert.equal(levels[0], 1, `${path}: first heading is h1`);
+  assert.equal(
+    levels.filter((level) => level === 1).length,
+    1,
+    `${path}: one h1`,
+  );
+  for (let i = 1; i < levels.length; i++) {
+    assert(
+      levels[i] <= levels[i - 1] + 1,
+      `${path}: h${levels[i - 1]} -> h${levels[i]}`,
+    );
+  }
+}
+
 const robotsResponse = await fetch(`${origin}/robots.txt`);
 assert.equal(robotsResponse.status, 200, "robots.txt");
 const robots = await robotsResponse.text();
