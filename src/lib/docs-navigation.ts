@@ -23,6 +23,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
         href: "/docs/getting-started",
         description: "Create a complete FSD project.",
       },
+      {
+        label: "Compatibility",
+        href: "/docs/compatibility",
+        description: "Node.js and package manager requirements.",
+      },
     ],
   },
   {
