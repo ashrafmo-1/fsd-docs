@@ -155,6 +155,88 @@ npm run ci`}
           </a>
         </div>
       </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="what-each-generator-writes"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          What each generator writes
+        </h2>
+        <p className="text-base leading-relaxed text-body">
+          Output from <code>--dry-run</code> in a project with the Vue defaults
+          (Axios, Vue Query, Pinia, VeeValidate + Zod). Every slice gets an{" "}
+          <code>index.ts</code> public API.
+        </p>
+        <CodeBlock
+          language="text"
+          code={`-g feature checkout
+  src/features/checkout/model/checkout.types.ts
+  src/features/checkout/model/checkout.store.ts     # Pinia store
+  src/features/checkout/ui/CheckoutView.vue
+  src/features/checkout/api/checkout.api.ts
+  src/features/checkout/api/checkout.query.ts       # Vue Query composables
+  src/features/checkout/lib/checkout.keys.ts        # query keys
+  src/features/checkout/lib/checkout.helpers.ts
+  src/features/checkout/index.ts
+
+-g entity product
+  src/entities/product/model/product.types.ts
+  src/entities/product/ui/ProductCard.vue
+  src/entities/product/index.ts
+
+-g widget product-list
+  src/widgets/product-list/ui/ProductList.vue
+  src/widgets/product-list/index.ts
+
+-g page catalog
+  src/pages/catalog/ui/CatalogPage.vue
+  src/pages/catalog/index.ts
+  src/app/routing/index.ts                          # route registered (updated)`}
+        />
+        <p className="text-base leading-relaxed text-body">
+          Components are single-file components in PascalCase. Pages are added
+          to the Vue Router config between the CLI&apos;s marker comments, so
+          your own routes outside those markers are never touched.
+        </p>
+      </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="capabilities-change-the-output"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          Capabilities change the output
+        </h2>
+        <p className="text-base leading-relaxed text-body">
+          Generators read <code>fsd.config.json</code> and only write what the
+          selected stack needs. With <code>serverState: "none"</code>, features
+          skip the API module, <code>*.query.ts</code>, and the query keys. With{" "}
+          <code>clientState: "none"</code>, they skip the Pinia store. With{" "}
+          <code>forms: "none"</code>, auth skips the VeeValidate + Zod schemas.
+          Choose at creation time with flags such as{" "}
+          <code>--server-state none</code>, or edit the config later; existing
+          slices are not rewritten.
+        </p>
+      </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="auth-in-vue"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          Auth in Vue
+        </h2>
+        <p className="text-base leading-relaxed text-body">
+          <code>-g feature auth</code> writes five flows (login, register,
+          forgot password, reset password, verify code). Each gets an API module
+          and a Zod schema, plus a <code>LoginForm.vue</code>-style component;
+          the slice also shares a Pinia store, Vue Query composables, and query
+          keys. Add <code>--auth-provider supabase</code> to also write the
+          Supabase adapter (<code>api/supabase.ts</code>) and a{" "}
+          <code>SUPABASE.md</code> setup note.
+        </p>
+      </section>
     </article>
   );
 }

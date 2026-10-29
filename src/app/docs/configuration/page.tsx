@@ -232,6 +232,108 @@ export default function ConfigurationPage() {
           <code>--yes</code> is applied.
         </p>
       </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="defaults-by-framework"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          Defaults by framework
+        </h2>
+        <div className="overflow-x-auto rounded-2xl border border-hairline">
+          <table className="w-full min-w-[640px] text-left text-sm">
+            <thead className="bg-surface-soft text-ink">
+              <tr>
+                <th className="px-4 py-3 font-semibold">Framework</th>
+                <th className="px-4 py-3 font-semibold">apiClient</th>
+                <th className="px-4 py-3 font-semibold">serverState</th>
+                <th className="px-4 py-3 font-semibold">clientState</th>
+                <th className="px-4 py-3 font-semibold">forms</th>
+              </tr>
+            </thead>
+            <tbody className="font-mono text-xs">
+              {[
+                [
+                  "react-vite",
+                  "axios",
+                  "react-query",
+                  "zustand | redux",
+                  "react-hook-form-zod",
+                ],
+                [
+                  "nextjs",
+                  "axios",
+                  "react-query",
+                  "zustand | redux",
+                  "react-hook-form-zod",
+                ],
+                ["vue-vite", "axios", "vue-query", "pinia", "vee-validate-zod"],
+                ["nuxt", "fetch", "vue-query", "pinia", "vee-validate-zod"],
+                [
+                  "sveltekit",
+                  "fetch",
+                  "svelte-query",
+                  "svelte-store",
+                  "sveltekit-superforms-zod",
+                ],
+              ].map(([framework, api, server, client, forms]) => (
+                <tr key={framework} className="border-t border-hairline">
+                  <td className="px-4 py-3 font-semibold text-ink">
+                    {framework}
+                  </td>
+                  <td className="px-4 py-3">{api}</td>
+                  <td className="px-4 py-3">{server}</td>
+                  <td className="px-4 py-3">{client}</td>
+                  <td className="px-4 py-3">{forms}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-base leading-relaxed text-body">
+          The first value is the default that <code>--yes</code> picks. Every
+          framework also accepts <code>axios</code> or <code>fetch</code> for
+          the API client, and <code>none</code> for server state, client state,
+          and forms. React and Next.js additionally accept <code>redux</code>{" "}
+          for client state.
+        </p>
+      </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="override-at-creation"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          Override at creation
+        </h2>
+        <CodeBlock
+          language="bash"
+          code={`npx create-fsd-architecture@latest my-app --framework nextjs --yes \\
+  --api-client fetch --client-state redux --package-manager pnpm`}
+        />
+        <p className="text-base leading-relaxed text-body">
+          Any option you pass skips its wizard question; the rest use the
+          framework defaults above. The CLI rejects combinations the framework
+          cannot use before writing anything.
+        </p>
+      </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="change-it-later"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          Change it later
+        </h2>
+        <p className="text-base leading-relaxed text-body">
+          Edit <code>fsd.config.json</code> and install the matching packages
+          yourself; the next generator run follows the new values. Slices that
+          already exist are not rewritten, so a project can briefly mix styles
+          while you migrate. Run{" "}
+          <code>npx create-fsd-architecture@latest config</code> to print the
+          resolved configuration.
+        </p>
+      </section>
     </article>
   );
 }

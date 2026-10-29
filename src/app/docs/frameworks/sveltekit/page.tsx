@@ -169,6 +169,86 @@ npm run ci`}
           View the SvelteKit starter on GitHub
         </a>
       </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="what-each-generator-writes"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          What each generator writes
+        </h2>
+        <p className="text-base leading-relaxed text-body">
+          Output from <code>--dry-run</code> in a project with the SvelteKit
+          defaults (Fetch, Svelte Query, Svelte stores, Superforms + Zod). Every
+          slice gets an <code>index.ts</code> public API.
+        </p>
+        <CodeBlock
+          language="text"
+          code={`-g feature checkout
+  src/features/checkout/model/checkout.types.ts
+  src/features/checkout/model/checkout.store.ts     # Svelte store
+  src/features/checkout/ui/CheckoutView.svelte
+  src/features/checkout/api/checkout.api.ts
+  src/features/checkout/api/checkout.query.ts       # Svelte Query
+  src/features/checkout/lib/checkout.keys.ts        # query keys
+  src/features/checkout/index.ts
+
+-g entity product
+  src/entities/product/model/product.types.ts
+  src/entities/product/ui/ProductCard.svelte
+  src/entities/product/index.ts
+
+-g widget product-list
+  src/widgets/product-list/ui/ProductList.svelte
+  src/widgets/product-list/index.ts
+
+-g page catalog
+  src/pages/catalog/ui/CatalogPage.svelte
+  src/pages/catalog/index.ts
+  src/routes/catalog/+page.svelte                   # route file (created/updated)`}
+        />
+        <p className="text-base leading-relaxed text-body">
+          SvelteKit routing is file-based, so a page slice also gets a thin{" "}
+          <code>src/routes/&lt;name&gt;/+page.svelte</code> that renders the
+          page through the <code>$pages</code> alias. Route logic such as{" "}
+          <code>+page.ts</code> loaders stays yours to add next to it.
+        </p>
+      </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="capabilities-change-the-output"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          Capabilities change the output
+        </h2>
+        <p className="text-base leading-relaxed text-body">
+          Generators read <code>fsd.config.json</code>. With{" "}
+          <code>serverState: "none"</code>, features skip the API module, the
+          Svelte Query module, and the keys; with{" "}
+          <code>clientState: "none"</code>, they skip the store; with{" "}
+          <code>forms: "none"</code>, auth skips the Superforms + Zod schemas.
+          Existing slices are never rewritten when you change the config.
+        </p>
+      </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="auth-in-sveltekit"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          Auth in SvelteKit
+        </h2>
+        <p className="text-base leading-relaxed text-body">
+          <code>-g feature auth</code> writes five flows (login, register,
+          forgot password, reset password, verify code), each with an API
+          module, a Zod schema, and a <code>LoginForm.svelte</code>-style
+          component, plus a shared store, Svelte Query module, and keys.{" "}
+          <code>--auth-provider supabase</code> adds the browser adapter (
+          <code>api/supabase.ts</code>) and a <code>SUPABASE.md</code> setup
+          note.
+        </p>
+      </section>
     </article>
   );
 }
