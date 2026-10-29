@@ -3,13 +3,14 @@
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { DOCS_NAV_ITEMS } from "@/lib/docs-navigation";
+import { DOCS_NAV_ITEMS, getDocsGroup } from "@/lib/docs-navigation";
 
 export function DocsBreadcrumbs() {
   const pathname = usePathname();
   const releaseVersion = pathname.match(/^\/docs\/releases\/([^/]+)$/)?.[1];
   const page = DOCS_NAV_ITEMS.find((item) => item.href === pathname);
   const label = releaseVersion ? `v${releaseVersion}` : page?.label;
+  const group = getDocsGroup(pathname);
 
   if (pathname === "/docs") return null;
 
@@ -21,6 +22,14 @@ export function DocsBreadcrumbs() {
             Docs
           </Link>
         </li>
+        {group && (
+          <>
+            <li aria-hidden="true">
+              <ChevronRight className="h-3.5 w-3.5" />
+            </li>
+            <li>{group.label}</li>
+          </>
+        )}
         {releaseVersion && (
           <>
             <li aria-hidden="true">
