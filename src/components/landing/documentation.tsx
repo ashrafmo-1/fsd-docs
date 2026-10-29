@@ -28,7 +28,7 @@ function CopyButton({ text }: { text: string }) {
     <button
       type="button"
       onClick={handleCopy}
-      className="absolute right-3 top-3 rounded-md p-1.5 text-white/30 transition-colors hover:text-white/60"
+      className="absolute right-2 top-2 inline-flex h-8 w-8 items-center justify-center rounded-md text-white/30 transition-colors hover:text-white/60"
       aria-label="Copy code"
     >
       {copied ? (

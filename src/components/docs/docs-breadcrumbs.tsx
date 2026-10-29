@@ -17,7 +17,10 @@ export function DocsBreadcrumbs() {
     <nav aria-label="Breadcrumb" className="mb-8">
       <ol className="flex flex-wrap items-center gap-1.5 text-sm text-body-muted">
         <li>
-          <Link href="/docs" className="transition-colors hover:text-ink">
+          <Link
+            href="/docs"
+            className="inline-flex min-h-6 items-center transition-colors hover:text-ink"
+          >
             Docs
           </Link>
         </li>
@@ -29,7 +32,7 @@ export function DocsBreadcrumbs() {
             <li>
               <Link
                 href="/docs/releases"
-                className="transition-colors hover:text-ink"
+                className="inline-flex min-h-6 items-center transition-colors hover:text-ink"
               >
                 Releases
               </Link>
