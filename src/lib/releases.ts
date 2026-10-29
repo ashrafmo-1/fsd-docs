@@ -50,6 +50,7 @@ export const CLI_RELEASES: CliRelease[] = [
       {
         title: "Compatibility",
         items: [
+          "Published to npm on October 29, 2026 from gitHead 287b61fc742d49e37b9c41f7c759aa1486b275d2 (integrity sha512-FNrVVa+ZrPKRSoeknRAXWh410/9GF8smyAj+LuM8c9F+x4EU8QY4/7WdLAOGHWDQ3B8Ries1IaQYrN4Rr6djWw==), tagged v2.7.1.",
           "No CLI runtime or dependency changes: Node.js 22.12.0 or later, as in 2.7.0.",
           "The five supported scaffolding frameworks remain React + Vite, Next.js, Vue + Vite, Nuxt, and SvelteKit. Angular stays inspection-only.",
           "Vue and Nuxt templates carry a time-limited exception for zod GHSA-mrhx-c7xc-m3w5 (via @vee-validate/zod, which supports only zod 3), reviewed by November 29, 2026.",
