@@ -306,6 +306,61 @@ pages/checkout/`}
 
       <section className="mt-10">
         <h2
+          id="widget-presets"
+          className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
+        >
+          Layout widget presets
+        </h2>
+        <p className="mb-4 text-base leading-relaxed text-body">
+          Since CLI 2.7.0, the widget names <code>navbar</code>,{" "}
+          <code>sidebar</code>, <code>footer</code>, and <code>bottom-bar</code>{" "}
+          generate accessible layout components instead of an empty placeholder.
+          Links come from an <code>items</code> prop; navbar and footer also
+          accept a <code>brand</code> prop. Next.js uses <code>next/link</code>,
+          Nuxt uses <code>NuxtLink</code>, and SvelteKit resolves typed
+          pathnames. Vue presets are named <code>AppNavbar</code>,{" "}
+          <code>AppSidebar</code>, <code>AppFooter</code>, and{" "}
+          <code>AppBottomBar</code>.
+        </p>
+        <CodeBlock code="npx create-fsd-architecture --generate widget navbar sidebar footer bottom-bar" />
+        <p className="mt-4 text-base leading-relaxed text-body">
+          Styling, icons, active-route state, and mounting the widget in a
+          layout stay with your project. Any other widget name keeps the generic
+          placeholder.
+        </p>
+      </section>
+
+      <section className="mt-10">
+        <h2
+          id="shared-layer"
+          className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
+        >
+          Shared ui and api
+        </h2>
+        <p className="mb-4 text-base leading-relaxed text-body">
+          Since CLI 2.7.0, <code>shared ui</code> creates unstyled{" "}
+          <code>button</code>, <code>input</code>, <code>label</code>, and{" "}
+          <code>card</code> primitives, and <code>shared api</code> creates{" "}
+          <code>shared/api/client.ts</code> exporting <code>apiClient</code> for
+          the configured Axios or fetch client (Nuxt uses <code>$fetch</code>{" "}
+          with <code>runtimeConfig.public.apiBase</code>).
+        </p>
+        <div className="space-y-4">
+          <CodeBlock code="npx create-fsd-architecture --generate shared ui" />
+          <CodeBlock code="npx create-fsd-architecture --generate shared ui button input" />
+          <CodeBlock code="npx create-fsd-architecture --generate shared api --dry-run" />
+        </div>
+        <p className="mt-4 text-base leading-relaxed text-body">
+          Existing files are never overwritten. They are reported as{" "}
+          <code>KEEP</code>, and only exports for newly created files are added
+          to the segment <code>index.ts</code>. Starter templates already ship a
+          shared API client, so on a new project these commands mainly fill
+          gaps. <code>--force</code> is refused.
+        </p>
+      </section>
+
+      <section className="mt-10">
+        <h2
           id="feature-preset-examples"
           className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
         >

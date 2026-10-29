@@ -49,7 +49,7 @@ export default async function GettingStartedPage() {
           Requirements
         </h2>
         <p className="text-base leading-relaxed text-body">
-          Use Node.js 20 or later for the CLI. Nuxt and SvelteKit projects
+          Use Node.js 22.12.0 or later for the CLI. Nuxt and SvelteKit projects
           require Node.js 22.22.2 or later. Run one of the commands below from
           the directory that should contain the new project.
         </p>
