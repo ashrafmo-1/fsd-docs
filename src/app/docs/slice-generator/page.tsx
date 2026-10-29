@@ -332,6 +332,29 @@ pages/checkout/`}
 
       <section className="mt-10">
         <h2
+          id="page-presets"
+          className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
+        >
+          Page presets
+        </h2>
+        <p className="mb-4 text-base leading-relaxed text-body">
+          Since CLI 2.7.1, the page names <code>home</code>, <code>about</code>,
+          and <code>consult</code> generate sample page content: a hero with
+          highlights, an about section with values, and a consultation form with
+          name, email, and message. The consult page calls an optional{" "}
+          <code>onSubmit</code> callback (Vue emits <code>submit</code>, Svelte
+          takes <code>onsubmit</code>) and sends nothing by itself. Every page,
+          preset or custom, is registered in the framework&apos;s routes.
+        </p>
+        <CodeBlock code="npx create-fsd-architecture --generate page about consult" />
+        <p className="mt-4 text-base leading-relaxed text-body">
+          Starter templates already include a home page, so{" "}
+          <code>-g page home</code> needs <code>--force</code> there.
+        </p>
+      </section>
+
+      <section className="mt-10">
+        <h2
           id="shared-layer"
           className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
         >
