@@ -91,6 +91,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
     label: "Resources",
     items: [
       {
+        label: "Recipes",
+        href: "/docs/recipes",
+        description: "End-to-end examples for common tasks.",
+      },
+      {
         label: "Upcoming changes",
         href: "/docs/release-readiness",
         description:
