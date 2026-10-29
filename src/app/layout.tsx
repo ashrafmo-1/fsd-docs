@@ -52,7 +52,14 @@ export const metadata: Metadata = {
     "TypeScript",
     "code generator",
   ],
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": [
+        { url: "/docs/releases/feed.xml", title: "FSD CLI releases" },
+      ],
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
