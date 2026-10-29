@@ -91,6 +91,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
     label: "Resources",
     items: [
       {
+        label: "Troubleshooting",
+        href: "/docs/troubleshooting",
+        description: "CLI error messages with cause and fix.",
+      },
+      {
         label: "Upcoming changes",
         href: "/docs/release-readiness",
         description:
