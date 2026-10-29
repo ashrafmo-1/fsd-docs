@@ -9,7 +9,11 @@ export default function DashboardError({
   reset: () => void;
 }) {
   return (
-    <main className="grid min-h-screen place-items-center px-6 py-16">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="outline-none grid min-h-screen place-items-center px-6 py-16"
+    >
       <div className="w-full max-w-xl text-center">
         <h1 className="text-4xl font-semibold tracking-[-0.04em] text-ink">
           Dashboard unavailable

@@ -16,6 +16,12 @@ for (const path of paths) {
   pages.set(path, await response.text());
 }
 
+// Every page offers a skip link whose target exists.
+for (const [path, html] of pages) {
+  assert(html.includes('href="#main-content"'), `${path}: skip link`);
+  assert(html.includes('id="main-content"'), `${path}: skip link target`);
+}
+
 const robotsResponse = await fetch(`${origin}/robots.txt`);
 assert.equal(robotsResponse.status, 200, "robots.txt");
 const robots = await robotsResponse.text();
