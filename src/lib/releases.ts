@@ -15,10 +15,59 @@ export type CliRelease = {
 
 export const CLI_RELEASES: CliRelease[] = [
   {
+    version: "2.7.0",
+    date: "2026-10-29",
+    dateLabel: "October 29, 2026",
+    status: "latest",
+    summary:
+      "Enforce a verified Node.js 22.12 runtime contract and add the Supabase auth adapter, batch and structure-only generation, architecture checks, layout widget presets, and shared ui/api generators.",
+    frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
+    sections: [
+      {
+        title: "Added",
+        items: [
+          "Layout widget presets: -g widget navbar sidebar footer bottom-bar generates accessible header, sidebar, footer, and bottom navigation widgets driven by an items prop. Next.js uses next/link, Nuxt uses NuxtLink, and SvelteKit resolves typed pathnames.",
+          "Shared layer generators: -g shared ui [button input label card] creates unstyled primitives and -g shared api creates an apiClient for the configured Axios or fetch client. Existing files are kept and only missing index.ts exports are added.",
+          "Opt-in Supabase browser auth adapter with -g feature auth --auth-provider supabase, including session, error, and recovery handling. The default auth contract is unchanged.",
+          "Batch generation such as -g entity product customer, with preflight checks and rollback of the whole batch.",
+          "Structure-only generation with --segments and --root that creates missing directories and public APIs without overwriting existing files.",
+          "check --architecture and doctor --architecture run the project's installed Steiger against its framework source root.",
+          "A light Git hooks upgrade migration (light-hooks-v1) that keeps customized hooks as conflicts.",
+        ],
+      },
+      {
+        title: "Changed",
+        items: [
+          "The CLI requires Node.js 22.12.0 or later, the lowest version that runs the CLI and every shipped Vite-based template.",
+          "Generated Nuxt projects require Node.js ^22.22.2 || ^24.11.0 || >=26.0.0 and SvelteKit projects require ^22.22.2 || >=24.0.0. React, Vue, and Next.js follow the CLI floor.",
+          "Supported package manager minimums are npm 10.9.0, pnpm 10.26.0, Yarn 4.18.0, and Bun 1.2.0.",
+        ],
+      },
+      {
+        title: "Fixed",
+        items: [
+          "engines.node now matches the resolved dependency tree; it previously declared Node 20 while Chalk 6 requires Node 22.",
+          "doctor evaluates the published runtime ranges, names the exact required version on failure, and compares the installed package manager version against its minimum.",
+          "Project creation refuses an unsupported runtime before downloading or writing anything.",
+          "The .fsd/manifest.json migrations list wraps past 80 columns so Biome accepts it in generated Next.js projects.",
+        ],
+      },
+      {
+        title: "Compatibility",
+        items: [
+          "Breaking: Node.js 20 is no longer supported by the CLI. Upgrade to Node.js 22.12.0 or later before installing 2.7.0.",
+          "Released October 29, 2026 from merge commit 561d7d94b5a20179e2246d216d4fc80e9236d4ae, tagged v2.7.0.",
+          "The five supported scaffolding frameworks remain React + Vite, Next.js, Vue + Vite, Nuxt, and SvelteKit. Angular stays inspection-only.",
+          "Supabase staging end-to-end checks, SSR authorization, and RLS remain application responsibilities.",
+        ],
+      },
+    ],
+  },
+  {
     version: "2.6.3",
     date: "2026-10-11",
     dateLabel: "October 11, 2026",
-    status: "latest",
+    status: "stable",
     summary:
       "Refresh verified template pins, add read-only Angular inspection, and restore the Node 20-compatible Chalk runtime contract.",
     frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],

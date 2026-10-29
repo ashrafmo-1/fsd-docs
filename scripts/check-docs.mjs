@@ -87,19 +87,19 @@ for (const framework of ["react", "nextjs", "vue", "nuxt", "sveltekit"]) {
   }
 }
 assert(releases.length > 0, "release archive must not be empty");
-for (const version of ["2.6.3", "2.6.2", "2.6.1"]) {
+for (const version of ["2.7.0", "2.6.3", "2.6.2", "2.6.1"]) {
   assert(
     releases.includes(`/docs/releases/${version}`),
     `${version}: release in sitemap`,
   );
 }
 assert(
-  /Version(?:\s|<!-- -->)*2\.6\.3/.test(pages.get("/docs")),
+  /Version(?:\s|<!-- -->)*2\.7\.0/.test(pages.get("/docs")),
   "documentation introduction shows the current release",
 );
 for (const path of ["/", "/docs/releases"]) {
   assert(
-    pages.get(path).includes('href="/docs/releases/2.6.3"'),
+    pages.get(path).includes('href="/docs/releases/2.7.0"'),
     `${path}: current release link`,
   );
 }
