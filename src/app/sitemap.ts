@@ -6,6 +6,7 @@ import { siteConfig } from "@/lib/site";
 const routes = [
   "",
   "/architecture",
+  "/ar",
   "/capabilities",
   ...DOCS_NAV_ITEMS.map((item) => item.href),
   ...CLI_RELEASES.map((release) => `/docs/releases/${release.version}`),
