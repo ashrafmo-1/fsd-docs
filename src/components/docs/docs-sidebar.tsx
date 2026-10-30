@@ -23,7 +23,8 @@ export function DocsSidebar() {
       <nav aria-label="Documentation" className="space-y-6">
         {DOCS_NAVIGATION.map((group) => (
           <section key={group.label} aria-labelledby={`docs-${group.label}`}>
-            <h2
+            {/* A label, not a heading: the sidebar precedes the page's h1. */}
+            <p
               id={`docs-${group.label}`}
               className="mb-3 text-sm font-extrabold uppercase tracking-[1px] text-ink"
             >
@@ -48,7 +49,7 @@ export function DocsSidebar() {
                   )}
                 />
               </button>
-            </h2>
+            </p>
             <ul
               id={`docs-${group.label}-items`}
               hidden={!isOpen(group.label)}
