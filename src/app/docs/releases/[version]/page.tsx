@@ -34,6 +34,30 @@ export default async function ReleasePage({ params }: Props) {
         Release {version}
       </h1>
       <p className="mt-5 text-lg leading-8">{release.summary}</p>
+      {release.status === "legacy" ? (
+        <div
+          role="note"
+          className="mt-6 rounded-2xl border border-brand-coral/30 bg-brand-peach/50 p-5 text-sm leading-relaxed text-body"
+        >
+          <p className="font-semibold text-ink">
+            This release is no longer maintained
+          </p>
+          <p className="mt-1">
+            It does not receive fixes. Create new projects with{" "}
+            <Link
+              href={`/docs/releases/${CLI_RELEASES[0].version}`}
+              className="text-brand-coral underline"
+            >
+              v{CLI_RELEASES[0].version}
+            </Link>
+            , and move existing ones with the{" "}
+            <Link href="/docs/upgrade" className="text-brand-coral underline">
+              safe upgrade guide
+            </Link>
+            .
+          </p>
+        </div>
+      ) : null}
       <div className="mt-5 flex flex-wrap gap-4 text-sm font-medium text-brand-coral">
         <a
           href={`https://www.npmjs.com/package/create-fsd-architecture/v/${version}`}

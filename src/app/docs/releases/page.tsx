@@ -13,7 +13,14 @@ export const metadata: Metadata = {
   title: "Releases",
   description:
     "FSD CLI npm releases and independent Agent Skill tagged release history.",
-  alternates: { canonical: "/docs/releases" },
+  alternates: {
+    canonical: "/docs/releases",
+    types: {
+      "application/rss+xml": [
+        { url: "/docs/releases/feed.xml", title: "FSD CLI releases" },
+      ],
+    },
+  },
 };
 
 export default function ReleasesPage() {
@@ -26,6 +33,30 @@ export default function ReleasesPage() {
       <p className="mt-5 text-lg text-body">
         Explore CLI npm versions and Agent Skill releases. Choose a tab to view
         its release history and compatibility notes.
+      </p>
+      <p className="mt-3 text-sm text-body-muted">
+        Get notified about new versions:{" "}
+        <a
+          href="/docs/releases/feed.xml"
+          className="text-brand-coral underline"
+          type="application/rss+xml"
+        >
+          RSS feed
+        </a>
+        {" · "}
+        <a
+          href={`${siteConfig.repositories.cli}/releases`}
+          className="text-brand-coral underline"
+        >
+          GitHub releases
+        </a>
+        {" · "}
+        <a
+          href={`${siteConfig.repositories.cli}/blob/main/docs/CHANGELOG.md`}
+          className="text-brand-coral underline"
+        >
+          full changelog
+        </a>
       </p>
       <PublishedDocumentationVideo pageKey="/docs/releases" />
 
@@ -78,18 +109,19 @@ export default function ReleasesPage() {
               CLI version 1 archive
             </h2>
             <p className="mt-3">
-              These published versions predate the maintained changelog. Package
-              history is available on npm.
+              These published versions predate the maintained changelog, so they
+              have no release notes here. Each links to its npm page. They are
+              unsupported; create new projects with the latest release.
             </p>
             <ul className="mt-4 space-y-3">
               {LEGACY_NPM_VERSIONS.map((release) => (
                 <li key={release.version}>
-                  <Link
+                  <a
                     className="font-medium text-brand-coral underline"
-                    href={`/docs/releases/${release.version}`}
+                    href={`https://www.npmjs.com/package/create-fsd-architecture/v/${release.version}`}
                   >
                     v{release.version}
-                  </Link>{" "}
+                  </a>{" "}
                   · {release.date}
                 </li>
               ))}

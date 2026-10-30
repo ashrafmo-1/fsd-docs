@@ -205,7 +205,7 @@ export default function DocsPage() {
               slices.
             </p>
             <div className="mt-4">
-              <CodeBlock code="npx create-fsd-architecture --generate feature auth" />
+              <CodeBlock code="npx create-fsd-architecture@latest --generate feature auth" />
             </div>
           </div>
         </div>
