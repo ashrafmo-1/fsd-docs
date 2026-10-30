@@ -36,6 +36,17 @@ function AnimatedCount({ value }: { value: number }) {
       cancelAnimationFrame(frame);
       element.textContent = numberFormat.format(value);
     };
+    // Never replace a number the reader can already see: if it is on screen
+    // at load (or motion is reduced), keep the server-rendered final value.
+    const rect = element.getBoundingClientRect();
+    const visibleAtLoad = rect.top < window.innerHeight && rect.bottom > 0;
+    if (visibleAtLoad || media.matches) {
+      hasAnimated.current = true;
+      finish();
+      return;
+    }
+    // Off screen: start from zero now, before it scrolls into view.
+    element.textContent = "0";
     const play = () => {
       if (hasAnimated.current) return;
       hasAnimated.current = true;
@@ -44,7 +55,6 @@ function AnimatedCount({ value }: { value: number }) {
         return;
       }
       const start = performance.now();
-      element.textContent = "0";
       const tick = (now: number) => {
         const progress = Math.min(1, (now - start) / 1600);
         element.textContent = numberFormat.format(
@@ -79,7 +89,13 @@ function AnimatedCount({ value }: { value: number }) {
   }, [value]);
   return (
     <>
-      <span ref={ref} aria-hidden="true">
+      <span
+        ref={ref}
+        aria-hidden="true"
+        className="inline-block tabular-nums"
+        // Reserve the final width so counting never shifts the layout.
+        style={{ minWidth: `${numberFormat.format(value).length}ch` }}
+      >
         {numberFormat.format(value)}
       </span>
       <span className="sr-only">{numberFormat.format(value)}</span>

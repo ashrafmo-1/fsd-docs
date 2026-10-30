@@ -578,6 +578,11 @@ export const CLI_RELEASES: CliRelease[] = [
   },
 ];
 
+/** The npm `latest` release; pages read the current version from here. */
+export const LATEST_CLI_RELEASE =
+  CLI_RELEASES.find((release) => release.status === "latest") ??
+  CLI_RELEASES[0];
+
 // 1.0.x predates the maintained changelog. These versions get no release page
 // (there are no notes to show); the archive links each one to npm instead.
 export const LEGACY_NPM_VERSIONS = [
@@ -613,7 +618,7 @@ export const SKILL_RELEASES = [
     version: "2.0.0",
     status: "stable",
     summary:
-      "Stable release of the documented v2 workflows and read-only helpers. Preserves explicit limits for live Supabase and broader provider/framework migration coverage; CLI npm baseline remains 2.6.1.",
+      "Stable release of the documented v2 workflows and read-only helpers. Preserves explicit limits for live Supabase and broader provider/framework migration coverage; verified against the CLI 2.6.1 npm release that was current at the time.",
   },
   {
     version: "2.0.0-beta.1",
