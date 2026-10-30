@@ -13,6 +13,7 @@ const VIDEO_COLUMNS = [
   "youtube_url",
   "youtube_video_id",
   "description",
+  "transcript",
   "is_published",
   "display_order",
   "created_at",
@@ -44,6 +45,8 @@ export function publishedVideoFromRow(
     youtubeVideoId: record.youtube_video_id,
     description:
       typeof record.description === "string" ? record.description : null,
+    transcript:
+      typeof record.transcript === "string" ? record.transcript : null,
     isPublished: true,
     displayOrder:
       typeof record.display_order === "number" ? record.display_order : 0,
