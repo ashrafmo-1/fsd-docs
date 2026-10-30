@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { LATEST_CLI_RELEASE } from "@/lib/releases";
 
 export const metadata: Metadata = {
   title: "Auth Generator",
   description:
-    "Generate auth UI, validation, and integration scaffolding from fsd.config.json; review the Supabase adapter candidate.",
+    "Generate auth UI, validation, and integration scaffolding from fsd.config.json; opt in to the Supabase adapter.",
   alternates: { canonical: "/docs/auth-generator" },
 };
 
@@ -32,10 +33,11 @@ export default function AuthGeneratorPage() {
         stack saved in <code>fsd.config.json</code>.
       </p>
       <p className="mt-4 text-sm leading-relaxed text-body">
-        In npm 2.6.1, generated API endpoints are examples. Connect an
-        application backend and verify session handling and authorization before
-        deployment. The opt-in Supabase adapter is a source candidate, pending
-        release and staging acceptance. See the{" "}
+        In CLI {LATEST_CLI_RELEASE.version}, generated API endpoints are
+        examples. Connect an application backend and verify session handling and
+        authorization before deployment. The opt-in Supabase adapter (
+        <code>--auth-provider supabase</code>) ships since CLI 2.7.0; its
+        staging end-to-end acceptance is still pending. See the{" "}
         <a
           href="/docs/release-readiness#supabase-auth"
           className="text-brand-coral underline"
