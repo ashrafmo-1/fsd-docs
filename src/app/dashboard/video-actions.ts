@@ -14,6 +14,7 @@ export type SaveVideoInput = {
   title: string;
   youtubeUrl: string;
   description: string;
+  transcript: string;
   isPublished: boolean;
   displayOrder: number;
 };
@@ -35,6 +36,7 @@ export async function saveVideo(
     title: input.title,
     youtubeUrl: input.youtubeUrl,
     description: input.description,
+    transcript: input.transcript,
     isPublished: input.isPublished,
     displayOrder: input.displayOrder,
   });

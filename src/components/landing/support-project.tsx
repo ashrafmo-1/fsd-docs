@@ -1,21 +1,18 @@
 "use client";
 
 import { Coffee, Copy, Heart } from "lucide-react";
-import { useState } from "react";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { siteConfig } from "@/lib/site";
 import { GitHubIcon } from "./github-icon";
 
 export function SupportProject({ compact = false }: { compact?: boolean }) {
-  const [message, setMessage] = useState("");
-
-  async function copyUsername() {
-    try {
-      await navigator.clipboard.writeText(siteConfig.support.instapayUsername);
-      setMessage("InstaPay username copied.");
-    } catch {
-      setMessage("Could not copy. Select and copy the username shown above.");
-    }
-  }
+  const { status, copy } = useCopyToClipboard();
+  const message =
+    status === "copied"
+      ? "InstaPay username copied."
+      : status === "error"
+        ? "Could not copy. Select and copy the username shown above."
+        : "";
 
   return (
     <section
@@ -71,7 +68,7 @@ export function SupportProject({ compact = false }: { compact?: boolean }) {
             </code>
             <button
               type="button"
-              onClick={copyUsername}
+              onClick={() => copy(siteConfig.support.instapayUsername)}
               aria-label="Copy InstaPay username"
               className="inline-flex items-center gap-2 rounded-lg border border-hairline px-3 py-2 text-sm text-ink hover:bg-surface-soft focus-visible:outline-2 focus-visible:outline-offset-4"
             >

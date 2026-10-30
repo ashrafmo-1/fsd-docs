@@ -15,7 +15,8 @@ export const metadata: Metadata = {
   },
   description:
     "Documentation for create-fsd-architecture project scaffolding and in-project FSD slice generation.",
-  alternates: { canonical: "/docs" },
+  // No canonical here: it would be inherited by any page that forgets its
+  // own and point that page at /docs. Each page sets alternates.canonical.
 };
 
 export default function DocsLayout({

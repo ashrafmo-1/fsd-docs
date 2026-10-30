@@ -22,6 +22,35 @@ for (const [path, html] of pages) {
   assert(html.includes('id="main-content"'), `${path}: skip link target`);
 }
 
+// One h1 that comes first, and no skipped heading levels.
+for (const [path, html] of pages) {
+  const levels = [
+    ...html
+      .replace(/<script[\s\S]*?<\/script>/g, "")
+      .matchAll(/<h([1-6])[\s>]/g),
+  ].map((match) => Number(match[1]));
+  assert.equal(levels[0], 1, `${path}: first heading is h1`);
+  assert.equal(
+    levels.filter((level) => level === 1).length,
+    1,
+    `${path}: one h1`,
+  );
+  for (let i = 1; i < levels.length; i++) {
+    assert(
+      levels[i] <= levels[i - 1] + 1,
+      `${path}: h${levels[i - 1]} -> h${levels[i]}`,
+    );
+  }
+}
+
+// Every sitemap page must declare itself as canonical, never a parent page.
+for (const [path, html] of pages) {
+  const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+  assert(canonical, `${path}: canonical link`);
+  const canonicalPath = new URL(canonical).pathname;
+  assert.equal(canonicalPath, path, `${path}: canonical points to itself`);
+}
+
 const robotsResponse = await fetch(`${origin}/robots.txt`);
 assert.equal(robotsResponse.status, 200, "robots.txt");
 const robots = await robotsResponse.text();
