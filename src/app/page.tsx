@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <main>
+      <main id="main-content" tabIndex={-1} className="outline-none">
         <Hero />
         <ProjectStats />
         <ProductStory />

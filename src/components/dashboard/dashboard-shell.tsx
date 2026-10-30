@@ -44,9 +44,13 @@ export function DashboardShell({
           </div>
         </header>
         <DashboardNav className="border-b border-hairline bg-canvas px-4 py-3 md:hidden" />
-        <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="mx-auto w-full max-w-7xl px-4 py-6 outline-none sm:px-6 sm:py-8"
+        >
           {children}
-        </div>
+        </main>
       </div>
     </div>
   );
