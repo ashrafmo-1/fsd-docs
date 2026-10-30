@@ -9,6 +9,7 @@ export type DashboardVideo = {
   title: string;
   youtubeUrl: string;
   description: string;
+  transcript: string;
   isPublished: boolean;
   displayOrder: number;
 };
@@ -26,6 +27,7 @@ function fromRow(row: Record<string, unknown>): DashboardVideo | null {
     title: row.title,
     youtubeUrl: row.youtube_url,
     description: typeof row.description === "string" ? row.description : "",
+    transcript: typeof row.transcript === "string" ? row.transcript : "",
     isPublished: row.is_published === true,
     displayOrder: typeof row.display_order === "number" ? row.display_order : 0,
   };

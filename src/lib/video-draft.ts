@@ -26,6 +26,7 @@ export const videoFormSchema = z.object({
       "Enter a valid YouTube URL or video ID.",
     ),
   description: z.string().max(500, "The description is too long."),
+  transcript: z.string().max(50000, "The transcript is too long."),
   displayOrder: z.coerce
     .number<number>()
     .int()
@@ -43,6 +44,7 @@ export type VideoDraft = {
   youtubeUrl: string;
   youtubeVideoId: string;
   description: string | null;
+  transcript: string | null;
   isPublished: boolean;
   displayOrder: number;
 };
@@ -60,6 +62,7 @@ export function parseVideoDraft(input: {
   title: unknown;
   youtubeUrl: unknown;
   description: unknown;
+  transcript?: unknown;
   isPublished: unknown;
   displayOrder: unknown;
 }): { ok: true; draft: VideoDraft } | { ok: false; error: string } {
@@ -89,6 +92,12 @@ export function parseVideoDraft(input: {
     return { ok: false, error: "The description is too long." };
   }
 
+  const transcriptValue =
+    typeof input.transcript === "string" ? input.transcript.trim() : "";
+  if (transcriptValue.length > 50000) {
+    return { ok: false, error: "The transcript is too long." };
+  }
+
   const orderValue =
     typeof input.displayOrder === "string"
       ? input.displayOrder.trim()
@@ -116,6 +125,7 @@ export function parseVideoDraft(input: {
       youtubeUrl,
       youtubeVideoId,
       description: descriptionValue || null,
+      transcript: transcriptValue || null,
       isPublished,
       displayOrder,
     },
