@@ -45,8 +45,8 @@ export default function VueFrameworkPage() {
         >
           Create a Vue project
         </h2>
-        <CodeBlock code="npx create-fsd-architecture@latest my-vue-app --framework vue-vite" />
-        <CodeBlock code="npx create-fsd-architecture@latest my-vue-app --framework vue-vite --yes" />
+        <CodeBlock code="npx create-fsd-architecture@latest@latest my-vue-app --framework vue-vite" />
+        <CodeBlock code="npx create-fsd-architecture@latest@latest my-vue-app --framework vue-vite --yes" />
         <p className="text-sm leading-relaxed text-body-muted">
           The first command keeps stack prompts interactive. The second accepts
           the Vue defaults: Axios, Vue Query, Pinia, and VeeValidate + Zod.
@@ -107,11 +107,11 @@ export default function VueFrameworkPage() {
           Vue-native generation
         </h2>
         <CodeBlock
-          code={`npx create-fsd-architecture --generate feature checkout
-npx create-fsd-architecture --generate entity product
-npx create-fsd-architecture --generate widget navbar
-npx create-fsd-architecture --generate page catalog
-npx create-fsd-architecture --generate feature auth`}
+          code={`npx create-fsd-architecture@latest --generate feature checkout
+npx create-fsd-architecture@latest --generate entity product
+npx create-fsd-architecture@latest --generate widget navbar
+npx create-fsd-architecture@latest --generate page catalog
+npx create-fsd-architecture@latest --generate feature auth`}
         />
         <p className="text-base leading-relaxed text-body">
           The CLI reads <code>fsd.config.json</code> and writes Vue SFCs,

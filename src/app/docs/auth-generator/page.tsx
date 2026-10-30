@@ -96,9 +96,9 @@ export default function AuthGeneratorPage() {
         >
           Commands
         </h2>
-        <CodeBlock code="npx create-fsd-architecture --generate feature auth" />
-        <CodeBlock code="npx create-fsd-architecture -g feature auth" />
-        <CodeBlock code="npx create-fsd-architecture --generate feature auth --force" />
+        <CodeBlock code="npx create-fsd-architecture@latest --generate feature auth" />
+        <CodeBlock code="npx create-fsd-architecture@latest -g feature auth" />
+        <CodeBlock code="npx create-fsd-architecture@latest --generate feature auth --force" />
       </section>
 
       <section className="mt-10">

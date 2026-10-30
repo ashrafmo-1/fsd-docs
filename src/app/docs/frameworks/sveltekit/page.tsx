@@ -44,7 +44,7 @@ export default function SvelteKitFrameworkPage() {
         >
           Create a SvelteKit project
         </h2>
-        <CodeBlock code="npx create-fsd-architecture@latest my-app --framework sveltekit --yes" />
+        <CodeBlock code="npx create-fsd-architecture@latest@latest my-app --framework sveltekit --yes" />
         <CodeBlock code="npm create fsd-architecture@latest" />
         <p className="text-sm leading-relaxed text-body-muted">
           Interactive setup lets you keep the defaults—native Fetch, Svelte
@@ -106,10 +106,10 @@ export default function SvelteKitFrameworkPage() {
           Native generators and routes
         </h2>
         <CodeBlock
-          code={`npx create-fsd-architecture -g feature auth
-npx create-fsd-architecture -g entity product
-npx create-fsd-architecture -g widget navbar
-npx create-fsd-architecture -g page account`}
+          code={`npx create-fsd-architecture@latest -g feature auth
+npx create-fsd-architecture@latest -g entity product
+npx create-fsd-architecture@latest -g widget navbar
+npx create-fsd-architecture@latest -g page account`}
         />
         <CodeBlock
           language="text"
