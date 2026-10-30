@@ -337,6 +337,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  min-height: 24px;
 }
 .hero-topline a {
   letter-spacing: 0;
