@@ -52,8 +52,29 @@ const FOOTER_LINKS = {
       label: "SvelteKit issues",
       href: `${siteConfig.repositories.sveltekit}/issues`,
     },
-    // { label: "Discussions", href: "https://github.com" },
-    // { label: "Contributing", href: "https://github.com" },
+  ],
+  Trust: [
+    { label: "Source code", href: siteConfig.repositories.cli },
+    {
+      label: "License (MIT)",
+      href: `${siteConfig.repositories.cli}/blob/main/LICENSE`,
+    },
+    {
+      label: "Security policy",
+      href: `${siteConfig.repositories.cli}/blob/main/SECURITY.md`,
+    },
+    {
+      label: "Changelog",
+      href: `${siteConfig.repositories.cli}/blob/main/docs/CHANGELOG.md`,
+    },
+    {
+      label: "Release status",
+      href: `${siteConfig.repositories.cli}/blob/main/docs/RELEASE-STATUS.md`,
+    },
+    {
+      label: "Improve these docs",
+      href: `${siteConfig.repositories.docs}/blob/main/CONTRIBUTING.md`,
+    },
   ],
 };
 
@@ -61,7 +82,7 @@ export function Footer() {
   return (
     <footer className="border-t border-hairline bg-surface-soft">
       <div className="mx-auto max-w-[1280px] px-6 py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 sm:grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
           <div>
             <Link
               href="/"
@@ -122,7 +143,13 @@ export function Footer() {
         <SupportProject />
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-hairline pt-8 md:flex-row">
           <p className="text-sm text-body-muted-soft">
-            MIT License. Built with care for the developer community.
+            <a
+              href={`${siteConfig.repositories.cli}/blob/main/LICENSE`}
+              className="underline-offset-2 hover:underline"
+            >
+              MIT License
+            </a>
+            . Built with care for the developer community.
           </p>
           <p className="text-sm text-body-muted-soft">
             Created and maintained by Ashraf Mohamed
