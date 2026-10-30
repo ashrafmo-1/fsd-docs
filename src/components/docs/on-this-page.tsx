@@ -3,6 +3,7 @@
 import { Link2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { cn } from "@/lib/utils";
 
 type Heading = {
@@ -32,7 +33,18 @@ export function OnThisPage() {
 
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState("");
-  const [copyStatus, setCopyStatus] = useState("");
+  const [copiedLabel, setCopiedLabel] = useState("");
+  const {
+    status: linkCopyStatus,
+    copy,
+    reset: resetCopyStatus,
+  } = useCopyToClipboard();
+  const copyStatus =
+    linkCopyStatus === "copied"
+      ? `Link copied: ${copiedLabel}`
+      : linkCopyStatus === "error"
+        ? "Could not copy. Use the section link to copy the URL from your browser."
+        : "";
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: Tab visibility changes must refresh the heading list after the DOM updates.
   useEffect(() => {
@@ -71,7 +83,7 @@ export function OnThisPage() {
 
     setHeadings(nextHeadings);
     setActiveId(nextHeadings[0]?.id ?? "");
-    setCopyStatus("");
+    resetCopyStatus();
 
     let frame = 0;
     const updateActive = () => {
@@ -144,17 +156,11 @@ export function OnThisPage() {
                     type="button"
                     className="shrink-0 rounded p-1 text-body-muted hover:text-ink"
                     aria-label={`Copy link to ${heading.label}`}
-                    onClick={async () => {
-                      try {
-                        await navigator.clipboard.writeText(
-                          `${window.location.origin}${pathname}#${heading.id}`,
-                        );
-                        setCopyStatus(`Link copied: ${heading.label}`);
-                      } catch {
-                        setCopyStatus(
-                          "Could not copy. Use the section link to copy the URL from your browser.",
-                        );
-                      }
+                    onClick={() => {
+                      setCopiedLabel(heading.label);
+                      copy(
+                        `${window.location.origin}${pathname}#${heading.id}`,
+                      );
                     }}
                   >
                     <Link2 className="h-3 w-3" />

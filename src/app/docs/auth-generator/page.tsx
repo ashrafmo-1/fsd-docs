@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { LATEST_CLI_RELEASE } from "@/lib/releases";
 
 export const metadata: Metadata = {
   title: "Auth Generator",
   description:
-    "Generate auth UI, validation, and integration scaffolding from fsd.config.json; review the Supabase adapter candidate.",
+    "Generate auth UI, validation, and integration scaffolding from fsd.config.json; opt in to the Supabase adapter.",
   alternates: { canonical: "/docs/auth-generator" },
 };
 
@@ -32,10 +33,11 @@ export default function AuthGeneratorPage() {
         stack saved in <code>fsd.config.json</code>.
       </p>
       <p className="mt-4 text-sm leading-relaxed text-body">
-        In npm 2.6.1, generated API endpoints are examples. Connect an
-        application backend and verify session handling and authorization before
-        deployment. The opt-in Supabase adapter is a source candidate, pending
-        release and staging acceptance. See the{" "}
+        In CLI {LATEST_CLI_RELEASE.version}, generated API endpoints are
+        examples. Connect an application backend and verify session handling and
+        authorization before deployment. The opt-in Supabase adapter (
+        <code>--auth-provider supabase</code>) ships since CLI 2.7.0; its
+        staging end-to-end acceptance is still pending. See the{" "}
         <a
           href="/docs/release-readiness#supabase-auth"
           className="text-brand-coral underline"
@@ -46,6 +48,46 @@ export default function AuthGeneratorPage() {
       </p>
 
       <PublishedDocumentationVideo pageKey="/docs/auth-generator" />
+
+      <section
+        aria-labelledby="feature-status"
+        className="mt-8 rounded-2xl border border-hairline p-5"
+      >
+        <h2 id="feature-status" className="text-lg font-semibold text-ink">
+          Feature status
+        </h2>
+        <dl className="mt-4 grid gap-4 text-sm leading-relaxed sm:grid-cols-2">
+          <div>
+            <dt className="flex items-center gap-2 font-semibold text-ink">
+              Auth generator
+              <span className="rounded-full bg-brand-mint/15 px-2 py-0.5 text-xs font-medium text-brand-teal">
+                Stable
+              </span>
+            </dt>
+            <dd className="mt-1 text-body">
+              Forms, validation, state, and example API requests for all five
+              frameworks. The endpoints are placeholders: connect your own
+              backend and review session handling before production.
+            </dd>
+          </div>
+          <div>
+            <dt className="flex items-center gap-2 font-semibold text-ink">
+              Supabase adapter
+              <span className="rounded-full bg-brand-ochre/15 px-2 py-0.5 text-xs font-medium text-[#92600a]">
+                Preview
+              </span>
+            </dt>
+            <dd className="mt-1 text-body">
+              Released in CLI 2.7.0 behind <code>--auth-provider supabase</code>
+              . Generated output builds in all five frameworks; end-to-end
+              checks against a live Supabase project (sign-up confirmation,
+              recovery mail, password reset, refresh and logout, RLS) are still
+              pending. Browser only: SSR cookies and server authorization need
+              your own integration.
+            </dd>
+          </div>
+        </dl>
+      </section>
 
       <section className="mt-10 space-y-4">
         <h2
