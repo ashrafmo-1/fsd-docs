@@ -52,8 +52,29 @@ const FOOTER_LINKS = {
       label: "SvelteKit issues",
       href: `${siteConfig.repositories.sveltekit}/issues`,
     },
-    // { label: "Discussions", href: "https://github.com" },
-    // { label: "Contributing", href: "https://github.com" },
+  ],
+  Trust: [
+    { label: "Source code", href: siteConfig.repositories.cli },
+    {
+      label: "License (MIT)",
+      href: `${siteConfig.repositories.cli}/blob/main/LICENSE`,
+    },
+    {
+      label: "Security policy",
+      href: `${siteConfig.repositories.cli}/blob/main/SECURITY.md`,
+    },
+    {
+      label: "Changelog",
+      href: `${siteConfig.repositories.cli}/blob/main/docs/CHANGELOG.md`,
+    },
+    {
+      label: "Release status",
+      href: `${siteConfig.repositories.cli}/blob/main/docs/RELEASE-STATUS.md`,
+    },
+    {
+      label: "Improve these docs",
+      href: `${siteConfig.repositories.docs}/blob/main/CONTRIBUTING.md`,
+    },
   ],
 };
 
@@ -61,14 +82,10 @@ export function Footer() {
   return (
     <footer className="border-t border-hairline bg-surface-soft">
       <div className="mx-auto max-w-[1280px] px-6 py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-[2fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 sm:grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
           <div>
-            <Link
-              href="/"
-              className="flex items-center gap-2.5"
-              aria-label="FSD CLI home"
-            >
-              <Image src="/fsd-logo.png" alt="FSD CLI" width={40} height={40} />
+            <Link href="/" className="flex items-center gap-2.5">
+              <Image src="/fsd-logo.png" alt="" width={40} height={40} />
               <span className="flex flex-col leading-none">
                 <span className="text-base font-semibold tracking-tight text-ink">
                   FSD CLI
@@ -99,14 +116,14 @@ export function Footer() {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-body-muted transition-colors hover:text-ink"
+                          className="inline-flex min-h-6 items-center text-sm text-body-muted transition-colors hover:text-ink"
                         >
                           {link.label}
                         </a>
                       ) : (
                         <Link
                           href={link.href}
-                          className="text-sm text-body-muted transition-colors hover:text-ink"
+                          className="inline-flex min-h-6 items-center text-sm text-body-muted transition-colors hover:text-ink"
                         >
                           {link.label}
                         </Link>
@@ -122,7 +139,13 @@ export function Footer() {
         <SupportProject />
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-hairline pt-8 md:flex-row">
           <p className="text-sm text-body-muted-soft">
-            MIT License. Built with care for the developer community.
+            <a
+              href={`${siteConfig.repositories.cli}/blob/main/LICENSE`}
+              className="underline-offset-2 hover:underline"
+            >
+              MIT License
+            </a>
+            . Built with care for the developer community.
           </p>
           <p className="text-sm text-body-muted-soft">
             Created and maintained by Ashraf Mohamed
