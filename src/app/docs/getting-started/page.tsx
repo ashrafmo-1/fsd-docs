@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
 import { DocumentationVideo } from "@/components/docs/documentation-video";
 import { PackageManagerCommand } from "@/components/docs/package-manager-command";
@@ -51,8 +52,16 @@ export default async function GettingStartedPage() {
         </h2>
         <p className="text-base leading-relaxed text-body">
           Use Node.js 22.12.0 or later for the CLI. Nuxt and SvelteKit projects
-          require Node.js 22.22.2 or later. Run one of the commands below from
-          the directory that should contain the new project.
+          require Node.js 22.22.2 or later. See{" "}
+          <Link
+            href="/docs/compatibility"
+            className="text-brand-coral underline"
+          >
+            Compatibility
+          </Link>{" "}
+          for the exact range of each framework and package manager. Run one of
+          the commands below from the directory that should contain the new
+          project.
         </p>
         <PackageManagerCommand
           commands={{
