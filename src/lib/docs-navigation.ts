@@ -39,6 +39,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
     label: "CLI",
     items: [
       {
+        label: "CLI reference",
+        href: "/docs/cli-reference",
+        description: "Every command, generator type, flag, and exit code.",
+      },
+      {
         label: "Project configuration",
         href: "/docs/configuration",
         description: "Reference for fsd.config.json.",
@@ -101,10 +106,9 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
     label: "Resources",
     items: [
       {
-        label: "Upcoming changes",
+        label: "Feature status",
         href: "/docs/release-readiness",
-        description:
-          "Supabase, light hooks, existing-project migration, and release verification.",
+        description: "Which features are stable, in preview, or planned.",
       },
       {
         label: "Releases",
