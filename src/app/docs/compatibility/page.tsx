@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import {
   CLI_NODE_RANGE,
   COMPATIBILITY_CLI_VERSION,
@@ -28,6 +29,8 @@ export default function CompatibilityPage() {
         versions. Use the stricter of the two. Every range below matches what
         CLI {COMPATIBILITY_CLI_VERSION} enforces.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/compatibility" />
 
       <section className="mt-10 space-y-4">
         <h2
