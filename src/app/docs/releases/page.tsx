@@ -109,18 +109,19 @@ export default function ReleasesPage() {
               CLI version 1 archive
             </h2>
             <p className="mt-3">
-              These published versions predate the maintained changelog. Package
-              history is available on npm.
+              These published versions predate the maintained changelog, so they
+              have no release notes here. Each links to its npm page. They are
+              unsupported; create new projects with the latest release.
             </p>
             <ul className="mt-4 space-y-3">
               {LEGACY_NPM_VERSIONS.map((release) => (
                 <li key={release.version}>
-                  <Link
+                  <a
                     className="font-medium text-brand-coral underline"
-                    href={`/docs/releases/${release.version}`}
+                    href={`https://www.npmjs.com/package/create-fsd-architecture/v/${release.version}`}
                   >
                     v{release.version}
-                  </Link>{" "}
+                  </a>{" "}
                   · {release.date}
                 </li>
               ))}
