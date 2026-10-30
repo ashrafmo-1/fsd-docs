@@ -1,10 +1,8 @@
 import { DOCS_NAV_ITEMS } from "@/lib/docs-navigation";
-import { CLI_RELEASES } from "@/lib/releases";
+import { CLI_RELEASES, LATEST_CLI_RELEASE } from "@/lib/releases";
 import { siteConfig } from "@/lib/site";
 
-const latestRelease =
-  CLI_RELEASES.find((release) => release.status === "latest") ??
-  CLI_RELEASES[0];
+const latestRelease = LATEST_CLI_RELEASE;
 
 function absoluteUrl(path: string) {
   return new URL(path, siteConfig.url).toString();
@@ -146,7 +144,7 @@ export function getLlmsFull() {
     "",
     "Tagged Skill v2.0.0 implements incremental existing-project migration with a verified synthetic React/Vite browser and rollback pilot. It is not a shipped arbitrary-app CLI migrate command or broad production-app certification. See " +
       absoluteUrl("/docs/release-readiness") +
-      " for contracts and remaining release gates.",
+      " for the status of each feature (stable, preview, planned).",
     "",
     "## Generator workflows (CLI 2.7.0)",
     "",
@@ -255,7 +253,7 @@ export function getLlmsFull() {
       inlineCode("fsd-cli") +
       " skill is currently released as " +
       inlineCode("v2.0.0") +
-      ". It adds discovery, domain decisions, implementation, review, Supabase guidance, incremental migration/rollback, framework guides, and three read-only evidence helpers. Published CLI 2.6.1 and candidate-only flags are explicitly separated. It inspects existing code first, prefers the CLI for supported operations, protects existing slices, and leaves business implementation to the coding agent. Review generated changes because agent behavior can vary across tools and existing project structures.",
+      ". It adds discovery, domain decisions, implementation, review, Supabase guidance, incremental migration/rollback, framework guides, and three read-only evidence helpers. It was verified against CLI 2.6.1, so it still labels the batch, segment, custom-root, Supabase, and Steiger flags as candidate-only even though they ship in CLI 2.7.0 and later. It inspects existing code first, prefers the CLI for supported operations, protects existing slices, and leaves business implementation to the coding agent. Review generated changes because agent behavior can vary across tools and existing project structures.",
     "",
     "## Documentation directory",
     "",

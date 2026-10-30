@@ -2,7 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { VideoDraft } from "./video-draft.ts";
 
 export const VIDEO_COLUMNS =
-  "id, page_key, title, youtube_url, description, is_published, display_order";
+  "id, page_key, title, youtube_url, description, transcript, is_published, display_order";
 
 export function videoWriteMessage(error: { message?: string; code?: string }) {
   const message = error.message?.toLowerCase() ?? "";
@@ -29,6 +29,7 @@ export async function writeVideo(
             youtube_url: input.draft.youtubeUrl,
             youtube_video_id: input.draft.youtubeVideoId,
             description: input.draft.description,
+            transcript: input.draft.transcript,
             is_published: input.draft.isPublished,
             display_order: input.draft.displayOrder,
             updated_at: new Date().toISOString(),
