@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "FSD Concepts",
@@ -92,6 +93,8 @@ export default function ConceptsPage() {
         </a>{" "}
         remains the reference for the methodology itself.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/concepts" />
 
       <section className="mt-10 space-y-4">
         <h2
