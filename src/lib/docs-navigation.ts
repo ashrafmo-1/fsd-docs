@@ -66,6 +66,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
           "Plan and apply protected migrations to existing projects.",
       },
       {
+        label: "Deployment",
+        href: "/docs/deployment",
+        description: "Build output, env variables, and hosting per framework.",
+      },
+      {
         label: "CI/CD",
         href: "/docs/ci-cd",
         description: "Quality gates, workflows, hooks, and CLI checks in CI.",
