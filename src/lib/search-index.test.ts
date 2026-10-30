@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { buildSearchIndex, extractHeadings } from "./search-index.ts";
+import {
+  buildSearchIndex,
+  extractHeadings,
+  extractMdxHeadings,
+} from "./search-index.ts";
 import { searchDocs } from "./search-index-query.ts";
 
 test("extracts h2/h3 ids and readable text from TSX", () => {
@@ -34,4 +38,17 @@ test("search requires every word and ranks pages first", () => {
   assert.equal(results[0].href, "/docs/upgrade");
   assert.deepEqual(searchDocs(index, "upgrade zzzz-nothing"), []);
   assert.deepEqual(searchDocs(index, "   "), []);
+});
+
+test("extracts MDX headings with rehype-slug ids", () => {
+  assert.deepEqual(
+    extractMdxHeadings(
+      '## Git, backup, and recovery\n\nText\n\n### `--check` exit codes\n\n<h2 id="legacy">Before 2.6.0</h2>',
+    ),
+    [
+      { id: "git-backup-and-recovery", text: "Git, backup, and recovery" },
+      { id: "--check-exit-codes", text: "--check exit codes" },
+      { id: "legacy", text: "Before 2.6.0" },
+    ],
+  );
 });
