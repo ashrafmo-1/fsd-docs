@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { DOCS_NAV_ITEMS, getDocsGroup } from "@/lib/docs-navigation";
+import { breadcrumbJsonLd, jsonLdScript } from "@/lib/json-ld";
 
 export function DocsBreadcrumbs() {
   const pathname = usePathname();
@@ -14,8 +15,21 @@ export function DocsBreadcrumbs() {
 
   if (pathname === "/docs") return null;
 
+  const crumbs = [
+    { name: "Docs", path: "/docs" },
+    ...(releaseVersion ? [{ name: "Releases", path: "/docs/releases" }] : []),
+    ...(label ? [{ name: label, path: pathname }] : []),
+  ];
+
   return (
     <nav aria-label="Breadcrumb" className="mb-8">
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD built from nav constants, escaped by jsonLdScript.
+        dangerouslySetInnerHTML={{
+          __html: jsonLdScript(breadcrumbJsonLd(crumbs)),
+        }}
+      />
       <ol className="flex flex-wrap items-center gap-1.5 text-sm text-body-muted">
         <li>
           <Link href="/docs" className="transition-colors hover:text-ink">
