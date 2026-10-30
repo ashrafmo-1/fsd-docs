@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "Migration Guide",
@@ -72,6 +73,8 @@ export default function MigrationPage() {
         the CLI did not create into layers and slices. Pick the section that
         matches your project.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/migration" />
 
       <section className="mt-10 space-y-4">
         <h2
