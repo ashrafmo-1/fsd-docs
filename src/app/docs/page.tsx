@@ -177,8 +177,8 @@ export default function DocsPage() {
         >
           CLI workflows
         </h2>
-        <div className="grid gap-4 lg:grid-cols-2">
-          <div className="rounded-[16px] border border-hairline bg-surface-soft p-5">
+        <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
+          <div className="col-span-1 rounded-[16px] border border-hairline bg-surface-soft p-5">
             <FolderTree className="mb-4 h-5 w-5 text-ink" />
             <h3 id="start-a-new-project" className="font-semibold text-ink">
               Start a new project
@@ -192,7 +192,7 @@ export default function DocsPage() {
             </div>
           </div>
 
-          <div className="rounded-[16px] border border-hairline bg-surface-soft p-5">
+          <div className="col-span-1 rounded-[16px] border border-hairline bg-surface-soft p-5">
             <Boxes className="mb-4 h-5 w-5 text-ink" />
             <h3
               id="generate-inside-a-project"

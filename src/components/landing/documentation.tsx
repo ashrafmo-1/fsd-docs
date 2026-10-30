@@ -223,8 +223,8 @@ export function Documentation() {
           </p>
         </div>
 
-        <div className="grid gap-16 lg:grid-cols-[7fr_5fr] lg:gap-24">
-          <div className="space-y-12">
+        <div className="grid gap-16 grid-cols-1 lg:grid-cols-[7fr_5fr] lg:gap-24">
+          <div className="col-span-1 space-y-12">
             <div className="grid gap-4 sm:grid-cols-2">
               {DOC_LINKS.map((link) => {
                 const Icon = link.icon;
@@ -289,7 +289,7 @@ npx create-fsd-architecture@latest --generate page checkout`}
             </div>
           </div>
 
-          <div className="space-y-16">
+          <div className="col-span-1 space-y-16">
             <div>
               <h3 className="mb-4 text-xl font-medium tracking-[-0.3px] text-ink">
                 Available templates
