@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "FAQ and Glossary",
@@ -183,6 +184,8 @@ export default function FaqPage() {
         across these docs. If a command fails, run{" "}
         <code>npx create-fsd-architecture@latest doctor</code> first.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/faq" />
 
       <section className="mt-10 space-y-3">
         <h2
