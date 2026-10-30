@@ -60,7 +60,7 @@ export function DocsPageFooter() {
           href={editUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 font-medium text-body-muted transition-colors hover:text-ink"
+          className="inline-flex min-h-8 items-center gap-2 font-medium text-body-muted transition-colors hover:text-ink"
         >
           <Pencil className="h-4 w-4" />
           Edit this page
@@ -69,7 +69,7 @@ export function DocsPageFooter() {
           href={issueUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 font-medium text-body-muted transition-colors hover:text-ink"
+          className="inline-flex min-h-8 items-center gap-2 font-medium text-body-muted transition-colors hover:text-ink"
         >
           <ExternalLink className="h-4 w-4" />
           Report an issue

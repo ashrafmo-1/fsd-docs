@@ -120,14 +120,14 @@ export function Footer() {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-body-muted transition-colors hover:text-ink"
+                          className="inline-flex min-h-6 items-center text-sm text-body-muted transition-colors hover:text-ink"
                         >
                           {link.label}
                         </a>
                       ) : (
                         <Link
                           href={link.href}
-                          className="text-sm text-body-muted transition-colors hover:text-ink"
+                          className="inline-flex min-h-6 items-center text-sm text-body-muted transition-colors hover:text-ink"
                         >
                           {link.label}
                         </Link>

@@ -118,7 +118,7 @@ export function OnThisPage() {
   return (
     <aside className="order-2 lg:col-start-2 xl:col-start-3 xl:row-start-1 xl:order-3 xl:sticky xl:top-24 xl:h-fit">
       <details open className="max-h-[70vh] overflow-y-auto">
-        <summary className="mb-4 cursor-pointer text-sm font-semibold text-ink">
+        <summary className="mb-4 cursor-pointer py-1 text-sm font-semibold text-ink">
           On this page
         </summary>
         <div className="border-l border-hairline pl-5">
@@ -135,7 +135,7 @@ export function OnThisPage() {
                       activeId === heading.id ? "location" : undefined
                     }
                     className={cn(
-                      "group flex items-start gap-2 text-sm leading-5 transition-colors hover:text-ink",
+                      "group flex min-h-6 items-start gap-2 py-0.5 text-sm leading-5 transition-colors hover:text-ink",
                       heading.level === 3 && "pl-3",
                       activeId === heading.id
                         ? "font-medium text-ink"
@@ -154,7 +154,7 @@ export function OnThisPage() {
                   </a>
                   <button
                     type="button"
-                    className="shrink-0 rounded p-1 text-body-muted hover:text-ink"
+                    className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded text-body-muted hover:text-ink"
                     aria-label={`Copy link to ${heading.label}`}
                     onClick={() => {
                       setCopiedLabel(heading.label);
