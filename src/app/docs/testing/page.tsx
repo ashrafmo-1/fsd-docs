@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "Testing",
@@ -33,6 +34,8 @@ export default function TestingPage() {
         choose the tools that fit your team. This page covers what runs today,
         how to add tests, and where tests belong in an FSD project.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/testing" />
 
       <section className="mt-10 space-y-4">
         <h2
