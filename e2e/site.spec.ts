@@ -29,6 +29,11 @@ test("docs pages link to each other through the sidebar", async ({
     name: "Documentation",
     exact: true,
   });
+  // Sections other than the current page's start collapsed.
+  const cliSection = sidebar.getByRole("button", { name: "CLI", exact: true });
+  await expect(cliSection).toHaveAttribute("aria-expanded", "false");
+  await cliSection.click();
+  await expect(cliSection).toHaveAttribute("aria-expanded", "true");
   await sidebar.getByRole("link", { name: "Project configuration" }).click();
   await expect(page).toHaveURL(/\/docs\/configuration$/);
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
