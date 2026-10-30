@@ -66,6 +66,12 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
           "Plan and apply protected migrations to existing projects.",
       },
       {
+        label: "Testing",
+        href: "/docs/testing",
+        description:
+          "Built-in checks and adding unit, component, and E2E tests.",
+      },
+      {
         label: "Deployment",
         href: "/docs/deployment",
         description: "Build output, env variables, and hosting per framework.",
