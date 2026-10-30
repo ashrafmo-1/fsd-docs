@@ -23,11 +23,26 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
         href: "/docs/getting-started",
         description: "Create a complete FSD project.",
       },
+      {
+        label: "FSD concepts",
+        href: "/docs/concepts",
+        description: "Layers, slices, segments, and the import rule.",
+      },
+      {
+        label: "Compatibility",
+        href: "/docs/compatibility",
+        description: "Node.js and package manager requirements.",
+      },
     ],
   },
   {
     label: "CLI",
     items: [
+      {
+        label: "CLI reference",
+        href: "/docs/cli-reference",
+        description: "Every command, generator type, flag, and exit code.",
+      },
       {
         label: "Project configuration",
         href: "/docs/configuration",
@@ -49,6 +64,22 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
         href: "/docs/upgrade",
         description:
           "Plan and apply protected migrations to existing projects.",
+      },
+      {
+        label: "Deployment",
+        href: "/docs/deployment",
+        description: "Build output, env variables, and hosting per framework.",
+      },
+      {
+        label: "CI/CD",
+        href: "/docs/ci-cd",
+        description: "Quality gates, workflows, hooks, and CLI checks in CI.",
+      },
+      {
+        label: "Migration guide",
+        href: "/docs/migration",
+        description:
+          "Upgrade between releases or adopt FSD in an existing app.",
       },
       {
         label: "AI Agent Skill",
@@ -91,10 +122,19 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
     label: "Resources",
     items: [
       {
-        label: "Upcoming changes",
+        label: "Recipes",
+        href: "/docs/recipes",
+        description: "End-to-end examples for common tasks.",
+      },
+      {
+        label: "Troubleshooting",
+        href: "/docs/troubleshooting",
+        description: "CLI error messages with cause and fix.",
+      },
+      {
+        label: "Feature status",
         href: "/docs/release-readiness",
-        description:
-          "Supabase, light hooks, existing-project migration, and release verification.",
+        description: "Which features are stable, in preview, or planned.",
       },
       {
         label: "Releases",
