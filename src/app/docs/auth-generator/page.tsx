@@ -49,6 +49,46 @@ export default function AuthGeneratorPage() {
 
       <PublishedDocumentationVideo pageKey="/docs/auth-generator" />
 
+      <section
+        aria-labelledby="feature-status"
+        className="mt-8 rounded-2xl border border-hairline p-5"
+      >
+        <h2 id="feature-status" className="text-lg font-semibold text-ink">
+          Feature status
+        </h2>
+        <dl className="mt-4 grid gap-4 text-sm leading-relaxed sm:grid-cols-2">
+          <div>
+            <dt className="flex items-center gap-2 font-semibold text-ink">
+              Auth generator
+              <span className="rounded-full bg-brand-mint/15 px-2 py-0.5 text-xs font-medium text-brand-teal">
+                Stable
+              </span>
+            </dt>
+            <dd className="mt-1 text-body">
+              Forms, validation, state, and example API requests for all five
+              frameworks. The endpoints are placeholders: connect your own
+              backend and review session handling before production.
+            </dd>
+          </div>
+          <div>
+            <dt className="flex items-center gap-2 font-semibold text-ink">
+              Supabase adapter
+              <span className="rounded-full bg-brand-ochre/15 px-2 py-0.5 text-xs font-medium text-[#92600a]">
+                Preview
+              </span>
+            </dt>
+            <dd className="mt-1 text-body">
+              Released in CLI 2.7.0 behind <code>--auth-provider supabase</code>
+              . Generated output builds in all five frameworks; end-to-end
+              checks against a live Supabase project (sign-up confirmation,
+              recovery mail, password reset, refresh and logout, RLS) are still
+              pending. Browser only: SSR cookies and server authorization need
+              your own integration.
+            </dd>
+          </div>
+        </dl>
+      </section>
+
       <section className="mt-10 space-y-4">
         <h2
           id="commands"
@@ -56,9 +96,9 @@ export default function AuthGeneratorPage() {
         >
           Commands
         </h2>
-        <CodeBlock code="npx create-fsd-architecture --generate feature auth" />
-        <CodeBlock code="npx create-fsd-architecture -g feature auth" />
-        <CodeBlock code="npx create-fsd-architecture --generate feature auth --force" />
+        <CodeBlock code="npx create-fsd-architecture@latest --generate feature auth" />
+        <CodeBlock code="npx create-fsd-architecture@latest -g feature auth" />
+        <CodeBlock code="npx create-fsd-architecture@latest --generate feature auth --force" />
       </section>
 
       <section className="mt-10">
@@ -179,6 +219,100 @@ export default function AuthGeneratorPage() {
           because its framework adapter owns the <code>app/</code> source root.
           SvelteKit writes it under <code>src/features/auth</code>.
         </p>
+      </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="generated-files"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          Generated files
+        </h2>
+        <p className="text-base leading-relaxed text-body">
+          Output from <code>--dry-run</code> with the React defaults (React
+          Query, Zustand, React Hook Form + Zod):
+        </p>
+        <CodeBlock
+          language="text"
+          code={`src/features/auth/
+├── api/
+│   ├── login.api.ts  register.api.ts  forgot-password.api.ts
+│   ├── reset-password.api.ts  verify-code.api.ts
+│   └── auth.query.ts                 # React Query hooks
+├── lib/
+│   ├── auth.keys.ts                  # query keys
+│   └── auth.helpers.ts
+├── model/
+│   ├── auth.types.ts  auth.store.ts  # Zustand store
+│   ├── <flow>.types.ts               # one per flow
+│   └── <flow>.schema.ts              # Zod schema per flow
+├── ui/
+│   ├── login-form.tsx  register-form.tsx  forgot-password-form.tsx
+│   └── reset-password-form.tsx  verify-code-form.tsx
+└── index.ts`}
+        />
+        <p className="text-base leading-relaxed text-body">
+          The five flows are login, register, forgot password, reset password,
+          and verify code. Vue and SvelteKit produce the same API, store, query,
+          and schema modules with <code>LoginForm.vue</code> or{" "}
+          <code>LoginForm.svelte</code> components, and share one{" "}
+          <code>auth.types.ts</code> instead of a types file per flow.
+        </p>
+      </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="what-the-stack-changes"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          What your stack changes
+        </h2>
+        <ul className="list-disc space-y-2 pl-6 text-base leading-relaxed text-body">
+          <li>
+            In React projects, <code>serverState: "none"</code> skips the API
+            modules, <code>auth.query.ts</code>, and the query keys; wire the
+            forms to your own requests.
+          </li>
+          <li>
+            <code>clientState: "none"</code> skips <code>auth.store.ts</code>.
+            Redux projects get <code>auth.slice.ts</code> and{" "}
+            <code>auth.selectors.ts</code> instead of a Zustand store.
+          </li>
+          <li>
+            <code>forms: "none"</code> drops the Zod schemas; the components
+            keep plain form handling.
+          </li>
+          <li>
+            <code>--auth-provider supabase</code> adds{" "}
+            <code>api/supabase.adapter.js</code>, its type declarations,{" "}
+            <code>api/supabase.ts</code> (exporting{" "}
+            <code>configureSupabaseAuth</code>), and <code>SUPABASE.md</code>.
+          </li>
+        </ul>
+      </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="after-generating"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          After generating
+        </h2>
+        <ol className="list-decimal space-y-2 pl-6 text-base leading-relaxed text-body">
+          <li>
+            Point the API modules at your backend, or configure the Supabase
+            client once at app start.
+          </li>
+          <li>
+            Render the forms from a page, for example <code>-g page login</code>
+            , importing them from <code>@/features/auth</code>.
+          </li>
+          <li>
+            Verify session handling, token storage, and authorization on the
+            server before shipping. The generated code is a starting point, not
+            a security review.
+          </li>
+        </ol>
       </section>
     </article>
   );

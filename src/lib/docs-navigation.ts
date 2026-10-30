@@ -24,6 +24,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
         description: "Create a complete FSD project.",
       },
       {
+        label: "FSD concepts",
+        href: "/docs/concepts",
+        description: "Layers, slices, segments, and the import rule.",
+      },
+      {
         label: "Compatibility",
         href: "/docs/compatibility",
         description: "Node.js and package manager requirements.",
@@ -33,6 +38,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
   {
     label: "CLI",
     items: [
+      {
+        label: "CLI reference",
+        href: "/docs/cli-reference",
+        description: "Every command, generator type, flag, and exit code.",
+      },
       {
         label: "Project configuration",
         href: "/docs/configuration",
