@@ -163,6 +163,16 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
 
 export const DOCS_NAV_ITEMS = DOCS_NAVIGATION.flatMap((group) => group.items);
 
+/** The sidebar group that contains a docs route, if any. */
+export function getDocsGroup(pathname: string) {
+  const href = pathname.startsWith("/docs/releases/")
+    ? "/docs/releases"
+    : pathname;
+  return DOCS_NAVIGATION.find((group) =>
+    group.items.some((item) => item.href === href),
+  );
+}
+
 export function getDocsNavigation(pathname: string) {
   const index = DOCS_NAV_ITEMS.findIndex((item) => item.href === pathname);
 
