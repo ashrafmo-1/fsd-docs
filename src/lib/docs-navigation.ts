@@ -34,6 +34,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
     label: "CLI",
     items: [
       {
+        label: "CLI reference",
+        href: "/docs/cli-reference",
+        description: "Every command, generator type, flag, and exit code.",
+      },
+      {
         label: "Project configuration",
         href: "/docs/configuration",
         description: "Reference for fsd.config.json.",
