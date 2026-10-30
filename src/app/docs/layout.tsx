@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { DocsBreadcrumbs } from "@/components/docs/docs-breadcrumbs";
 import { DocsPageFooter } from "@/components/docs/docs-page-footer";
+import { DocsSearch } from "@/components/docs/docs-search";
 import { DocsSidebar } from "@/components/docs/docs-sidebar";
 import { OnThisPage } from "@/components/docs/on-this-page";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
+import { buildSearchIndex } from "@/lib/search-index";
 
 export const dynamic = "force-static";
 
@@ -35,6 +37,7 @@ export default function DocsLayout({
             tabIndex={-1}
             className="order-3 min-w-0 outline-none xl:order-2 lg:col-start-2 xl:row-start-1"
           >
+            <DocsSearch index={buildSearchIndex()} />
             <DocsBreadcrumbs />
             <div id="docs-content">{children}</div>
             <DocsPageFooter />
