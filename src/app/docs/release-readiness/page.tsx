@@ -1,145 +1,199 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
-  title: "Upcoming changes and release readiness",
+  title: "Feature status",
   description:
-    "CLI 2.7.0 ships Supabase auth, batch and structure-only generation, architecture checks, and light Git hooks; Skill-based existing-project migration remains separate.",
+    "Which FSD CLI features are stable, which are in preview, and what is planned: Supabase auth, batch and structure-only generation, architecture checks, light hooks, and Skill-based migration.",
   alternates: { canonical: "/docs/release-readiness" },
 };
 
-const CLI_SOURCE =
-  "https://github.com/FSD-CLI/cli/tree/d5a0bb1e464f2364593800deede428a957b5c32b";
-const SKILL_SOURCE =
-  "https://github.com/FSD-CLI/create-fsd-architecture/tree/v2.0.0";
+type Status = "Stable" | "Preview" | "Planned";
+
+const STATUS_VARIANT = {
+  Stable: "success",
+  Preview: "warning",
+  Planned: "neutral",
+} as const;
+
+const FEATURES: {
+  name: string;
+  status: Status;
+  since: string;
+  href: string;
+}[] = [
+  {
+    name: "Batch slice generation",
+    status: "Stable",
+    since: "CLI 2.7.0",
+    href: "#generator-workflows",
+  },
+  {
+    name: "Structure-only segments (--segments, --root)",
+    status: "Stable",
+    since: "CLI 2.7.0",
+    href: "#generator-workflows",
+  },
+  {
+    name: "Architecture check (check --architecture)",
+    status: "Stable",
+    since: "CLI 2.7.0",
+    href: "#generator-workflows",
+  },
+  {
+    name: "Light Git hooks",
+    status: "Stable",
+    since: "CLI 2.7.0",
+    href: "#light-hooks",
+  },
+  {
+    name: "Supabase auth adapter (--auth-provider supabase)",
+    status: "Preview",
+    since: "CLI 2.7.0",
+    href: "#supabase-auth",
+  },
+  {
+    name: "Existing-project migration",
+    status: "Preview",
+    since: "Agent Skill v2.0.0",
+    href: "#existing-project-migration",
+  },
+  {
+    name: "Angular scaffolding and generators",
+    status: "Planned",
+    since: "Inspection only today",
+    href: "#planned",
+  },
+];
+
+function StatusBadge({ status }: { status: Status }) {
+  return <Badge variant={STATUS_VARIANT[status]}>{status}</Badge>;
+}
 
 export default function ReleaseReadinessPage() {
   return (
     <article className="max-w-4xl space-y-10">
       <header>
         <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-brand-coral">
-          Published release update · October 29, 2026
+          Feature status
         </p>
         <h1 className="text-4xl font-semibold tracking-[-1.5px] text-ink md:text-5xl">
-          Upcoming changes and release readiness
+          What is stable, in preview, and planned
         </h1>
         <p className="mt-5 text-lg leading-relaxed text-body">
-          CLI 2.7.0 was released on October 29, 2026. It ships the Supabase auth
-          adapter, batch and structure-only generation, architecture checks,
-          light hooks, layout widget presets, and shared ui/api generators
-          described below, and requires Node.js 22.12.0 or later. The migration
-          pilot belongs to the Agent Skill repository and has its own delivery.
-          See the{" "}
-          <a href="/docs/releases/2.7.0" className="text-brand-coral underline">
-            2.7.0 release notes
-          </a>{" "}
-          for the full list.
+          Stable features are released on npm and covered by CI. Preview
+          features are released but still waiting on a live acceptance check, so
+          verify them in your own staging environment first. Planned work is not
+          available yet. For the full change list, see the{" "}
+          <a href="/docs/releases" className="text-brand-coral underline">
+            release notes
+          </a>
+          .
         </p>
       </header>
 
       <PublishedDocumentationVideo pageKey="/docs/release-readiness" />
 
       <section className="space-y-4">
-        <h2
-          id="published-and-candidate"
-          className="text-2xl font-semibold text-ink"
-        >
-          Published and candidate source
+        <h2 id="status-overview" className="text-2xl font-semibold text-ink">
+          Status overview
         </h2>
-        <p>
-          The consolidated QA report merged in CLI PR12 at <code>39c1443</code>.
-          Its recorded source baseline is <code>fcde52a</code>; historical
-          results are not reruns against newer main commits. See the{" "}
-          <a
-            href="https://github.com/FSD-CLI/cli/blob/main/docs/RELEASE-STATUS.md"
-            className="text-brand-coral underline"
-          >
-            current release and QA status
-          </a>{" "}
-          for source identities, published package evidence, and remaining gaps.
-        </p>
-        <p>
-          CLI PR6 merged into main at <code>060bc5d</code>; its 30 checks
-          passed. Its template-pinning work is now included in the published
-          2.6.2 and 2.6.3 artifacts. The{" "}
-          <a href={CLI_SOURCE} className="text-brand-coral underline">
-            follow-up candidate d5a0bb1
-          </a>{" "}
-          needs a new PR and CI on its own head.
-        </p>
-        <p>
-          Candidate local verification passed 118 CLI tests and npm pack
-          dry-run. Supabase-generated output passed lint, typecheck, and build
-          in React + Vite, Next.js, Vue + Vite, Nuxt, and SvelteKit. These
-          results cover source output; they do not certify a released npm
-          artifact or a live auth backend.
-        </p>
+        <div className="overflow-x-auto rounded-2xl border border-hairline">
+          <table className="w-full min-w-[560px] text-left text-sm">
+            <thead className="bg-surface-soft text-ink">
+              <tr>
+                <th className="px-4 py-3 font-semibold">Feature</th>
+                <th className="px-4 py-3 font-semibold">Status</th>
+                <th className="px-4 py-3 font-semibold">Available in</th>
+              </tr>
+            </thead>
+            <tbody>
+              {FEATURES.map((feature) => (
+                <tr key={feature.name} className="border-t border-hairline">
+                  <td className="px-4 py-3 font-semibold text-ink">
+                    <a href={feature.href} className="hover:underline">
+                      {feature.name}
+                    </a>
+                  </td>
+                  <td className="px-4 py-3">
+                    <StatusBadge status={feature.status} />
+                  </td>
+                  <td className="px-4 py-3 text-body">{feature.since}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section className="space-y-4">
-        <h2
-          id="generator-workflows"
-          className="text-2xl font-semibold text-ink"
-        >
-          Batch slices, preserving segments, and architectural checks
-        </h2>
+        <div className="flex flex-wrap items-center gap-3">
+          <h2
+            id="generator-workflows"
+            className="text-2xl font-semibold text-ink"
+          >
+            Batch slices, preserving segments, and architecture checks
+          </h2>
+          <StatusBadge status="Stable" />
+        </div>
         <p>
-          The candidate adds native batch generation with complete preflight and
-          rollback of earlier slices, affected routes/store files, and the
-          ownership manifest if a later operation fails. Batch --force is
-          refused.
+          Batch generation creates several slices in one run. It checks every
+          slice before writing and rolls back earlier slices, affected
+          route/store files, and the ownership manifest if a later one fails.{" "}
+          <code>--force</code> is refused in batch mode.
         </p>
         <CodeBlock
-          code={`node /path/to/cli/bin/index.mjs -g entity product customer --dry-run
-node /path/to/cli/bin/index.mjs -g entity product customer
-node /path/to/cli/bin/index.mjs -g feature cart --segments ui,api --root src/lib
-node /path/to/cli/bin/index.mjs -g shared --segments ui,lib --root src`}
+          code={`npx create-fsd-architecture@latest -g entity product customer --dry-run
+npx create-fsd-architecture@latest -g entity product customer
+npx create-fsd-architecture@latest -g feature cart --segments ui,api --root src/lib
+npx create-fsd-architecture@latest -g shared --segments ui,lib --root src`}
         />
         <p>
-          --segments creates missing directories and empty TypeScript public
-          APIs, preserving existing files. It generates no components, routes,
-          backend, or state registration. --root is supported only with this
-          structure-only mode; it does not rewrite framework aliases or routing.
-          Segments are one comma-separated argument. Symlinks and path
-          collisions are rejected.
+          <code>--segments</code> creates missing directories and empty
+          TypeScript public APIs and keeps existing files. It generates no
+          components, routes, backend, or state registration.{" "}
+          <code>--root</code> works only in this structure-only mode and does
+          not rewrite framework aliases or routing. Pass segments as one
+          comma-separated argument. Symlinks and path collisions are rejected.
         </p>
         <CodeBlock
           code={`# Install in the application using its package manager:
 npm install -D steiger @feature-sliced/steiger-plugin
-node /path/to/cli/bin/index.mjs check --architecture`}
+npx create-fsd-architecture@latest check --architecture`}
         />
         <p>
-          This opt-in runs the project's installed Steiger against its framework
-          source root and propagates failure. It downloads nothing
-          automatically; rules and exceptions remain project-owned. Normal
-          check/doctor inspect config, layers, and toolchain, without analyzing
-          import architecture. Native entity batch output passed
-          lint/types/build across all five frameworks.
+          <code>check --architecture</code> runs the project&apos;s installed
+          Steiger against its framework source root and fails when Steiger
+          fails. It downloads nothing; rules and exceptions stay in your
+          project. Plain <code>check</code> and <code>doctor</code> inspect
+          config, layers, and toolchain without analyzing imports.
         </p>
       </section>
 
       <section className="space-y-4">
-        <h2 id="supabase-auth" className="text-2xl font-semibold text-ink">
-          Supabase Auth adapter candidate
-        </h2>
+        <div className="flex flex-wrap items-center gap-3">
+          <h2 id="supabase-auth" className="text-2xl font-semibold text-ink">
+            Supabase auth adapter
+          </h2>
+          <StatusBadge status="Preview" />
+        </div>
         <p>
           The opt-in adapter replaces example auth requests with Supabase SDK
-          operations in all five supported frameworks. It writes inside the auth
-          slice and does not install an SDK, provision a project, or edit env
-          files. Run these commands from the candidate CLI checkout inside a
-          compatible project; the flag ships in CLI 2.7.0 and is absent from
-          2.6.3 and earlier.
+          calls in all five supported frameworks. It writes inside the auth
+          slice and does not install the SDK, provision a project, or edit env
+          files. Generated output builds in every framework, but end-to-end
+          acceptance against a live Supabase project is still pending, so test
+          sign-up, recovery, and RLS in a staging project before production.
         </p>
         <CodeBlock
-          code={`# Replace /path/to/cli with the reviewed candidate checkout
-node /path/to/cli/bin/index.mjs -g feature auth --auth-provider supabase --dry-run
-node /path/to/cli/bin/index.mjs -g feature auth --auth-provider supabase
+          code={`npx create-fsd-architecture@latest -g feature auth --auth-provider supabase --dry-run
+npx create-fsd-architecture@latest -g feature auth --auth-provider supabase
 npm install @supabase/supabase-js`}
         />
         <p>
-          The actual SDK 2.117.2 declaration was typechecked; that SDK requires
-          Node.js 22 or later. The CLI runtime requirement remains separate.
+          <code>@supabase/supabase-js</code> requires Node.js 22 or later.
           Initialize the adapter at the framework browser boundary before form
           submission:
         </p>
@@ -183,17 +237,14 @@ configureSupabaseAuth(client);`}
             The SDK owns persistence and refresh. Subscribe to onAuthStateChange
             to synchronize application state.
           </li>
-        </ul>
+        </ul>{" "}
         <p>
           When server state is disabled, wire submit handlers to exported API
           methods. Handle failures without logging passwords, OTPs, or tokens.
-          Before live acceptance, verify signup/confirmation/login, recovery
-          mail and expired codes, password reset, refresh/logout, and RLS on an
-          isolated staging project. Those backend checks remain pending.
         </p>
         <p>
           <a
-            href="https://github.com/FSD-CLI/cli/blob/d5a0bb1e464f2364593800deede428a957b5c32b/docs/AUTH-SUPABASE-CONTRACT.md"
+            href="https://github.com/FSD-CLI/cli/blob/main/docs/AUTH-SUPABASE-CONTRACT.md"
             className="text-brand-coral underline"
           >
             Full adapter contract
@@ -202,127 +253,88 @@ configureSupabaseAuth(client);`}
       </section>
 
       <section className="space-y-4">
-        <h2 id="light-hooks" className="text-2xl font-semibold text-ink">
-          Light hooks and optional automation
-        </h2>
+        <div className="flex flex-wrap items-center gap-3">
+          <h2 id="light-hooks" className="text-2xl font-semibold text-ink">
+            Light hooks and optional automation
+          </h2>
+          <StatusBadge status="Stable" />
+        </div>
         <p>
-          The candidate policy uses staged and unstaged whitespace checks on
-          pre-commit, conventional commit validation on commit-msg, and quality
-          checks in CI. Local lint and pre-push lint/build are opt-in:
+          New projects check staged and unstaged whitespace on pre-commit,
+          validate conventional commit messages on commit-msg, and leave quality
+          checks to CI. Local lint and pre-push lint/build are opt-in:
         </p>
         <CodeBlock
           code={`FSD_PRE_COMMIT_LINT=1 git commit -m "feat: add catalog"
 FSD_PRE_PUSH_CHECKS=1 git push
+
 # Explicit bypass when needed:
 HUSKY=0 git commit -m "docs: update guide"`}
         />
         <p>
-          React Auto-PR and labeler workflows move to optional-workflows.
-          Auto-PR is manually dispatched; configure repository labels and
-          workflow permissions before enabling either workflow. No automatic
-          publishing is enabled.
+          React Auto-PR and labeler workflows live in{" "}
+          <code>optional-workflows</code>. Auto-PR runs only when dispatched
+          manually; configure repository labels and workflow permissions before
+          enabling either one. Nothing is published automatically.
         </p>
         <p>
-          The CLI candidate adds light-hooks-v1, managed state 2 to 3. Only
-          unchanged owned hooks update; customized hooks remain conflicts.
-          Review{" "}
+          Existing projects move to light hooks through the managed{" "}
+          <code>light-hooks-v1</code> migration. Only unchanged CLI-owned hooks
+          are updated; customized hooks are reported as conflicts. Review{" "}
           <a href="/docs/upgrade" className="text-brand-coral underline">
-            upgrade --dry-run
+            <code>upgrade --dry-run</code>
           </a>{" "}
-          before applying. This migration ships in CLI 2.7.0.
+          before applying.
         </p>
       </section>
 
       <section className="space-y-4">
-        <h2
-          id="existing-project-migration"
-          className="text-2xl font-semibold text-ink"
-        >
-          Existing-project migration through the Skill
-        </h2>
-        <p>
-          Migration v1 is an agent-guided workflow: inventory the existing app,
-          establish a passing baseline, map responsibilities to FSD, then move
-          code in small batches. Keep routes, API contracts, product behavior,
-          SSR boundaries, and locale handling intact. Update public APIs and
-          their consumers together; validate each batch and restore affected
-          files on failure.
-        </p>
-        <p>
-          A representative React/Vite legacy catalog pilot passed lint, types,
-          builds, and Chromium checks across baseline, batch 1, final state, and
-          rollback. Browser checks covered catalog routes, controlled API
-          success and error responses, cart interactions, and wildcard handling.
-          An injected type failure restored exact batch bytes while preserving
-          package and lock files.
-        </p>
-        <p>
-          This is one synthetic React pilot, not certification of arbitrary
-          production apps or other frameworks. Skill v2.0.0 is tagged and
-          installable, with 15 tests passing in all nine OS/Node CI jobs; the
-          Skill branch merged into main at <code>b825360</code>, with all nine
-          OS/Node jobs passing again on that merge. No arbitrary-app CLI migrate
-          command is shipped. See the{" "}
-          <a href={SKILL_SOURCE} className="text-brand-coral underline">
-            tagged Skill and migration fixture
-          </a>
-          .
-        </p>
-      </section>
-
-      <section className="space-y-4">
-        <h2
-          id="roadmap-and-release-gates"
-          className="text-2xl font-semibold text-ink"
-        >
-          Roadmap and release gates
-        </h2>
-        <p>
-          The{" "}
-          <a
-            href="https://www.figma.com/board/T5W8vOeZ6QIvlG4FaFHWql"
-            className="text-brand-coral underline"
+        <div className="flex flex-wrap items-center gap-3">
+          <h2
+            id="existing-project-migration"
+            className="text-2xl font-semibold text-ink"
           >
-            canonical FigJam roadmap
+            Existing-project migration through the Agent Skill
+          </h2>
+          <StatusBadge status="Preview" />
+        </div>
+        <p>
+          Migration is an agent-guided workflow in the{" "}
+          <a href="/docs/ai-agent-skill" className="text-brand-coral underline">
+            AI Agent Skill
           </a>
-          separates published, merged source, candidates, and blocked work. Add
-          and plugin systems remain in the Parking Lot; broader arbitrary
-          migration is research without a promised CLI release.
+          , not a CLI command. The agent inventories the existing app,
+          establishes a passing baseline, maps responsibilities to FSD, and then
+          moves code in small batches. Routes, API contracts, product behavior,
+          SSR boundaries, and locale handling stay intact. Each batch is
+          validated and restored on failure.
         </p>
         <p>
-          Nuxt production security findings still block a production-readiness
-          claim. Angular supports read-only inspection since CLI 2.6.3;
-          scaffolding, generation, reconfiguration, and managed upgrades remain
-          unsupported. Old React PR2 and PR3 are obsolete and await owner
-          closure; they are not release requirements.
+          It has been verified on a representative React + Vite application,
+          including rollback. It is not certified for arbitrary production apps
+          or other frameworks yet, so migrate on a branch and review every
+          batch.
         </p>
-        <ol className="list-decimal space-y-2 pl-6 text-body">
+      </section>
+
+      <section className="space-y-4">
+        <div className="flex flex-wrap items-center gap-3">
+          <h2 id="planned" className="text-2xl font-semibold text-ink">
+            Planned
+          </h2>
+          <StatusBadge status="Planned" />
+        </div>
+        <ul className="list-disc space-y-2 pl-6">
           <li>
-            Review and merge the required template and CLI changes; run CI
-            against their exact heads.
+            Angular: projects can be inspected read-only today. Scaffolding,
+            generators, reconfiguration, and managed upgrades are not available
+            yet and are rejected before any write.
           </li>
           <li>
-            Complete Supabase staging acceptance before claiming live auth
-            support.
+            A CLI command for migrating arbitrary existing apps is not planned
+            for a specific release; use the Agent Skill workflow above.
           </li>
-          <li>
-            Select a version, update changelog and package metadata, and verify
-            the packed artifact.
-          </li>
-          <li>
-            Publish manually and verify npm version, integrity, and gitHead. A
-            Git tag creates a GitHub Release but does not publish npm.
-          </li>
-          <li>
-            Run post-release smoke against the exact published version, then
-            update the release archive and announcements.
-          </li>
-        </ol>
-        <p>
-          English GitHub/DEV.to drafts and Egyptian Arabic LinkedIn copy are
-          prepared. Recording and publication remain owner actions; no content
-          was published as part of this candidate work.
-        </p>
+        </ul>
       </section>
     </article>
   );

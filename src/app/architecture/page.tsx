@@ -23,7 +23,7 @@ export default function ArchitecturePage() {
   return (
     <>
       <Navigation />
-      <main>
+      <main id="main-content" tabIndex={-1} className="outline-none">
         <header className="detail-intro">
           <Link href="/">← Back to overview</Link>
           <p className="section-kicker">THE SYSTEM / ARCHITECTURE</p>
