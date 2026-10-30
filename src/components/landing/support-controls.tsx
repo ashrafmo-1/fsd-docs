@@ -38,7 +38,10 @@ export function SupportButton({ floating = false }: { floating?: boolean }) {
 export function SupportProvider({ children }: { children: ReactNode }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const pathname = usePathname();
-  const showFloatingSupport = !pathname.startsWith("/dashboard");
+  // The floating heart sits over docs content and code blocks; on docs pages
+  // support stays in the header button and the footer section instead.
+  const showFloatingSupport =
+    !pathname.startsWith("/dashboard") && !pathname.startsWith("/docs");
 
   return (
     <SupportContext.Provider value={() => dialog.current?.showModal()}>
