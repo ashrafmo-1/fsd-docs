@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "Security and Privacy",
@@ -42,6 +43,8 @@ export default function SecurityPage() {
         How to report a problem, what the CLI does on your machine, and what
         this site keeps about you.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/security" />
 
       <section className="mt-10 rounded-2xl border border-brand-coral/30 bg-brand-peach/50 p-5">
         <h2
