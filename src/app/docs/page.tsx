@@ -1,13 +1,4 @@
-import {
-  ArrowRight,
-  Bot,
-  Boxes,
-  FolderTree,
-  KeyRound,
-  PanelsTopLeft,
-  RefreshCcw,
-  Terminal,
-} from "lucide-react";
+import { ArrowRight, Bot, Boxes, FolderTree, KeyRound, PanelsTopLeft, RefreshCcw, Terminal } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
@@ -15,201 +6,154 @@ import { PublishedDocumentationVideo } from "@/components/docs/published-documen
 import { CLI_RELEASES } from "@/lib/releases";
 
 export const metadata: Metadata = {
-  title: "Documentation",
-  description:
-    "Learn project scaffolding, configuration, slice generation, and auth generation with FSD CLI.",
-  alternates: { canonical: "/docs" },
+	title: "Documentation",
+	description: "Learn project scaffolding, configuration, slice generation, and auth generation with FSD CLI.",
+	alternates: { canonical: "/docs" },
 };
 
 const DOC_CARDS = [
-  {
-    title: "Project configuration",
-    description:
-      "Understand fsd.config.json and how generators reuse framework and stack choices without asking again.",
-    href: "/docs/configuration",
-    icon: FolderTree,
-    color: "bg-brand-peach",
-  },
-  {
-    title: "Project scaffolding",
-    description:
-      "Create a fresh React + Vite, Next.js, Vue + Vite, Nuxt, or SvelteKit FSD project through the interactive wizard.",
-    href: "/docs/getting-started",
-    icon: Terminal,
-    color: "bg-brand-peach",
-  },
-  {
-    title: "Slice generation",
-    description:
-      "Generate features, entities, widgets, and pages directly inside an existing project.",
-    href: "/docs/slice-generator",
-    icon: Boxes,
-    color: "bg-brand-mint",
-  },
-  {
-    title: "Auth generation",
-    description:
-      "Build an auth feature with optional login, register, and forgot password flow modules.",
-    href: "/docs/auth-generator",
-    icon: KeyRound,
-    color: "bg-brand-lavender",
-  },
-  {
-    title: "Safe project upgrades",
-    description:
-      "Inspect ownership, detect conflicts, and apply transactional migrations without re-scaffolding business code.",
-    href: "/docs/upgrade",
-    icon: RefreshCcw,
-    color: "bg-brand-mint",
-  },
-  {
-    title: "AI Agent Skill",
-    badge: "Stable v2.0.0",
-    description:
-      "Guide compatible agents through FSD discovery, implementation, review, migration, and verified tooling.",
-    href: "/docs/ai-agent-skill",
-    icon: Bot,
-    color: "bg-brand-lavender",
-  },
-  {
-    title: "React + Vite",
-    description:
-      "Use React Router, saved stack defaults, React-native slices, and the complete FSD structure.",
-    href: "/docs/frameworks/react",
-    icon: PanelsTopLeft,
-    color: "bg-brand-peach",
-  },
-  {
-    title: "Next.js",
-    description:
-      "Use the App Router, FSD page compositions, client providers, and generated route wrappers.",
-    href: "/docs/frameworks/nextjs",
-    icon: PanelsTopLeft,
-    color: "bg-brand-lavender",
-  },
-  {
-    title: "Vue + Vite",
-    description:
-      "Use the Vue-native template, stack defaults, providers, slice generators, and complete auth flow.",
-    href: "/docs/frameworks/vue",
-    icon: PanelsTopLeft,
-    color: "bg-brand-mint",
-  },
-  {
-    title: "Nuxt",
-    description:
-      "Use the Nuxt 4 template, app-root FSD structure, SSR providers, native Fetch, and file-based route generation.",
-    href: "/docs/frameworks/nuxt",
-    icon: PanelsTopLeft,
-    color: "bg-brand-lavender",
-  },
-  {
-    title: "SvelteKit",
-    description:
-      "Use the Svelte 5 and SvelteKit 2 starter, native Fetch, Svelte Query, stores, Superforms, and generated routes.",
-    href: "/docs/frameworks/sveltekit",
-    icon: PanelsTopLeft,
-    color: "bg-brand-peach",
-  },
+	{
+		title: "Project configuration",
+		description: "Understand fsd.config.json and how generators reuse framework and stack choices without asking again.",
+		href: "/docs/configuration",
+		icon: FolderTree,
+		color: "bg-brand-peach",
+	},
+	{
+		title: "Project scaffolding",
+		description: "Create a fresh React + Vite, Next.js, Vue + Vite, Nuxt, or SvelteKit FSD project through the interactive wizard.",
+		href: "/docs/getting-started",
+		icon: Terminal,
+		color: "bg-brand-peach",
+	},
+	{
+		title: "Slice generation",
+		description: "Generate features, entities, widgets, and pages directly inside an existing project.",
+		href: "/docs/slice-generator",
+		icon: Boxes,
+		color: "bg-brand-mint",
+	},
+	{
+		title: "Auth generation",
+		description: "Build an auth feature with optional login, register, and forgot password flow modules.",
+		href: "/docs/auth-generator",
+		icon: KeyRound,
+		color: "bg-brand-lavender",
+	},
+	{
+		title: "Safe project upgrades",
+		description: "Inspect ownership, detect conflicts, and apply transactional migrations without re-scaffolding business code.",
+		href: "/docs/upgrade",
+		icon: RefreshCcw,
+		color: "bg-brand-mint",
+	},
+	{
+		title: "AI Agent Skill",
+		badge: "Stable v2.0.0",
+		description: "Guide compatible agents through FSD discovery, implementation, review, migration, and verified tooling.",
+		href: "/docs/ai-agent-skill",
+		icon: Bot,
+		color: "bg-brand-lavender",
+	},
+	{
+		title: "React + Vite",
+		description: "Use React Router, saved stack defaults, React-native slices, and the complete FSD structure.",
+		href: "/docs/frameworks/react",
+		icon: PanelsTopLeft,
+		color: "bg-brand-peach",
+	},
+	{
+		title: "Next.js",
+		description: "Use the App Router, FSD page compositions, client providers, and generated route wrappers.",
+		href: "/docs/frameworks/nextjs",
+		icon: PanelsTopLeft,
+		color: "bg-brand-lavender",
+	},
+	{
+		title: "Vue + Vite",
+		description: "Use the Vue-native template, stack defaults, providers, slice generators, and complete auth flow.",
+		href: "/docs/frameworks/vue",
+		icon: PanelsTopLeft,
+		color: "bg-brand-mint",
+	},
+	{
+		title: "Nuxt",
+		description: "Use the Nuxt 4 template, app-root FSD structure, SSR providers, native Fetch, and file-based route generation.",
+		href: "/docs/frameworks/nuxt",
+		icon: PanelsTopLeft,
+		color: "bg-brand-lavender",
+	},
+	{
+		title: "SvelteKit",
+		description: "Use the Svelte 5 and SvelteKit 2 starter, native Fetch, Svelte Query, stores, Superforms, and generated routes.",
+		href: "/docs/frameworks/sveltekit",
+		icon: PanelsTopLeft,
+		color: "bg-brand-peach",
+	},
 ];
 
 export default function DocsPage() {
-  return (
-    <article>
-      <div className="mb-12 max-w-3xl">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-body-muted">
-          Version{" "}
-          {CLI_RELEASES.find((release) => release.status === "latest")?.version}
-        </p>
-        <h1 className="text-4xl font-medium leading-tight tracking-[-1.5px] text-ink md:text-5xl">
-          create-fsd-architecture documentation
-        </h1>
-        <p className="mt-5 text-lg leading-relaxed text-body">
-          The CLI supports React, Next.js, Vue, Nuxt, and SvelteKit through one
-          package, with full project scaffolding and framework-native FSD slice
-          generation.
-        </p>
-      </div>
+	return (
+		<article>
+			<div className="mb-12 max-w-3xl">
+				<p className="mb-3 text-xs font-semibold uppercase tracking-[1.5px] text-body-muted">Version {CLI_RELEASES.find((release) => release.status === "latest")?.version}</p>
+				<h1 className="text-4xl font-medium leading-tight tracking-[-1.5px] text-ink md:text-5xl">create-fsd-architecture documentation</h1>
+				<p className="mt-5 text-lg leading-relaxed text-body">The CLI supports React, Next.js, Vue, Nuxt, and SvelteKit through one package, with full project scaffolding and framework-native FSD slice generation.</p>
+			</div>
 
-      <div className="mb-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {DOC_CARDS.map((card) => {
-          const Icon = card.icon;
+			<div className="mb-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+				{DOC_CARDS.map((card) => {
+					const Icon = card.icon;
 
-          return (
-            <Link
-              key={card.title}
-              href={card.href}
-              className="group rounded-[16px] border border-hairline bg-canvas p-5 transition-colors hover:bg-surface-soft"
-            >
-              <span
-                className={`mb-4 inline-flex h-10 w-10 items-center justify-center rounded-[12px] ${card.color}`}
-              >
-                <Icon className="h-5 w-5 text-on-accent" />
-              </span>
-              <div className="flex items-center gap-2">
-                <h2 className="text-base font-semibold text-ink">
-                  {card.title}
-                </h2>
-                {card.badge ? (
-                  <span className="rounded-full border border-brand-coral/30 bg-brand-peach px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.8px] text-on-accent">
-                    {card.badge}
-                  </span>
-                ) : null}
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-body">
-                {card.description}
-              </p>
-              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-ink">
-                Read docs
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Link>
-          );
-        })}
-      </div>
+					return (
+						<Link key={card.title} href={card.href} className="group rounded-[16px] border border-hairline bg-canvas p-5 transition-colors hover:bg-surface-soft">
+							<span className={`mb-4 inline-flex h-10 w-10 items-center justify-center rounded-[12px] ${card.color}`}>
+								<Icon className="h-5 w-5 text-on-accent" />
+							</span>
+							<div className="flex items-center gap-2">
+								<h2 className="text-base font-semibold text-ink">{card.title}</h2>
+								{card.badge ? <span className="rounded-full border border-brand-coral/30 bg-brand-peach px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.8px] text-on-accent">{card.badge}</span> : null}
+							</div>
+							<p className="mt-2 text-sm leading-relaxed text-body">{card.description}</p>
+							<span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-ink">
+								Read docs
+								<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+							</span>
+						</Link>
+					);
+				})}
+			</div>
 
-      <PublishedDocumentationVideo pageKey="/docs" />
+			<PublishedDocumentationVideo pageKey="/docs" />
 
-      <section className="mb-12">
-        <h2
-          id="cli-workflows"
-          className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink"
-        >
-          CLI workflows
-        </h2>
-        <div className="grid gap-4 lg:grid-cols-2">
-          <div className="rounded-[16px] border border-hairline bg-surface-soft p-5">
-            <FolderTree className="mb-4 h-5 w-5 text-ink" />
-            <h3 id="start-a-new-project" className="font-semibold text-ink">
-              Start a new project
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-body">
-              No generator flag opens the existing interactive project creation
-              wizard.
-            </p>
-            <div className="mt-4">
-              <CodeBlock code="npm create fsd-architecture@latest" />
-            </div>
-          </div>
+			<section className="mb-12">
+				<h2 id="cli-workflows" className="mb-4 text-2xl font-medium tracking-[-0.5px] text-ink">
+					CLI workflows
+				</h2>
+				<div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
+					<div className="col-span-1 rounded-[16px] border border-hairline bg-surface-soft p-5">
+						<FolderTree className="mb-4 h-5 w-5 text-ink" />
+						<h3 id="start-a-new-project" className="font-semibold text-ink">
+							Start a new project
+						</h3>
+						<p className="mt-2 text-sm leading-relaxed text-body">No generator flag opens the existing interactive project creation wizard.</p>
+						<div className="mt-4">
+							<CodeBlock code="npm create fsd-architecture@latest" />
+						</div>
+					</div>
 
-          <div className="rounded-[16px] border border-hairline bg-surface-soft p-5">
-            <Boxes className="mb-4 h-5 w-5 text-ink" />
-            <h3
-              id="generate-inside-a-project"
-              className="font-semibold text-ink"
-            >
-              Generate inside a project
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-body">
-              Use the generator command from an existing codebase to add FSD
-              slices.
-            </p>
-            <div className="mt-4">
-              <CodeBlock code="npx create-fsd-architecture@latest --generate feature auth" />
-            </div>
-          </div>
-        </div>
-      </section>
-    </article>
-  );
+					<div className="col-span-1 rounded-[16px] border border-hairline bg-surface-soft p-5">
+						<Boxes className="mb-4 h-5 w-5 text-ink" />
+						<h3 id="generate-inside-a-project" className="font-semibold text-ink">
+							Generate inside a project
+						</h3>
+						<p className="mt-2 text-sm leading-relaxed text-body">Use the generator command from an existing codebase to add FSD slices.</p>
+						<div className="mt-4">
+							<CodeBlock code="npx create-fsd-architecture@latest --generate feature auth" />
+						</div>
+					</div>
+				</div>
+			</section>
+		</article>
+	);
 }
