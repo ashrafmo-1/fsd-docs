@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "CI/CD",
@@ -32,6 +33,8 @@ export default function CiCdPage() {
         what you get, how to run the same checks elsewhere, and which CLI checks
         are worth adding.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/ci-cd" />
 
       <section className="mt-10 space-y-4">
         <h2
