@@ -24,7 +24,7 @@ const CHAPTERS = [
     title: "A foundation.\nNot a blank folder.",
     description:
       "Choose your framework and stack. Start with FSD layers, TypeScript, and tooling already in place.",
-    command: "npx create-fsd-architecture@latest",
+    command: "npx create-fsd-architecture@latest@latest",
     file: "my-app / src",
     lines: [
       "app/         → initialize",
@@ -44,7 +44,7 @@ const CHAPTERS = [
     title: "Your next feature.\nIn the right place.",
     description:
       "Add features, entities, widgets, and pages to an existing project. The generator follows your saved framework and stack choices.",
-    command: "npx create-fsd-architecture -g feature auth",
+    command: "npx create-fsd-architecture@latest -g feature auth",
     file: "src / features / auth",
     lines: [
       "api/         → requests",
@@ -64,7 +64,7 @@ const CHAPTERS = [
     title: "One configuration.\nRoom to evolve.",
     description:
       "Keep framework and stack decisions in fsd.config.json. Inspect your project and review an upgrade plan before applying changes.",
-    command: "npx create-fsd-architecture upgrade --dry-run",
+    command: "npx create-fsd-architecture@latest upgrade --dry-run",
     file: "fsd.config.json",
     lines: [
       "{",

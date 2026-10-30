@@ -37,6 +37,14 @@ for (const [path, html] of pages) {
   }
 }
 
+// Every sitemap page must declare itself as canonical, never a parent page.
+for (const [path, html] of pages) {
+  const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+  assert(canonical, `${path}: canonical link`);
+  const canonicalPath = new URL(canonical).pathname;
+  assert.equal(canonicalPath, path, `${path}: canonical points to itself`);
+}
+
 const robotsResponse = await fetch(`${origin}/robots.txt`);
 assert.equal(robotsResponse.status, 200, "robots.txt");
 const robots = await robotsResponse.text();
