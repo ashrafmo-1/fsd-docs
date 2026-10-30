@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "Troubleshooting",
@@ -257,6 +258,8 @@ export default function TroubleshootingPage() {
         </Link>
         .
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/troubleshooting" />
 
       {GROUPS.map((group) => (
         <section key={group.id} className="mt-10 space-y-4">
