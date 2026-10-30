@@ -4,6 +4,7 @@ export type DocumentationVideo = {
   title: string;
   youtubeUrl: string;
   description?: string;
+  transcript?: string;
 };
 
 export type DocumentationVideoConfig = Record<
@@ -23,6 +24,7 @@ export type DocumentationVideoRecord = {
   youtubeUrl: string;
   youtubeVideoId: string;
   description: string | null;
+  transcript: string | null;
   isPublished: boolean;
   displayOrder: number;
   createdAt: string;
@@ -52,10 +54,12 @@ export function documentationVideoFromRecord(
   if (!title || !videoId) return undefined;
 
   const description = record.description?.trim();
+  const transcript = record.transcript?.trim();
   return {
     title,
     youtubeUrl: videoId,
     ...(description ? { description } : {}),
+    ...(transcript ? { transcript } : {}),
   };
 }
 

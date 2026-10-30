@@ -1,8 +1,9 @@
 "use client";
 
-import { ArrowDown, ArrowRight, Check, Copy, Layers3 } from "lucide-react";
+import { ArrowDown, ArrowRight, Check, Copy, Layers3, X } from "lucide-react";
 import Link from "next/link";
-import { type CSSProperties, useState } from "react";
+import type { CSSProperties } from "react";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { useScrollProgress } from "@/hooks/use-scroll-progress";
 import { CLI_RELEASES } from "@/lib/releases";
 
@@ -18,15 +19,7 @@ const COMMAND = "npx create-fsd-architecture@latest";
 
 export function Hero() {
   const ref = useScrollProgress("exit");
-  const [copyStatus, setCopyStatus] = useState("");
-  async function copyCommand() {
-    try {
-      await navigator.clipboard.writeText(COMMAND);
-      setCopyStatus("Command copied");
-    } catch {
-      setCopyStatus("Select the command to copy it manually.");
-    }
-  }
+  const { status: copyStatus, copy } = useCopyToClipboard();
   return (
     <section ref={ref} className="fsd-hero" aria-labelledby="hero-title">
       <div className="hero-grid" aria-hidden="true" />
@@ -108,17 +101,23 @@ export function Hero() {
             <code>{COMMAND}</code>
             <button
               type="button"
-              onClick={copyCommand}
+              onClick={() => copy(COMMAND)}
               aria-label="Copy project creation command"
             >
-              {copyStatus === "Command copied" ? (
+              {copyStatus === "copied" ? (
                 <Check size={17} />
+              ) : copyStatus === "error" ? (
+                <X size={17} />
               ) : (
                 <Copy size={17} />
               )}
             </button>
             <span className="sr-only" role="status">
-              {copyStatus}
+              {copyStatus === "copied"
+                ? "Command copied"
+                : copyStatus === "error"
+                  ? "Copy failed. Select the command to copy it manually."
+                  : ""}
             </span>
           </div>
           <ul className="framework-list" aria-label="Supported frameworks">

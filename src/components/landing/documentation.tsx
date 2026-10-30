@@ -3,9 +3,7 @@
 import {
   ArrowRight,
   Boxes,
-  Check,
   ChevronDown,
-  Copy,
   KeyRound,
   PanelsTopLeft,
   Settings2,
@@ -13,32 +11,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useId, useState } from "react";
+import { CopyCodeButton } from "@/components/docs/code-block";
 import { cn } from "@/lib/utils";
-
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <button
-      type="button"
-      onClick={handleCopy}
-      className="absolute right-3 top-3 rounded-md p-1.5 text-white/30 transition-colors hover:text-white/60"
-      aria-label="Copy code"
-    >
-      {copied ? (
-        <Check className="h-3.5 w-3.5 text-brand-mint" />
-      ) : (
-        <Copy className="h-3.5 w-3.5" />
-      )}
-    </button>
-  );
-}
 
 function CodeBlock({
   code,
@@ -55,7 +29,7 @@ function CodeBlock({
       <pre className="overflow-x-auto p-4 font-mono text-sm leading-relaxed text-white/80">
         <code>{code}</code>
       </pre>
-      <CopyButton text={code} />
+      <CopyCodeButton text={code} />
     </div>
   );
 }
@@ -213,7 +187,7 @@ const FAQ_ITEMS = [
   {
     question: "What changed in version 2?",
     answer:
-      "The CLI scaffolds full projects and generates FSD slices inside existing projects. Version 2.5 adds stable SvelteKit scaffolding, Svelte 5 generators, Svelte Query, stores, Superforms, and generated file-based routes.",
+      "The CLI scaffolds full projects for React, Next.js, Vue, Nuxt, and SvelteKit and generates FSD slices inside existing projects. Each release since 2.0 is listed with its changes in the release notes.",
   },
   {
     question: "Does the generator install dependencies?",
@@ -294,7 +268,7 @@ export function Documentation() {
               </p>
               <div className="space-y-3">
                 <CodeBlock code="npm create fsd-architecture@latest" />
-                <CodeBlock code="npx create-fsd-architecture@latest" />
+                <CodeBlock code="npx create-fsd-architecture@latest@latest" />
               </div>
             </div>
 
@@ -307,10 +281,10 @@ export function Documentation() {
                 an existing project.
               </p>
               <CodeBlock
-                code={`npx create-fsd-architecture --generate feature auth
-npx create-fsd-architecture -g entity product
-npx create-fsd-architecture --generate widget navbar
-npx create-fsd-architecture --generate page checkout`}
+                code={`npx create-fsd-architecture@latest --generate feature auth
+npx create-fsd-architecture@latest -g entity product
+npx create-fsd-architecture@latest --generate widget navbar
+npx create-fsd-architecture@latest --generate page checkout`}
               />
             </div>
           </div>
