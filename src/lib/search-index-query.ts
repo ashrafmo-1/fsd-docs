@@ -16,7 +16,8 @@ export function searchDocs(index: SearchEntry[], query: string, limit = 12) {
       const haystack =
         `${title} ${entry.page} ${entry.description}`.toLowerCase();
       if (!words.every((word) => haystack.includes(word))) return null;
-      let score = entry.page ? 0 : 2;
+      // A matching page always outranks a section (sections score at most 3 + words).
+      let score = entry.page ? 0 : 10;
       if (title.startsWith(words[0])) score += 3;
       score += words.filter((word) => title.includes(word)).length;
       return { entry, score };
