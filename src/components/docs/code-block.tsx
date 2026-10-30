@@ -11,7 +11,7 @@ export function CopyCodeButton({ text }: { text: string }) {
       <button
         type="button"
         onClick={() => copy(text)}
-        className="absolute right-2 top-2 inline-flex h-8 w-8 items-center justify-center rounded-md text-white/30 transition-colors hover:text-white/60"
+        className="absolute right-2 top-2 inline-flex h-8 w-8 items-center justify-center rounded-md text-white/60 transition-colors hover:text-white/90"
         aria-label="Copy code"
       >
         {status === "copied" ? (
@@ -51,7 +51,7 @@ export function CodeBlock({
         data-markdown="skip"
         className="flex items-center gap-2 border-b border-white/10 px-4 py-2"
       >
-        <span className="text-xs text-white/30">{language}</span>
+        <span className="text-xs text-white/60">{language}</span>
       </div>
       <pre
         data-language={language}

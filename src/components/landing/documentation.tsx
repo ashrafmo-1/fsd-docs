@@ -24,7 +24,7 @@ function CodeBlock({
   return (
     <div className="relative overflow-hidden rounded-[12px] bg-surface-dark">
       <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2">
-        <span className="text-xs text-white/30">{language}</span>
+        <span className="text-xs text-white/60">{language}</span>
       </div>
       <pre className="overflow-x-auto p-4 font-mono text-sm leading-relaxed text-white/80">
         <code>{code}</code>
