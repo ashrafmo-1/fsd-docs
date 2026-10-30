@@ -136,7 +136,7 @@ function FolderTree({ isVisible }: { isVisible: boolean }) {
         <div className="h-3 w-3 rounded-full bg-brand-coral/80" />
         <div className="h-3 w-3 rounded-full bg-brand-ochre/80" />
         <div className="h-3 w-3 rounded-full bg-brand-mint/80" />
-        <span className="ml-2 text-xs text-white/40">project structure</span>
+        <span className="ml-2 text-xs text-white/60">project structure</span>
       </div>
       <div className="space-y-0.5">
         {folders.map((f) => (
@@ -154,7 +154,7 @@ function FolderTree({ isVisible }: { isVisible: boolean }) {
               transitionDelay: `${f.delay}ms`,
             }}
           >
-            <span className="text-white/30">{f.indent > 0 ? "├── " : ""}</span>
+            <span className="text-white/50">{f.indent > 0 ? "├── " : ""}</span>
             <span
               className={cn(f.indent === 1 && f.color ? "font-medium" : "")}
             >
