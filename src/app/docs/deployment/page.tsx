@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "Deployment",
@@ -50,6 +51,8 @@ export default function DeploymentPage() {
         changes how code is organized, not how it is built. This page lists what
         each template produces and the settings hosts usually need.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/deployment" />
 
       <section className="mt-10 space-y-4">
         <h2
