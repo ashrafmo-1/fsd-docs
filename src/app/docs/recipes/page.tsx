@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "Recipes",
@@ -53,6 +54,8 @@ export default function RecipesPage() {
         Examples use React + Vite; the commands are the same for every
         framework.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/recipes" />
 
       <Recipe
         id="product-catalog"
