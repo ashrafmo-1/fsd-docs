@@ -1,7 +1,42 @@
 "use client";
 
-import { Check, Copy } from "lucide-react";
-import { useState } from "react";
+import { Check, Copy, X } from "lucide-react";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+
+export function CopyCodeButton({ text }: { text: string }) {
+  const { status, copy } = useCopyToClipboard();
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => copy(text)}
+        className="absolute right-3 top-3 rounded-md p-1.5 text-white/30 transition-colors hover:text-white/60"
+        aria-label="Copy code"
+      >
+        {status === "copied" ? (
+          <Check className="h-3.5 w-3.5 text-brand-mint" />
+        ) : status === "error" ? (
+          <X className="h-3.5 w-3.5 text-red-300" />
+        ) : (
+          <Copy className="h-3.5 w-3.5" />
+        )}
+      </button>
+      {status === "error" ? (
+        <span className="absolute right-11 top-3.5 text-xs text-red-300">
+          Copy failed. Select the code to copy it.
+        </span>
+      ) : null}
+      <span className="sr-only" aria-live="polite">
+        {status === "copied"
+          ? "Code copied"
+          : status === "error"
+            ? "Copy failed. Select the code to copy it manually."
+            : ""}
+      </span>
+    </>
+  );
+}
 
 export function CodeBlock({
   code,
@@ -10,14 +45,6 @@ export function CodeBlock({
   code: string;
   language?: string;
 }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
     <div className="relative overflow-hidden rounded-[12px] bg-surface-dark">
       <div
@@ -32,21 +59,7 @@ export function CodeBlock({
       >
         <code>{code}</code>
       </pre>
-      <button
-        type="button"
-        onClick={handleCopy}
-        className="absolute right-3 top-3 rounded-md p-1.5 text-white/30 transition-colors hover:text-white/60"
-        aria-label="Copy code"
-      >
-        {copied ? (
-          <Check className="h-3.5 w-3.5 text-brand-mint" />
-        ) : (
-          <Copy className="h-3.5 w-3.5" />
-        )}
-      </button>
-      <span className="sr-only" aria-live="polite">
-        {copied ? "Code copied" : ""}
-      </span>
+      <CopyCodeButton text={code} />
     </div>
   );
 }
