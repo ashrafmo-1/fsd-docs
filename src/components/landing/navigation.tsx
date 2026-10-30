@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ThemeSwitcher } from "@/components/theme/theme-switcher";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -23,6 +23,41 @@ export function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Move focus into the menu when it opens, and close it on Escape.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    menuRef.current?.querySelector<HTMLElement>("a, button")?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    // Tabbing out of the menu closes it without stealing focus back.
+    const onFocusIn = (event: FocusEvent) => {
+      const target = event.target as Node;
+      if (
+        !menuRef.current?.contains(target) &&
+        !toggleRef.current?.contains(target)
+      )
+        setMobileOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("focusin", onFocusIn);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("focusin", onFocusIn);
+    };
+  }, [mobileOpen]);
+
+  // Close after navigation, including back/forward.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Runs on route change only.
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   // Keep shared links to the former home sections working after the move.
   useEffect(() => {
@@ -48,18 +83,8 @@ export function Navigation() {
       className="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur-md"
     >
       <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-6">
-        <Link
-          href="/"
-          className="flex items-center gap-2.5"
-          aria-label="FSD CLI home"
-        >
-          <Image
-            src="/fsd-logo.png"
-            alt="FSD CLI"
-            width={40}
-            height={40}
-            priority
-          />
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image src="/fsd-logo.png" alt="" width={40} height={40} priority />
           <span className="flex flex-col leading-none">
             <span className="text-base font-semibold tracking-tight text-ink">
               FSD CLI
@@ -126,6 +151,7 @@ export function Navigation() {
         <button
           type="button"
           className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-hairline xl:hidden"
+          ref={toggleRef}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={
             mobileOpen ? "Close navigation menu" : "Open navigation menu"
@@ -144,6 +170,7 @@ export function Navigation() {
       {mobileOpen && (
         <div
           id="mobile-navigation"
+          ref={menuRef}
           className="border-t border-hairline bg-canvas px-6 pb-6 pt-4 xl:hidden"
         >
           <div className="flex flex-col gap-4">

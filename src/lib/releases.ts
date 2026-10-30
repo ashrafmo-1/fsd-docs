@@ -578,6 +578,13 @@ export const CLI_RELEASES: CliRelease[] = [
   },
 ];
 
+/** The npm `latest` release; pages read the current version from here. */
+export const LATEST_CLI_RELEASE =
+  CLI_RELEASES.find((release) => release.status === "latest") ??
+  CLI_RELEASES[0];
+
+// 1.0.x predates the maintained changelog. These versions get no release page
+// (there are no notes to show); the archive links each one to npm instead.
 export const LEGACY_NPM_VERSIONS = [
   { version: "1.0.6", date: "June 7, 2026" },
   { version: "1.0.5", date: "May 30, 2026" },
@@ -589,21 +596,6 @@ export const LEGACY_NPM_VERSIONS = [
 
 export function getRelease(version: string) {
   return CLI_RELEASES.find((release) => release.version === version);
-}
-
-// Publication records verified against npm. Historical changes are deliberately
-// left empty where no maintained release notes exist.
-for (const release of LEGACY_NPM_VERSIONS) {
-  CLI_RELEASES.push({
-    version: release.version,
-    date: release.version === "1.0.6" ? "2026-06-07" : "2026-05-30",
-    dateLabel: release.date,
-    summary:
-      "Archived npm release from the original project scaffolder. Detailed release notes were not recorded in the maintained changelog.",
-    status: "legacy",
-    frameworks: ["React", "Next.js"],
-    sections: [],
-  });
 }
 
 export function getReleaseNavigation(version: string) {
@@ -626,7 +618,7 @@ export const SKILL_RELEASES = [
     version: "2.0.0",
     status: "stable",
     summary:
-      "Stable release of the documented v2 workflows and read-only helpers. Preserves explicit limits for live Supabase and broader provider/framework migration coverage; CLI npm baseline remains 2.6.1.",
+      "Stable release of the documented v2 workflows and read-only helpers. Preserves explicit limits for live Supabase and broader provider/framework migration coverage; verified against the CLI 2.6.1 npm release that was current at the time.",
   },
   {
     version: "2.0.0-beta.1",
