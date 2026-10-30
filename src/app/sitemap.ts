@@ -9,6 +9,7 @@ const latestReleaseDate = new Date(`${CLI_RELEASES[0].date}T00:00:00.000Z`);
 const pages = [
   "",
   "/architecture",
+  "/ar",
   "/capabilities",
   ...DOCS_NAV_ITEMS.map((item) => item.href),
 ];
