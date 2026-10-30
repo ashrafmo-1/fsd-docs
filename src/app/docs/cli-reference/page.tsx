@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
+import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
 export const metadata: Metadata = {
   title: "CLI Reference",
@@ -213,6 +214,8 @@ export default function CliReferencePage() {
         <code>npx</code>. Run <code>fsd --help</code> for the same summary in
         your terminal.
       </p>
+
+      <PublishedDocumentationVideo pageKey="/docs/cli-reference" />
 
       <section className="mt-10 space-y-4">
         <h2
