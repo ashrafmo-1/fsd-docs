@@ -23,6 +23,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
         href: "/docs/getting-started",
         description: "Create a complete FSD project.",
       },
+      {
+        label: "Compatibility",
+        href: "/docs/compatibility",
+        description: "Node.js and package manager requirements.",
+      },
     ],
   },
   {
@@ -96,10 +101,9 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
         description: "Common questions and FSD/CLI terms.",
       },
       {
-        label: "Upcoming changes",
+        label: "Feature status",
         href: "/docs/release-readiness",
-        description:
-          "Supabase, light hooks, existing-project migration, and release verification.",
+        description: "Which features are stable, in preview, or planned.",
       },
       {
         label: "Releases",

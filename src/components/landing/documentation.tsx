@@ -3,9 +3,7 @@
 import {
   ArrowRight,
   Boxes,
-  Check,
   ChevronDown,
-  Copy,
   KeyRound,
   PanelsTopLeft,
   Settings2,
@@ -13,32 +11,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useId, useState } from "react";
+import { CopyCodeButton } from "@/components/docs/code-block";
 import { cn } from "@/lib/utils";
-
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <button
-      type="button"
-      onClick={handleCopy}
-      className="absolute right-3 top-3 rounded-md p-1.5 text-white/30 transition-colors hover:text-white/60"
-      aria-label="Copy code"
-    >
-      {copied ? (
-        <Check className="h-3.5 w-3.5 text-brand-mint" />
-      ) : (
-        <Copy className="h-3.5 w-3.5" />
-      )}
-    </button>
-  );
-}
 
 function CodeBlock({
   code,
@@ -55,7 +29,7 @@ function CodeBlock({
       <pre className="overflow-x-auto p-4 font-mono text-sm leading-relaxed text-white/80">
         <code>{code}</code>
       </pre>
-      <CopyButton text={code} />
+      <CopyCodeButton text={code} />
     </div>
   );
 }
