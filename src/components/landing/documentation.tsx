@@ -187,7 +187,7 @@ const FAQ_ITEMS = [
   {
     question: "What changed in version 2?",
     answer:
-      "The CLI scaffolds full projects and generates FSD slices inside existing projects. Version 2.5 adds stable SvelteKit scaffolding, Svelte 5 generators, Svelte Query, stores, Superforms, and generated file-based routes.",
+      "The CLI scaffolds full projects for React, Next.js, Vue, Nuxt, and SvelteKit and generates FSD slices inside existing projects. Each release since 2.0 is listed with its changes in the release notes.",
   },
   {
     question: "Does the generator install dependencies?",

@@ -128,6 +128,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
     label: "Resources",
     items: [
       {
+        label: "FAQ and glossary",
+        href: "/docs/faq",
+        description: "Common questions and FSD/CLI terms.",
+      },
+      {
         label: "Recipes",
         href: "/docs/recipes",
         description: "End-to-end examples for common tasks.",
