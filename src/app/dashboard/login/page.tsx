@@ -59,7 +59,11 @@ export default async function LoginPage({
     : NOTICES.configuration;
 
   return (
-    <main className="grid min-h-screen place-items-center px-6 py-16">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="outline-none grid min-h-screen place-items-center px-6 py-16"
+    >
       <div className="w-full max-w-md rounded-sm border border-hairline bg-canvas p-6 sm:p-8">
         <p className="text-xs font-semibold uppercase tracking-[1.5px] text-brand-coral">
           Admin

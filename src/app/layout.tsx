@@ -1,9 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./styles/globals.css";
 import { SupportProvider } from "@/components/landing/support-controls";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { siteConfig } from "@/lib/site";
+import {
+  jsonLdScript,
+  softwareJsonLd,
+  websiteJsonLd,
+} from "@/lib/structured-data";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 
@@ -52,7 +57,14 @@ export const metadata: Metadata = {
     "TypeScript",
     "code generator",
   ],
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": [
+        { url: "/docs/releases/feed.xml", title: "FSD CLI releases" },
+      ],
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -61,16 +73,29 @@ export const metadata: Metadata = {
     title: "FSD CLI — Build Scalable Frontends from Day One",
     description: siteConfig.description,
     images: [
-      { url: "/icon.png", width: 1254, height: 1254, alt: "FSD CLI logo" },
+      {
+        url: "/og/fsd-cli-og-1200x630-v1.png",
+        width: 1200,
+        height: 630,
+        alt: "FSD CLI logo",
+      },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "FSD CLI — Build Scalable Frontends from Day One",
     description: siteConfig.description,
-    images: ["/icon.png"],
+    images: ["/og/fsd-cli-og-1200x630-v1.png"],
   },
-  icons: { icon: "/icon.png", apple: "/icon.png" },
+};
+
+// Favicon and Apple touch icon come from the app/icon.png and
+// app/apple-icon.png file conventions, which emit hashed URLs.
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
+    { media: "(prefers-color-scheme: dark)", color: "#071426" },
+  ],
 };
 
 export default function RootLayout({
@@ -88,8 +113,21 @@ export default function RootLayout({
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: Static theme bootstrap with no interpolated user content; must run before first paint. */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <script
+          type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Static JSON-LD from site constants, escaped by jsonLdScript.
+          dangerouslySetInnerHTML={{
+            __html: jsonLdScript([websiteJsonLd(), softwareJsonLd()]),
+          }}
+        />
       </head>
       <body className="min-h-screen font-sans antialiased">
+        <a
+          href="#main-content"
+          className="sr-only rounded-md bg-ink px-4 py-2 text-sm font-semibold text-on-primary focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100]"
+        >
+          Skip to content
+        </a>
         <ThemeProvider>
           <SupportProvider>{children}</SupportProvider>
         </ThemeProvider>
