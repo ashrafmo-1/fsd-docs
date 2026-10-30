@@ -66,6 +66,12 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
           "Plan and apply protected migrations to existing projects.",
       },
       {
+        label: "Migration guide",
+        href: "/docs/migration",
+        description:
+          "Upgrade between releases or adopt FSD in an existing app.",
+      },
+      {
         label: "AI Agent Skill",
         href: "/docs/ai-agent-skill",
         description: "Use the stable skill with verified FSD CLI workflows.",
