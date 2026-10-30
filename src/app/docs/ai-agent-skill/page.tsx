@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { LATEST_CLI_RELEASE } from "@/lib/releases";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -44,12 +45,13 @@ export default function AiAgentSkillPage() {
       >
         <p className="font-semibold text-ink">Stable scope</p>
         <p className="mt-2 text-sm leading-relaxed text-body">
-          The installation flow and documented CLI commands are verified against
-          the published create-fsd-architecture 2.6.1 baseline. Agent behavior
-          can still vary across coding tools and existing project structures, so
-          review generated changes before committing them. Stable refers to the
-          documented workflows and helpers; live backend and broad provider
-          certification remain outside the verified scope.
+          Skill v2.0.0 was verified against create-fsd-architecture 2.6.1, the
+          npm release current when it shipped. The current CLI is{" "}
+          {LATEST_CLI_RELEASE.version}. Agent behavior can still vary across
+          coding tools and existing project structures, so review generated
+          changes before committing them. Stable refers to the documented
+          workflows and helpers; live backend and broad provider certification
+          remain outside the verified scope.
         </p>
       </div>
 
@@ -134,12 +136,13 @@ export default function AiAgentSkillPage() {
           validate evidence reports.
         </p>
         <p className="text-base leading-relaxed text-body">
-          The skill distinguishes published CLI 2.6.1 commands from candidate
-          batch, segment, custom-root, Supabase, and Steiger flags. These flags
-          require the explicitly selected candidate; they are not npm 2.6.1
-          capabilities. If the selected CLI cannot perform an operation, the
-          agent keeps that limitation explicit and handles only the authorized
-          manual implementation.
+          Skill v2.0.0 predates CLI 2.7.0, so it still treats the batch,
+          segment, custom-root, Supabase, and Steiger flags as candidate-only
+          and asks for an explicitly selected candidate before using them. Those
+          flags ship in CLI 2.7.0 and later, including the current{" "}
+          {LATEST_CLI_RELEASE.version}. If the selected CLI cannot perform an
+          operation, the agent keeps that limitation explicit and handles only
+          the authorized manual implementation.
         </p>
       </section>
 
