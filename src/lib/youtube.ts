@@ -65,5 +65,6 @@ export function parseYouTubeVideoId(value: string): string | null {
 
 export function youtubeEmbedUrl(videoId: string): string | null {
   if (!YOUTUBE_VIDEO_ID.test(videoId)) return null;
-  return `https://www.youtube-nocookie.com/embed/${videoId}`;
+  // Show captions by default when the video has them.
+  return `https://www.youtube-nocookie.com/embed/${videoId}?cc_load_policy=1`;
 }
