@@ -17,7 +17,7 @@ const TYPE_EXAMPLES = [
     title: "Feature example",
     description:
       "Use this for user actions and business interactions such as auth, checkout, filters, search, or forms.",
-    command: "npx create-fsd-architecture --generate feature auth",
+    command: "npx create-fsd-architecture@latest --generate feature auth",
     output: `src/features/auth/
 ├── ui/
 ├── model/
@@ -28,7 +28,7 @@ const TYPE_EXAMPLES = [
     title: "Entity example",
     description:
       "Use this for business objects such as product, user, order, brand, category, or cart item.",
-    command: "npx create-fsd-architecture --generate entity product",
+    command: "npx create-fsd-architecture@latest --generate entity product",
     output: `src/entities/product/
 ├── ui/
 ├── model/
@@ -39,7 +39,7 @@ const TYPE_EXAMPLES = [
     title: "Widget example",
     description:
       "Use this for composed UI blocks such as navbar, sidebar, header, product grid, or checkout summary.",
-    command: "npx create-fsd-architecture --generate widget navbar",
+    command: "npx create-fsd-architecture@latest --generate widget navbar",
     output: `src/widgets/navbar/
 ├── ui/
 └── index.ts`,
@@ -49,7 +49,7 @@ const TYPE_EXAMPLES = [
     title: "Page example",
     description:
       "Use this for route-level page compositions such as checkout, profile, catalog, or dashboard.",
-    command: "npx create-fsd-architecture --generate page checkout",
+    command: "npx create-fsd-architecture@latest --generate page checkout",
     output: `src/pages/checkout/
 ├── ui/
 └── index.ts`,
@@ -80,8 +80,8 @@ export default function SliceGeneratorPage() {
         >
           Syntax
         </h2>
-        <CodeBlock code="npx create-fsd-architecture --generate <type> <name>" />
-        <CodeBlock code="npx create-fsd-architecture -g <type> <name>" />
+        <CodeBlock code="npx create-fsd-architecture@latest --generate <type> <name>" />
+        <CodeBlock code="npx create-fsd-architecture@latest -g <type> <name>" />
       </section>
 
       <section className="mt-10">
@@ -92,14 +92,14 @@ export default function SliceGeneratorPage() {
           Command examples
         </h2>
         <CodeBlock
-          code={`npx create-fsd-architecture --generate feature auth
-npx create-fsd-architecture -g feature checkout-flow
-npx create-fsd-architecture --generate feature product-filters
-npx create-fsd-architecture --generate entity product
-npx create-fsd-architecture -g entity order
-npx create-fsd-architecture --generate widget navbar
-npx create-fsd-architecture -g widget dashboard-sidebar
-npx create-fsd-architecture --generate page checkout`}
+          code={`npx create-fsd-architecture@latest --generate feature auth
+npx create-fsd-architecture@latest -g feature checkout-flow
+npx create-fsd-architecture@latest --generate feature product-filters
+npx create-fsd-architecture@latest --generate entity product
+npx create-fsd-architecture@latest -g entity order
+npx create-fsd-architecture@latest --generate widget navbar
+npx create-fsd-architecture@latest -g widget dashboard-sidebar
+npx create-fsd-architecture@latest --generate page checkout`}
         />
       </section>
 
@@ -148,8 +148,8 @@ npx create-fsd-architecture --generate page checkout`}
           `--force`.
         </p>
         <CodeBlock
-          code={`npx create-fsd-architecture --generate feature auth --force
-npx create-fsd-architecture -g widget navbar --force`}
+          code={`npx create-fsd-architecture@latest --generate feature auth --force
+npx create-fsd-architecture@latest -g widget navbar --force`}
         />
       </section>
 
@@ -322,7 +322,7 @@ pages/checkout/`}
           <code>AppSidebar</code>, <code>AppFooter</code>, and{" "}
           <code>AppBottomBar</code>.
         </p>
-        <CodeBlock code="npx create-fsd-architecture --generate widget navbar sidebar footer bottom-bar" />
+        <CodeBlock code="npx create-fsd-architecture@latest --generate widget navbar sidebar footer bottom-bar" />
         <p className="mt-4 text-base leading-relaxed text-body">
           Styling, icons, active-route state, and mounting the widget in a
           layout stay with your project. Any other widget name keeps the generic
@@ -346,7 +346,7 @@ pages/checkout/`}
           takes <code>onsubmit</code>) and sends nothing by itself. Every page,
           preset or custom, is registered in the framework&apos;s routes.
         </p>
-        <CodeBlock code="npx create-fsd-architecture --generate page about consult" />
+        <CodeBlock code="npx create-fsd-architecture@latest --generate page about consult" />
         <p className="mt-4 text-base leading-relaxed text-body">
           Starter templates already include a home page, so{" "}
           <code>-g page home</code> needs <code>--force</code> there.
@@ -369,9 +369,9 @@ pages/checkout/`}
           with <code>runtimeConfig.public.apiBase</code>).
         </p>
         <div className="space-y-4">
-          <CodeBlock code="npx create-fsd-architecture --generate shared ui" />
-          <CodeBlock code="npx create-fsd-architecture --generate shared ui button input" />
-          <CodeBlock code="npx create-fsd-architecture --generate shared api --dry-run" />
+          <CodeBlock code="npx create-fsd-architecture@latest --generate shared ui" />
+          <CodeBlock code="npx create-fsd-architecture@latest --generate shared ui button input" />
+          <CodeBlock code="npx create-fsd-architecture@latest --generate shared api --dry-run" />
         </div>
         <p className="mt-4 text-base leading-relaxed text-body">
           Existing files are never overwritten. They are reported as{" "}

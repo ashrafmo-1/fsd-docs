@@ -39,6 +39,7 @@ function valuesFromVideo(video?: DashboardVideo | null): VideoFormValues {
     title: video?.title ?? "",
     youtubeUrl: video?.youtubeUrl ?? "",
     description: video?.description ?? "",
+    transcript: video?.transcript ?? "",
     displayOrder: video?.displayOrder ?? 0,
     isPublished: video?.isPublished ?? false,
   };
@@ -64,6 +65,7 @@ export function VideoForm({ video }: { video?: DashboardVideo | null }) {
         title: values.title,
         youtubeUrl: values.youtubeUrl,
         description: values.description,
+        transcript: values.transcript,
         displayOrder: Number(values.displayOrder),
         isPublished: values.isPublished,
       },
@@ -158,6 +160,24 @@ export function VideoForm({ video }: { video?: DashboardVideo | null }) {
                   <FormControl>
                     <Textarea {...field} />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="transcript"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Transcript (optional)</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} rows={6} />
+                  </FormControl>
+                  <p className="text-xs text-body-muted">
+                    Shown under the video for readers who cannot watch or hear
+                    it. Paste plain text; blank lines start paragraphs.
+                  </p>
                   <FormMessage />
                 </FormItem>
               )}
