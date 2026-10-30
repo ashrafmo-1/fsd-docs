@@ -141,6 +141,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
         href: "/docs/releases",
         description: "Version history, changes, and compatibility notes.",
       },
+      {
+        label: "Security and privacy",
+        href: "/docs/security",
+        description: "Report a vulnerability and see what the CLI and site do.",
+      },
     ],
   },
 ];
