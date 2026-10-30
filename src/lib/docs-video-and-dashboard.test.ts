@@ -140,7 +140,7 @@ describe("YouTube urls", () => {
     }
     assert.equal(
       youtubeEmbedUrl(VIDEO_ID),
-      `https://www.youtube-nocookie.com/embed/${VIDEO_ID}`,
+      `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?cc_load_policy=1`,
     );
     assert.equal(youtubeEmbedUrl("short"), null);
   });
@@ -163,6 +163,7 @@ describe("optional documentation video", () => {
       youtubeUrl: `https://youtu.be/${VIDEO_ID}`,
       youtubeVideoId: VIDEO_ID,
       description: null,
+      transcript: null,
       isPublished: false,
       displayOrder: 0,
       createdAt: "2026-09-27T00:00:00.000Z",
@@ -227,6 +228,47 @@ describe("dashboard video form", () => {
     assert.equal(parsed.draft.youtubeVideoId, VIDEO_ID);
     assert.equal(parsed.draft.isPublished, true);
     assert.equal(parsed.draft.pageKey, "/docs/getting-started");
+    assert.equal(parsed.draft.transcript, null);
+  });
+
+  test("keeps a trimmed transcript and rejects one over 50,000 characters", () => {
+    const base = {
+      pageKey: "/docs/getting-started",
+      title: "Install the CLI",
+      youtubeUrl: `https://youtu.be/${VIDEO_ID}`,
+      description: "",
+      isPublished: "true",
+      displayOrder: "0",
+    };
+    const parsed = parseVideoDraft({
+      ...base,
+      transcript: "  Hello.\n\nNext.  ",
+    });
+    assert.equal(parsed.ok && parsed.draft.transcript, "Hello.\n\nNext.");
+    assert.deepEqual(
+      parseVideoDraft({ ...base, transcript: "x".repeat(50001) }),
+      {
+        ok: false,
+        error: "The transcript is too long.",
+      },
+    );
+  });
+
+  test("a published record exposes its transcript to the page", () => {
+    const video = documentationVideoFromRecord({
+      id: "video-2",
+      pageKey: GETTING_STARTED_VIDEO_PAGE_KEY,
+      title: "Install",
+      youtubeUrl: VIDEO_ID,
+      youtubeVideoId: VIDEO_ID,
+      description: null,
+      transcript: "  Step one.  ",
+      isPublished: true,
+      displayOrder: 0,
+      createdAt: "",
+      updatedAt: "",
+    });
+    assert.equal(video?.transcript, "Step one.");
   });
 
   test("rejects an unknown page and a bad YouTube value", () => {
