@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
 import { DocumentationVideo } from "@/components/docs/documentation-video";
+import { PackageManagerCommand } from "@/components/docs/package-manager-command";
 import { GETTING_STARTED_VIDEO_PAGE_KEY } from "@/lib/documentation-videos";
 import { getPublishedDocumentationVideo } from "@/lib/published-videos";
 
@@ -62,17 +63,73 @@ export default async function GettingStartedPage() {
           the commands below from the directory that should contain the new
           project.
         </p>
-        <CodeBlock code="npm create fsd-architecture@latest" />
-        <CodeBlock code="npx create-fsd-architecture@latest" />
+        <PackageManagerCommand
+          commands={{
+            npm: "npm create fsd-architecture@latest",
+            pnpm: "pnpm create fsd-architecture@latest",
+            yarn: "yarn create fsd-architecture",
+            bun: "bun create fsd-architecture",
+          }}
+        />
+        <p className="text-base leading-relaxed text-body">
+          The wizard then asks which package manager the new project should use;
+          pass <code>--package-manager pnpm</code>, <code>yarn</code>, or{" "}
+          <code>bun</code> to skip that question. To run a single command
+          without installing, use your manager&apos;s one-off runner:
+        </p>
+        <PackageManagerCommand
+          commands={{
+            npm: "npx create-fsd-architecture@latest -g entity product",
+            pnpm: "pnpm dlx create-fsd-architecture@latest -g entity product",
+            yarn: "yarn dlx create-fsd-architecture@latest -g entity product",
+            bun: "bunx create-fsd-architecture@latest -g entity product",
+          }}
+        />
         <p className="text-base leading-relaxed text-body">
           Since CLI 2.7.1 you can install it once and use the shorter{" "}
           <code>fsd</code> command, which is the same CLI.
         </p>
+        <PackageManagerCommand
+          commands={{
+            npm: "npm install -g create-fsd-architecture",
+            pnpm: "pnpm add -g create-fsd-architecture",
+            yarn: "npm install -g create-fsd-architecture   # Yarn 2+ has no global add",
+            bun: "bun add -g create-fsd-architecture",
+          }}
+        />
         <CodeBlock
-          code={`npm install -g create-fsd-architecture
-fsd create my-app
+          code={`fsd create my-app
 fsd g entity product`}
         />
+      </section>
+
+      <section className="mt-10 space-y-4">
+        <h2
+          id="windows-macos-linux"
+          className="text-2xl font-semibold tracking-[-0.5px] text-ink"
+        >
+          Windows, macOS, and Linux
+        </h2>
+        <p className="text-base leading-relaxed text-body">
+          Every release is tested on Windows, macOS, and Linux: the CLI test
+          suite, a global install, and a create, generate, and inspect smoke run
+          on each. Package managers are tested with npm, pnpm, Yarn, and Bun.
+          Commands in these docs work unchanged in PowerShell and Command
+          Prompt, except inline environment variables, which use POSIX shell
+          syntax:
+        </p>
+        <CodeBlock
+          code={`# macOS / Linux / Git Bash
+FSD_PRE_COMMIT_LINT=1 git commit -m "feat: add catalog"
+
+# PowerShell
+$env:FSD_PRE_COMMIT_LINT = "1"; git commit -m "feat: add catalog"; Remove-Item Env:FSD_PRE_COMMIT_LINT`}
+        />
+        <p className="text-base leading-relaxed text-body">
+          Use forward slashes in nested project names, such as{" "}
+          <code>apps/web</code>; the CLI rejects backslashes so paths behave the
+          same on every system.
+        </p>
       </section>
 
       <section className="mt-10">
