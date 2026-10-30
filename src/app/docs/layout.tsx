@@ -3,6 +3,7 @@ import { DocsBreadcrumbs } from "@/components/docs/docs-breadcrumbs";
 import { DocsPageFooter } from "@/components/docs/docs-page-footer";
 import { DocsSearch } from "@/components/docs/docs-search";
 import { DocsSidebar } from "@/components/docs/docs-sidebar";
+import { DocsVersionSwitcher } from "@/components/docs/docs-version-switcher";
 import { OnThisPage } from "@/components/docs/on-this-page";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
@@ -31,7 +32,7 @@ export default function DocsLayout({
       <Navigation />
       <main className="bg-canvas">
         <div className="mx-auto grid max-w-[1536px] gap-8 px-6 py-10 lg:grid-cols-[210px_minmax(0,1fr)] xl:grid-cols-[210px_minmax(0,1fr)_210px] lg:py-16">
-          <DocsSidebar />
+          <DocsSidebar header={<DocsVersionSwitcher />} />
           <div
             id="main-content"
             tabIndex={-1}
