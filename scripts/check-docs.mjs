@@ -16,6 +16,26 @@ for (const path of paths) {
   pages.set(path, await response.text());
 }
 
+// Metadata: a unique title and a real description per page.
+const seenTitles = new Map();
+for (const [path, html] of pages) {
+  const title = html.match(/<title>([^<]*)<\/title>/)?.[1];
+  assert(title, `${path}: <title>`);
+  assert(
+    !seenTitles.has(title),
+    `${path}: title duplicates ${seenTitles.get(title)}`,
+  );
+  seenTitles.set(title, path);
+  const description = html.match(
+    /<meta name="description" content="([^"]*)"/,
+  )?.[1];
+  assert(description && description.length >= 50, `${path}: meta description`);
+  assert(
+    description.length <= 200,
+    `${path}: description is ${description.length} chars`,
+  );
+}
+
 // Every page offers a skip link whose target exists.
 for (const [path, html] of pages) {
   assert(html.includes('href="#main-content"'), `${path}: skip link`);
