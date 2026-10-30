@@ -28,6 +28,11 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
         href: "/docs/concepts",
         description: "Layers, slices, segments, and the import rule.",
       },
+      {
+        label: "Compatibility",
+        href: "/docs/compatibility",
+        description: "Node.js and package manager requirements.",
+      },
     ],
   },
   {
