@@ -117,10 +117,18 @@
   }
   body {
     @apply bg-canvas text-body;
+  }
+  /* The glow sits on its own fixed, composited layer. background-attachment:
+     fixed on body made the browser repaint the whole page on every scroll. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
     background-image:
       radial-gradient(circle at 8% 0%, rgb(45 212 191 / 8%), transparent 28rem),
       radial-gradient(circle at 92% 8%, rgb(139 92 246 / 8%), transparent 32rem);
-    background-attachment: fixed;
   }
   html {
     @apply font-sans;
