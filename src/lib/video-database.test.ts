@@ -99,3 +99,48 @@ test("videos migration enforces public reads and administrator-only writes", asy
     await db.close();
   }
 });
+
+test("transcript migration adds an optional, length-limited column", async () => {
+  const db = new PGlite();
+  try {
+    await db.exec(`
+      create role anon nologin;
+      create role authenticated nologin;
+      create schema auth;
+      create table auth.users(id uuid primary key);
+      create function auth.uid() returns uuid language sql stable as
+        $$ select nullif(current_setting('request.jwt.claim.sub', true), '')::uuid $$;
+    `);
+    for (const migration of [
+      "20261008000000_documentation_videos.sql",
+      "20261029000000_video_transcripts.sql",
+    ]) {
+      await db.exec(
+        fs.readFileSync(
+          new URL(`../../supabase/migrations/${migration}`, import.meta.url),
+          "utf8",
+        ),
+      );
+    }
+    await db.exec(`
+      insert into public.videos(page_key,title,youtube_url,youtube_video_id,transcript)
+      values ('/docs/upgrade','With transcript','dQw4w9WgXcQ','dQw4w9WgXcQ','Hello'),
+             ('/docs/upgrade','Without transcript','dQw4w9WgXcQ','dQw4w9WgXcQ',null);
+    `);
+    const rows = await db.query<{ transcript: string | null }>(
+      "select transcript from public.videos order by title asc",
+    );
+    assert.deepEqual(
+      rows.rows.map((row) => row.transcript),
+      ["Hello", null],
+    );
+    await assert.rejects(
+      db.exec(`
+        insert into public.videos(page_key,title,youtube_url,youtube_video_id,transcript)
+        values ('/docs/upgrade','Too long','dQw4w9WgXcQ','dQw4w9WgXcQ',repeat('x', 50001));
+      `),
+    );
+  } finally {
+    await db.close();
+  }
+});
