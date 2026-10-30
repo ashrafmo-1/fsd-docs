@@ -11,6 +11,7 @@ const draft: VideoDraft = {
   youtubeUrl: "dQw4w9WgXcQ",
   youtubeVideoId: "dQw4w9WgXcQ",
   description: null,
+  transcript: null,
   isPublished: true,
   displayOrder: 0,
 };

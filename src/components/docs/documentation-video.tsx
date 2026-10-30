@@ -26,6 +26,7 @@ export function DocumentationVideo({
   const videoId = video ? parseYouTubeVideoId(video.youtubeUrl) : null;
   const embedUrl = videoId ? youtubeEmbedUrl(videoId) : null;
   const description = video?.description?.trim();
+  const transcript = video?.transcript?.trim();
 
   if (!title || !embedUrl) return null;
 
@@ -60,6 +61,19 @@ export function DocumentationVideo({
               referrerPolicy="strict-origin-when-cross-origin"
             />
           </div>
+          {transcript ? (
+            <details className="mt-4 rounded-xl border border-hairline p-4">
+              <summary className="cursor-pointer py-1 text-sm font-semibold text-ink">
+                Transcript
+              </summary>
+              <div className="mt-3 space-y-3 text-sm leading-relaxed text-body">
+                {transcript.split(/\n\s*\n/).map((paragraph, index) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: Paragraphs have no id and never reorder.
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
+            </details>
+          ) : null}
         </div>
       </div>
     </section>

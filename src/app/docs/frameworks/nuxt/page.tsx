@@ -45,8 +45,8 @@ export default function NuxtFrameworkPage() {
         >
           Create a Nuxt project
         </h2>
-        <CodeBlock code="npx create-fsd-architecture@latest my-nuxt-app --framework nuxt" />
-        <CodeBlock code="npx create-fsd-architecture@latest my-nuxt-app --framework nuxt --yes" />
+        <CodeBlock code="npx create-fsd-architecture@latest@latest my-nuxt-app --framework nuxt" />
+        <CodeBlock code="npx create-fsd-architecture@latest@latest my-nuxt-app --framework nuxt --yes" />
         <p className="text-sm leading-relaxed text-body-muted">
           The interactive command lets you choose Axios or native Fetch and
           enable or disable Vue Query, Pinia, and forms. <code>--yes</code> uses
@@ -110,11 +110,11 @@ export default function NuxtFrameworkPage() {
           Generate slices and routes
         </h2>
         <CodeBlock
-          code={`npx create-fsd-architecture --generate feature checkout
-npx create-fsd-architecture --generate entity product
-npx create-fsd-architecture --generate widget navbar
-npx create-fsd-architecture --generate page account
-npx create-fsd-architecture --generate feature auth`}
+          code={`npx create-fsd-architecture@latest --generate feature checkout
+npx create-fsd-architecture@latest --generate entity product
+npx create-fsd-architecture@latest --generate widget navbar
+npx create-fsd-architecture@latest --generate page account
+npx create-fsd-architecture@latest --generate feature auth`}
         />
         <CodeBlock
           language="text"

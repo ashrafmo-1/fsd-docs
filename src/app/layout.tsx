@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./styles/globals.css";
 import { SupportProvider } from "@/components/landing/support-controls";
@@ -61,16 +61,29 @@ export const metadata: Metadata = {
     title: "FSD CLI — Build Scalable Frontends from Day One",
     description: siteConfig.description,
     images: [
-      { url: "/icon.png", width: 1254, height: 1254, alt: "FSD CLI logo" },
+      {
+        url: "/og/fsd-cli-og-1200x630-v1.png",
+        width: 1200,
+        height: 630,
+        alt: "FSD CLI logo",
+      },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "FSD CLI — Build Scalable Frontends from Day One",
     description: siteConfig.description,
-    images: ["/icon.png"],
+    images: ["/og/fsd-cli-og-1200x630-v1.png"],
   },
-  icons: { icon: "/icon.png", apple: "/icon.png" },
+};
+
+// Favicon and Apple touch icon come from the app/icon.png and
+// app/apple-icon.png file conventions, which emit hashed URLs.
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
+    { media: "(prefers-color-scheme: dark)", color: "#071426" },
+  ],
 };
 
 export default function RootLayout({
