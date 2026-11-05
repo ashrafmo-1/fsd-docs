@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { docsPageMetadata } from "@/lib/metadata";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Security and Privacy",
   description:
     "How to report a vulnerability in the FSD CLI, what the CLI downloads and runs, how generated projects handle secrets, and what this documentation site stores.",
-  alternates: { canonical: "/docs/security" },
-};
+  path: "/docs/security",
+});
 
 const REPORT_URL = "https://github.com/FSD-CLI/cli/security/advisories/new";
 const POLICY_URL = "https://github.com/FSD-CLI/cli/blob/main/SECURITY.md";

@@ -9,17 +9,18 @@ import {
   Terminal,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { docsPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { CLI_RELEASES } from "@/lib/releases";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Documentation",
   description:
     "Learn project scaffolding, configuration, slice generation, and auth generation with FSD CLI.",
-  alternates: { canonical: "/docs" },
-};
+  path: "/docs",
+});
 
 const DOC_CARDS = [
   {

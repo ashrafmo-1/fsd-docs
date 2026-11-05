@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { docsPageMetadata } from "@/lib/metadata";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import {
@@ -8,12 +9,12 @@ import {
   PACKAGE_MANAGER_MINIMUMS,
 } from "@/lib/compatibility";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Compatibility",
   description:
     "Node.js and package manager requirements for the FSD CLI and every generated React, Next.js, Vue, Nuxt, and SvelteKit project.",
-  alternates: { canonical: "/docs/compatibility" },
-};
+  path: "/docs/compatibility",
+});
 
 export default function CompatibilityPage() {
   return (

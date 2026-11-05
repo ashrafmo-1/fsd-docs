@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { docsPageMetadata } from "@/lib/metadata";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { LATEST_CLI_RELEASE } from "@/lib/releases";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Auth Generator",
   description:
     "Generate auth UI, validation, and integration scaffolding from fsd.config.json; opt in to the Supabase adapter.",
-  alternates: { canonical: "/docs/auth-generator" },
-};
+  path: "/docs/auth-generator",
+});
 
 const AUTH_FLOW = [
   "Login",

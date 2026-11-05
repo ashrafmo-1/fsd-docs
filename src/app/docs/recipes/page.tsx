@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { docsPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Recipes",
   description:
     "End-to-end FSD CLI recipes: a product catalog, a site shell with layout presets, Supabase sign-in, adding FSD structure to an existing app, and guarding architecture in CI.",
-  alternates: { canonical: "/docs/recipes" },
-};
+  path: "/docs/recipes",
+});
 
 function Recipe({
   id,

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { docsPageMetadata } from "@/lib/metadata";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Testing",
   description:
     "The checks generated FSD projects run out of the box, and how to add unit, component, and end-to-end tests that follow FSD slice boundaries.",
-  alternates: { canonical: "/docs/testing" },
-};
+  path: "/docs/testing",
+});
 
 const RUNNERS: [framework: string, packages: string][] = [
   [
