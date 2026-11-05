@@ -25,6 +25,9 @@ test("docs pages link to each other through the sidebar", async ({
 }) => {
   await page.goto("/docs/getting-started");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  if (isMobile) {
+    await page.locator("summary", { hasText: "Browse docs" }).click();
+  }
   const sidebar = page.getByRole("navigation", {
     name: "Documentation",
     exact: true,

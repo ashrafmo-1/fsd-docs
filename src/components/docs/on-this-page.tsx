@@ -113,11 +113,24 @@ export function OnThisPage() {
     };
   }, [pathname, contentRevision]);
 
+  const [tocOpen, setTocOpen] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1280px)");
+    const sync = () => setTocOpen(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
   if (headings.length < 2) return null;
 
   return (
-    <aside className="order-2 lg:col-start-2 xl:col-start-3 xl:row-start-1 xl:order-3 xl:sticky xl:top-24 xl:h-fit">
-      <details open className="max-h-[70vh] overflow-y-auto">
+    <aside className="order-3 min-w-0 lg:order-none lg:[grid-area:toc] xl:sticky xl:top-24 xl:h-fit">
+      <details
+        className="max-h-[70vh] overflow-y-auto"
+        open={tocOpen}
+        onToggle={(event) => setTocOpen(event.currentTarget.open)}
+      >
         <summary className="mb-4 cursor-pointer py-1 text-sm font-semibold text-ink">
           On this page
         </summary>
