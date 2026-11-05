@@ -1,6 +1,6 @@
 "use client";
 
-import { Link2 } from "lucide-react";
+import { ChevronDown, Link2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
@@ -19,6 +19,68 @@ function slugifyHeading(value: string) {
     .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
+}
+
+function TocNav({
+  headings,
+  activeId,
+  copyStatus,
+  onActivate,
+  onCopy,
+}: {
+  headings: Heading[];
+  activeId: string;
+  copyStatus: string;
+  onActivate: (id: string) => void;
+  onCopy: (heading: Heading) => void;
+}) {
+  return (
+    <div className="border-l border-hairline pl-5">
+      <nav aria-label="On this page">
+        <ol className="space-y-2.5">
+          {headings.map((heading) => (
+            <li
+              key={heading.id}
+              className="flex items-start justify-between gap-1"
+            >
+              <a
+                href={`#${heading.id}`}
+                aria-current={activeId === heading.id ? "location" : undefined}
+                className={cn(
+                  "group flex min-h-6 items-start gap-2 py-0.5 text-sm leading-5 transition-colors hover:text-ink",
+                  heading.level === 3 && "pl-3",
+                  activeId === heading.id
+                    ? "font-medium text-ink"
+                    : "text-body-muted",
+                )}
+                onClick={() => onActivate(heading.id)}
+              >
+                <Link2
+                  className={cn(
+                    "mt-0.5 h-3.5 w-3.5 flex-none opacity-0 transition-opacity group-hover:opacity-60",
+                    activeId === heading.id && "opacity-60",
+                  )}
+                  aria-hidden="true"
+                />
+                <span>{heading.label}</span>
+              </a>
+              <button
+                type="button"
+                className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded text-body-muted hover:text-ink"
+                aria-label={`Copy link to ${heading.label}`}
+                onClick={() => onCopy(heading)}
+              >
+                <Link2 className="h-3 w-3" />
+              </button>
+            </li>
+          ))}
+        </ol>
+      </nav>
+      <p className="sr-only" role="status">
+        {copyStatus}
+      </p>
+    </div>
+  );
 }
 
 export function OnThisPage() {
@@ -113,80 +175,40 @@ export function OnThisPage() {
     };
   }, [pathname, contentRevision]);
 
-  const [tocOpen, setTocOpen] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1280px)");
-    const sync = () => setTocOpen(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
-
   if (headings.length < 2) return null;
 
+  const onCopy = (heading: Heading) => {
+    setCopiedLabel(heading.label);
+    copy(`${window.location.origin}${pathname}#${heading.id}`);
+  };
+
+  const tocProps = {
+    headings,
+    activeId,
+    copyStatus,
+    onActivate: setActiveId,
+    onCopy,
+  };
+
   return (
-    <aside className="order-3 min-w-0 lg:order-none lg:[grid-area:toc] xl:sticky xl:top-24 xl:h-fit">
-      <details
-        className="max-h-[70vh] overflow-y-auto"
-        open={tocOpen}
-        onToggle={(event) => setTocOpen(event.currentTarget.open)}
-      >
-        <summary className="mb-4 cursor-pointer py-1 text-sm font-semibold text-ink">
+    <aside className="min-w-0 lg:[grid-area:toc] xl:sticky xl:top-24 xl:h-fit">
+      <details className="group max-h-[70vh] overflow-y-auto rounded-[12px] border border-hairline xl:hidden">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-3 py-2.5 text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
           On this page
+          <ChevronDown
+            aria-hidden="true"
+            className="h-4 w-4 text-body-muted transition-transform group-open:rotate-180"
+          />
         </summary>
-        <div className="border-l border-hairline pl-5">
-          <nav aria-label="On this page">
-            <ol className="space-y-2.5">
-              {headings.map((heading) => (
-                <li
-                  key={heading.id}
-                  className="flex items-start justify-between gap-1"
-                >
-                  <a
-                    href={`#${heading.id}`}
-                    aria-current={
-                      activeId === heading.id ? "location" : undefined
-                    }
-                    className={cn(
-                      "group flex min-h-6 items-start gap-2 py-0.5 text-sm leading-5 transition-colors hover:text-ink",
-                      heading.level === 3 && "pl-3",
-                      activeId === heading.id
-                        ? "font-medium text-ink"
-                        : "text-body-muted",
-                    )}
-                    onClick={() => setActiveId(heading.id)}
-                  >
-                    <Link2
-                      className={cn(
-                        "mt-0.5 h-3.5 w-3.5 flex-none opacity-0 transition-opacity group-hover:opacity-60",
-                        activeId === heading.id && "opacity-60",
-                      )}
-                      aria-hidden="true"
-                    />
-                    <span>{heading.label}</span>
-                  </a>
-                  <button
-                    type="button"
-                    className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded text-body-muted hover:text-ink"
-                    aria-label={`Copy link to ${heading.label}`}
-                    onClick={() => {
-                      setCopiedLabel(heading.label);
-                      copy(
-                        `${window.location.origin}${pathname}#${heading.id}`,
-                      );
-                    }}
-                  >
-                    <Link2 className="h-3 w-3" />
-                  </button>
-                </li>
-              ))}
-            </ol>
-          </nav>
-          <p className="sr-only" role="status">
-            {copyStatus}
-          </p>
+        <div className="border-t border-hairline px-3 pb-4 pt-3">
+          <TocNav {...tocProps} />
         </div>
       </details>
+
+      <div className="hidden max-h-[70vh] overflow-y-auto xl:block">
+        <p className="mb-4 text-sm font-semibold text-ink">On this page</p>
+        <TocNav {...tocProps} />
+      </div>
     </aside>
   );
 }

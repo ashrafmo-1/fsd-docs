@@ -50,11 +50,20 @@ export default function DocsLayout({
     <>
       <Navigation />
       <main className="overflow-x-clip bg-canvas">
+        {/*
+          DOM order matches visual/keyboard order: nav, article, TOC.
+          On mobile the nav is a closed <details> summary (~one row), so the
+          H1 still appears in the first viewport. Grid areas place columns on lg+.
+        */}
         <div className="mx-auto grid max-w-[1536px] gap-8 px-6 py-10 lg:grid-cols-[210px_minmax(0,1fr)] lg:[grid-template-areas:'sidebar_content'_'sidebar_toc'] xl:grid-cols-[210px_minmax(0,1fr)_210px] xl:[grid-template-areas:'sidebar_content_toc'] lg:py-16">
+          <DocsSidebar
+            mobileHeader={<DocsVersionSwitcher />}
+            desktopHeader={<DocsVersionSwitcher />}
+          />
           <div
             id="main-content"
             tabIndex={-1}
-            className="order-2 min-w-0 outline-none lg:order-none lg:[grid-area:content]"
+            className="min-w-0 outline-none lg:[grid-area:content]"
           >
             <DocsSearch index={buildSearchIndex()} />
             <DocsBreadcrumbs />
@@ -65,7 +74,6 @@ export default function DocsLayout({
             <div id="docs-content">{children}</div>
             <DocsPageFooter />
           </div>
-          <DocsSidebar header={<DocsVersionSwitcher />} />
           <OnThisPage />
         </div>
       </main>
