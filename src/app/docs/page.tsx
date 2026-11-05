@@ -9,10 +9,10 @@ import {
   Terminal,
 } from "lucide-react";
 import type { Metadata } from "next";
-import { docsPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 import { CLI_RELEASES } from "@/lib/releases";
 
 export const metadata: Metadata = docsPageMetadata({

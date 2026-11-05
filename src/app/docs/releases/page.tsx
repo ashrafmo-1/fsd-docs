@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { docsPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { ReleaseTabs } from "@/components/docs/release-tabs";
+import { docsPageMetadata } from "@/lib/metadata";
 import {
   CLI_RELEASES,
   LEGACY_NPM_VERSIONS,

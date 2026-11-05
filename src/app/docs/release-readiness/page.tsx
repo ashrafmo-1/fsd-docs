@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { docsPageMetadata } from "@/lib/metadata";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { Badge } from "@/components/ui/badge";
+import { docsPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = docsPageMetadata({
   title: "Feature status",

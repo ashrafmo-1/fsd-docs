@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { docsPageMetadata } from "@/lib/metadata";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import {
@@ -8,6 +7,7 @@ import {
   FRAMEWORK_COMPATIBILITY,
   PACKAGE_MANAGER_MINIMUMS,
 } from "@/lib/compatibility";
+import { docsPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = docsPageMetadata({
   title: "Compatibility",

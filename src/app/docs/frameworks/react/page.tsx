@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { docsPageMetadata } from "@/lib/metadata";
 import { ReactFrameworkGuide } from "@/components/docs/react-framework-guide";
+import { docsPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = docsPageMetadata({
   title: "React + Vite",

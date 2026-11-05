@@ -1,8 +1,8 @@
 import { ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
-import { docsPageMetadata } from "@/lib/metadata";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = docsPageMetadata({

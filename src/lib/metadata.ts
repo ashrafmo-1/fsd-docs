@@ -88,7 +88,11 @@ export function pageMetadata({
   };
 }
 
-/** Docs/release pages: article OG type + last-commit modified time when available. */
+/**
+ * Docs/release pages: article OG type + last-commit modified time when available.
+ * Only set publishedTime when the caller provides it (e.g. release notes); never
+ * treat the latest edit as the original publication date.
+ */
 export function docsPageMetadata(
   input: Omit<PageMetadataInput, "type"> & { type?: "article" },
 ): Metadata {
@@ -100,7 +104,7 @@ export function docsPageMetadata(
   return pageMetadata({
     ...input,
     type: "article",
-    publishedTime: input.publishedTime ?? modifiedTime,
+    publishedTime: input.publishedTime,
     modifiedTime,
   });
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { docsPageMetadata } from "@/lib/metadata";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = docsPageMetadata({
   title: "Security and Privacy",

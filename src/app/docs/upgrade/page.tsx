@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { docsPageMetadata } from "@/lib/metadata";
 import { MdxContent } from "@/components/docs/mdx-content";
 import Content from "@/content/docs/upgrade.mdx";
+import { docsPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = docsPageMetadata({
   title: "Safe project upgrades",
