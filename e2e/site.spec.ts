@@ -86,7 +86,20 @@ test("mobile menu opens and closes", async ({ page, isMobile }) => {
 test("unknown pages return 404 with a way back", async ({ page }) => {
   const response = await page.goto("/docs/this-page-does-not-exist");
   expect(response?.status()).toBe(404);
+  await expect(page).toHaveTitle(/Page not found/i);
   await expect(
     page.getByRole("link", { name: "Browse documentation" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /Getting Started/i }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /CLI Reference/i }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /Troubleshooting/i }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: /Search docs/i }),
   ).toBeVisible();
 });
