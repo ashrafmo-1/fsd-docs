@@ -137,17 +137,17 @@ HUSKY=0 git commit -m "docs: update guide"   # skip hooks once`}
         </p>
         <CodeBlock
           language="yaml"
-          code={`      - name: FSD architecture
-        run: npx create-fsd-architecture@latest check --architecture
+          code={`- name: FSD architecture
+  run: npx create-fsd-architecture@latest check --architecture
 
-      - name: CLI upgrade status
-        run: |
-          set +e
-          npx create-fsd-architecture@latest upgrade --check
-          code=$?
-          # 0 current, 2 upgrade available, 3 blocked by conflicts, 4 invalid
-          if [ "$code" -eq 2 ]; then echo "::warning::A CLI upgrade is available"; exit 0; fi
-          exit $code`}
+- name: CLI upgrade status
+  run: |
+    set +e
+    npx create-fsd-architecture@latest upgrade --check
+    code=$?
+    # 0 current, 2 upgrade available, 3 blocked by conflicts, 4 invalid
+    if [ "$code" -eq 2 ]; then echo "::warning::A CLI upgrade is available"; exit 0; fi
+    exit $code`}
         />
         <p className="text-base leading-relaxed text-body">
           The snippet treats an available upgrade as a warning and fails only on

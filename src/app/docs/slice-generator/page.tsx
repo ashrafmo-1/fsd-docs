@@ -110,11 +110,11 @@ npx create-fsd-architecture@latest --generate page checkout`}
         >
           Examples by slice type
         </h2>
-        <div className="grid gap-4 lg:grid-cols-2">
+        <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
           {TYPE_EXAMPLES.map((example) => (
             <div
               key={example.type}
-              className="rounded-[16px] border border-hairline bg-surface-soft p-5"
+              className="col-span-1 rounded-[16px] border border-hairline bg-surface-soft p-5"
             >
               <div className="mb-4 flex flex-wrap items-center gap-3">
                 <h3 className="text-lg font-semibold text-ink">
@@ -222,8 +222,8 @@ npx create-fsd-architecture@latest -g widget navbar --force`}
         >
           Generated paths
         </h2>
-        <div className="grid gap-4 lg:grid-cols-2">
-          <div>
+        <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
+          <div className="flex flex-col">
             <p className="mb-3 text-sm font-semibold text-ink">
               Project with src/
             </p>
@@ -233,9 +233,10 @@ npx create-fsd-architecture@latest -g widget navbar --force`}
 src/entities/product/
 src/widgets/navbar/
 src/pages/checkout/`}
+              className="flex-1"
             />
           </div>
-          <div>
+          <div className="flex flex-col">
             <p className="mb-3 text-sm font-semibold text-ink">Nuxt project</p>
             <CodeBlock
               language="text"
@@ -244,9 +245,10 @@ app/entities/product/
 app/widgets/navbar/
 app/pages/checkout/
 app/app/routes/checkout.vue`}
+              className="flex-1"
             />
           </div>
-          <div>
+          <div className="flex flex-col">
             <p className="mb-3 text-sm font-semibold text-ink">
               SvelteKit project
             </p>
@@ -257,9 +259,10 @@ src/entities/product/
 src/widgets/navbar/
 src/pages/checkout/
 src/routes/checkout/+page.svelte`}
+              className="flex-1"
             />
           </div>
-          <div>
+          <div className="flex flex-col">
             <p className="mb-3 text-sm font-semibold text-ink">
               Project without src/
             </p>
@@ -269,6 +272,7 @@ src/routes/checkout/+page.svelte`}
 entities/product/
 widgets/navbar/
 pages/checkout/`}
+              className="flex-1"
             />
           </div>
         </div>

@@ -1,11 +1,11 @@
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 
-<p className="text-lg">
+<div className="text-lg">
   The `upgrade` command migrates only configuration and tooling that FSD CLI
   can prove it owns. It does not clone a new template over your project or
   rewrite features, entities, widgets, pages, components, styles, routes,
   environment files, secrets, custom scripts, or Git history.
-</p>
+</div>
 
 <PublishedDocumentationVideo pageKey="/docs/upgrade" />
 
@@ -23,10 +23,10 @@ npx create-fsd-architecture@latest upgrade --dry-run
 npx create-fsd-architecture@latest upgrade --check
 ```
 
-<p className="text-sm text-body-muted">
+<div className="text-sm text-body-muted">
   Both commands are non-mutating: they do not create a manifest, backup, log,
   lockfile, or temporary project file.
-</p>
+</div>
 
 ## Understand the plan
 
@@ -88,11 +88,11 @@ CLI-owned surfaces remains untouched.
 | Nuxt | 2.4.0 signatures |
 | SvelteKit | 2.5.0 signatures |
 
-<p className="text-sm text-body-muted">
+<div className="text-sm text-body-muted">
   Planning has unit coverage across npm, pnpm, Yarn, and Bun. The normal
   framework CI continues to build freshly generated projects; it is not a claim
   that every customized historical project can be migrated automatically.
-</p>
+</div>
 
 ## CI exit codes
 

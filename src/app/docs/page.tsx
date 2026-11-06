@@ -139,7 +139,7 @@ export default function DocsPage() {
             <Link
               key={card.title}
               href={card.href}
-              className="group rounded-[16px] border border-hairline bg-canvas p-5 transition-colors hover:bg-surface-soft"
+              className="group flex flex-col rounded-[16px] border border-hairline bg-canvas p-5 transition-colors hover:bg-surface-soft"
             >
               <span
                 className={`mb-4 inline-flex h-10 w-10 items-center justify-center rounded-[12px] ${card.color}`}
@@ -159,7 +159,7 @@ export default function DocsPage() {
               <p className="mt-2 text-sm leading-relaxed text-body">
                 {card.description}
               </p>
-              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-ink">
+              <span className="flex-1 mt-4 inline-flex items-end gap-2 text-sm font-semibold text-ink">
                 Read docs
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>

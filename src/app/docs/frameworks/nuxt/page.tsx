@@ -131,7 +131,7 @@ app/app/routes/account.vue  # exposes /account`}
         </p>
       </section>
 
-      <section className="mt-10 grid gap-4 md:grid-cols-2">
+      <section className="mt-10 grid gap-4 grid-cols-1 md:grid-cols-2">
         <div className="rounded-2xl border border-hairline bg-canvas p-5">
           <h2
             id="runtime-api-config"

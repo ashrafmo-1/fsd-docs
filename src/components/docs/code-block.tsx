@@ -2,6 +2,7 @@
 
 import { Check, Copy, X } from "lucide-react";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { cn } from "@/lib/utils";
 
 export function CopyCodeButton({ text }: { text: string }) {
   const { status, copy } = useCopyToClipboard();
@@ -11,7 +12,7 @@ export function CopyCodeButton({ text }: { text: string }) {
       <button
         type="button"
         onClick={() => copy(text)}
-        className="absolute right-2 top-2 inline-flex h-8 w-8 items-center justify-center rounded-md text-white/60 transition-colors hover:text-white/90"
+        className="absolute right-2 rtl:right-auto rtl:left-2 top-0 inline-flex h-8 w-8 items-center justify-center rounded-md text-white/60 transition-colors hover:text-white/90"
         aria-label="Copy code"
       >
         {status === "copied" ? (
@@ -41,12 +42,19 @@ export function CopyCodeButton({ text }: { text: string }) {
 export function CodeBlock({
   code,
   language = "bash",
+  className,
 }: {
   code: string;
   language?: string;
+  className?: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-[12px] bg-surface-dark">
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-[12px] bg-surface-dark",
+        className,
+      )}
+    >
       <div
         data-markdown="skip"
         className="flex items-center gap-2 border-b border-white/10 px-4 py-2"

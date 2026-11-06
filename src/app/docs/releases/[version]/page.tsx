@@ -99,7 +99,9 @@ export default async function ReleasePage({ params }: Props) {
           </h2>
           <ul className="mt-4 list-disc space-y-3 pl-5 leading-7">
             {section.items.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item} className="wrap-anywhere">
+                {item}
+              </li>
             ))}
           </ul>
         </section>

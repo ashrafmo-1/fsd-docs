@@ -34,7 +34,7 @@ export function OurTeam() {
       <p className="section-kicker">THE PEOPLE</p>
       <h2 id="team-heading">Meet our team</h2>
       <p className="landing-team__subtitle">The team behind FSD CLI</p>
-      <ul className="landing-team__grid grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <ul className="landing-team__grid grid max-[440px]:grid-cols-1 grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {team.map((member) => (
           <MemberCard key={member.name} {...member} />
         ))}
