@@ -5,29 +5,16 @@ import { CtaBand } from "@/components/landing/cta-band";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
 import { ScrollFeatures } from "@/components/landing/scroll-features";
-import { defaultOgImage } from "@/lib/metadata";
+import { pageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-static";
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Architecture",
   description:
     "Explore the six Feature-Sliced Design layers, import boundaries, and the complete FSD CLI project creation workflow.",
-  alternates: { canonical: "/architecture" },
-  openGraph: {
-    title: "Architecture | FSD CLI",
-    description:
-      "Six layers. Clear boundaries. Explore the FSD CLI architecture and workflow.",
-    url: "/architecture",
-    images: [defaultOgImage],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Architecture | FSD CLI",
-    description:
-      "Six layers. Clear boundaries. Explore the FSD CLI architecture and workflow.",
-    images: [defaultOgImage],
-  },
-};
+  path: "/architecture",
+  shareTitle: "Architecture | FSD CLI",
+});
 export default function ArchitecturePage() {
   return (
     <>

@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "SvelteKit",
   description:
     "Create a Svelte 5 and SvelteKit 2 Feature-Sliced Design project with native generators and file-based routes.",
-  alternates: { canonical: "/docs/frameworks/sveltekit" },
-};
+  path: "/docs/frameworks/sveltekit",
+});
 
 const STACK = [
   ["Framework", "Svelte 5 + SvelteKit 2"],

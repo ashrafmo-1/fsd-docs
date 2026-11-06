@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Troubleshooting",
   description:
     "Error messages from the FSD CLI with their cause and fix: Node.js version, project names, generators, segments, Supabase auth, architecture checks, upgrades, and template downloads.",
-  alternates: { canonical: "/docs/troubleshooting" },
-};
+  path: "/docs/troubleshooting",
+});
 
 type Entry = { id: string; message: string; cause: string; fix: string };
 type Group = { id: string; title: string; entries: Entry[] };

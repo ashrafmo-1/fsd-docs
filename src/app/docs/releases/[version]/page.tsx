@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CodeBlock } from "@/components/docs/code-block";
+import { docsPageMetadata } from "@/lib/metadata";
 import { CLI_RELEASES, getRelease, getReleaseNavigation } from "@/lib/releases";
 
 type Props = { params: Promise<{ version: string }> };
@@ -14,11 +15,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { version } = await params;
   const release = getRelease(version);
   if (!release) notFound();
-  return {
+  const publishedTime = `${release.date}T00:00:00.000Z`;
+  return docsPageMetadata({
     title: `Release ${version}`,
     description: release.summary,
-    alternates: { canonical: `/docs/releases/${version}` },
-  };
+    path: `/docs/releases/${version}`,
+    publishedTime,
+    modifiedTime: publishedTime,
+  });
 }
 export default async function ReleasePage({ params }: Props) {
   const { version } = await params;

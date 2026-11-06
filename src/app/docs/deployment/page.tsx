@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Deployment",
   description:
     "Build output, environment variables, and hosting setup for generated React, Vue, Next.js, Nuxt, and SvelteKit FSD projects.",
-  alternates: { canonical: "/docs/deployment" },
-};
+  path: "/docs/deployment",
+});
 
 const TARGETS: [
   framework: string,

@@ -2,14 +2,15 @@ import { ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Vue + Vite",
   description:
     "Create a complete Vue 3 + Vite Feature-Sliced Design project and generate framework-native slices with FSD CLI.",
-  alternates: { canonical: "/docs/frameworks/vue" },
-};
+  path: "/docs/frameworks/vue",
+});
 
 const STACK = [
   ["Framework", "Vue 3 + Vite"],

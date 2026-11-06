@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./styles/globals.css";
 import { SupportProvider } from "@/components/landing/support-controls";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { defaultOgImage } from "@/lib/metadata";
+import { defaultOgImage, HOME_SHARE_TITLE } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 import {
   jsonLdScript,
@@ -30,7 +30,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "FSD CLI — Build Scalable Frontends from Day One",
+    default: HOME_SHARE_TITLE,
     template: "%s | FSD CLI",
   },
   description: siteConfig.description,
@@ -71,13 +71,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "FSD CLI — Build Scalable Frontends from Day One",
+    title: HOME_SHARE_TITLE,
     description: siteConfig.description,
     images: [defaultOgImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FSD CLI — Build Scalable Frontends from Day One",
+    title: HOME_SHARE_TITLE,
     description: siteConfig.description,
     images: [defaultOgImage],
   },

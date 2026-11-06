@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 import { LATEST_CLI_RELEASE } from "@/lib/releases";
 import { siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "AI Agent Skill",
   description:
     "Install the stable fsd-cli Agent Skill so compatible coding agents can inspect, implement, review, and migrate FSD projects with evidence.",
-  alternates: { canonical: "/docs/ai-agent-skill" },
-};
+  path: "/docs/ai-agent-skill",
+});
 
 const EXAMPLE_PROMPTS = [
   "Create a cart feature.",

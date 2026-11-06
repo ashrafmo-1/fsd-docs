@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "CI/CD",
   description:
     "What CI the generated FSD projects ship with, the local Git hooks, and how to add architecture and upgrade checks to GitHub Actions, GitLab CI, or any other pipeline.",
-  alternates: { canonical: "/docs/ci-cd" },
-};
+  path: "/docs/ci-cd",
+});
 
 const QUALITY_SCRIPTS: [framework: string, ci: string][] = [
   ["React + Vite", "fsd:check → lint → build"],

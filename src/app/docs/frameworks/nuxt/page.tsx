@@ -2,14 +2,15 @@ import { ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Nuxt",
   description:
     "Create a Nuxt 4 Feature-Sliced Design project with SSR-aware providers and framework-native generators.",
-  alternates: { canonical: "/docs/frameworks/nuxt" },
-};
+  path: "/docs/frameworks/nuxt",
+});
 
 const STACK = [
   ["Framework", "Nuxt 4 + Vue 3"],

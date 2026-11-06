@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "FAQ and Glossary",
   description:
     "Answers to common FSD CLI questions and definitions of the Feature-Sliced Design and CLI terms used across the docs.",
-  alternates: { canonical: "/docs/faq" },
-};
+  path: "/docs/faq",
+});
 
 const FAQ: { id: string; question: string; answer: string }[] = [
   {

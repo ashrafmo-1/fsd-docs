@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Migration Guide",
   description:
     "Move to the latest FSD CLI release and migrate an existing frontend to Feature-Sliced Design: version upgrades, legacy projects, and a folder-by-folder mapping plan.",
-  alternates: { canonical: "/docs/migration" },
-};
+  path: "/docs/migration",
+});
 
 const FOLDER_MAP: [from: string, to: string, note: string][] = [
   [

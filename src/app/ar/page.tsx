@@ -3,19 +3,20 @@ import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
+import { docsPageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "البدء السريع بالعربية",
   description:
     "دليل عربي مختصر لإنشاء مشروع Feature-Sliced Design باستخدام FSD CLI: المتطلبات، إنشاء المشروع، توليد الشرائح، والترقية الآمنة.",
+  path: "/ar",
+  locale: "ar_EG",
   alternates: {
-    canonical: "/ar",
     languages: { en: "/docs/getting-started", ar: "/ar" },
   },
-  openGraph: { locale: "ar_EG", url: "/ar" },
-};
+});
 
 const H2 = "mt-12 text-2xl font-semibold text-ink";
 
