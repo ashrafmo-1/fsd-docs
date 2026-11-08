@@ -51,15 +51,13 @@ export default function DocsLayout({
       <Navigation />
       <main className="overflow-x-clip bg-canvas">
         {/*
-          DOM order matches visual/keyboard order: nav, article, TOC.
-          On mobile the nav is a closed <details> summary (~one row), so the
-          H1 still appears in the first viewport. Grid areas place columns on lg+.
+          DOM/keyboard order below xl: nav, collapsed TOC, article.
+          Two closed <details> summaries keep the H1 near the first viewport
+          while leaving the TOC reachable. xl places TOC in the right column.
         */}
-        <div className="mx-auto grid max-w-[1536px] gap-8 px-6 py-10 lg:grid-cols-[210px_minmax(0,1fr)] lg:[grid-template-areas:'sidebar_content'_'sidebar_toc'] xl:grid-cols-[210px_minmax(0,1fr)_210px] xl:[grid-template-areas:'sidebar_content_toc'] lg:py-16">
-          <DocsSidebar
-            mobileHeader={<DocsVersionSwitcher />}
-            desktopHeader={<DocsVersionSwitcher />}
-          />
+        <div className="mx-auto grid max-w-[1536px] gap-8 px-6 py-10 lg:grid-cols-[210px_minmax(0,1fr)] lg:[grid-template-areas:'sidebar_toc'_'sidebar_content'] xl:grid-cols-[210px_minmax(0,1fr)_210px] xl:[grid-template-areas:'sidebar_content_toc'] lg:py-16">
+          <DocsSidebar header={<DocsVersionSwitcher />} />
+          <OnThisPage />
           <div
             id="main-content"
             tabIndex={-1}
@@ -74,7 +72,6 @@ export default function DocsLayout({
             <div id="docs-content">{children}</div>
             <DocsPageFooter />
           </div>
-          <OnThisPage />
         </div>
       </main>
       <Footer />

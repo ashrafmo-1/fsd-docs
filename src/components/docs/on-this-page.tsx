@@ -182,33 +182,34 @@ export function OnThisPage() {
     copy(`${window.location.origin}${pathname}#${heading.id}`);
   };
 
-  const tocProps = {
-    headings,
-    activeId,
-    copyStatus,
-    onActivate: setActiveId,
-    onCopy,
-  };
-
   return (
     <aside className="min-w-0 lg:[grid-area:toc] xl:sticky xl:top-24 xl:h-fit">
-      <details className="group max-h-[70vh] overflow-y-auto rounded-[12px] border border-hairline xl:hidden">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-3 py-2.5 text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
+      {/*
+        One TOC in the HTML. Collapsed <details> below xl (placed above the
+        article in layout). On xl+ the panel stays visible without duplicating
+        the heading list.
+      */}
+      <details className="group max-h-[70vh] overflow-y-auto rounded-[12px] border border-hairline xl:max-h-[70vh] xl:border-0 xl:rounded-none">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-3 py-2.5 text-sm font-semibold text-ink xl:hidden [&::-webkit-details-marker]:hidden">
           On this page
           <ChevronDown
             aria-hidden="true"
             className="h-4 w-4 text-body-muted transition-transform group-open:rotate-180"
           />
         </summary>
-        <div className="border-t border-hairline px-3 pb-4 pt-3">
-          <TocNav {...tocProps} />
+        <div className="border-t border-hairline px-3 pb-4 pt-3 xl:border-0 xl:p-0 xl:!block">
+          <p className="mb-4 hidden text-sm font-semibold text-ink xl:block">
+            On this page
+          </p>
+          <TocNav
+            headings={headings}
+            activeId={activeId}
+            copyStatus={copyStatus}
+            onActivate={setActiveId}
+            onCopy={onCopy}
+          />
         </div>
       </details>
-
-      <div className="hidden max-h-[70vh] overflow-y-auto xl:block">
-        <p className="mb-4 text-sm font-semibold text-ink">On this page</p>
-        <TocNav {...tocProps} />
-      </div>
     </aside>
   );
 }
