@@ -63,9 +63,21 @@ test("copying a code block announces success", async ({
   expect(copied).toContain('"schemaVersion": 1');
 });
 
+type Theme = "System" | "Light" | "Dark";
+
+async function selectTheme(page: Page, theme: Theme) {
+  const select = page.getByRole("combobox", { name: "Color theme" });
+
+  if (await select.isVisible()) {
+    await select.selectOption({ label: theme });
+  } else {
+    await page.getByRole("button", { name: theme, exact: true }).click();
+  }
+}
+
 test("theme switcher applies dark mode and remembers it", async ({ page }) => {
   await page.goto("/docs");
-  await page.getByLabel("Color theme").selectOption("dark");
+  await selectTheme(page, "Dark");
   await expect(page.locator("html")).toHaveClass(/dark/);
   await page.reload();
   await expect(page.locator("html")).toHaveClass(/dark/);
