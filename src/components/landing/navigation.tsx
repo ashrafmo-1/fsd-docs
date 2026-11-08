@@ -9,6 +9,7 @@ import { ThemeSwitcher } from "@/components/theme/theme-switcher";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { GitHubIcon } from "./github-icon";
+import { LanguageSwitcher } from "./language-switcher";
 import { SupportButton } from "./support-controls";
 
 const NAV_LINKS = [
@@ -125,6 +126,7 @@ export function Navigation() {
         </div>
 
         <div className="flex items-center gap-2">
+          <LanguageSwitcher />
           <ThemeSwitcher />
           <span className="hidden sm:inline-flex">
             <SupportButton />
@@ -202,6 +204,12 @@ export function Navigation() {
               );
             })}
             <hr className="border-hairline" />
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium text-body-muted">
+                Language
+              </span>
+              <LanguageSwitcher />
+            </div>
             <a
               href={siteConfig.github}
               target="_blank"

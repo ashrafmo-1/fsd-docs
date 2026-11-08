@@ -4,6 +4,7 @@ import { CodeBlock } from "@/components/docs/code-block";
 import { DocumentationVideo } from "@/components/docs/documentation-video";
 import { PackageManagerCommand } from "@/components/docs/package-manager-command";
 import { GETTING_STARTED_VIDEO_PAGE_KEY } from "@/lib/documentation-videos";
+import { languageAlternates } from "@/lib/i18n";
 import { getPublishedDocumentationVideo } from "@/lib/published-videos";
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     "Create a React, Next.js, Vue, Nuxt, or SvelteKit project with a complete Feature-Sliced Design structure.",
   alternates: {
     canonical: "/docs/getting-started",
-    languages: { en: "/docs/getting-started", ar: "/ar" },
+    languages: languageAlternates("/docs/getting-started"),
   },
 };
 
