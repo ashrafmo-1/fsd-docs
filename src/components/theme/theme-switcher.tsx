@@ -18,10 +18,9 @@ export function ThemeSwitcher() {
   const { preference, setPreference } = useTheme();
 
   return (
-    <div
-      role="group"
+    <fieldset
       aria-label="Color theme"
-      className="inline-flex items-center gap-0.5 rounded-[10px] border border-hairline bg-canvas p-0.5"
+      className="m-0 hidden min-w-0 items-center gap-0.5 rounded-[10px] border border-hairline bg-canvas p-0.5 sm:inline-flex"
     >
       {THEME_OPTIONS.map(({ value, label, Icon }) => {
         const active = preference === value;
@@ -44,6 +43,6 @@ export function ThemeSwitcher() {
           </button>
         );
       })}
-    </div>
+    </fieldset>
   );
 }
