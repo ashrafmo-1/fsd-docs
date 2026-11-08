@@ -11,7 +11,8 @@ const DATE_FORMAT = new Intl.DateTimeFormat("en-US", {
 
 /**
  * "Applies to" and "Last updated" line under the breadcrumbs. Dates are
- * computed at build time from Git history and passed in by route.
+ * computed at build time from content-file Git history (not page.tsx) and
+ * passed in by route.
  */
 export function DocsPageMeta({
   version,

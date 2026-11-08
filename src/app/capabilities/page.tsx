@@ -15,6 +15,8 @@ export const metadata: Metadata = pageMetadata({
     "Explore FSD CLI framework templates, slice generators, tooling, configuration, roadmap, and frequently asked questions.",
   path: "/capabilities",
   shareTitle: "Capabilities | FSD CLI",
+  shareDescription:
+    "Explore the complete FSD CLI toolkit, framework templates, generators, and FAQ.",
 });
 export default function CapabilitiesPage() {
   return (

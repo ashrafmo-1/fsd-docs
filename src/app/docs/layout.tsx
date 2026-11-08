@@ -9,7 +9,7 @@ import { OnThisPage } from "@/components/docs/on-this-page";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
 import { DOCS_NAV_ITEMS } from "@/lib/docs-navigation";
-import { lastCommitDate, pageSourceFile } from "@/lib/page-dates";
+import { contentSourceFile, lastCommitDate } from "@/lib/page-dates";
 import { CLI_RELEASES } from "@/lib/releases";
 import { buildSearchIndex } from "@/lib/search-index";
 
@@ -31,10 +31,12 @@ const latestVersion = (
 ).version;
 
 // Built once at build time; the layout is force-static.
+// Dates come from content files (e.g. MDX), not page.tsx — SEO/metadata
+// commits touch nearly every page.tsx and would reset "Last updated".
 function pageUpdatedDates() {
   return Object.fromEntries(
     DOCS_NAV_ITEMS.flatMap((item) => {
-      const file = pageSourceFile(item.href);
+      const file = contentSourceFile(item.href);
       const date = file && lastCommitDate(file);
       return date ? [[item.href, date.toISOString()]] : [];
     }),

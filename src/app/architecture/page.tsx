@@ -14,6 +14,8 @@ export const metadata: Metadata = pageMetadata({
     "Explore the six Feature-Sliced Design layers, import boundaries, and the complete FSD CLI project creation workflow.",
   path: "/architecture",
   shareTitle: "Architecture | FSD CLI",
+  shareDescription:
+    "Six layers. Clear boundaries. Explore the FSD CLI architecture and workflow.",
 });
 export default function ArchitecturePage() {
   return (
