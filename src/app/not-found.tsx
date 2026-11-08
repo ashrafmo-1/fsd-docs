@@ -1,19 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DocsSearch } from "@/components/docs/docs-search";
 import { defaultOgImage } from "@/lib/metadata";
-import { buildSearchIndex } from "@/lib/search-index";
 
 const title = "Page not found";
 const description =
-  "This page does not exist. Search the FSD CLI docs or jump to Getting Started, CLI Reference, or Troubleshooting.";
+  "This page does not exist. Jump to Getting Started, CLI Reference, or Troubleshooting.";
 const shareTitle = `${title} | FSD CLI`;
 
 export const metadata: Metadata = {
   title,
   description,
-  robots: { index: false },
   // Replace the root layout canonical so a 404 does not claim to be the homepage.
+  // Next already emits noindex for not-found pages; do not set robots here.
   alternates: { canonical: null },
   openGraph: {
     title: shareTitle,
@@ -65,11 +63,7 @@ export default function NotFound() {
           been generated yet.
         </p>
 
-        <div className="mt-8 text-left">
-          <DocsSearch index={buildSearchIndex()} />
-        </div>
-
-        <ul className="mt-2 grid gap-2 text-left sm:grid-cols-3">
+        <ul className="mt-8 grid gap-2 text-left sm:grid-cols-3">
           {RESCUE_LINKS.map((link) => (
             <li key={link.href}>
               <Link

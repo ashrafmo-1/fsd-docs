@@ -99,7 +99,4 @@ test("unknown pages return 404 with a way back", async ({ page }) => {
   await expect(
     page.getByRole("link", { name: /Troubleshooting/i }),
   ).toBeVisible();
-  await expect(
-    page.getByRole("button", { name: /Search docs/i }),
-  ).toBeVisible();
 });
