@@ -64,6 +64,16 @@ export default async function GettingStartedPage() {
           Прочитать краткое руководство на русском
         </a>
       </p>
+      <p className="mt-3 text-sm">
+        <a
+          href="/zh-CN"
+          hrefLang="zh-CN"
+          lang="zh-CN"
+          className="text-brand-coral underline"
+        >
+          阅读简体中文快速入门指南
+        </a>
+      </p>
 
       <DocumentationVideo video={video} />
 

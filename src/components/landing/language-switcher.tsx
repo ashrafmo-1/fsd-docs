@@ -11,7 +11,7 @@ import {
 
 /**
  * Language switcher (I18N-01). Lists the available locales as links and the
- * planned ones (zh-CN, es, pt-BR, ja) disabled with "soon" until their
+ * planned ones (es, pt-BR, ja) disabled with "soon" until their
  * content exists — flipping a locale to `available: true` in src/lib/i18n.ts
  * enables it here with no other change.
  */
