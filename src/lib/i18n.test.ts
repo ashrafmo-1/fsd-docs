@@ -15,22 +15,26 @@ test("localeOfPath matches on a full path segment", () => {
   assert.equal(localeOfPath("/architecture"), "en");
   assert.equal(localeOfPath("/ar"), "ar");
   assert.equal(localeOfPath("/ar/anything"), "ar");
+  assert.equal(localeOfPath("/ru"), "ru");
+  assert.equal(localeOfPath("/ru/anything"), "ru");
 });
 
-test("available locales are English and Arabic; the rest are planned", () => {
+test("available locales are English, Arabic, and Russian; the rest are planned", () => {
   assert.deepEqual(
     availableLocales().map((locale) => locale.code),
-    ["en", "ar"],
+    ["en", "ar", "ru"],
   );
   assert.deepEqual(
     plannedLocales().map((locale) => locale.code),
-    ["ru", "zh-CN", "es", "pt-BR", "ja"],
+    ["zh-CN", "es", "pt-BR", "ja"],
   );
 });
 
 test("pathForLocale follows the translated page, else the locale home", () => {
   assert.equal(pathForLocale("/docs/getting-started", "ar"), "/ar");
+  assert.equal(pathForLocale("/docs/getting-started", "ru"), "/ru");
   assert.equal(pathForLocale("/ar", "en"), "/docs/getting-started");
+  assert.equal(pathForLocale("/ru", "en"), "/docs/getting-started");
   assert.equal(pathForLocale("/docs", "ar"), "/ar");
   assert.equal(pathForLocale("/ar", "ar"), "/ar");
   assert.equal(
@@ -41,6 +45,7 @@ test("pathForLocale follows the translated page, else the locale home", () => {
 
 test("englishPathOf resolves translated paths back to English", () => {
   assert.equal(englishPathOf("/ar"), "/docs/getting-started");
+  assert.equal(englishPathOf("/ru"), "/docs/getting-started");
   assert.equal(englishPathOf("/docs/getting-started"), "/docs/getting-started");
   assert.equal(englishPathOf("/docs"), "/docs");
 });
@@ -50,6 +55,7 @@ test("languageAlternates includes x-default, English, and translations", () => {
     "x-default": "/docs/getting-started",
     en: "/docs/getting-started",
     ar: "/ar",
+    ru: "/ru",
   });
   assert.deepEqual(languageAlternates("/docs"), {
     "x-default": "/docs",

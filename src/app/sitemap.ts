@@ -10,6 +10,7 @@ const pages = [
   "",
   "/architecture",
   "/ar",
+  "/ru",
   "/capabilities",
   ...DOCS_NAV_ITEMS.map((item) => item.href),
 ];
