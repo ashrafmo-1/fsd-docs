@@ -77,7 +77,7 @@ export const LOCALES: readonly Locale[] = [
     label: "Español",
     dir: "ltr",
     prefix: "/es",
-    available: false,
+    available: true,
   },
   {
     code: "pt-BR",
@@ -115,14 +115,20 @@ export function plannedLocales(): Locale[] {
 
 /**
  * Pages that exist in more than one locale, keyed by their English path.
- * Each value maps locale code -> translated path. /ar, /ru and /zh-CN exist
- * today: the Arabic, Russian and Chinese quick starts are translations of
- * the English getting-started guide. I18N-05..07 extend this map as they land.
+ * Each value maps locale code -> translated path. /ar, /ru, /zh-CN and /es
+ * exist today: the Arabic, Russian, Chinese and Spanish quick starts are
+ * translations of the English getting-started guide. I18N-06..07 extend
+ * this map as they land.
  */
 export const TRANSLATED_PATHS: Readonly<
   Record<string, Partial<Record<LocaleCode, string>>>
 > = {
-  "/docs/getting-started": { ar: "/ar", ru: "/ru", "zh-CN": "/zh-CN" },
+  "/docs/getting-started": {
+    ar: "/ar",
+    ru: "/ru",
+    "zh-CN": "/zh-CN",
+    es: "/es",
+  },
 };
 
 /** English path of a page, resolving translated paths back to English. */

@@ -74,6 +74,16 @@ export default async function GettingStartedPage() {
           阅读简体中文快速入门指南
         </a>
       </p>
+      <p className="mt-3 text-sm">
+        <a
+          href="/es"
+          hrefLang="es"
+          lang="es"
+          className="text-brand-coral underline"
+        >
+          Leer la guía de inicio rápido en español
+        </a>
+      </p>
 
       <DocumentationVideo video={video} />
 
