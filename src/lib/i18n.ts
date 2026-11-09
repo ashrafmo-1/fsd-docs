@@ -85,7 +85,7 @@ export const LOCALES: readonly Locale[] = [
     label: "Português (Brasil)",
     dir: "ltr",
     prefix: "/pt-BR",
-    available: false,
+    available: true,
   },
   {
     code: "ja",
@@ -115,10 +115,10 @@ export function plannedLocales(): Locale[] {
 
 /**
  * Pages that exist in more than one locale, keyed by their English path.
- * Each value maps locale code -> translated path. /ar, /ru, /zh-CN and /es
- * exist today: the Arabic, Russian, Chinese and Spanish quick starts are
- * translations of the English getting-started guide. I18N-06..07 extend
- * this map as they land.
+ * Each value maps locale code -> translated path. /ar, /ru, /zh-CN, /es
+ * and /pt-BR exist today: the Arabic, Russian, Chinese, Spanish and
+ * Brazilian Portuguese quick starts are translations of the English
+ * getting-started guide. I18N-07 extends this map as it lands.
  */
 export const TRANSLATED_PATHS: Readonly<
   Record<string, Partial<Record<LocaleCode, string>>>
@@ -128,6 +128,7 @@ export const TRANSLATED_PATHS: Readonly<
     ru: "/ru",
     "zh-CN": "/zh-CN",
     es: "/es",
+    "pt-BR": "/pt-BR",
   },
 };
 
