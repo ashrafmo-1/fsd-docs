@@ -16,6 +16,13 @@ const requiredStaticRoutes = [
   "/sitemap.xml",
   "/llms.txt",
   "/llms-full.txt",
+  // Per-language llms.txt (I18N-08): one static route per translated locale.
+  "/ar/llms.txt",
+  "/ru/llms.txt",
+  "/zh-CN/llms.txt",
+  "/es/llms.txt",
+  "/pt-BR/llms.txt",
+  "/ja/llms.txt",
 ];
 
 for (const route of new Set(requiredStaticRoutes)) {
@@ -36,7 +43,17 @@ assert.equal(
 );
 
 // Pages that override openGraph/twitter must not drop the share image.
-for (const page of ["architecture", "capabilities"]) {
+// Locale pages use localizedOpenGraph (I18N-08) for the same reason.
+for (const page of [
+  "architecture",
+  "capabilities",
+  "ar",
+  "ru",
+  "zh-CN",
+  "es",
+  "pt-BR",
+  "ja",
+]) {
   const html = fs.readFileSync(`.next/server/app/${page}.html`, "utf8");
   for (const tag of [
     '<meta property="og:image" content="https://fsdcli.me/og/fsd-cli-og-1200x630-v1.png"',

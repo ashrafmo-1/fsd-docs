@@ -4,6 +4,7 @@ import { CodeBlock } from "@/components/docs/code-block";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
 import { languageAlternates } from "@/lib/i18n";
+import { localizedOpenGraph } from "@/lib/metadata";
 
 export const dynamic = "force-static";
 
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
     canonical: "/ja",
     languages: languageAlternates("/docs/getting-started"),
   },
-  openGraph: { locale: "ja_JP", url: "/ja" },
+  openGraph: localizedOpenGraph("ja_JP", "/ja"),
 };
 
 const H2 = "mt-12 text-2xl font-semibold text-ink";

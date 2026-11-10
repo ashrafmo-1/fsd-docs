@@ -11,7 +11,10 @@ The locale registry is `src/lib/i18n.ts`. To add a language:
 1. **Build its pages** under `src/app/<locale>/`, following the existing
    `/ar` page: a static page that sets `lang`/`dir` on its content, keeps
    code blocks left-to-right, and sets metadata with
-   `languages: languageAlternates("<english-path>")`.
+   `languages: languageAlternates("<english-path>")`. Its `openGraph` must
+   use `localizedOpenGraph("<og-locale>", "/<locale>")` — a page-level
+   `openGraph` replaces the layout's, so without it the page ships with no
+   share image.
 2. **Register translated paths** in `TRANSLATED_PATHS` in `src/lib/i18n.ts`:
    map each English path to its translated path, e.g.
    `"/docs/getting-started": { ru: "/ru/docs/getting-started" }`. Pages
@@ -21,14 +24,19 @@ The locale registry is `src/lib/i18n.ts`. To add a language:
    automatically — no other code changes.
 4. **Add the locale's routes to the sitemap** (`src/app/sitemap.ts`) if they
    are top-level pages like `/ar` is today.
-5. **Verify**: `npm run lint && npm run typecheck && npm run test && npm run build && npm run check:static`.
+5. **Add its per-language `llms.txt`**: an entry in `LOCALIZED_LLMS` in
+   `src/lib/llms.ts` (translated description, intro, quick-start title, and
+   English-only note), a static route at
+   `src/app/<locale>/llms.txt/route.ts` returning
+   `getLlmsIndexForLocale("<locale>")`, and the route in
+   `scripts/check-static-output.mjs`. The English `/llms.txt` picks the new
+   link up automatically.
+6. **Verify**: `npm run lint && npm run typecheck && npm run test && npm run build && npm run check:static`.
    The build output must list the new locale routes as static.
 
 Per-language work beyond the site:
 
 - The CLI README translation (`README.<locale>.md` in `FSD-CLI/cli`) is a
   separate PR in the same language task (I18N-03..07).
-- Per-language `llms.txt` and SEO are I18N-08, not part of adding one
-  language.
 - Arabic is not in the plan — the only existing translation is the `/ar`
   quick-start page.

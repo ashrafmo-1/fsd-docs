@@ -1,6 +1,8 @@
-import { DOCS_NAV_ITEMS } from "@/lib/docs-navigation";
-import { CLI_RELEASES, LATEST_CLI_RELEASE } from "@/lib/releases";
-import { siteConfig } from "@/lib/site";
+import { DOCS_NAV_ITEMS } from "./docs-navigation.ts";
+import type { LocaleCode } from "./i18n.ts";
+import { getLocale } from "./i18n.ts";
+import { CLI_RELEASES, LATEST_CLI_RELEASE } from "./releases.ts";
+import { siteConfig } from "./site.ts";
 
 const latestRelease = LATEST_CLI_RELEASE;
 
@@ -27,9 +29,9 @@ function docsLinks() {
 
 export function getLlmsIndex() {
   return [
-    "# " + siteConfig.name,
+    `# ${siteConfig.name}`,
     "",
-    "> " + siteConfig.description,
+    `> ${siteConfig.description}`,
     "",
     "FSD CLI is the command-line package " +
       inlineCode(siteConfig.packageName) +
@@ -38,6 +40,10 @@ export function getLlmsIndex() {
     "## Documentation",
     "",
     ...docsLinks(),
+    "",
+    "## Translated quick starts",
+    "",
+    ...localizedLlmsLinks(),
     "",
     "## Machine-readable resources",
     "",
@@ -71,6 +77,162 @@ export function getLlmsIndex() {
       ". The pinned installer requires Node.js >=22.20.0; helpers require >=20. The current Skill release is " +
       inlineCode("v2.0.0") +
       ". It teaches compatible coding agents to inspect a project and use verified CLI operations instead of inventing commands or manually rebuilding supported scaffolds. Agent behavior can vary across tools and project structures, so generated changes should be reviewed before commit.",
+    "",
+  ].join("\n");
+}
+
+interface LocalizedLlmsContent {
+  /** Translated "Documentation" section heading. */
+  docsHeading: string;
+  /** Translated one-line description of the site (reuses the locale page). */
+  description: string;
+  /** Translated intro sentence about the CLI. */
+  intro: string;
+  /** Translated "Quick start" section heading. */
+  quickStartHeading: string;
+  /** Translated quick-start page title. */
+  quickStartTitle: string;
+  /** Translated note that the rest of the docs are English-only. */
+  englishOnlyNote: string;
+}
+
+/**
+ * Per-locale llms.txt content (I18N-08). English has no entry here — it
+ * uses getLlmsIndex(). Keys follow LOCALES order in ./i18n.ts; adding a
+ * language means adding its entry here plus its route under
+ * src/app/<locale>/llms.txt/ (see docs/i18n-adding-a-language.md).
+ */
+const LOCALIZED_LLMS: Record<
+  Exclude<LocaleCode, "en">,
+  LocalizedLlmsContent
+> = {
+  ar: {
+    docsHeading: "التوثيق",
+    description:
+      "دليل عربي مختصر لإنشاء مشروع Feature-Sliced Design باستخدام FSD CLI: المتطلبات، إنشاء المشروع، توليد الشرائح، والترقية الآمنة.",
+    intro:
+      "FSD CLI هي أداة سطر أوامر تنشئ مشاريع React وNext.js وVue وNuxt وSvelteKit بهيكل Feature-Sliced Design كامل، ثم تولّد الشرائح أثناء نمو المشروع.",
+    quickStartHeading: "البدء السريع",
+    quickStartTitle: "البدء السريع بالعربية",
+    englishOnlyNote: "باقي التوثيق متوفر باللغة الإنجليزية فقط.",
+  },
+  ru: {
+    docsHeading: "Документация",
+    description:
+      "Краткое руководство на русском языке по созданию проекта Feature-Sliced Design с помощью FSD CLI: требования, создание проекта, генерация срезов и безопасное обновление.",
+    intro:
+      "FSD CLI — это инструмент командной строки, который создаёт проект React, Next.js, Vue, Nuxt или SvelteKit с полной структурой Feature-Sliced Design, а затем генерирует срезы по мере роста проекта.",
+    quickStartHeading: "Быстрый старт",
+    quickStartTitle: "Быстрый старт на русском",
+    englishOnlyNote:
+      "Остальная документация пока доступна только на английском.",
+  },
+  "zh-CN": {
+    docsHeading: "文档",
+    description:
+      "简体中文快速入门指南：使用 FSD CLI 创建 Feature-Sliced Design 项目——环境要求、创建项目、生成切片与安全升级。",
+    intro:
+      "FSD CLI 是一个命令行工具，用于创建具有完整 Feature-Sliced Design 结构的 React、Next.js、Vue、Nuxt 或 SvelteKit 项目，并随着项目增长生成切片。",
+    quickStartHeading: "快速入门",
+    quickStartTitle: "简体中文快速入门",
+    englishOnlyNote: "其余文档目前仅提供英文版。",
+  },
+  es: {
+    docsHeading: "Documentación",
+    description:
+      "Guía de inicio rápido en español: crea un proyecto con Feature-Sliced Design usando FSD CLI — requisitos, creación de proyectos, generación de slices y actualizaciones seguras.",
+    intro:
+      "FSD CLI es una herramienta de línea de comandos que crea proyectos de React, Next.js, Vue, Nuxt o SvelteKit con una estructura completa de Feature-Sliced Design y genera slices a medida que el proyecto crece.",
+    quickStartHeading: "Inicio rápido",
+    quickStartTitle: "Inicio rápido en español",
+    englishOnlyNote:
+      "El resto de la documentación está disponible solo en inglés.",
+  },
+  "pt-BR": {
+    docsHeading: "Documentação",
+    description:
+      "Guia de início rápido em português: crie um projeto com Feature-Sliced Design usando o FSD CLI — requisitos, criação de projetos, geração de slices e atualizações seguras.",
+    intro:
+      "O FSD CLI é uma ferramenta de linha de comando que cria projetos React, Next.js, Vue, Nuxt ou SvelteKit com uma estrutura completa de Feature-Sliced Design e gera slices conforme o projeto cresce.",
+    quickStartHeading: "Início rápido",
+    quickStartTitle: "Início rápido em português",
+    englishOnlyNote:
+      "O restante da documentação está disponível apenas em inglês.",
+  },
+  ja: {
+    docsHeading: "ドキュメント",
+    description:
+      "日本語クイックスタートガイド：FSD CLIでFeature-Sliced Designのプロジェクトを作成する — 要件、プロジェクト作成、スライス生成、安全なアップグレード。",
+    intro:
+      "FSD CLIは、完全なFeature-Sliced Design構造を持つReact、Next.js、Vue、Nuxt、SvelteKitプロジェクトを作成し、プロジェクトの成長に合わせてスライスを生成するコマンドラインツールです。",
+    quickStartHeading: "クイックスタート",
+    quickStartTitle: "日本語クイックスタート",
+    englishOnlyNote: "その他のドキュメントは英語のみで提供されています。",
+  },
+};
+
+/** Markdown links to every translated llms.txt, for the English index. */
+function localizedLlmsLinks(): string[] {
+  return (Object.keys(LOCALIZED_LLMS) as Exclude<LocaleCode, "en">[]).map(
+    (code) => {
+      const locale = getLocale(code);
+      const content = LOCALIZED_LLMS[code];
+      return (
+        "- [" +
+        locale.label +
+        "](" +
+        absoluteUrl(`${locale.prefix}/llms.txt`) +
+        "): " +
+        content.quickStartTitle +
+        " (llms.txt)"
+      );
+    },
+  );
+}
+
+/**
+ * Localized llms.txt index for one non-English locale, served at
+ * /<locale>/llms.txt. It links the locale's quick start plus the English
+ * documentation and full reference — the rest of the docs are English-only.
+ */
+export function getLlmsIndexForLocale(code: LocaleCode): string {
+  if (code === "en") {
+    throw new Error("Use getLlmsIndex() for the English index.");
+  }
+  const locale = getLocale(code);
+  const content = LOCALIZED_LLMS[code];
+  return [
+    `# ${siteConfig.name}`,
+    "",
+    `> ${content.description}`,
+    "",
+    "FSD CLI is the command-line package " +
+      inlineCode(siteConfig.packageName) +
+      ". " +
+      content.intro,
+    "",
+    `## ${content.quickStartHeading}`,
+    "",
+    "- [" +
+      content.quickStartTitle +
+      "](" +
+      absoluteUrl(locale.prefix) +
+      "): " +
+      content.description,
+    "",
+    "## " + content.docsHeading,
+    "",
+    "- [Getting Started](" +
+      absoluteUrl("/docs/getting-started") +
+      "): Create a React, Next.js, Vue, Nuxt, or SvelteKit project with a complete Feature-Sliced Design structure. (English)",
+    "- [Full FSD CLI reference](" +
+      absoluteUrl("/llms-full.txt") +
+      "): Consolidated commands, framework support, boundaries, and latest release details. (English)",
+    "- [llms.txt in English](" +
+      absoluteUrl("/llms.txt") +
+      "): Short index of the English documentation. (English)",
+    "",
+    content.englishOnlyNote,
     "",
   ].join("\n");
 }
