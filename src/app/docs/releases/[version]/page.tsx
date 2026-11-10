@@ -66,6 +66,7 @@ export default async function ReleasePage({ params }: Props) {
           Package on npm
         </a>
         {[
+          "2.8.0",
           "2.7.1",
           "2.7.0",
           "2.6.3",

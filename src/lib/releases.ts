@@ -15,10 +15,50 @@ export type CliRelease = {
 
 export const CLI_RELEASES: CliRelease[] = [
   {
+    version: "2.8.0",
+    date: "2026-11-10",
+    dateLabel: "November 10, 2026",
+    status: "latest",
+    summary:
+      "Project explanation and Git history commands, consistent project naming, five README translations, and the adapter foundation for future project targets.",
+    frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
+    sections: [
+      {
+        title: "Added",
+        items: [
+          "fsd explain summarizes the project stack and slices. fsd explain --tour writes ONBOARDING.md; use --force to replace an existing file. App/shared segments are shown separately and excluded from the total slice count.",
+          "fsd history samples the last 50 Git commits, counts changed-file touches by layer, ranks the most-touched slices and prints a timeline. Use --limit <n> to change the sample size. App/shared segments are excluded from slice ranking.",
+          "Project-target flags and target-aware framework selection. Web is the only implemented creation target; multi-web, mobile and universal are not yet available.",
+          "README translations in Russian, Simplified Chinese, Spanish, Brazilian Portuguese and Japanese, plus a GitHub star link after successful project creation.",
+        ],
+      },
+      {
+        title: "Changed",
+        items: [
+          "Framework adapter contract v2, adapter-derived capabilities and a shared family-generator interface. The public plugin API remains a proposal, not an implemented plugin system.",
+        ],
+      },
+      {
+        title: "Fixed",
+        items: [
+          "New projects use their own normalized package name and titles instead of inheriting the template identity. --package-name sets a package name independently of the project folder.",
+          "History classification supports Windows junctions, symlinked checkouts and projects nested in a repository. The CLI entry point retains its executable permission.",
+        ],
+      },
+      {
+        title: "Compatibility",
+        items: [
+          "Published npm gitHead: 6496a11077b28d51d42a987bc26c8cbb577ba9ce; tagged v2.8.0. Node.js 22.12.0 or later remains required.",
+          "262 local CLI tests passed. Published-artifact smoke passed for React/Vite and Next.js with npm locally and on Ubuntu; other artifact combinations are not certified by that smoke.",
+        ],
+      },
+    ],
+  },
+  {
     version: "2.7.1",
     date: "2026-10-29",
     dateLabel: "October 29, 2026",
-    status: "latest",
+    status: "stable",
     summary:
       "A small update on 2.7: the global fsd command, home/about/consult page presets, fixes for upgrading projects created before 2.6.1, and templates pinned to their security-fixed main commits.",
     frameworks: ["React + Vite", "Next.js", "Vue + Vite", "Nuxt", "SvelteKit"],
