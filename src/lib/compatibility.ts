@@ -1,6 +1,6 @@
 // Mirrors bin/core/runtime-requirements.mjs in FSD-CLI/cli as published in
-// CLI 2.7.1. Update both together when a template or the CLI changes engines.
-export const COMPATIBILITY_CLI_VERSION = "2.7.1";
+// CLI 2.8.0. Update both together when a template or the CLI changes engines.
+export const COMPATIBILITY_CLI_VERSION = "2.8.0";
 
 export const CLI_NODE_RANGE = ">=22.12.0";
 

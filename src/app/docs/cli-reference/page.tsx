@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/docs/cli-reference" },
 };
 
-// Mirrors `fsd --help` and bin/generator.mjs in CLI 2.7.1.
-const REFERENCE_VERSION = "2.7.1";
+// Mirrors `fsd --help` and bin/generator.mjs in CLI 2.8.0.
+const REFERENCE_VERSION = "2.8.0";
 
 type Row = [flag: string, values: string, description: string];
 
@@ -33,6 +33,16 @@ const COMMANDS: Row[] = [
     "Run check plus toolchain diagnostics (Node.js, Git, package manager).",
   ],
   ["config", "", "Print the resolved fsd.config.json."],
+  [
+    "explain",
+    "--tour, --force",
+    "Summarize the stack and slices. --tour writes ONBOARDING.md; --force permits replacement. App/shared segments are excluded from the slice total.",
+  ],
+  [
+    "history",
+    "--limit <n> (default 50)",
+    "Count changed-file touches by FSD layer and show a commit timeline. App/shared segments are excluded from slice ranking.",
+  ],
   [
     "upgrade",
     "see upgrade options",
@@ -67,6 +77,21 @@ const GENERATE_TYPES: Row[] = [
 ];
 
 const CREATE_OPTIONS: Row[] = [
+  [
+    "--package-name <name>",
+    "valid npm package name",
+    "Set the package name independently of the project folder.",
+  ],
+  [
+    "--target <target>",
+    "web (implemented); multi-web | mobile | universal (unavailable)",
+    "Choose the project target. Only web can be created today.",
+  ],
+  [
+    "--monorepo, --mobile",
+    "unavailable",
+    "Shorthands for multi-web and mobile; rejected until those targets are implemented.",
+  ],
   [
     "-f, --framework <id>",
     "react-vite | nextjs | vue-vite | nuxt | sveltekit",
@@ -229,6 +254,8 @@ export default function CliReferencePage() {
 fsd generate <type> <name...> [--force] [--dry-run]   # alias: fsd g
 fsd <check|doctor> [--architecture]
 fsd config
+fsd explain [--tour] [--force]
+fsd history [--limit <n>]
 fsd upgrade [--dry-run] [--check] [--yes] [--no-install] [--allow-dirty]`}
         />
         <p className="text-base leading-relaxed text-body">
