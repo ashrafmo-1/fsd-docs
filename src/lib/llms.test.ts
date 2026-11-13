@@ -3,6 +3,13 @@ import { test } from "node:test";
 import type { LocaleCode } from "./i18n.ts";
 import { getLlmsIndex, getLlmsIndexForLocale } from "./llms.ts";
 
+/** The exact targets of every Markdown link (`[label](url)`) in an index. */
+function linkTargets(markdown: string): Set<string> {
+  return new Set(
+    [...markdown.matchAll(/\]\(([^)\s]+)\)/g)].map(([, url]) => url),
+  );
+}
+
 const LOCALE_CASES: {
   code: Exclude<LocaleCode, "en">;
   quickStartPath: string;
@@ -51,10 +58,10 @@ const LOCALE_CASES: {
 ];
 
 test("English llms.txt links every translated llms.txt", () => {
-  const index = getLlmsIndex();
+  const links = linkTargets(getLlmsIndex());
   for (const { code } of LOCALE_CASES) {
     assert.ok(
-      index.includes(`https://fsdcli.me/${code}/llms.txt`),
+      links.has(`https://fsdcli.me/${code}/llms.txt`),
       `English index must link /${code}/llms.txt`,
     );
   }
@@ -68,11 +75,12 @@ for (const {
 } of LOCALE_CASES) {
   test(`/${code}/llms.txt links its quick start and the English docs`, () => {
     const index = getLlmsIndexForLocale(code);
-    assert.ok(index.includes(`https://fsdcli.me${quickStartPath}`));
+    const links = linkTargets(index);
+    assert.ok(links.has(`https://fsdcli.me${quickStartPath}`));
     assert.ok(index.includes(quickStartTitle));
-    assert.ok(index.includes("https://fsdcli.me/docs/getting-started"));
-    assert.ok(index.includes("https://fsdcli.me/llms-full.txt"));
-    assert.ok(index.includes("https://fsdcli.me/llms.txt"));
+    assert.ok(links.has("https://fsdcli.me/docs/getting-started"));
+    assert.ok(links.has("https://fsdcli.me/llms-full.txt"));
+    assert.ok(links.has("https://fsdcli.me/llms.txt"));
     assert.ok(index.includes(englishOnlyNote));
   });
 }
