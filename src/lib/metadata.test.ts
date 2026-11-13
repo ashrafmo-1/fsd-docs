@@ -1,10 +1,12 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import {
-  defaultOgImage,
-  docsPageMetadata,
-  pageMetadata,
-} from "./metadata.ts";
+import { defaultOgImage, docsPageMetadata, pageMetadata } from "./metadata.ts";
+
+// Next types openGraph and twitter as unions whose members don't all carry
+// `type`, `card` or the article dates, so read the emitted fields directly.
+function fields(value: unknown): Record<string, unknown> {
+  return (value ?? {}) as Record<string, unknown>;
+}
 
 test("pageMetadata sets openGraph and twitter for the page, not the homepage", () => {
   const meta = pageMetadata({
@@ -17,15 +19,15 @@ test("pageMetadata sets openGraph and twitter for the page, not the homepage", (
   assert.equal(meta.description, "Create an FSD project.");
   assert.deepEqual(meta.alternates, { canonical: "/docs/getting-started" });
 
-  assert.equal(meta.openGraph?.url, "/docs/getting-started");
-  assert.equal(meta.openGraph?.title, "Getting Started | FSD CLI");
-  assert.equal(meta.openGraph?.description, "Create an FSD project.");
-  assert.deepEqual(meta.openGraph?.images, [defaultOgImage]);
+  assert.equal(fields(meta.openGraph).url, "/docs/getting-started");
+  assert.equal(fields(meta.openGraph).title, "Getting Started | FSD CLI");
+  assert.equal(fields(meta.openGraph).description, "Create an FSD project.");
+  assert.deepEqual(fields(meta.openGraph).images, [defaultOgImage]);
 
-  assert.equal(meta.twitter?.card, "summary_large_image");
-  assert.equal(meta.twitter?.title, "Getting Started | FSD CLI");
-  assert.equal(meta.twitter?.description, "Create an FSD project.");
-  assert.deepEqual(meta.twitter?.images, [defaultOgImage]);
+  assert.equal(fields(meta.twitter).card, "summary_large_image");
+  assert.equal(fields(meta.twitter).title, "Getting Started | FSD CLI");
+  assert.equal(fields(meta.twitter).description, "Create an FSD project.");
+  assert.deepEqual(fields(meta.twitter).images, [defaultOgImage]);
 });
 
 test("pageMetadata accepts a distinct share description", () => {
@@ -36,9 +38,18 @@ test("pageMetadata accepts a distinct share description", () => {
     shareDescription: "Six layers. Clear boundaries.",
   });
 
-  assert.equal(meta.description, "Long SEO description of the architecture page.");
-  assert.equal(meta.openGraph?.description, "Six layers. Clear boundaries.");
-  assert.equal(meta.twitter?.description, "Six layers. Clear boundaries.");
+  assert.equal(
+    meta.description,
+    "Long SEO description of the architecture page.",
+  );
+  assert.equal(
+    fields(meta.openGraph).description,
+    "Six layers. Clear boundaries.",
+  );
+  assert.equal(
+    fields(meta.twitter).description,
+    "Six layers. Clear boundaries.",
+  );
 });
 
 test("docsPageMetadata uses article type without inventing timestamps", () => {
@@ -48,15 +59,9 @@ test("docsPageMetadata uses article type without inventing timestamps", () => {
     path: "/docs/upgrade",
   });
 
-  assert.equal(meta.openGraph?.type, "article");
-  assert.equal(
-    "publishedTime" in (meta.openGraph ?? {}),
-    false,
-  );
-  assert.equal(
-    "modifiedTime" in (meta.openGraph ?? {}),
-    false,
-  );
+  assert.equal(fields(meta.openGraph).type, "article");
+  assert.equal("publishedTime" in fields(meta.openGraph), false);
+  assert.equal("modifiedTime" in fields(meta.openGraph), false);
 });
 
 test("docsPageMetadata keeps explicit release timestamps", () => {
@@ -69,7 +74,7 @@ test("docsPageMetadata keeps explicit release timestamps", () => {
     modifiedTime: publishedTime,
   });
 
-  assert.equal(meta.openGraph?.type, "article");
-  assert.equal(meta.openGraph?.publishedTime, publishedTime);
-  assert.equal(meta.openGraph?.modifiedTime, publishedTime);
+  assert.equal(fields(meta.openGraph).type, "article");
+  assert.equal(fields(meta.openGraph).publishedTime, publishedTime);
+  assert.equal(fields(meta.openGraph).modifiedTime, publishedTime);
 });

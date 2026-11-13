@@ -51,7 +51,10 @@ export function contentSourceFile(route: string, root = process.cwd()) {
  * checkout, for an uncommitted file, or in a shallow clone (where every file
  * often reports HEAD's date).
  */
-export function lastCommitDate(file: string, root = process.cwd()): Date | null {
+export function lastCommitDate(
+  file: string,
+  root = process.cwd(),
+): Date | null {
   if (cache.has(file)) return cache.get(file) ?? null;
   if (isShallowGitRepo(root)) {
     cache.set(file, null);

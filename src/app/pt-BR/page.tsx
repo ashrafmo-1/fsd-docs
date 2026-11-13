@@ -4,20 +4,20 @@ import { CodeBlock } from "@/components/docs/code-block";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
 import { languageAlternates } from "@/lib/i18n";
-import { localizedOpenGraph } from "@/lib/metadata";
+import { docsPageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Início rápido em português",
   description:
     "Guia de início rápido em português: crie um projeto com Feature-Sliced Design usando o FSD CLI — requisitos, criação de projetos, geração de slices e atualizações seguras.",
+  path: "/pt-BR",
+  locale: "pt_BR",
   alternates: {
-    canonical: "/pt-BR",
     languages: languageAlternates("/docs/getting-started"),
   },
-  openGraph: localizedOpenGraph("pt_BR", "/pt-BR"),
-};
+});
 
 const H2 = "mt-12 text-2xl font-semibold text-ink";
 

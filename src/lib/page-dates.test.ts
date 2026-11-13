@@ -46,8 +46,5 @@ test("falls back when Git has no content history for the route", () => {
   const fallback = new Date("2026-01-01T00:00:00.000Z");
   assert.equal(routeLastModified("/docs/does-not-exist", fallback), fallback);
   // page.tsx-only routes must not invent dates from metadata edits
-  assert.equal(
-    routeLastModified("/docs/getting-started", fallback),
-    fallback,
-  );
+  assert.equal(routeLastModified("/docs/getting-started", fallback), fallback);
 });
