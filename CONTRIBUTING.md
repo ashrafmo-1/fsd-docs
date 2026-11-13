@@ -34,6 +34,13 @@ Keep claims about the CLI true for the published release: check flags and
 messages against the CLI source at the released tag, and say when a feature is
 in preview.
 
+## Translate the docs
+
+Translations follow the workflow in `docs/i18n-translation-workflow.md`
+and the terms in `docs/i18n-glossary.md` — read both before translating.
+One language per task (I18N-03..07), two PRs per language: website pages
+here in fsd-docs plus `README.<locale>.md` in `FSD-CLI/cli`.
+
 ## Before you open a pull request
 
 ```bash
