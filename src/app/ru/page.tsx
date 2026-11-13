@@ -4,20 +4,20 @@ import { CodeBlock } from "@/components/docs/code-block";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
 import { languageAlternates } from "@/lib/i18n";
-import { localizedOpenGraph } from "@/lib/metadata";
+import { docsPageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Быстрый старт на русском",
   description:
     "Краткое руководство на русском языке по созданию проекта Feature-Sliced Design с помощью FSD CLI: требования, создание проекта, генерация срезов и безопасное обновление.",
+  path: "/ru",
+  locale: "ru_RU",
   alternates: {
-    canonical: "/ru",
     languages: languageAlternates("/docs/getting-started"),
   },
-  openGraph: localizedOpenGraph("ru_RU", "/ru"),
-};
+});
 
 const H2 = "mt-12 text-2xl font-semibold text-ink";
 

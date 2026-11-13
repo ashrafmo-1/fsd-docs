@@ -43,7 +43,7 @@ assert.equal(
 );
 
 // Pages that override openGraph/twitter must not drop the share image.
-// Locale pages use localizedOpenGraph (I18N-08) for the same reason.
+// Locale pages build their metadata with docsPageMetadata for the same reason.
 for (const page of [
   "architecture",
   "capabilities",

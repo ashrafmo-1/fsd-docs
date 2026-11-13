@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Slice Generator",
   description:
     "Generate feature, entity, widget, and page slices from the project's saved FSD configuration.",
-  alternates: { canonical: "/docs/slice-generator" },
-};
+  path: "/docs/slice-generator",
+});
 
 const SUPPORTED_TYPES = ["feature", "entity", "widget", "page"];
 

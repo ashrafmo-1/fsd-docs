@@ -5,17 +5,18 @@ import { DocumentationVideo } from "@/components/docs/documentation-video";
 import { PackageManagerCommand } from "@/components/docs/package-manager-command";
 import { GETTING_STARTED_VIDEO_PAGE_KEY } from "@/lib/documentation-videos";
 import { languageAlternates } from "@/lib/i18n";
+import { docsPageMetadata } from "@/lib/metadata";
 import { getPublishedDocumentationVideo } from "@/lib/published-videos";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Getting Started",
   description:
     "Create a React, Next.js, Vue, Nuxt, or SvelteKit project with a complete Feature-Sliced Design structure.",
+  path: "/docs/getting-started",
   alternates: {
-    canonical: "/docs/getting-started",
     languages: languageAlternates("/docs/getting-started"),
   },
-};
+});
 
 const WIZARD_STEPS = [
   "Choose a project name and starter: React + Vite, Next.js, Vue + Vite, Nuxt, or SvelteKit.",
@@ -52,36 +53,6 @@ export default async function GettingStartedPage() {
           className="text-brand-coral underline"
         >
           اقرأ دليل البدء السريع بالعربية
-        </a>
-      </p>
-      <p className="mt-3 text-sm">
-        <a
-          href="/ru"
-          hrefLang="ru"
-          lang="ru"
-          className="text-brand-coral underline"
-        >
-          Прочитать краткое руководство на русском
-        </a>
-      </p>
-      <p className="mt-3 text-sm">
-        <a
-          href="/zh-CN"
-          hrefLang="zh-CN"
-          lang="zh-CN"
-          className="text-brand-coral underline"
-        >
-          阅读简体中文快速入门指南
-        </a>
-      </p>
-      <p className="mt-3 text-sm">
-        <a
-          href="/es"
-          hrefLang="es"
-          lang="es"
-          className="text-brand-coral underline"
-        >
-          Leer la guía de inicio rápido en español
         </a>
       </p>
 

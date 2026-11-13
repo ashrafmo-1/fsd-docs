@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { ReleaseTabs } from "@/components/docs/release-tabs";
+import { docsPageMetadata } from "@/lib/metadata";
 import {
   CLI_RELEASES,
   LEGACY_NPM_VERSIONS,
@@ -9,19 +10,19 @@ import {
 } from "@/lib/releases";
 import { siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Releases",
   description:
     "FSD CLI npm releases and independent Agent Skill tagged release history.",
+  path: "/docs/releases",
   alternates: {
-    canonical: "/docs/releases",
     types: {
       "application/rss+xml": [
         { url: "/docs/releases/feed.xml", title: "FSD CLI releases" },
       ],
     },
   },
-};
+});
 
 export default function ReleasesPage() {
   return (

@@ -10,11 +10,11 @@ The locale registry is `src/lib/i18n.ts`. To add a language:
 
 1. **Build its pages** under `src/app/<locale>/`, following the existing
    `/ar` page: a static page that sets `lang`/`dir` on its content, keeps
-   code blocks left-to-right, and sets metadata with
-   `languages: languageAlternates("<english-path>")`. Its `openGraph` must
-   use `localizedOpenGraph("<og-locale>", "/<locale>")` — a page-level
-   `openGraph` replaces the layout's, so without it the page ships with no
-   share image.
+   code blocks left-to-right, and builds its metadata with
+   `docsPageMetadata({ title, description, path: "/<locale>", locale:
+   "<og-locale>", alternates: { languages: languageAlternates("<english-path>") } })`.
+   A page-level `openGraph` or `twitter` replaces the layout's, so the helper
+   sets the share title, description, URL and image for both.
 2. **Register translated paths** in `TRANSLATED_PATHS` in `src/lib/i18n.ts`:
    map each English path to its translated path, e.g.
    `"/docs/getting-started": { ru: "/ru/docs/getting-started" }`. Pages

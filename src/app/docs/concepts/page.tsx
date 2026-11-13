@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "FSD Concepts",
   description:
     "Layers, slices, segments, public APIs, and the import rule of Feature-Sliced Design, and how the FSD CLI maps each one to files.",
-  alternates: { canonical: "/docs/concepts" },
-};
+  path: "/docs/concepts",
+});
 
 const LAYERS: [layer: string, purpose: string, example: string][] = [
   ["app", "Entry point, providers, routing, global styles.", "app/providers"],

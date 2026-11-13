@@ -4,20 +4,20 @@ import { CodeBlock } from "@/components/docs/code-block";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
 import { languageAlternates } from "@/lib/i18n";
-import { localizedOpenGraph } from "@/lib/metadata";
+import { docsPageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "简体中文快速入门",
   description:
     "简体中文快速入门指南：使用 FSD CLI 创建 Feature-Sliced Design 项目——环境要求、创建项目、生成切片与安全升级。",
+  path: "/zh-CN",
+  locale: "zh_CN",
   alternates: {
-    canonical: "/zh-CN",
     languages: languageAlternates("/docs/getting-started"),
   },
-  openGraph: localizedOpenGraph("zh_CN", "/zh-CN"),
-};
+});
 
 const H2 = "mt-12 text-2xl font-semibold text-ink";
 

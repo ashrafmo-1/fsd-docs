@@ -9,7 +9,7 @@ import { OnThisPage } from "@/components/docs/on-this-page";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
 import { DOCS_NAV_ITEMS } from "@/lib/docs-navigation";
-import { lastCommitDate, pageSourceFile } from "@/lib/page-dates";
+import { contentSourceFile, lastCommitDate } from "@/lib/page-dates";
 import { CLI_RELEASES } from "@/lib/releases";
 import { buildSearchIndex } from "@/lib/search-index";
 
@@ -31,10 +31,12 @@ const latestVersion = (
 ).version;
 
 // Built once at build time; the layout is force-static.
+// Dates come from content files (e.g. MDX), not page.tsx — SEO/metadata
+// commits touch nearly every page.tsx and would reset "Last updated".
 function pageUpdatedDates() {
   return Object.fromEntries(
     DOCS_NAV_ITEMS.flatMap((item) => {
-      const file = pageSourceFile(item.href);
+      const file = contentSourceFile(item.href);
       const date = file && lastCommitDate(file);
       return date ? [[item.href, date.toISOString()]] : [];
     }),
@@ -49,13 +51,19 @@ export default function DocsLayout({
   return (
     <>
       <Navigation />
-      <main className="bg-canvas">
-        <div className="mx-auto grid max-w-[1536px] gap-8 px-6 py-10 lg:grid-cols-[210px_minmax(0,1fr)] xl:grid-cols-[210px_minmax(0,1fr)_210px] lg:py-16">
+      <main className="overflow-x-clip bg-canvas">
+        {/*
+          DOM/keyboard order below xl: nav, collapsed TOC, article.
+          Two closed <details> summaries keep the H1 near the first viewport
+          while leaving the TOC reachable. xl places TOC in the right column.
+        */}
+        <div className="mx-auto grid max-w-[1536px] gap-8 px-6 py-10 lg:grid-cols-[210px_minmax(0,1fr)] lg:[grid-template-areas:'sidebar_toc'_'sidebar_content'] xl:grid-cols-[210px_minmax(0,1fr)_210px] xl:[grid-template-areas:'sidebar_content_toc'] lg:py-16">
           <DocsSidebar header={<DocsVersionSwitcher />} />
+          <OnThisPage />
           <div
             id="main-content"
             tabIndex={-1}
-            className="order-3 min-w-0 outline-none xl:order-2 lg:col-start-2 xl:row-start-1"
+            className="min-w-0 outline-none lg:[grid-area:content]"
           >
             <DocsSearch index={buildSearchIndex()} />
             <DocsBreadcrumbs />
@@ -66,7 +74,6 @@ export default function DocsLayout({
             <div id="docs-content">{children}</div>
             <DocsPageFooter />
           </div>
-          <OnThisPage />
         </div>
       </main>
       <Footer />

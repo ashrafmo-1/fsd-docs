@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { MdxContent } from "@/components/docs/mdx-content";
 import Content from "@/content/docs/upgrade.mdx";
+import { docsPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Safe project upgrades",
   description:
     "Inspect and safely apply versioned FSD CLI tooling migrations without re-scaffolding business code.",
-  alternates: { canonical: "/docs/upgrade" },
-};
+  path: "/docs/upgrade",
+});
 
 export default function UpgradePage() {
   return (

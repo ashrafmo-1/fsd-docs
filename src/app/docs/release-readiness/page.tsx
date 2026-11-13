@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
 import { Badge } from "@/components/ui/badge";
+import { docsPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "Feature status",
   description:
     "Which FSD CLI features are stable, which are in preview, and what is planned: Supabase auth, batch and structure-only generation, architecture checks, light hooks, and Skill-based migration.",
-  alternates: { canonical: "/docs/release-readiness" },
-};
+  path: "/docs/release-readiness",
+});
 
 type Status = "Stable" | "Preview" | "Planned";
 

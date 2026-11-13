@@ -6,29 +6,18 @@ import { Documentation } from "@/components/landing/documentation";
 import { FeatureCards } from "@/components/landing/feature-cards";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
-import { defaultOgImage } from "@/lib/metadata";
+import { pageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-static";
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Capabilities",
   description:
     "Explore FSD CLI framework templates, slice generators, tooling, configuration, roadmap, and frequently asked questions.",
-  alternates: { canonical: "/capabilities" },
-  openGraph: {
-    title: "Capabilities | FSD CLI",
-    description:
-      "Explore the complete FSD CLI toolkit, framework templates, generators, and FAQ.",
-    url: "/capabilities",
-    images: [defaultOgImage],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Capabilities | FSD CLI",
-    description:
-      "Explore the complete FSD CLI toolkit, framework templates, generators, and FAQ.",
-    images: [defaultOgImage],
-  },
-};
+  path: "/capabilities",
+  shareTitle: "Capabilities | FSD CLI",
+  shareDescription:
+    "Explore the complete FSD CLI toolkit, framework templates, generators, and FAQ.",
+});
 export default function CapabilitiesPage() {
   return (
     <>

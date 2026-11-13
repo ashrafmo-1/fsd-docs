@@ -4,20 +4,20 @@ import { CodeBlock } from "@/components/docs/code-block";
 import { Footer } from "@/components/landing/footer";
 import { Navigation } from "@/components/landing/navigation";
 import { languageAlternates } from "@/lib/i18n";
-import { localizedOpenGraph } from "@/lib/metadata";
+import { docsPageMetadata } from "@/lib/metadata";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "日本語クイックスタート",
   description:
     "日本語クイックスタートガイド：FSD CLIでFeature-Sliced Designのプロジェクトを作成する — 要件、プロジェクト作成、スライス生成、安全なアップグレード。",
+  path: "/ja",
+  locale: "ja_JP",
   alternates: {
-    canonical: "/ja",
     languages: languageAlternates("/docs/getting-started"),
   },
-  openGraph: localizedOpenGraph("ja_JP", "/ja"),
-};
+});
 
 const H2 = "mt-12 text-2xl font-semibold text-ink";
 

@@ -126,7 +126,11 @@ export function Navigation() {
         </div>
 
         <div className="flex items-center gap-2">
-          <LanguageSwitcher />
+          {/* Below sm the mobile menu carries the language switcher, so the
+              header keeps room for the theme switcher and the menu button. */}
+          <span className="hidden sm:inline-flex">
+            <LanguageSwitcher />
+          </span>
           <ThemeSwitcher />
           <span className="hidden sm:inline-flex">
             <SupportButton />

@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CodeBlock } from "@/components/docs/code-block";
 import { PublishedDocumentationVideo } from "@/components/docs/published-documentation-video";
+import { docsPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = docsPageMetadata({
   title: "CLI Reference",
   description:
     "Every create-fsd-architecture and fsd command, generator type, and flag, with accepted values and exit codes.",
-  alternates: { canonical: "/docs/cli-reference" },
-};
+  path: "/docs/cli-reference",
+});
 
 // Mirrors `fsd --help` and bin/generator.mjs in CLI 2.8.0.
 const REFERENCE_VERSION = "2.8.0";
