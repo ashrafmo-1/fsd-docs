@@ -3,14 +3,17 @@
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { DOCS_NAVIGATION, getDocsGroup } from "@/lib/docs-navigation";
 import { cn } from "@/lib/utils";
 
 export function DocsSidebar({ header }: { header?: React.ReactNode }) {
   const pathname = usePathname();
   const activeGroup = getDocsGroup(pathname)?.label;
-  const detailsRef = useRef<HTMLDetailsElement>(null);
+  const panelId = useId();
+  // Mobile only: the panel below lg starts collapsed. On lg+ CSS always shows
+  // it, so desktop navigation never depends on this state or on hydration.
+  const [menuOpen, setMenuOpen] = useState(false);
   // "Start" and the group holding the current page are open by default.
   const [open, setOpen] = useState<Record<string, boolean>>({});
 
@@ -18,18 +21,14 @@ export function DocsSidebar({ header }: { header?: React.ReactNode }) {
     if (activeGroup) setOpen((state) => ({ ...state, [activeGroup]: true }));
   }, [activeGroup]);
 
-  // Collapse the mobile menu after navigation. Also close on click so tapping
-  // the current page (pathname unchanged) does not leave the menu open.
+  // Collapse the mobile menu after navigation. Links also close it on click,
+  // so tapping the current page (pathname unchanged) does not leave it open.
   // biome-ignore lint/correctness/useExhaustiveDependencies: pathname is the trigger.
   useEffect(() => {
-    const details = detailsRef.current;
-    if (details) details.open = false;
+    setMenuOpen(false);
   }, [pathname]);
 
-  const closeMobileMenu = () => {
-    const details = detailsRef.current;
-    if (details) details.open = false;
-  };
+  const closeMobileMenu = () => setMenuOpen(false);
 
   const isOpen = (label: string) =>
     open[label] ?? (label === "Start" || label === activeGroup);
@@ -37,22 +36,35 @@ export function DocsSidebar({ header }: { header?: React.ReactNode }) {
   return (
     <aside className="min-w-0 lg:sticky lg:top-24 lg:h-fit lg:[grid-area:sidebar]">
       {/*
-        One nav in the HTML. On mobile it lives in a closed <details>.
-        On lg+ author CSS keeps the panel visible even when details is closed,
-        so desktop never depends on the open attribute or matchMedia.
+        One nav in the HTML. Below lg a toggle shows or hides it (collapsed by
+        default). On lg+ the toggle is hidden and the panel is always shown by
+        CSS, so it stays in the accessibility tree for keyboard and
+        screen-reader users. A closed <details> would hide it from both.
       */}
-      <details
-        ref={detailsRef}
-        className="group rounded-[12px] border border-hairline bg-canvas lg:border-0 lg:bg-transparent lg:rounded-none"
-      >
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-3 py-2.5 text-sm font-semibold text-ink lg:hidden [&::-webkit-details-marker]:hidden">
+      <div className="rounded-[12px] border border-hairline bg-canvas lg:rounded-none lg:border-0 lg:bg-transparent">
+        <button
+          type="button"
+          aria-expanded={menuOpen}
+          aria-controls={panelId}
+          onClick={() => setMenuOpen((value) => !value)}
+          className="flex w-full cursor-pointer items-center justify-between gap-2 px-3 py-2.5 text-sm font-semibold text-ink lg:hidden"
+        >
           Browse docs
           <ChevronDown
             aria-hidden="true"
-            className="h-4 w-4 text-body-muted transition-transform group-open:rotate-180"
+            className={cn(
+              "h-4 w-4 text-body-muted transition-transform",
+              menuOpen && "rotate-180",
+            )}
           />
-        </summary>
-        <div className="max-h-[min(70vh,28rem)] overflow-y-auto border-t border-hairline px-3 pb-4 pt-3 lg:max-h-none lg:overflow-visible lg:border-0 lg:p-0 lg:!block">
+        </button>
+        <div
+          id={panelId}
+          className={cn(
+            "max-h-[min(70vh,28rem)] overflow-y-auto border-t border-hairline px-3 pb-4 pt-3 lg:block lg:max-h-none lg:overflow-visible lg:border-0 lg:p-0",
+            menuOpen ? "block" : "hidden",
+          )}
+        >
           {header}
           <nav aria-label="Documentation" className="space-y-6">
             {DOCS_NAVIGATION.map((group) => {
@@ -123,7 +135,7 @@ export function DocsSidebar({ header }: { header?: React.ReactNode }) {
             })}
           </nav>
         </div>
-      </details>
+      </div>
     </aside>
   );
 }

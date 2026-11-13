@@ -2,7 +2,7 @@
 
 import { ChevronDown, Link2 } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { cn } from "@/lib/utils";
 
@@ -85,6 +85,13 @@ function TocNav({
 
 export function OnThisPage() {
   const pathname = usePathname();
+  const tocPanelId = useId();
+  const [tocOpen, setTocOpen] = useState(false);
+  // A new page starts with its table of contents collapsed again.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: pathname is the trigger.
+  useEffect(() => {
+    setTocOpen(false);
+  }, [pathname]);
   const [contentRevision, setContentRevision] = useState(0);
 
   useEffect(() => {
@@ -185,19 +192,34 @@ export function OnThisPage() {
   return (
     <aside className="min-w-0 lg:[grid-area:toc] xl:sticky xl:top-24 xl:h-fit">
       {/*
-        One TOC in the HTML. Collapsed <details> below xl (placed above the
-        article in layout). On xl+ the panel stays visible without duplicating
-        the heading list.
+        One TOC in the HTML. Below xl it sits above the article behind a
+        toggle, collapsed by default. On xl+ the toggle is hidden and CSS always
+        shows the list, so it stays reachable by keyboard and screen readers.
       */}
-      <details className="group max-h-[70vh] overflow-y-auto rounded-[12px] border border-hairline xl:max-h-[70vh] xl:border-0 xl:rounded-none">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-3 py-2.5 text-sm font-semibold text-ink xl:hidden [&::-webkit-details-marker]:hidden">
+      <div className="max-h-[70vh] overflow-y-auto rounded-[12px] border border-hairline xl:rounded-none xl:border-0">
+        <button
+          type="button"
+          aria-expanded={tocOpen}
+          aria-controls={tocPanelId}
+          onClick={() => setTocOpen((value) => !value)}
+          className="flex w-full cursor-pointer items-center justify-between gap-2 px-3 py-2.5 text-sm font-semibold text-ink xl:hidden"
+        >
           On this page
           <ChevronDown
             aria-hidden="true"
-            className="h-4 w-4 text-body-muted transition-transform group-open:rotate-180"
+            className={cn(
+              "h-4 w-4 text-body-muted transition-transform",
+              tocOpen && "rotate-180",
+            )}
           />
-        </summary>
-        <div className="border-t border-hairline px-3 pb-4 pt-3 xl:border-0 xl:p-0 xl:!block">
+        </button>
+        <div
+          id={tocPanelId}
+          className={cn(
+            "border-t border-hairline px-3 pb-4 pt-3 xl:block xl:border-0 xl:p-0",
+            tocOpen ? "block" : "hidden",
+          )}
+        >
           <p className="mb-4 hidden text-sm font-semibold text-ink xl:block">
             On this page
           </p>
@@ -209,7 +231,7 @@ export function OnThisPage() {
             onCopy={onCopy}
           />
         </div>
-      </details>
+      </div>
     </aside>
   );
 }
