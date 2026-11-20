@@ -11,7 +11,6 @@ export const siteConfig = {
     githubSponsors:
       "https://github.com/sponsors/ashrafmo-1?frequency=one-time&sponsor=ashrafmo-1",
     buyMeACoffee: "https://buymeacoffee.com/ashrafqopiah",
-    instapayUsername: "ashrafmo-1",
   },
   fsdOfficial: "https://feature-sliced.design/",
   repositories: {

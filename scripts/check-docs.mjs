@@ -115,7 +115,6 @@ for (const [path, html] of pages) {
     ),
     `${path}: GitHub Sponsors link`,
   );
-  assert(html.includes("ashrafmo-1"), `${path}: InstaPay username`);
   for (const match of html.matchAll(/href="(\/[^"?#]*)"/g)) {
     const target = match[1];
     if (target.startsWith("/_next") || /\.[a-z]+$/.test(target)) continue;

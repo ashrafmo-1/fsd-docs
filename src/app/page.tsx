@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 import { CtaBand } from "@/components/landing/cta-band";
 import { Explore } from "@/components/landing/explore";

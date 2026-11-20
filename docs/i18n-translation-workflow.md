@@ -104,19 +104,19 @@ Translate the prose around these, and keep code blocks left-to-right
 ## Review checklist
 
 - [ ] Every translated page matches the structure of its English source
-      (same sections, same order, same code blocks).
+  (same sections, same order, same code blocks).
 - [ ] No code block, command, flag, file path, or product name was
-      translated.
+  translated.
 - [ ] FSD terms match the glossary (`docs/i18n-glossary.md`) exactly, and
-      any new term was added to it.
+  any new term was added to it.
 - [ ] One term, one translation: the same English term is never rendered
-      two different ways in one language.
+  two different ways in one language.
 - [ ] `lang`/`dir` are set, code blocks are LTR, metadata title and
-      description are translated.
+  description are translated.
 - [ ] `TRANSLATED_PATHS` in `src/lib/i18n.ts` covers every translated page.
 - [ ] `npm run lint && npm run typecheck && npm run test && npm run build
       && npm run check:static` all pass; new routes are static in the
-      build output.
+  build output.
 - [ ] The README PR exists in `FSD-CLI/cli` and is linked from the task.
 
 ## Keeping translations alive
