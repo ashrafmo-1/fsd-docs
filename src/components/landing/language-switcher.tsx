@@ -1,6 +1,8 @@
 "use client";
 
+import { ChevronDown } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import { useRef } from "react";
 import {
   availableLocales,
   type LocaleCode,
@@ -10,28 +12,33 @@ import {
 } from "@/lib/i18n";
 
 /**
- * Language switcher (I18N-01). Lists the available locales as links and the
- * planned ones (es, pt-BR, ja) disabled with "soon" until their
- * content exists — flipping a locale to `available: true` in src/lib/i18n.ts
- * enables it here with no other change.
+ * Language switcher (I18N-01). Lists available locales and planned ones
+ * disabled with "soon". Features a custom styled chevron and scroll-jump fix.
  */
 export function LanguageSwitcher() {
   const pathname = usePathname();
   const router = useRouter();
   const current = localeOfPath(pathname);
+  const selectRef = useRef<HTMLSelectElement>(null);
 
   return (
-    <label className="inline-flex items-center">
+    <div className="inline-flex items-center relative">
       <span className="sr-only">Language</span>
       <select
+        ref={selectRef}
         aria-label="Language"
         value={current}
+        onMouseDown={() => {
+          if (selectRef.current) {
+            selectRef.current.focus({ preventScroll: true });
+          }
+        }}
         onChange={(event) => {
           router.push(
             pathForLocale(pathname, event.target.value as LocaleCode),
           );
         }}
-        className="h-9 rounded-[12px] border border-hairline bg-canvas px-2 text-sm font-medium text-ink"
+        className="h-9 appearance-none rounded-[12px] border border-hairline bg-canvas pl-3 pr-8 text-sm font-medium text-ink cursor-pointer focus:outline-none focus:ring-1 focus:ring-ring"
       >
         {availableLocales().map((locale) => (
           <option
@@ -49,6 +56,11 @@ export function LanguageSwitcher() {
           </option>
         ))}
       </select>
-    </label>
+      <ChevronDown
+        size={14}
+        aria-hidden="true"
+        className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-ink/60"
+      />
+    </div>
   );
 }
