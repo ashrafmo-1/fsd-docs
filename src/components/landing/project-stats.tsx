@@ -4,9 +4,8 @@ import { ArrowUpRight, Download, Layers3, Package, Star } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
+  fetchGitHubStars,
   fetchLifetimeDownloads,
-  GITHUB_STATS_URL,
-  isCount,
   PROJECT_STATS_SNAPSHOT,
 } from "@/lib/project-stats";
 import { CLI_RELEASES } from "@/lib/releases";
@@ -111,6 +110,7 @@ export function ProjectStats() {
     starsCheckedAt: string;
   }>(PROJECT_STATS_SNAPSHOT);
   useEffect(() => {
+    let active = true;
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 10_000);
     const today = new Date().toISOString().slice(0, 10);
@@ -120,7 +120,7 @@ export function ProjectStats() {
     // Each source can refresh independently; failed requests retain dated evidence.
     fetchLifetimeDownloads(yesterday, controller.signal)
       .then((downloads) => {
-        if (!controller.signal.aborted)
+        if (active && !controller.signal.aborted)
           setStats((current) => ({
             ...current,
             downloads,
@@ -128,21 +128,18 @@ export function ProjectStats() {
           }));
       })
       .catch(() => {});
-    fetch(GITHUB_STATS_URL, { signal: controller.signal })
-      .then(async (response) => {
-        if (!response.ok) throw new Error("GitHub statistics unavailable");
-        const data = await response.json();
-        if (!isCount(data.stargazers_count) || data.full_name !== "FSD-CLI/cli")
-          throw new Error("Invalid GitHub statistics");
-        if (!controller.signal.aborted)
+    fetchGitHubStars()
+      .then((stars) => {
+        if (active)
           setStats((current) => ({
             ...current,
-            stars: data.stargazers_count,
+            stars,
             starsCheckedAt: today,
           }));
       })
       .catch(() => {});
     return () => {
+      active = false;
       controller.abort();
       window.clearTimeout(timeout);
     };

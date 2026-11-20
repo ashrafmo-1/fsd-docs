@@ -10,6 +10,53 @@ export const PROJECT_STATS_SNAPSHOT = {
 export const GITHUB_STATS_URL = "https://api.github.com/repos/FSD-CLI/cli";
 const DAY = 86_400_000;
 
+export function parseGitHubRepo(
+  url: string,
+): { owner: string; repo: string } | null {
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname !== "github.com") return null;
+    const [owner, repo] = parsed.pathname.replace(/^\/+|\/+$/g, "").split("/");
+    if (!owner || !repo) return null;
+    return { owner, repo: repo.replace(/\.git$/, "") };
+  } catch {
+    return null;
+  }
+}
+
+export function formatStarCount(count: number): string {
+  const safeCount = isCount(count) ? count : PROJECT_STATS_SNAPSHOT.stars;
+  if (safeCount >= 1_000) {
+    const formatted = (safeCount / 1_000).toFixed(1).replace(/\.0$/, "");
+    return `${formatted}k`;
+  }
+  return safeCount.toString();
+}
+
+let cachedStars: number | null = null;
+let inFlightStars: Promise<number> | null = null;
+
+// Deduplicates concurrent and subsequent client-side requests from Navigation
+// and ProjectStats so a session spends at most one unauthenticated GitHub call.
+export function fetchGitHubStars(): Promise<number> {
+  if (cachedStars !== null) return Promise.resolve(cachedStars);
+  if (!inFlightStars) {
+    inFlightStars = fetch(GITHUB_STATS_URL)
+      .then(async (response) => {
+        if (!response.ok) throw new Error("GitHub statistics unavailable");
+        const data = await response.json();
+        if (!isCount(data.stargazers_count) || data.full_name !== "FSD-CLI/cli")
+          throw new Error("Invalid GitHub statistics");
+        const stars = data.stargazers_count;
+        cachedStars = stars;
+        return stars;
+      })
+      .finally(() => {
+        inFlightStars = null;
+      });
+  }
+  return inFlightStars;
+}
 // Disjoint one-year windows keep lifetime totals within npm's range limit as
 // the package ages. A missing window must fail the whole total, not undercount it.
 export function getDownloadRanges(end: string) {

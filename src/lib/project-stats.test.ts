@@ -1,9 +1,14 @@
 import assert from "node:assert/strict";
 import { mock, test } from "node:test";
 import {
+  fetchGitHubStars,
   fetchLifetimeDownloads,
+  formatStarCount,
+  GITHUB_STATS_URL,
   getDownloadRanges,
   isCount,
+  PROJECT_STATS_SNAPSHOT,
+  parseGitHubRepo,
 } from "./project-stats.ts";
 
 test("lifetime ranges cover every day exactly once across yearly boundaries", () => {
@@ -64,4 +69,64 @@ test("only finite non-negative integer counts can replace verified statistics", 
   assert(isCount(3808));
   for (const value of [-1, NaN, Infinity, 2.5, "13", null])
     assert(!isCount(value));
+});
+
+test("parseGitHubRepo extracts owner and repo from valid GitHub URLs", () => {
+  assert.deepEqual(parseGitHubRepo("https://github.com/FSD-CLI/cli"), {
+    owner: "FSD-CLI",
+    repo: "cli",
+  });
+  assert.deepEqual(parseGitHubRepo("https://github.com/FSD-CLI/cli.git/"), {
+    owner: "FSD-CLI",
+    repo: "cli",
+  });
+  assert.equal(parseGitHubRepo("https://example.com/FSD-CLI/cli"), null);
+  assert.equal(parseGitHubRepo("not-a-url"), null);
+});
+
+test("formatStarCount formats integers and compact thousands, falling back to snapshot", () => {
+  assert.equal(formatStarCount(13), "13");
+  assert.equal(formatStarCount(1_000), "1k");
+  assert.equal(formatStarCount(1_450), "1.4k");
+  assert.equal(formatStarCount(1_460), "1.5k");
+  assert.equal(
+    formatStarCount(Number.NaN),
+    PROJECT_STATS_SNAPSHOT.stars.toString(),
+  );
+});
+
+test("fetchGitHubStars deduplicates concurrent calls and validates repository payload", async () => {
+  let calls = 0;
+  let status = 403;
+  let payload: unknown = { full_name: "FSD-CLI/cli", stargazers_count: 42 };
+
+  const fetchMock = mock.method(
+    globalThis,
+    "fetch",
+    async (input: Parameters<typeof fetch>[0]) => {
+      assert.equal(String(input), GITHUB_STATS_URL);
+      calls += 1;
+      await new Promise((resolve) => setTimeout(resolve, 10));
+      return new Response(JSON.stringify(payload), { status });
+    },
+  );
+
+  try {
+    await assert.rejects(fetchGitHubStars());
+
+    status = 200;
+    payload = { full_name: "other/repo", stargazers_count: 42 };
+    await assert.rejects(fetchGitHubStars());
+
+    payload = { full_name: "FSD-CLI/cli", stargazers_count: 42 };
+    const [a, b] = await Promise.all([fetchGitHubStars(), fetchGitHubStars()]);
+    assert.equal(a, 42);
+    assert.equal(b, 42);
+
+    const cached = await fetchGitHubStars();
+    assert.equal(cached, 42);
+    assert.equal(calls, 3);
+  } finally {
+    fetchMock.mock.restore();
+  }
 });
