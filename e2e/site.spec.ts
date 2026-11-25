@@ -68,8 +68,28 @@ test("copying a code block announces success", async ({
 
 test("theme switcher applies dark mode and remembers it", async ({ page }) => {
   await page.goto("/docs");
-  await page.getByLabel("Color theme").selectOption("dark");
+  const switcher = page.getByRole("button", { name: /^Color theme:/ });
+
+  await expect(switcher).toHaveAttribute(
+    "aria-label",
+    "Color theme: system. Switch theme",
+  );
+
+  // system -> light
+  await switcher.click();
+  await expect(switcher).toHaveAttribute(
+    "aria-label",
+    "Color theme: light. Switch theme",
+  );
+
+  // light -> dark
+  await switcher.click();
+  await expect(switcher).toHaveAttribute(
+    "aria-label",
+    "Color theme: dark. Switch theme",
+  );
   await expect(page.locator("html")).toHaveClass(/dark/);
+
   await page.reload();
   await expect(page.locator("html")).toHaveClass(/dark/);
 });

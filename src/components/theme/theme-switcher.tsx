@@ -1,27 +1,31 @@
 "use client";
 
 import { Monitor, Moon, Sun } from "lucide-react";
-import { type ThemePreference, useTheme } from "./theme-provider";
+import { useTheme } from "./theme-provider";
 
 export function ThemeSwitcher() {
   const { preference, setPreference } = useTheme();
+
   const Icon =
     preference === "system" ? Monitor : preference === "dark" ? Moon : Sun;
+
+  const cycleTheme = () => {
+    if (preference === "system") setPreference("light");
+    else if (preference === "light") setPreference("dark");
+    else setPreference("system");
+  };
+
   return (
-    <label className="theme-switcher" title="Color theme">
-      <Icon size={15} aria-hidden="true" />
-      <span className="sr-only">Color theme</span>
-      <select
-        aria-label="Color theme"
-        value={preference}
-        onChange={(event) =>
-          setPreference(event.target.value as ThemePreference)
-        }
+    <div className="theme-switcher relative inline-flex items-center">
+      <button
+        type="button"
+        onClick={cycleTheme}
+        aria-label={`Color theme: ${preference}. Switch theme`}
+        title={`Current theme: ${preference}. Click to change.`}
+        className="p-2 rounded-md hover:bg-muted transition-colors flex items-center justify-center"
       >
-        <option value="system">System</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
-    </label>
+        <Icon size={16} aria-hidden="true" />
+      </button>
+    </div>
   );
 }
