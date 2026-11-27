@@ -54,6 +54,12 @@ export const DOCS_NAVIGATION: DocsNavGroup[] = [
         description: "Generate features, entities, widgets, and pages.",
       },
       {
+        label: "Project graph",
+        href: "/docs/graph",
+        description:
+          "Map the project's import graph and layer-boundary violations with fsd graph.",
+      },
+      {
         label: "Auth generator",
         href: "/docs/auth-generator",
         description:

@@ -11,7 +11,8 @@ export const metadata: Metadata = docsPageMetadata({
   path: "/docs/cli-reference",
 });
 
-// Mirrors `fsd --help` and bin/generator.mjs in CLI 2.8.0.
+// Mirrors `fsd --help` and bin/generator.mjs in CLI 2.8.0. The graph row
+// documents the unreleased 2.9.0 command.
 const REFERENCE_VERSION = "2.8.0";
 
 type Row = [flag: string, values: string, description: string];
@@ -38,6 +39,11 @@ const COMMANDS: Row[] = [
     "explain",
     "--tour, --force",
     "Summarize the stack and slices. --tour writes ONBOARDING.md; --force permits replacement. App/shared segments are excluded from the slice total.",
+  ],
+  [
+    "graph",
+    "--json",
+    "Print the project import graph: nodes, edges, and layer-boundary violations.",
   ],
   [
     "history",
@@ -253,6 +259,7 @@ export default function CliReferencePage() {
         <CodeBlock
           code={`fsd create [project-name] [options]
 fsd generate <type> <name...> [--force] [--dry-run]   # alias: fsd g
+fsd graph [--json]
 fsd <check|doctor> [--architecture]
 fsd config
 fsd explain [--tour] [--force]
@@ -271,6 +278,14 @@ npx create-fsd-architecture@latest -g shared <ui|api> [components...]`}
       </section>
 
       <ReferenceTable id="commands" title="Commands" rows={COMMANDS} />
+      <p className="mt-4 text-sm text-body-muted">
+        <code>fsd graph</code> prints the import graph and its layer-boundary
+        violations. See the{" "}
+        <Link href="/docs/graph" className="text-brand-coral underline">
+          project graph guide
+        </Link>
+        .
+      </p>
       <ReferenceTable
         id="generator-types"
         title="Generator types"
@@ -361,6 +376,7 @@ fsd g feature auth --auth-provider supabase
 fsd g shared ui button input
 fsd g shared api
 fsd g feature cart --segments ui,api --root src/lib
+fsd graph --json
 fsd check --architecture
 fsd upgrade --check`}
         />
